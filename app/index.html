@@ -426,6 +426,11 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
     <div class="muted" id="pNote" style="margin-top:6px"></div>
     <div class="muted" style="margin-top:8px">والدروس اللي خلّصتيها قبل كده؟ من صفحة المنهج دوسي «⏮ قبل كده» جنب الدرس، أو «الوحدة كلها متذاكرة» تحت الوحدة.</div>
   </div>
+  <div class="card" id="statsCard">
+    <h3>📊 إحصائيات مجهولة</h3>
+    <div class="muted" style="margin-bottom:8px">بنعدّ بس حاجات عامة زي: كام واحد فتح التطبيق، وأنهي سنة اختار، وفتحه من الأيقونة ولا من المتصفح. من غير اسمك، ومن غير أي حاجة عن مذاكرتك أو حضورك أو أرقامك، ومن غير cookies.</div>
+    <label class="row" style="gap:6px"><input type="checkbox" id="sStats" style="width:20px;height:20px;accent-color:var(--accent)"> شاركي الإحصائيات المجهولة دي</label>
+  </div>
   <div class="card">
     <h3>💾 نسخة احتياطية</h3>
     <div id="cloudStatus" class="nudge" style="box-shadow:none;background:var(--soft);font-size:14px" hidden></div>
@@ -1050,7 +1055,7 @@ var STAGES = {
 }
 };
 var CFG = {
- key:"khutwa-v1", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
+ key:"khutwa-v1", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, gc:"", siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
  evalDefault:[], evalLocked:false, monthlyDefault:false,
  setupText:"كل درس بيتذاكر على 4 خطوات: 🎧 تسمعي، 💡 تفهمي، ✍️ تحلي، 🔁 تراجعي. اختاري سنتك وشعبتك، والتطبيق هيجهزلك المنهج كله.",
  attInfo:["الحضور المنتظم بيخليكي ماشية مع الشرح أول بأول، ومش هتتراكم عليكي الدروس.","لو فيه أيام لازم تحضريها (تقييمات أو امتحانات أو حصص مهمة)، حدديها من الإعدادات كأيام تقييم ⭐ وهتظهر ليها نسبة لوحدها.","تأكدي من قواعد الحضور ونسب التقييمات المطلوبة من مدرستك، لأنها ممكن تتعدل."],
@@ -1140,7 +1145,7 @@ var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! 
 
 /* ---------- state ---------- */
 var memStore = null;
-function defState(){ return {v:4,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
+function defState(){ return {v:5,noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
 function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
 var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
@@ -1179,7 +1184,7 @@ function sanitize(s){
   own(s.time).forEach(function(d){ if(!RX_DATE.test(d) || !s.time[d] || typeof s.time[d]!=="object") return; var c = {}; Object.keys(s.time[d]).forEach(function(k){ if((k==="_" || (RX_ID.test(k) && !BAD_KEYS[k]))) { var v = cleanNum(s.time[d][k],0,1440)|0; if(v) c[k] = v; } }); if(Object.keys(c).length) o.time[d] = c; });
   var tm = s.timer; if(tm && tm.on===true && (tm.phase==="w"||tm.phase==="b")) o.timer = {on:true, tid: RX_ID.test(tm.tid||"") ? tm.tid : "", sk: RX_ID.test(tm.sk||"") ? tm.sk : "", phase:tm.phase, startAt:cleanNum(tm.startAt,0,9e15), acc:cleanNum(tm.acc,0,864e5), paused:tm.paused===true};
   o.exams = (Array.isArray(s.exams)?s.exams:[]).filter(function(e){ return e && /^e\d{1,16}$/.test(e.id) && cleanDate(e.d) && cleanStr(e.t,60).trim(); }).slice(0,100).map(function(e){ return {id:e.id, t:cleanStr(e.t,60).trim(), d:e.d, sk: RX_ID.test(e.sk||"") && !BAD_KEYS[e.sk] ? e.sk : ""}; });
-  o.examMode = s.examMode===true; o.goalPct = cleanNum(s.goalPct||100,10,100)|0;
+  o.noStats = s.noStats===true; o.examMode = s.examMode===true; o.goalPct = cleanNum(s.goalPct||100,10,100)|0;
   own(s.rev).forEach(function(k){ var r = s.rev[k]; if(r && typeof r==="object") o.rev[k] = {n: cleanNum(r.n,0,4)|0, last: cleanDate(r.last)}; });
   o.mist = (Array.isArray(s.mist)?s.mist:[]).filter(function(m){ return m && /^m\d{1,16}$/.test(m.id) && RX_ID.test(m.tid||"") && cleanStr(m.q,300).trim(); }).slice(0,2000).map(function(m){ return {id:m.id, tid:m.tid, sk: RX_ID.test(m.sk||"") && !BAD_KEYS[m.sk] ? m.sk : "", q:cleanStr(m.q,300).trim(), a:cleanStr(m.a,300).trim(), d:cleanDate(m.d), ok:cleanNum(m.ok,0,9)|0}; });
   own(s.links).forEach(function(k){ if(!Array.isArray(s.links[k])) return; var ls = s.links[k].map(function(l){ return l && {u:cleanUrl(l.u), t:cleanStr(l.t,80).trim()}; }).filter(function(l){ return l && l.u; }).slice(0,20); if(ls.length) o.links[k] = ls; });
@@ -1295,6 +1300,15 @@ function genderize(root){
   var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode:function(n){ for(var e=n.parentNode; e && e!==root.parentNode; e=e.parentNode){ if(e.nodeType===1 && (e.hasAttribute("data-nog") || e.tagName==="SCRIPT" || e.tagName==="STYLE")) return NodeFilter.FILTER_REJECT; } return NodeFilter.FILTER_ACCEPT; }});
   var n; while((n = w.nextNode())){ var v = gx(n.nodeValue); if(v!==n.nodeValue) n.nodeValue = v; }
   var ph = root.querySelectorAll("[placeholder]"); for(var i=0;i<ph.length;i++){ var a = ph[i].getAttribute("placeholder"), b = gx(a); if(a!==b) ph[i].setAttribute("placeholder", b); }
+}
+/* ---- anonymous counts (GoatCounter): no name, no study data, no cookies ---- */
+function stat(path, isEvent, title){
+  try{
+    if(!CFG.gc || S.noStats || navigator.doNotTrack==="1" || !/^https?:$/.test(location.protocol)) return;
+    var u = "https://"+CFG.gc+".goatcounter.com/count?p="+encodeURIComponent(path)+(isEvent?"&e=true":"")+"&t="+encodeURIComponent(title||path)+"&s="+(screen.width||0)+"&rnd="+Math.random().toString(36).slice(2);
+    if(!isEvent && document.referrer && document.referrer.indexOf(location.host)<0) u += "&r="+encodeURIComponent(document.referrer.split("?")[0].slice(0,200));
+    if(navigator.sendBeacon) navigator.sendBeacon(u); else { var i = new Image(); i.src = u; }
+  }catch(e){}
 }
 /* ---------- helpers ---------- */
 function $(id){ return document.getElementById(id); }
@@ -1749,7 +1763,7 @@ function renderSet(){
   $("sEval").innerHTML = DN.map(function(n,i){ return '<button type="button" data-w="'+i+'" class="'+(ed.indexOf(i)>=0?"on":"")+'">'+n+' ⭐</button>'; }).join("");
   $("sEvalNote").textContent = CFG.evalLocked ? "أيام التقييم ثابتة: "+CFG.evalDefault.map(function(i){return DN[i];}).join(" و") : (ed.length ? "" : "مفيش أيام تقييم متحددة. اختاري لو عندك أيام لازم تحضريها.");
   var eb = $("sEval").querySelectorAll("button"); for(var e2=0;e2<eb.length;e2++){ eb[e2].addEventListener("click",function(){ var i=+this.getAttribute("data-w"); if(CFG.evalLocked && CFG.evalDefault.indexOf(i)>=0){ toast("الأيام دي أيام تقييم ثابتة"); return; } var arr=(S.evalDays||[]).slice(), k=arr.indexOf(i); if(k>=0) arr.splice(k,1); else { arr.push(i); var sdd=(S.schoolDays||[]).slice(); if(sdd.indexOf(i)<0){ sdd.push(i); S.schoolDays=sdd; } } S.evalDays=arr; save(); renderSet(); }); }
-  $("sMonthly").checked = !!S.showMonthly;
+  $("sMonthly").checked = !!S.showMonthly; $("sStats").checked = !S.noStats; $("statsCard").hidden = !CFG.gc;
   $("setContacts").innerHTML = contactRows(S.contacts||[]);
   $("repDay").innerHTML = DAYN.map(function(n,i){ return '<option value="'+i+'"'+(i===S.reportDay?" selected":"")+'>'+n+'</option>'; }).join("");
   var pr = S.prior||{}; $("pDays").value = pr.days||""; $("pFrom").value = pr.from||""; $("pTo").value = pr.to||"";
@@ -1761,6 +1775,7 @@ $("sStage").addEventListener("change",function(){ S.stage = this.value; var keys
 $("sTrack").addEventListener("change",function(){ S.track = this.value; save(); toast("اتغيرت الشعبة/المادة. تقدمك في كل المواد محفوظ."); renderAll(); });
 function savePrior(){ var n = parseInt($("pDays").value,10); S.prior = {days: isNaN(n)||n<0 ? 0 : Math.min(n,400), from:$("pFrom").value, to:$("pTo").value}; save(); renderHeader(); var pr=S.prior; $("pNote").textContent = pr.days ? "اتحسب "+pr.days+" يوم مذاكرة سابقة"+(pr.from&&pr.to?" من "+niceDate(pr.from)+" لـ "+niceDate(pr.to):"")+" ✔" : ""; }
 ["pDays","pFrom","pTo"].forEach(function(id){ $(id).addEventListener("change", savePrior); });
+$("sStats").addEventListener("change",function(){ if(!this.checked) stat("stats-off", true, "قفل الإحصائيات"); S.noStats = !this.checked; save(); toast(this.checked ? "شكرًا 💚" : "اتقفلت الإحصائيات"); });
 $("saveContacts").addEventListener("click",function(){ var cs = readContacts($("setContacts")); if(cs===null) return; S.contacts = cs; save(); toast(cs.length ? "اتحفظ "+cs.length+" رقم ✔" : "اتمسحت الأرقام"); renderAll(); });
 $("repDay").addEventListener("change",function(){ S.reportDay = +this.value; save(); });
 $("sMonthly").addEventListener("change",function(){ S.showMonthly = this.checked; save(); });
@@ -2086,13 +2101,13 @@ function drawShare(){
 function canvasBlob(cb){ $("shareCanvas").toBlob(function(b){ cb(b); }, "image/png"); }
 function saveBlob(b, name){ var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800); }
 $("imgSave").addEventListener("click",function(){ canvasBlob(function(b){ if(b) saveBlob(b, "khutwa-"+today()+".png"); toast("اتنزلت الصورة ✔"); }); });
-$("imgShare").addEventListener("click",function(){ canvasBlob(function(b){ if(!b) return; var f = null; try{ f = new File([b], "khutwa-"+today()+".png", {type:"image/png"}); }catch(e){} if(f && navigator.canShare && navigator.canShare({files:[f]})){ navigator.share({files:[f], title:"تقدمي في خُطوة"}).catch(function(){}); } else { saveBlob(b, "khutwa-"+today()+".png"); toast("الموبايل ده مش بيدعم المشاركة المباشرة، فنزّلنا الصورة"); } }); });
+$("imgShare").addEventListener("click",function(){ stat("share-image", true, "مشاركة صورة التقدم"); canvasBlob(function(b){ if(!b) return; var f = null; try{ f = new File([b], "khutwa-"+today()+".png", {type:"image/png"}); }catch(e){} if(f && navigator.canShare && navigator.canShare({files:[f]})){ navigator.share({files:[f], title:"تقدمي في خُطوة"}).catch(function(){}); } else { saveBlob(b, "khutwa-"+today()+".png"); toast("الموبايل ده مش بيدعم المشاركة المباشرة، فنزّلنا الصورة"); } }); });
 function copyText(v){ try{ navigator.clipboard.writeText(v).then(function(){ toast("اتنسخ ✔"); }, function(){ toast("انسخيه يدوي"); }); }catch(e){ toast("انسخيه يدوي"); } }
 function reportText(){ return weekMessage().replace("\n\nخُطوة · Created by Add Value","")+"\n\n🔗 التقرير كامل:\n"+reportUrl()+"\n\nخُطوة · Created by Add Value"; }
 function contactButtons(box){
   var cs = S.contacts||[];
   box.innerHTML = cs.length ? cs.map(function(c,i){ return '<a class="btn" data-sendi="'+i+'" href="'+esc(waLink(c.num, reportText()))+'" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;margin-bottom:8px">📤 ابعتي لـ <span data-nog>'+esc(c.n)+'</span></a>'; }).join("") : '<div class="muted">مفيش أرقام متسجلة. ضيفيها من المزيد ← الإعدادات ← أرقام المتابعة.</div>';
-  var as = box.querySelectorAll("[data-sendi]"); for(var i=0;i<as.length;i++) as[i].addEventListener("click",function(){ S.lastReport = today(); save(); setTimeout(function(){ renderAll(); }, 300); });
+  var as = box.querySelectorAll("[data-sendi]"); for(var i=0;i<as.length;i++) as[i].addEventListener("click",function(){ stat("share-whatsapp-contact", true, "إرسال تقرير لرقم متابعة"); S.lastReport = today(); save(); setTimeout(function(){ renderAll(); }, 300); });
 }
 function renderShare(){
   contactButtons($("sendBtns"));
@@ -2100,7 +2115,7 @@ function renderShare(){
   var u = reportUrl(); $("repLink").value = u; $("repWa").href = "https://wa.me/?text="+encodeURIComponent("📊 تقرير مذاكرتي في خُطوة:\n"+u);
   var m = weekMessage(); $("weekMsg").value = m; $("msgWa").href = "https://wa.me/?text="+encodeURIComponent(m);
 }
-$("repCopy").addEventListener("click",function(){ copyText($("repLink").value); });
+$("repCopy").addEventListener("click",function(){ stat("share-report-link", true, "نسخ لينك التقرير"); copyText($("repLink").value); });
 $("msgCopy").addEventListener("click",function(){ copyText($("weekMsg").value); });
 
 /* ---- watch dashboard ---- */
@@ -2189,7 +2204,7 @@ function showSetup(){
   function step4(){ $("setupContacts").innerHTML = contactRows(S.contacts||[]); show(3); }
   $("setupSkip4").onclick = function(){ finish(); };
   $("setupGo4").onclick = function(){ var cs = readContacts($("setupContacts")); if(cs===null) return; S.contacts = cs; finish(); };
-  function finish(){ S.name = name; S.gender = gender; S.stage = stage; S.track = track; S.setup = true; curSubj = null; curPart = 0; save(); $("setup").classList.remove("on"); renderAll(); confetti(40); toast(S.name ? "يلا بينا يا "+S.name+" 🚀" : "يلا بينا 🚀"); }
+  function finish(){ stat("setup-"+stage+"-"+track, true, "اختيار السنة والشعبة"); stat("gender-"+gender, true, gender==="m"?"ولد":"بنت"); S.name = name; S.gender = gender; S.stage = stage; S.track = track; S.setup = true; curSubj = null; curPart = 0; save(); $("setup").classList.remove("on"); renderAll(); confetti(40); toast(S.name ? "يلا بينا يا "+S.name+" 🚀" : "يلا بينا 🚀"); }
   show(0);
   $("setup").classList.add("on");
 }
@@ -2202,6 +2217,10 @@ go("home");
 try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function(){}); }catch(e){}
 initialSync();
 checkCurriculum();
+(function(){ var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone===true;
+  stat("/app", false, "التطبيق"); stat(standalone ? "open-installed" : "open-browser", true, standalone ? "فتح من الأيقونة" : "فتح من المتصفح");
+  if(S.setup && S.stage) stat("active-"+S.stage, true, "طالب نشط · "+(STAGES[S.stage]?STAGES[S.stage].label:""));
+  window.addEventListener("appinstalled", function(){ stat("installed", true, "تثبيت التطبيق"); }); })();
 })();
 </script>
 <script>
