@@ -1050,7 +1050,8 @@ function renderCharts(R){
   s2 += '<text x="'+(W2-Rr)+'" y="'+(H2-6)+'" text-anchor="end" font-size="9.5" fill="var(--muted)">'+R.f.getDate()+' '+MON[R.f.getMonth()]+'</text><text x="'+L+'" y="'+(H2-6)+'" text-anchor="start" font-size="9.5" fill="var(--accent2)">'+endC.getDate()+' '+MON[endC.getMonth()]+'</text></svg>';
   $("chartCum").innerHTML = s2 + '<div class="muted">من <b class="en">'+pts[0].toFixed(1)+'%</b> لـ <b class="en">'+last.toFixed(1)+'%</b> في الفترة دي.</div>';
 }
-function renderPace(){
+function renderPace(){ renderPace0(); try{ genderize($("pace")); }catch(e){} }
+function renderPace0(){
   var o = overall(), left = o.total - o.steps, box = $("pace");
   if(!S.target){ box.innerHTML = '<div class="muted">حددي تاريخ تخلّصي فيه المنهج من الإعدادات، وهقولك محتاجة كام خطوة في اليوم.</div><button class="btn ghost sm" style="margin-top:8px" id="goSet">حددي التاريخ</button>'; $("goSet").addEventListener("click",function(){ go("set"); }); return; }
   var t = new Date(); t = new Date(t.getFullYear(),t.getMonth(),t.getDate());
@@ -1671,6 +1672,7 @@ $("weightNote").textContent = CFG.weightNote;
 applyTheme();
 if(!S.setup || !S.gender || !CFG.sections[S.track]) showSetup();
 go("home");
+try{ renderHeader(); genderize(document.querySelector("header.top")); }catch(e){}
 try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function(){}); }catch(e){}
 initialSync();
 (function(){ try{ var seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10); if(seen && seen < currV && S.setup) toast("📚 المناهج اتحدثت: دروس جديدة اتضافت، وتقدمك زي ما هو"); localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){} })();

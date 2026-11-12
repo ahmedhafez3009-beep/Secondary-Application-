@@ -1,0 +1,29 @@
+<!doctype html><meta charset="utf-8"><style>
+@font-face{font-family:Lalezar;src:url(../../video/fonts/Lalezar-Regular.ttf)}@font-face{font-family:Cairo;src:url(../../video/fonts/Cairo.ttf);font-weight:200 1000}
+body{margin:0}#c{position:relative;width:1920px;height:1080px;background:#FCFCFA;direction:rtl;font-family:Cairo;overflow:hidden}
+#ph{position:absolute;left:150px;top:30px;width:510px;height:1020px;border-radius:70px;background:#0F2526;box-shadow:0 30px 60px rgba(14,42,71,.25)}
+#dots{position:absolute;inset:0;background-image:radial-gradient(#e3e9e5 1.5px,transparent 1.5px);background-size:28px 28px;opacity:.7}
+#br{position:absolute;right:70px;top:46px;display:flex;align-items:center;gap:14px;font:400 40px Lalezar;color:#103B3C}
+#br small{font:700 22px Cairo;color:#8a958f;margin-right:16px;direction:ltr}
+#sec{position:absolute;right:70px;top:150px;font:400 84px/1.1 Lalezar;color:#1EA05F;white-space:nowrap}
+#n{position:absolute;left:740px;top:170px;font:800 26px Cairo;color:#9aa6a0;direction:ltr}
+#ar{position:absolute;right:70px;left:740px;top:300px;font:800 52px/1.55 Cairo;color:#1b1d1f;text-wrap:balance}
+#en{position:absolute;right:70px;left:740px;top:var(--et,600px);font:600 30px/1.45 Cairo;color:#6b7680;direction:ltr;text-align:left}
+#chips{position:absolute;right:70px;left:740px;bottom:44px;display:flex;flex-wrap:wrap;gap:10px;direction:rtl}
+.ch{font:800 20px Cairo;padding:7px 15px;border-radius:999px;background:#eef2ef;color:#9aa6a0}
+.ch.d{background:#E6F4EC;color:#1EA05F}.ch.on{background:#1EA05F;color:#fff}
+#end{position:absolute;inset:0;background:#FCFCFA;display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+</style><div id="c"><div id="dots"></div><div id="ph"></div>
+<div id="br"><svg viewBox="0 0 512 512" width="58" height="58"><rect width="512" height="512" rx="116" fill="#103B3C"/><rect x="330" y="350" width="90" height="64" rx="12" fill="#7FB7E8"/><rect x="246" y="280" width="96" height="134" rx="12" fill="#F5C26B"/><rect x="162" y="210" width="96" height="204" rx="12" fill="#6FD3B0"/><rect x="92" y="140" width="82" height="274" rx="12" fill="#F4F1E8"/><circle cx="133" cy="86" r="32" fill="#F2A541"/></svg>خُطوة<small>Created by Add Value</small></div>
+<div id="sec"></div><div id="n"></div><div id="ar"></div><div id="en"></div><div id="chips"></div>
+<div id="end"><svg viewBox="0 0 512 512" width="240" height="240"><rect width="512" height="512" rx="116" fill="#103B3C"/><rect x="330" y="350" width="90" height="64" rx="12" fill="#7FB7E8"/><rect x="246" y="280" width="96" height="134" rx="12" fill="#F5C26B"/><rect x="162" y="210" width="96" height="204" rx="12" fill="#6FD3B0"/><rect x="92" y="140" width="82" height="274" rx="12" fill="#F4F1E8"/><circle cx="133" cy="86" r="32" fill="#F2A541"/></svg>
+<div style="font:400 120px Lalezar;color:#103B3C;line-height:1">خُطوة</div><div style="font:800 44px Cairo;color:#0E6F62">ابدأ النهارده بخُطوة واحدة</div>
+<div style="font:800 30px Cairo;color:#1b1d1f;direction:ltr;background:#fff;border:4px solid #1EA05F;border-radius:20px;padding:12px 26px">ahmedhafez3009-beep.github.io/Secondary-Application-/</div>
+<div id="endAr" style="font:800 34px Cairo;color:#5B6E70"></div><div dir="ltr" style="display:flex;align-items:center;gap:18px;margin-top:16px"><span style="font:700 30px Cairo;color:#6b7680">Created by</span><span style="width:64px;height:64px;border-radius:18px;background:#1EA05F;display:inline-flex;align-items:center;justify-content:center"><svg width="40" height="40" viewBox="0 0 52 52"><path d="M26 8v36M8 26h36" stroke="#fff" stroke-width="9" stroke-linecap="round"/></svg></span><span style="font:900 72px Cairo;color:#0E2A47">Add <span style="color:#1EA05F">Value</span></span></div></div>
+</div>
+<script>
+function set(d){document.getElementById('sec').textContent=d.sec;document.getElementById('n').textContent=d.n;document.getElementById('ar').textContent=d.ar;document.getElementById('en').textContent=d.en;
+ const ar=document.getElementById('ar');document.getElementById('en').style.setProperty('--et',(300+ar.scrollHeight+30)+'px');
+ document.getElementById('chips').innerHTML=d.chips.map(c=>'<span class="ch '+c[1]+'">'+(c[1]=='d'?'✓ ':'')+c[0]+'</span>').join('');
+ document.getElementById('end').style.display=d.end?'flex':'none';document.getElementById('endAr').textContent=d.end?d.ar:''}
+</script>
