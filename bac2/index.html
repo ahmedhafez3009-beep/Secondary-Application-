@@ -1,0 +1,1220 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7b4bb7">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data:; manifest-src 'self'; connect-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="تانية بكالوريا">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<title>مذاكرتي · تانية بكالوريا</title>
+<style>
+:root{
+  --bg:#f7f3fb; --card:#ffffff; --ink:#22192e; --muted:#73697f; --line:#e9e1f1;
+  --accent:#7b4bb7; --accent2:#d1557f; --soft:#efe6f8; --good:#1f8a5b; --bad:#c2413a; --warn:#c07a12;
+  --shadow:0 1px 2px rgba(40,20,60,.05),0 6px 18px rgba(40,20,60,.06);
+  --s-l:#3b82c4; --s-u:#c07a12; --s-s:#7b4bb7; --s-r:#1f8a5b;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16121c; --card:#211b2a; --ink:#efe9f6; --muted:#a99fb6; --line:#342b40;
+    --accent:#a07ad8; --accent2:#e57a9e; --soft:#2c2338; --shadow:none;
+    --s-l:#6aa8e0; --s-u:#e0a243; --s-s:#a07ad8; --s-r:#4cbf8a;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16121c; --card:#211b2a; --ink:#efe9f6; --muted:#a99fb6; --line:#342b40;
+  --accent:#a07ad8; --accent2:#e57a9e; --soft:#2c2338; --shadow:none;
+  --s-l:#6aa8e0; --s-u:#e0a243; --s-s:#a07ad8; --s-r:#4cbf8a;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,"Noto Sans Arabic",system-ui,sans-serif;line-height:1.6;font-size:16px;padding-bottom:calc(76px + env(safe-area-inset-bottom));-webkit-text-size-adjust:100%}
+.en{direction:ltr;unicode-bidi:isolate}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header.top{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;padding:18px 0 22px;border-radius:0 0 24px 24px}
+header.top .hi{font-size:22px;font-weight:700;margin:0}
+header.top .meta{font-size:13px;opacity:.92}
+header.top .lvl{display:flex;align-items:center;gap:10px;margin-top:10px;background:rgba(255,255,255,.16);border-radius:14px;padding:8px 12px}
+header.top .lvl .em{font-size:26px}
+header.top .lvl .bar{height:7px;background:rgba(255,255,255,.3);border-radius:9px;overflow:hidden;margin-top:4px}
+header.top .lvl .bar i{display:block;height:100%;background:#fff;border-radius:9px}
+section.page{display:none;padding-top:14px}
+section.page.on{display:block}
+h2{font-size:19px;margin:6px 0 10px}
+h3{font-size:16px;margin:0 0 8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:12px;box-shadow:var(--shadow)}
+.muted{color:var(--muted);font-size:13.5px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.btn{border:0;background:var(--accent);color:#fff;border-radius:12px;padding:10px 16px;font:inherit;font-size:15px;cursor:pointer;min-height:44px}
+.btn.ghost{background:transparent;color:var(--accent);border:1.5px solid var(--accent)}
+.btn.sm{min-height:36px;padding:6px 12px;font-size:14px}
+.btn.danger{background:var(--bad)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px;text-align:center;box-shadow:var(--shadow)}
+.stat .v{font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat .l{font-size:12.5px;color:var(--muted)}
+/* quote */
+.quote{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:-30px 0 12px;position:relative;box-shadow:var(--shadow)}
+.quote .tag{display:inline-block;background:var(--soft);color:var(--accent);font-size:12px;font-weight:700;border-radius:999px;padding:2px 10px}
+.quote .tx{font-size:17px;margin:8px 0 4px;line-height:1.75}
+.quote .by{font-size:13px;color:var(--muted)}
+.quote .nx{position:absolute;top:10px;left:10px;border:0;background:var(--soft);color:var(--accent);border-radius:10px;width:36px;height:36px;cursor:pointer;font-size:16px}
+.nudge{border-inline-start:4px solid var(--accent2);background:var(--card);border-radius:14px;padding:10px 12px;margin-bottom:12px;font-size:15px;box-shadow:var(--shadow)}
+/* ring */
+.ringwrap{display:flex;align-items:center;gap:16px}
+.ring{width:120px;height:120px;flex:0 0 120px;position:relative}
+.ring svg{transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .c b{font-size:28px;font-variant-numeric:tabular-nums;line-height:1}
+.ring .c span{font-size:12px;color:var(--muted)}
+.steps-legend{display:grid;grid-template-columns:1fr;gap:6px;flex:1;min-width:0}
+.sl{display:flex;align-items:center;gap:8px;font-size:14px}
+.sl .d{width:10px;height:10px;border-radius:50%;flex:0 0 10px}
+.sl .bar{flex:1;height:7px;background:var(--soft);border-radius:9px;overflow:hidden}
+.sl .bar i{display:block;height:100%;border-radius:9px}
+.sl .p{width:38px;text-align:left;font-variant-numeric:tabular-nums;font-size:13px}
+.pbar{height:9px;background:var(--soft);border-radius:9px;overflow:hidden}
+.pbar i{display:block;height:100%;border-radius:9px;transition:width .4s}
+.subj-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.subj-row:last-child{border-bottom:0}
+.subj-row .ic{font-size:22px;width:30px;text-align:center}
+.subj-row .nm{font-weight:600;font-size:15px}
+.subj-row .pc{font-weight:700;font-variant-numeric:tabular-nums;width:46px;text-align:left}
+.chart svg{width:100%;height:auto;display:block}
+.task{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line)}
+.task:last-child{border-bottom:0}
+.task .t{flex:1;min-width:0}
+.task .t b{display:block;font-size:14.5px;overflow-wrap:anywhere}
+.task .t span{font-size:12.5px;color:var(--muted)}
+.chk{width:40px;height:40px;flex:0 0 40px;border-radius:12px;border:2px solid var(--line);background:var(--card);cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+/* curriculum */
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 13px;font:inherit;font-size:14px;cursor:pointer}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.unit{background:var(--card);border:1px solid var(--line);border-radius:16px;margin-bottom:10px;overflow:hidden;box-shadow:var(--shadow)}
+.unit>summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.unit>summary::-webkit-details-marker{display:none}
+.unit>summary .ut{display:flex;justify-content:space-between;gap:8px;font-weight:700;font-size:15px}
+.unit>summary .ut span:last-child{font-variant-numeric:tabular-nums;color:var(--muted);font-weight:600;font-size:13.5px;white-space:nowrap}
+.topic{padding:10px 14px;border-top:1px solid var(--line)}
+.topic .tt{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;font-size:14.5px;margin-bottom:8px}
+.topic .tt .nm{overflow-wrap:anywhere}
+.topic.done .tt .nm{color:var(--good);font-weight:600}
+.topic .del{border:0;background:transparent;color:var(--bad);cursor:pointer;font-size:16px;padding:0 4px}
+.stepbtns{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.sb{border:1.5px solid var(--line);background:var(--card);color:var(--muted);border-radius:12px;padding:6px 2px;font:inherit;font-size:12px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;min-height:52px;justify-content:center}
+.sb .e{font-size:17px;line-height:1}
+.sb.on{color:#fff}
+.sb.on[data-s=l]{background:var(--s-l);border-color:var(--s-l)}
+.sb.on[data-s=u]{background:var(--s-u);border-color:var(--s-u)}
+.sb.on[data-s=s]{background:var(--s-s);border-color:var(--s-s)}
+.sb.on[data-s=r]{background:var(--s-r);border-color:var(--s-r)}
+.addt{display:flex;gap:6px;padding:10px 14px;border-top:1px dashed var(--line)}
+.addt input{flex:1;min-width:0}
+input[type=text],input[type=date],input[type=number],input[type=search],select,textarea{font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);width:100%}
+/* attendance */
+.att{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
+.att:last-child{border-bottom:0}
+.att .dt{flex:1;font-size:14.5px}
+.att .dt small{display:block;color:var(--muted);font-size:12px}
+.pick{display:flex;gap:4px}
+.pick button{border:1.5px solid var(--line);background:var(--card);border-radius:10px;width:42px;height:38px;cursor:pointer;font-size:16px}
+.pick button.on.p{background:rgba(31,138,91,.15);border-color:var(--good)}
+.pick button.on.a{background:rgba(194,65,58,.15);border-color:var(--bad)}
+.pick button.on.h{background:var(--soft);border-color:var(--accent)}
+.mgrid{width:100%;border-collapse:collapse;font-size:13.5px}
+.mgrid th,.mgrid td{padding:6px 4px;border-bottom:1px solid var(--line);text-align:center}
+.mgrid th:first-child,.mgrid td:first-child{text-align:right}
+.mcell{display:flex;flex-direction:column;align-items:center;gap:3px}
+.mcell button{border:1.5px solid var(--line);background:var(--card);border-radius:9px;width:40px;height:30px;cursor:pointer;font-size:14px}
+.mcell input{width:52px;padding:3px 4px;font-size:13px;text-align:center}
+.goal{display:flex;gap:10px;align-items:center}
+.goal .big{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums}
+.badge{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12.5px;font-weight:700}
+.badge.ok{background:rgba(31,138,91,.15);color:var(--good)}
+.badge.mid{background:rgba(192,122,18,.15);color:var(--warn)}
+.badge.low{background:rgba(194,65,58,.15);color:var(--bad)}
+/* nav */
+nav.bottom{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:space-around;padding:6px 4px calc(6px + env(safe-area-inset-bottom));z-index:20}
+nav.bottom button{flex:1;border:0;background:transparent;color:var(--muted);font:inherit;font-size:11.5px;display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;padding:4px 0;max-width:110px}
+nav.bottom button .e{font-size:21px;line-height:1.1;filter:grayscale(1);opacity:.7}
+nav.bottom button.on{color:var(--accent);font-weight:700}
+nav.bottom button.on .e{filter:none;opacity:1}
+/* modal, toast, confetti */
+.modal{position:fixed;inset:0;background:rgba(20,10,30,.55);display:none;align-items:flex-end;justify-content:center;z-index:40}
+.modal.on{display:flex}
+.modal .sheet{background:var(--card);width:100%;max-width:560px;border-radius:22px 22px 0 0;padding:20px 16px calc(20px + env(safe-area-inset-bottom));max-height:92vh;overflow:auto}
+.opt{display:flex;gap:10px;align-items:center;border:1.5px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;cursor:pointer}
+.opt.on{border-color:var(--accent);background:var(--soft)}
+.opt .e{font-size:24px}
+.toast{position:fixed;bottom:calc(86px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%) translateY(10px);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:14px;font-size:14.5px;opacity:0;transition:all .25s;pointer-events:none;z-index:50;max-width:90vw;text-align:center}
+.toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+.cf{position:fixed;top:-12px;width:9px;height:14px;z-index:60;pointer-events:none;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(105vh) rotate(720deg);opacity:.8}}
+@media (prefers-reduced-motion: reduce){.cf{display:none}.pbar i{transition:none}}
+.info li{margin-bottom:4px}
+.center{text-align:center}
+[hidden]{display:none!important}
+.empty{text-align:center;color:var(--muted);padding:12px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="hi" id="hello"></p>
+    <div class="meta" id="meta"></div>
+    <div class="lvl"><span class="em" id="lvlEm">🌱</span><div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;font-size:13.5px"><b id="lvlName">بذرة</b><span id="lvlPts" class="en"></span></div><div class="bar"><i id="lvlBar" style="width:0"></i></div></div></div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- HOME -->
+<section class="page" data-p="home">
+  <div class="quote">
+    <span class="tag" id="qTag"></span>
+    <button class="nx" id="qNext" aria-label="جملة تانية">↻</button>
+    <div class="tx" id="qTx"></div>
+    <div class="by" id="qBy"></div>
+  </div>
+  <div class="nudge" id="nudge"></div>
+
+  <div class="card">
+    <h3>📊 ذاكرتي كام % من المنهج؟</h3>
+    <div class="ringwrap">
+      <div class="ring" id="ring"></div>
+      <div class="steps-legend" id="legend"></div>
+    </div>
+    <div class="muted" style="margin-top:8px">كل درس فيه 4 خطوات: 🎧 استماع، 💡 فهم، ✍️ حل، 🔁 مراجعة. <span id="weightNote"></span></div>
+  </div>
+
+  <div class="grid2" style="margin-bottom:12px;grid-template-columns:1fr 1fr 1fr">
+    <div class="stat"><div class="v" id="stDone">0</div><div class="l">درس خلص</div></div>
+    <div class="stat"><div class="v" id="stLeft">0</div><div class="l">درس فاضل</div></div>
+    <div class="stat"><div class="v" id="stStreak">0</div><div class="l">🔥 يوم ورا بعض</div></div>
+  </div>
+  <div class="stat" style="margin-bottom:12px;display:flex;align-items:center;gap:12px;text-align:right"><div class="v" id="stTotalDays" style="min-width:56px;text-align:center">0</div><div style="flex:1;min-width:0"><div style="font-weight:700">📚 إجمالي أيام المذاكرة</div><div class="l" id="stTotalSub"></div></div></div>
+  <div class="card" id="backupNudge" style="border-color:var(--accent2)" hidden><h3>💾 احفظي نسخة من تقدمك</h3><div class="muted" id="backupNudgeTx" style="margin-bottom:8px"></div><div class="row"><button class="btn" type="button" id="bExport2">⬇️ نزّلي نسخة دلوقتي</button><button class="btn ghost" type="button" id="bLater">بعدين</button></div></div>
+  <div class="card" id="restoreCard" hidden><h3>🔄 بياناتك اختفت؟</h3><div class="muted" style="margin-bottom:8px">لو كنتي بتستخدمي التطبيق قبل كده وتقدمك مش ظاهر، رجّعيه من آخر نسخة احتياطية نزّلتيها.</div><button class="btn" type="button" id="bImport2">⬆️ رجّعي نسخة</button></div>
+
+  <div class="card" id="rangeCard">
+    <h3>🗓️ تقرير الفترة</h3>
+    <div class="muted" style="margin-bottom:6px">اختاري الفترة اللي عايزة تشوفي تقدمك فيها، من أي يوم لأي يوم.</div>
+    <div class="tabs" id="rPresets" style="margin-bottom:8px"></div>
+    <div class="grid2">
+      <label class="muted">من<input type="date" id="rFrom"></label>
+      <label class="muted">إلى<input type="date" id="rTo"></label>
+    </div>
+    <div class="muted" id="rLabel" style="margin:8px 0 10px;font-weight:600;color:var(--accent)"></div>
+    <div class="grid2" id="rStats"></div>
+  </div>
+
+  <div class="card">
+    <h3>📚 تقدمك في كل مادة</h3>
+    <div class="muted" style="margin-bottom:2px">النسبة الكلية، وجنبها اللي زوّدتيه في الفترة المختارة.</div>
+    <div id="subjList"></div>
+  </div>
+
+  <div class="card">
+    <h3>✅ مهام النهارده</h3>
+    <div class="muted" style="margin-bottom:4px">الخطوة الجاية في كل مادة. علّمي عليها لما تخلّصيها.</div>
+    <div id="today"></div>
+  </div>
+
+  <div class="card chart">
+    <h3>📅 خطواتك في الفترة المختارة</h3>
+    <div id="chartDays"></div>
+  </div>
+
+  <div class="card chart">
+    <h3>📈 نسبة المنهج في الفترة المختارة</h3>
+    <div id="chartCum"></div>
+  </div>
+
+  <div class="card" id="paceCard">
+    <h3>🎯 الوتيرة المطلوبة</h3>
+    <div id="pace"></div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section class="page" data-p="curr">
+  <h2>المنهج</h2>
+  <div class="tabs" id="subjTabs"></div>
+  <div class="row" style="margin:10px 0">
+    <div class="tabs" id="partTabs" style="flex:1"></div>
+  </div>
+  <div class="card" id="subjHead" style="padding:12px 14px"></div>
+  <div id="units"></div>
+</section>
+
+<!-- ATTENDANCE -->
+<section class="page" data-p="att">
+  <h2>الحضور والتقييمات</h2>
+  <div class="card">
+    <h3>🏫 حضور المدرسة عمومًا</h3>
+    <div class="muted" style="margin-bottom:6px">كل أيام الدراسة في الأسبوع (تقدري تغيريها من الإعدادات)</div>
+    <div class="goal"><div class="big en" id="attPctAll">—</div><div style="flex:1"><div id="attBadgeAll"></div><div class="muted" id="attSubAll"></div></div></div>
+    <div class="pbar" style="margin-top:8px"><i id="attBarAll" style="width:0;background:var(--accent)"></i></div>
+  </div>
+  <div class="card" id="evalCard">
+    <h3 id="evalTitle">⭐ أيام التقييم</h3>
+    <div class="goal"><div class="big en" id="attPct">—</div><div style="flex:1"><div id="attBadge"></div><div class="muted" id="attSub"></div></div></div>
+    <div class="pbar" style="margin-top:8px"><i id="attBar" style="width:0;background:var(--good)"></i></div>
+  </div>
+  <div class="card">
+    <h3>📊 تقييم الحضور</h3>
+    <div class="muted" id="rateScale"></div>
+  </div>
+  <div class="card">
+    <h3>📆 أيام الدراسة</h3>
+    <div class="muted" style="margin-bottom:6px">✅ حضرت · ❌ غبت · 🏖️ إجازة رسمية (مش بتتحسب) · ⭐ يوم تقييم</div>
+    <button class="btn ghost sm" id="attWeek" type="button" style="margin-bottom:6px">✅ علّمي كل اللي فات من الأسبوع ده حضور</button>
+    <div id="attList"></div>
+    <div class="center" style="margin-top:8px"><button class="btn ghost sm" id="attMore">اعرض أيام أقدم</button></div>
+  </div>
+  <div class="card" id="monthlyCard">
+    <h3 id="monthlyTitle">📝 التقييمات الشهرية</h3>
+    <div class="muted" style="margin-bottom:6px">علّمي على كل تقييم: حضرتيه ولا لأ، واكتبي درجتك من 20 لو حابة.</div>
+    <div style="overflow-x:auto"><table class="mgrid" id="mGrid"></table></div>
+    <div class="row" style="margin-top:10px;gap:14px" id="mStats"></div>
+  </div>
+  <div class="card" id="infoCard">
+    <h3>ℹ️ ليه الحضور مهم؟</h3>
+    <ul class="info muted" style="padding-inline-start:18px;margin:0" id="attInfo"></ul>
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section class="page" data-p="set">
+  <h2>الإعدادات</h2>
+  <div class="card">
+    <h3>👤 بياناتي</h3>
+    <label class="muted">الاسم</label>
+    <input type="text" id="sName" maxlength="20">
+    <div style="height:10px"></div>
+    <label class="muted" id="sTrackLbl"></label>
+    <select id="sTrack"></select>
+  </div>
+  <div class="card">
+    <h3>📅 التواريخ</h3>
+    <label class="muted">بداية الدراسة (من هنا بتبدأ أيام الحضور)</label>
+    <input type="date" id="sStart">
+    <div style="height:10px"></div>
+    <label class="muted">أيام الدراسة في الأسبوع</label>
+    <div class="tabs" id="sDays" style="flex-wrap:wrap;margin-top:4px"></div>
+    <div style="height:10px"></div>
+    <label class="muted">أيام التقييم ⭐ (أيام لازم تحضريها مهما حصل)</label>
+    <div class="tabs" id="sEval" style="flex-wrap:wrap;margin-top:4px"></div>
+    <div class="muted" id="sEvalNote" style="margin-top:4px"></div>
+    <div style="height:10px"></div>
+    <label class="row muted" style="gap:6px"><input type="checkbox" id="sMonthly" style="width:20px;height:20px;accent-color:var(--accent)"> اعرضي جدول الامتحانات الشهرية</label>
+    <div style="height:10px"></div>
+    <label class="muted">عايزة تخلّصي المنهج قبل يوم (اختياري)</label>
+    <input type="date" id="sTarget">
+    <div class="muted" style="margin-top:4px">لو حطيتي تاريخ هقولك محتاجة تذاكري كام خطوة في اليوم.</div>
+    <div style="height:10px"></div>
+    <label class="muted" id="sScopeLbl">الهدف من</label>
+    <select id="sScope"><option value="all">المنهج كله (الجزء الأول والتاني)</option><option value="p0">الجزء الأول بس</option><option value="p1">الجزء التاني بس</option></select>
+  </div>
+  <div class="card">
+    <h3>🎨 الشكل</h3>
+    <select id="sTheme"><option value="">حسب الموبايل</option><option value="light">فاتح</option><option value="dark">غامق</option></select>
+  </div>
+  <div class="card">
+    <h3>⏮ المذاكرة اللي قبل التطبيق</h3>
+    <div class="muted" style="margin-bottom:8px">لو كنتي بتذاكري قبل ما تبدأي التطبيق، اكتبي عدد الأيام اللي ذاكرتيها، وهتتحسب في إجمالي أيام المذاكرة وفي تقرير الفترة.</div>
+    <label class="muted">عدد أيام المذاكرة السابقة</label>
+    <input type="number" id="pDays" min="0" max="400" inputmode="numeric" class="en" placeholder="مثلًا 25">
+    <div class="grid2" style="margin-top:8px">
+      <label class="muted">من<input type="date" id="pFrom"></label>
+      <label class="muted">إلى<input type="date" id="pTo"></label>
+    </div>
+    <div class="muted" id="pNote" style="margin-top:6px"></div>
+    <div class="muted" style="margin-top:8px">والدروس اللي خلّصتيها قبل كده؟ من صفحة المنهج دوسي «⏮ قبل كده» جنب الدرس، أو «الوحدة كلها متذاكرة» تحت الوحدة.</div>
+  </div>
+  <div class="card">
+    <h3>💾 نسخة احتياطية</h3>
+    <div id="cloudStatus" class="nudge" style="box-shadow:none;background:var(--soft);font-size:14px" hidden></div>
+    <details id="snapBox" style="margin-bottom:10px"><summary class="muted" style="cursor:pointer">🕓 نسخ تلقائية من الأيام اللي فاتت</summary><div class="muted" style="margin:6px 0">التطبيق بياخد نسخة من تقدمك كل يوم بتفتحيه فيه، ويحتفظ بآخر 10 أيام على الموبايل ده. لو حصلت أي لخبطة، رجّعي نسخة يوم قبلها.</div><div id="snapList"></div></details>
+    <div class="muted" style="margin-bottom:8px">التقدم بيتحفظ على الموبايل ده بس. نزّلي نسخة احتياطية كل أسبوع عشان لو الموبايل اتغير أو المتصفح اتمسح.</div>
+    <div class="row"><button class="btn" id="bExport">⬇️ نزّلي نسخة</button><button class="btn ghost" id="bImport">⬆️ رجّعي نسخة</button></div>
+    <input type="file" id="fImport" accept=".json,application/json" style="display:none">
+    <details style="margin-top:10px"><summary class="muted" style="cursor:pointer">نسخ يدوي (لو التنزيل مش شغال)</summary>
+      <textarea id="tBackup" class="en" style="height:90px;margin-top:8px;font-size:12px"></textarea>
+      <div class="row" style="margin-top:6px"><button class="btn sm ghost" id="bCopy">انسخي الكود</button><button class="btn sm ghost" id="bPaste">رجّعي من الكود</button></div>
+    </details>
+  </div>
+  <div class="card">
+    <h3>⚠️ البداية من جديد</h3>
+    <button class="btn danger" id="bReset">امسحي كل التقدم</button>
+  </div>
+  <div class="muted center" style="margin:6px 0 14px" id="footNote"></div>
+</section>
+
+</main>
+
+<nav class="bottom" id="nav">
+  <button data-p="home" type="button"><span class="e">🏠</span>الرئيسية</button>
+  <button data-p="curr" type="button"><span class="e">📚</span>المنهج</button>
+  <button data-p="att" type="button"><span class="e">📆</span>الحضور</button>
+  <button data-p="set" type="button"><span class="e">⚙️</span>الإعدادات</button>
+</nav>
+
+<div class="modal" id="setup">
+  <div class="sheet">
+    <h2 style="margin-top:0" id="setupHi"></h2>
+    <p class="muted" style="margin-top:0" id="setupTx"></p>
+    <label class="muted" for="setupName">اسمك (بيتحفظ على موبايلك بس)</label><input type="text" id="setupName" maxlength="20" style="margin:4px 0 12px"><div id="setupOpts"></div>
+    <button class="btn" id="setupGo" style="width:100%;margin-top:6px" disabled>يلا نبدأ 🚀</button>
+  </div>
+</div>
+<div class="modal" id="dlg"><div class="sheet"><p id="dlgMsg" style="margin:0 0 10px;font-size:16px"></p><input type="text" id="dlgIn" style="margin-bottom:10px"><div class="row"><button class="btn" id="dlgOk" type="button" style="flex:1">تمام</button><button class="btn ghost" id="dlgNo" type="button" style="flex:1">إلغاء</button></div></div></div>
+<div class="toast" id="toast"></div>
+
+<script>/* curriculum: each unit = [unit title, "topic|topic|..."] */
+var CURR = {
+ ar:{name:"اللغة العربية",icon:"📖",color:"#c0622e",parts:[
+  ["الجزء الأول",[
+   ["الوحدة 1: العلم والضمير","العلم بين القانون والضمير|نحو: الأسماء الخمسة|الخلق جوهر الفضيلة|نحو: تابع الأسماء الخمسة|نص شعري: العلم نور|نحو: تطبيق على الأسماء الخمسة"],
+   ["الوحدة 2: سلطان الكلمة الرقمية","التقنية وصناعة الرأي العام|نحو: الممنوع من الصرف وعلل منعه|بين الذوق والعقل|نحو: تابع الممنوع من الصرف|نص شعري: أثر الكلمة وحفظ اللسان|نحو: تطبيق على الممنوع من الصرف"],
+   ["الوحدة 3: الإنسان وكرامته","حقوق الإنسان بين العالمية والخصوصية|نحو: النعت والبدل والفرق بينهما|الحرية الفكرية|نحو: العطف|نص شعري: يا أخي الإنسان"]
+  ]],
+  ["الجزء الثاني",[
+   ["الوحدة 4: بناء الوعي","المرأة وبناء الدولة الحديثة|مصر الحقيقة والمرأة المصرية|نص شعري: أهواك يا وطني"],
+   ["الوحدة 5: فن التفاوض والقيادة","التفاوض… إستراتيجية القيادة الواعية|القيادة أمانة وعدل|نص شعري: دعوة إلى السلام"],
+   ["الوحدة 6: الثقافة أسلوب حياة","المثقف في العصر الرقمي|الثقافة أداة لا حلية|نص شعري: غربة وحنين"]
+  ]]
+ ]},
+ en:{name:"اللغة الإنجليزية",icon:"🇬🇧",color:"#2f6db5",parts:[
+  ["الجزء الأول",[
+   ["Unit 1: Living Well in a Complex World","Social Media and Self-Image|Exploring Modern Lifestyles|Whose Responsibility Is It?|Understanding Mental Health|The Story & Review 1"],
+   ["Unit 2: Leisure Time","Screen Time and Young People|Creative Arts as Leisure Activities|Sport and Physical Activity as Leisure|Not Exactly a Relaxing Day|The Story & Review 2|Consolidation Review A"],
+   ["Unit 3: Echoes of the Past","Sites of Memory|The Museum as a Storyteller|The Viral Past|Social Media and Historical Events|The Story & Review 3"],
+   ["Unit 4: The Power of Choice","Food Waste|Beyond the Brand|Digital Consumption|Black Friday and Sales Culture|The Story & Review 4|Consolidation Review B"],
+   ["Unit 5: The Greenhouse Effect","The Climate Crisis|Renewable Energy: Powering a Sustainable Future|Greening Projects in Egypt|Individual and Collective Actions|The Story & Review 5"]
+  ]],
+  ["الجزء الثاني",[
+   ["Unit 6: The Space We Share","A World We Borrow|When Needs Compete|Voices for the Voiceless|Global Citizens, Local Actions|Consolidation Review C"],
+   ["Unit 7: Discovering Your Passion","From Hobby to Opportunity|Building a Community Around Your Passion|Leaving Your Mark|Time Well Spent: Balancing Passion and Priorities"],
+   ["Unit 8: Pathways to Progress","Vocational Education in Egypt|International Vocational Voices Online|The Egyptian-Japanese Schools (EJS)|The Skills Employers Really Want|Consolidation Review D"],
+   ["Unit 9: Circles of Belonging","Finding My Place|Relationships That Help Us Grow|No One Left Out|Community That Cares"],
+   ["Unit 10: Behind the Buy","Hidden Cost of a Click|Chasing Validation|True Price of Fast Fashion|Rethinking What We Buy: A Community Response|Consolidation Review E"]
+  ]]
+ ]},
+ hi:{name:"التاريخ",icon:"🏛️",color:"#8a6d1f",parts:[
+  ["الجزء الأول",[
+   ["الوحدة 1: مصر بين الماضي والحاضر","بناء الدولة المصرية واستمرارها عبر التاريخ|الدولة المصرية القديمة ومقاومة الاحتلال|التحولات الكبرى في مصر (العصر الوسيط)|التحولات الكبرى في مصر (العصر الحديث)"],
+   ["الوحدة 2: تحولات القوى وبناء الوعي الوطني","سياسات الاحتلال بمصر في العصر الحديث|صمود الشعب المصري ومقاومة الاحتلال|ثورة 23 يوليو والتحولات الكبرى في مصر|الهوية الوطنية في مواجهة الاستعمار الجديد"],
+   ["الوحدة 3: مصر وقضايا التحرر الوطني عربيًا وإفريقيًا","التحرر الوطني ضد الاحتلال الفرنسي والإيطالي|التحرر الوطني ضد الاحتلال البريطاني والإسباني|مرتكزات الدور المصري إقليميًا ودوليًا|دور مصر في دعم حركات التحرر الوطني"]
+  ]],
+  ["الجزء الثاني",[
+   ["الوحدة 4: الحربان العالميتان وتحولات النظام الدولي","مقدمات الحرب العالمية الأولى|الحرب العالمية الأولى: المعارك الكبرى|مقدمات الحرب العالمية الثانية|من الحرب العالمية الثانية إلى الحرب الباردة"],
+   ["الوحدة 5: مصر والقضية الفلسطينية","القضية الفلسطينية والتحولات الدولية حتى 1948م|مصر والصراع العربي الإسرائيلي|حرب أكتوبر 1973م (ملحمة العبور والنصر)|مصر والقضية الفلسطينية بعد حرب أكتوبر"],
+   ["الوحدة 6: السلام العالمي بين الواقع والمأمول","مفهوم السلام العالمي وتطوره|تحديات تحقيق السلام العالمي|المنظمات الدولية والإقليمية وحفظ السلام|دور مصر في دعم السلام العالمي"]
+  ]]
+ ]},
+ phys:{name:"الفيزياء",icon:"⚛️",color:"#6b4bb8",parts:[
+  ["الجزء الأول",[
+   ["الفصل 1: الميكانيكا","متجهات السرعة والسرعة النسبية|حركة المقذوفات الأفقية|حركة المقذوفات بزاوية|عزم القوة|اتزان القوى|القدرة والكفاءة|كمية التحرك والدفع|حفظ كمية الحركة|كمية التحرك والطاقة الميكانيكية|الحركة الدائرية المنتظمة والقوة المركزية|الحركة الدائرية: الأفقية والرأسية|قوانين كبلر والجاذبية الكونية"],
+   ["الفصل 2: الحركة الاهتزازية والموجات","الحركة التوافقية البسيطة|البندول الزنبركي|البندول البسيط|الموجات الجيبية|تداخل الموجات والموجات الموقوفة|انكسار الموجات|تداخل موجات الصوت|تأثير دوبلر|انكسار الضوء والانعكاس الكلي الداخلي|العدسات والصور|تجربة الشق المزدوج ليونج"]
+  ]],
+  ["الجزء الثاني",[
+   ["الفصل 1: الغازات والحرارة","قانون بويل–شارل|معادلة الحالة للغاز المثالي|حركة جزيئات الغاز|الطاقة الداخلية للغاز|تغيرات حالة الغاز والحرارة والشغل|السعة الحرارية المولية"],
+   ["الفصل 2: الكهربية الساكنة","قانون كولوم|المجال الكهربي|الجهد الكهربي|المجال الكهربي المنتظم وفرق الجهد|حركة الشحنات تحت تأثير قوة كهروستاتيكية|المكثف"],
+   ["الفصل 3: التيار الكهربي والدوائر","الأميتر والفولتميتر|قانونا كيرشوف"],
+   ["الفصل 4: المغناطيسية والحث الكهرومغناطيسي","المجال المغناطيسي الناتج عن تيار كهربي|القوة المؤثرة على تيار في مجال مغناطيسي|حركة الجسيمات المشحونة في مجال مغناطيسي|الحث الكهرومغناطيسي|الحث الذاتي"],
+   ["الفصل 5: الطبيعة الكمية للضوء والمادة","الطبيعة الجسيمية للضوء|الأشعة السينية|موجات المادة"]
+  ]]
+ ]},
+ math:{name:"الرياضيات",icon:"📐",color:"#1f7a6a",parts:[
+  ["الجزء الأول",[
+   ["الفصل 1: البراهين الجبرية","مبرهنة ذات الحدين|مبرهنة متعددة الحدود|تطبيقات مبرهنة ذات الحدين|قسمة كثيرات الحدود|ناتج القسمة والباقي لكثيرات الحدود|المقادير النسبية: ضرب وقسمة|المقادير النسبية: جمع وطرح|الكسور المركبة|المتطابقات|إثبات المتطابقات (1)|إثبات المتطابقات (2)|إثبات المتطابقات (3)|إثبات المتباينات (1)|إثبات المتباينات (2)|إثبات المتباينات (3)|متباينة المتوسط الحسابي والهندسي"],
+   ["الفصل 2: المتتابعات","المتتابعات والحدود العامة|المتتابعة الحسابية (1)|المتتابعة الحسابية (2)|مجموع المتتابعة الحسابية (1)|مجموع الأعداد الطبيعية|مجموع المتتابعة الحسابية (3)|المتتابعة الهندسية (1)|المتتابعة الهندسية (2)|مجموع المتتابعة الهندسية (1)|مجموع المتتابعة الهندسية (2)|رمز التجميع Σ (1)|رمز التجميع Σ (2)|رمز التجميع Σ (3)|مجموع المتتابعات الكسرية|مجموع (حسابية × هندسية)|متتابعة حدها العام مجموع|مجموع المتتابعة والحد العام|متتابعات الفروق|المتتابعات المجمعة|علاقات التكرار (1)|علاقات التكرار (2)|علاقات التكرار (3)|الاستقراء الرياضي لإثبات المتطابقات|الاستقراء الرياضي لإثبات المتباينات|إثبات كون العدد مضاعفًا بالاستقراء|علاقات التكرار والاستقراء الرياضي"],
+   ["الفصل 3: الأعداد المركبة والمعادلات","الأعداد المركبة|العمليات على الأعداد المركبة (1)|العمليات على الأعداد المركبة (2)|الجذور التربيعية للأعداد السالبة|حلول المعادلات التربيعية|مميز المعادلة التربيعية|العلاقة بين الجذرين والمعاملات (1)|العلاقة بين الجذور والمعاملات (2)|تحليل التعبيرات التربيعية|المعادلة التربيعية بمعلومية جذريها|إشارتا الحلين|نظرية الباقي (1)|نظرية الباقي (2)|نظرية الباقي (3)|القسمة التركيبية|نظرية العوامل|المعادلات ذات الدرجة العالية|تعيين المعادلة التكعيبية|الجذور التكعيبية للواحد|المعادلة التكعيبية ذات الجذور المتكررة"],
+   ["الفصل 4: الهندسة والمعادلات","التقسيم الداخلي والخارجي على خط الأعداد|النقاط في المستوى الإحداثي|المسافة بين نقطتين|النقاط المتساوية البعد عن نقطتين|نقاط التقسيم في المستوى الإحداثي|النقاط المتماثلة|أنواع المثلثات|معادلة الخط المستقيم|تطبيقات معادلة الخط المستقيم|المستقيمات المتوازية والمتعامدة|محور القطعة المستقيمة والتماثل حول مستقيم|المسافة بين نقطة ومستقيم|مساحة المثلث|المستقيم المار بنقطة ثابتة|شروط عدم تكوين مثلث|معادلة الدائرة (1)|معادلة الدائرة (2)|معادلة الدائرة (3)|شروط تكوين الدائرة|تقاطع الدائرة والمستقيم (1)|تقاطع الدائرة والمستقيم (2)|طول الوتر|المماس للدائرة|العلاقة الوضعية بين دائرتين|نقاط تقاطع دائرتين|دائرة تمر بنقاط تقاطع دائرتين"]
+  ]],
+  ["الجزء الثاني",[
+   ["الفصل 5: الدوال المثلثية","الزوايا في الوضع القياسي|القياس الدائري (الراديان)|قيم الدوال المثلثية|إيجاد الزاوية من قيمة الدالة|المتطابقات المثلثية الأساسية|إيجاد قيمة المقادير المثلثية|إثبات المتطابقات المثلثية|خواص الدوال المثلثية|تمثيل الدوال المثلثية بيانيًا (1)|تمثيل الدوال المثلثية بيانيًا (2)|تمثيل الدوال المثلثية بيانيًا (3)|تمثيل الدوال المثلثية بيانيًا (4)|المعادلات المثلثية|المتباينات المثلثية|المعادلات والمتباينات المثلثية (1)|المعادلات والمتباينات المثلثية (2)|القيم العظمى والصغرى للدوال المثلثية (1)|مجموع وفرق زاويتين|الزاوية بين مستقيمين|قوانين ضعف الزاوية|قوانين نصف الزاوية|معادلات ومتباينات ضعف الزاوية|الجمع التوافقي للمقادير المثلثية|معادلات ومتباينات بالجمع التوافقي|القيم العظمى والصغرى للدوال المثلثية (2)"],
+   ["الفصل 6: الأسس واللوغاريتمات","قوانين الأسس الصحيحة|الجذور|قوانين الأسس النسبية (1)|قوانين الأسس النسبية (2)|الدوال الأسية|المقارنة بين القوى والجذور|المعادلات والمتباينات الأسية (1)|المعادلات والمتباينات الأسية (2)|القيم العظمى والصغرى للدوال الأسية|الأسس واللوغاريتمات|قيم اللوغاريتمات|جمع وطرح اللوغاريتمات|تغيير الأساس (1)|تغيير الأساس (2)|لوغاريتم بدلالة لوغاريتمات أخرى|الدوال اللوغاريتمية|المقارنة بين اللوغاريتمات|المعادلات اللوغاريتمية|المتباينات اللوغاريتمية|المعادلات والمتباينات بالتعويض|القيم العظمى والصغرى للدوال اللوغاريتمية|اللوغاريتمات العشرية"],
+   ["الفصل 7: التفاضل والتكامل","معدل التغير المتوسط|النهايات|تعريف معامل التفاضل|تعريف المشتقة|الاشتقاق باستخدام القوانين|تعيين الدالة|معادلة المماس (1)|معادلة المماس (2)|منحنى الدالة التكعيبية وقيمها القصوى|القيم العظمى والصغرى للدوال التكعيبية|تعيين الدالة من قيمها القصوى|الدوال التكعيبية والمميز (1)|الدوال التكعيبية والمميز (2)|الدوال والمعادلات التكعيبية (1)|الدوال والمعادلات التكعيبية (2)|إثبات المتباينات التكعيبية|دوال الدرجة الرابعة وقيمها القصوى|التكامل غير المحدود|إيجاد الدالة من مشتقتها|إيجاد الدالة من ميل المماس|التكامل المحدود (1)|التكامل المحدود (2)|تطبيقات التكامل المحدود|التكامل المحدود والاشتقاق|التكامل ومساحة المناطق (1)|التكامل ومساحة المناطق (2)|التكامل ومساحة المناطق (3)|تكامل دوال القيمة المطلقة|المماسات والمساحة|تنصيف المساحة"],
+   ["الفصل 8: الاستدلال الإحصائي","المتغيرات العشوائية والتوزيعات الاحتمالية|التوقع الرياضي للمتغير العشوائي|خواص التوقع الرياضي|تباين المتغير العشوائي|الانحراف المعياري للمتغير العشوائي|تحويل المتغيرات العشوائية (1)|تحويل المتغيرات العشوائية (2)|توقع مجموع متغيرين عشوائيين|توقع المقدار aX + bY|توقع حاصل ضرب متغيرين|تباين مجموع المتغيرات العشوائية|ثلاثة متغيرات عشوائية"]
+  ]]
+ ]},
+ chem:{name:"الكيمياء",icon:"🧪",color:"#2e8b57",parts:[
+  ["الجزء الأول",[
+   ["الفصل 1: حالات المادة","تغيرات الحالة|اتزان السائل والبخار وضغط البخار|مخطط الطور|قوانين الغازات|معادلة الغاز المثالي|الضغط الكلي والضغط الجزئي|الغاز المثالي والغاز الحقيقي|خصائص المحاليل|ارتفاع درجة الغليان وانخفاض درجة التجمد|الضغط الأسموزي|الغرويات|بنية البلورات الفلزية|بنية البلورات الأيونية"],
+   ["الفصل 2: التغير والاتزان في المادة","التفاعلات الكيميائية وتغيرات الإنثالبي|قانون هس|الخلية الكهروكيميائية (1) خلية دانيال|الخلية الكهروكيميائية (2) خلايا متنوعة|التفاعلات عند الأقطاب الكهربائية|التحليل الكهربائي (كمية الكهرباء)|سرعة التفاعل|العوامل المؤثرة في سرعة التفاعل|الاتزان الكيميائي|مبدأ لوشاتيليه|الاتزان الأيوني|الأملاح والمحاليل المائية|حاصل الإذابة"]
+  ]],
+  ["الجزء الثاني",[
+   ["الفصل 3: المواد غير العضوية","الهيدروجين والغازات النبيلة|الهالوجينات ومركباتها|الأكسجين والكبريت ومركباتهما|النيتروجين والفوسفور ومركباتهما|الكربون والسيليكون ومركباتهما|الفلزات القلوية ومركباتها|العناصر الأرضية القلوية ومركباتها|الفلزات الممثلة بخلاف المجموعتين 1 و2|العناصر الانتقالية (1): الحديد والنحاس والفضة|العناصر الانتقالية (2): الذهب والكروم والمنجنيز|تفاعلات الترسيب وفصل أيونات الفلزات"],
+   ["الفصل 4: المركبات العضوية","الروابط التساهمية|خصائص وتراكيب المركبات العضوية|تحديد الصيغ البنائية|الهيدروكربونات المشبعة|الألكينات|الألكاينات|الكحولات والإيثرات|الألدهيدات والكيتونات|الأحماض الكربوكسيلية|الإسترات|الدهون والزيوت والصابون|الهيدروكربونات الأروماتية|الفينولات والأحماض الأروماتية|الأمينات الأروماتية ومركبات الآزو|فصل المركبات الأروماتية"]
+  ]]
+ ]},
+ prog:{name:"البرمجة والذكاء الاصطناعي",icon:"💻",color:"#c2416b",parts:[
+  ["الجزء الأول",[
+   ["الوحدة 1: تكنولوجيا المعلومات والمجتمع","تطور تكنولوجيا المعلومات والتغير الاجتماعي|كيف يعمل الذكاء الاصطناعي|الذكاء الاصطناعي في الحياة والصناعة|القضايا الأخلاقية للذكاء الاصطناعي"],
+   ["الوحدة 2: الأمن السيبراني","تقنيات التشفير والمصادقة|تصميم أمن الشبكات|الاستجابة للحوادث وإدارة المخاطر"],
+   ["الوحدة 3: تطبيقات الويب","البنية العامة لتطبيقات الويب|طرق الاتصال في تطبيقات الويب|أساسيات تقنيات الواجهة الأمامية"],
+   ["الوحدة 4: تصميم الويب والوسائط","أنواع الوسائط وخصائصها|تصميم المعلومات وتجربة المستخدم|طرق تقييم المواقع|التحسين التكراري للمواقع"]
+  ]],
+  ["الجزء الثاني",[
+   ["الوحدة 5: جمع البيانات وتنظيفها","طرق جمع البيانات|تنظيف البيانات وتحويلها|البيانات المفتوحة وواجهات API"],
+   ["الوحدة 6: التحليل والتواصل","الاستدلال الإحصائي|استخدام وتقييم تحليل الانحدار|تصوير البيانات وتوصيلها"],
+   ["الوحدة 7: تعلم الآلة والذكاء الاصطناعي","أساسيات تعلم الآلة|الشبكات العصبية والتعلم العميق|النماذج اللغوية الكبيرة والذكاء الاصطناعي التوليدي"]
+  ]]
+ ]}
+};
+
+
+var CFG = {
+ key:"bac2-study-v1", name:"", title:"مذاكرتي · تانية بكالوريا", grade:"تانية ثانوي بكالوريا",
+ sectionWord:"المسار والمادة التخصصية",
+ setupText:"التطبيق ده هيساعدك تعرفي ذاكرتي قد إيه وفاضلك قد إيه. اختاري مادتك التخصصية، والعربي والإنجليزي والتاريخ موجودين أصلًا.",
+ sections:{
+  phys:{label:"فيزياء",sub:"مسار الطب وعلوم الحياة",icon:"⚛️",meta:"الطب وعلوم الحياة · فيزياء",subjects:["ar","en","hi","phys"]},
+  math:{label:"رياضيات",sub:"مسار الطب وعلوم الحياة",icon:"📐",meta:"الطب وعلوم الحياة · رياضيات",subjects:["ar","en","hi","math"]},
+  chem:{label:"كيمياء",sub:"مسار الهندسة وعلوم الحاسب",icon:"🧪",meta:"الهندسة وعلوم الحاسب · كيمياء",subjects:["ar","en","hi","chem"]},
+  prog:{label:"برمجة وذكاء اصطناعي",sub:"مسار الهندسة وعلوم الحاسب",icon:"💻",meta:"الهندسة وعلوم الحاسب · برمجة",subjects:["ar","en","hi","prog"]}
+ },
+ weights:{},
+ weightNote:"النسبة الكلية هي متوسط المواد، وكل مادة ليها نفس الوزن لأن كل مادة من 100 درجة.",
+ evalDefault:[2,3], evalLocked:true, monthlyDefault:true,
+ monthlyTitle:"📝 التقييمات الشهرية",
+ monthlyCols:[["t1m1","ترم 1 · شهري 1"],["t1m2","ترم 1 · شهري 2"],["t2m1","ترم 2 · شهري 1"],["t2m2","ترم 2 · شهري 2"]],
+ attInfo:["حسب المنشور عن نظام البكالوريا، أعمال السنة في كل مادة من 100: مشروع 15، تقييم أسبوعي 20، واجبات ومشاركة 15، سلوك وحضور 10، تقييم شهري أول 20، وتقييم شهري تاني 20.","دخول الامتحان مشروط بإنك تكمّلي نسبة من التقييمات الأسبوعية والشهرية، فكل غياب بيقلل فرصتك.","تأكدي من النسب المطلوبة بالظبط من مدرستك، لأنها ممكن تتعدل."],
+ footNote:"المنهج حسب كتب الصف الثاني الثانوي بكالوريا 2026/2027. لو فيه درس ناقص ضيفيه، ولو اسم مختلف عدّليه ✏️ من صفحة المنهج."
+};
+</script>
+<script>/* daily motivation: [type, text, by] */
+var QUOTES = [
+ ["موقف","أحمد زويل اتولد في دمنهور واتربى في دسوق، ودرس في جامعة الإسكندرية. كمّل لحد ما خد جايزة نوبل في الكيمياء سنة 1999. البداية من مدرسة حكومية عادية ماوقفتهوش.","أحمد زويل"],
+ ["موقف","طه حسين فقد بصره وهو طفل، ومع كده بقى «عميد الأدب العربي» ووزير للمعارف. هو اللي قال إن التعليم لازم يبقى حق للكل زي الماء والهواء.","طه حسين"],
+ ["موقف","مجدي يعقوب جرّاح القلب المصري عمل آلاف العمليات حوالين العالم، ورجع يبني مركز أسوان للقلب. الإتقان بيبدأ من التكرار اليومي.","مجدي يعقوب"],
+ ["موقف","نجيب محفوظ كان موظف وبيكتب كل يوم في مواعيد ثابتة، ماكانش بيستنى المزاج. الانضباط ده وصّله لجايزة نوبل في الأدب سنة 1988.","نجيب محفوظ"],
+ ["موقف","محمد صلاح وهو صغير كان بيسافر ساعات طويلة كل يوم من نجريج للتمرين في القاهرة. الطريق الطويل ده هو اللي عمل اللاعب.","محمد صلاح"],
+ ["موقف","سميرة موسى كانت من أوائل عالمات الذرة في مصر. أبوها نقل البيت للقاهرة مخصوص عشان تكمّل تعليمها، وهي ماخيبتش ظنه.","سميرة موسى"],
+ ["موقف","مايكل جوردان ماتقبلش في فريق مدرسته الأساسي في سنة من السنين. رجع البيت وعيّط، وبعدين اتمرن أكتر من أي حد، وبقى من أعظم لاعيبة السلة في التاريخ.","مايكل جوردان"],
+ ["موقف","ج. ك. رولينج اترفضت رواية «هاري بوتر» من دور نشر كتير قبل ما واحدة تقبلها. لو كانت بطلت بعد أول رفض، ماكانش حد عرفها.","ج. ك. رولينج"],
+ ["موقف","ماري كوري اشتغلت في معمل بسيط وبإمكانيات قليلة، وبقت أول شخص ياخد جايزتين نوبل في علمين مختلفين: الفيزياء والكيمياء.","ماري كوري"],
+ ["موقف","ابن الهيثم كتب «كتاب المناظر» عن الضوء والإبصار وهو عايش في القاهرة، وبيعتبروه من أوائل اللي اعتمدوا على التجربة في العلم.","ابن الهيثم"],
+ ["موقف","مصطفى مشرفة كان من أوائل الطلبة على القطر، وبقى أستاذ فيزياء وعميد لكلية العلوم وهو لسه شاب. كان بيقول إن العلم لازم يوصل للناس.","مصطفى مشرفة"],
+ ["موقف","توماس إديسون جرّب مواد كتير جدًا قبل ما يلاقي اللي تنفع للمبة. كل تجربة فاشلة كانت بتقرّبه من الحل.","توماس إديسون"],
+ ["مثل","من جدّ وجد، ومن زرع حصد.",""],
+ ["مثل","العلم في الصغر كالنقش على الحجر.",""],
+ ["مثل","الوقت كالسيف، إن لم تقطعه قطعك.",""],
+ ["مثل","قطرة على قطرة تعمل نهر.",""],
+ ["مثل","اللي يصبر ينول.",""],
+ ["مثل","إذا هبّت رياحك فاغتنمها.",""],
+ ["مثل","ما ضاع حق وراءه مطالب.",""],
+ ["مثل","أول الغيث قطرة.",""],
+ ["مثل","اللي فات مات، واحنا ولاد النهارده.",""],
+ ["مثل","مش كل مرة تسلم الجرة، فذاكري أول بأول.",""],
+ ["شعر","على قدر أهل العزم تأتي العزائم، وتأتي على قدر الكرام المكارم.","المتنبي"],
+ ["شعر","وما نيل المطالب بالتمني، ولكن تؤخذ الدنيا غلابا.","أحمد شوقي"],
+ ["شعر","ومن لم يذق مُرّ التعلم ساعةً، تجرّع ذلّ الجهل طول حياته.","يُنسب للإمام الشافعي"],
+ ["شعر","إذا غامرت في شرف مروم، فلا تقنع بما دون النجوم.","المتنبي"],
+ ["عبارة","مش لازم تكوني مستعدة 100% عشان تبدأي. ابدأي، والاستعداد بيجي في السكة.",""],
+ ["عبارة","خطوة صغيرة كل يوم أحسن من خطوة كبيرة كل شهر.",""],
+ ["عبارة","الدرس اللي بتذاكريه النهارده هو درجة في الامتحان بكرة.",""],
+ ["عبارة","المراجعة مش تضييع وقت، هي اللي بتخلّي اللي ذاكرتيه يفضل في دماغك.",""],
+ ["عبارة","ماتقارنيش نفسك بحد. قارني نفسك بـ{N} بتاعة إمبارح.",""],
+ ["عبارة","التعب بيروح والنجاح بيفضل.",""],
+ ["عبارة","25 دقيقة تركيز من غير موبايل أحسن من ساعتين وانتي مشتتة.",""],
+ ["عبارة","لو الدرس صعب، قسّميه. أي جبل بيتطلع خطوة بخطوة.",""],
+ ["عبارة","الغلط في التمارين مكسب، لأنه بيوريكي مكانك قبل الامتحان.",""],
+ ["عبارة","حضورك في المدرسة جزء من نجاحك، ماتسيبيهوش يضيع.",""],
+ ["عبارة","انتي مش محتاجة تكوني الأحسن، محتاجة تكوني أحسن من إمبارح.",""],
+ ["عبارة","السؤال اللي مش فاهماه اكتبيه واسألي عليه. السؤال مش عيب.",""],
+ ["عبارة","كل علامة ✔ هنا معناها إنك قرّبتي من هدفك.",""],
+ ["عبارة","النوم الكويس جزء من المذاكرة، مش ضدها.",""],
+ ["عبارة","اللي بيمشي ببطء بس مابيقفش بيوصل.",""],
+ ["عبارة","افتكري ليه بدأتي، كل ما تحسي إنك عايزة تبطّلي.",""],
+ ["عبارة","يوم وحش مش معناه أسبوع وحش. ارجعي بكرة.",""],
+ ["عبارة","فهم الدرس أهم من حفظه، والحل هو اللي بيثبّت الفهم.",""],
+ ["عبارة","اللي ذاكرتيه مش هيضيع. حتى لو حاسة إنك نسيتي، المراجعة بترجّعه بسرعة.",""],
+ ["كلمة","فخورين بيكي يا {N} 💜",""],
+ ["كلمة","انتي أقوى من أي امتحان.",""],
+ ["كلمة","استمري، النتيجة جاية.",""],
+ ["كلمة","كل يوم بتذاكري فيه هو مكسب.",""],
+ ["كلمة","ثقي في نفسك، انتي قدها.",""],
+ ["كلمة","ابتسمي وابدأي 😊",""],
+ ["English","Small steps every day lead to big results.",""],
+ ["English","Don't wish for it. Work for it.",""],
+ ["English","Success is the sum of small efforts, repeated day in and day out.","Robert Collier"],
+ ["English","It always seems impossible until it's done.","Nelson Mandela"],
+ ["English","The expert in anything was once a beginner.",""],
+ ["English","Believe you can and you're halfway there.","Theodore Roosevelt"],
+ ["English","Done is better than perfect.",""],
+ ["English","Your future is created by what you do today, not tomorrow.",""],
+ ["English","Mistakes are proof that you are trying.",""],
+ ["English","Focus on progress, not perfection.",""]
+];
+</script>
+<script>
+(function(){
+"use strict";
+var STEPS = [["l","🎧","استماع"],["u","💡","فهم"],["s","✍️","حل"],["r","🔁","مراجعة"]];
+var KEY = CFG.key;
+var DAYN = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+var MON = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+var LEVELS = [[0,"🌱","بذرة"],[150,"🌿","برعم"],[400,"🌸","زهرة"],[900,"⭐","نجمة"],[1600,"🏅","بطلة"],[2600,"🏆","متفوقة"],[4000,"👑","أسطورة"]];
+var PRAISE = ["برافو! 👏","عاش! كمّلي كده 💪","خطوة كمان قرّبتك من الهدف ✨","شطورة! 🌟","كده تمام، واحدة واحدة 😊","انتي جامدة! 🔥"];
+var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! فخورين بيكي 💜","4 من 4! انتي بطلة 🏅"];
+
+/* ---------- state ---------- */
+var memStore = null;
+function defState(){ return {v:1,prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
+function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
+var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
+function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
+function cleanDate(v){ return typeof v==="string" && RX_DATE.test(v) ? v : ""; }
+function cleanDays(a){ return Array.isArray(a) ? a.filter(function(x){ return x===+x && x>=0 && x<=6 && x%1===0; }).filter(function(x,i,arr){ return arr.indexOf(x)===i; }) : null; }
+function cleanNum(v, lo, hi){ v = +v; return isFinite(v) ? Math.max(lo, Math.min(hi, v)) : lo; }
+var BAD_KEYS = {"__proto__":1,"constructor":1,"prototype":1};
+function own(o){ return o && typeof o==="object" && !Array.isArray(o) ? Object.keys(o).filter(function(k){ return RX_ID.test(k) && !BAD_KEYS[k]; }) : []; }
+/* keep only well-formed values, so a damaged or tampered backup can't break or inject into the page */
+function sanitize(s){
+  var d = defState(), o = d;
+  if(!s || typeof s!=="object" || Array.isArray(s)) return null;
+  o.name = cleanStr(s.name, 20).trim();
+  o.track = typeof s.track==="string" && CFG.sections.hasOwnProperty(s.track) ? s.track : "";
+  o.setup = s.setup===true && !!o.track;
+  o.start = cleanDate(s.start) || d.start; o.target = cleanDate(s.target);
+  var scs = (CFG.scopes||[["all"],["p0"],["p1"]]).map(function(x){ return x[0]; }); o.scope = scs.indexOf(s.scope)>=0 ? s.scope : "all";
+  o.theme = ["","light","dark"].indexOf(s.theme)>=0 ? s.theme : "";
+  o.showMonthly = typeof s.showMonthly==="boolean" ? s.showMonthly : d.showMonthly;
+  o.schoolDays = cleanDays(s.schoolDays) || d.schoolDays;
+  o.evalDays = cleanDays(s.evalDays) || d.evalDays; if(CFG.evalLocked) CFG.evalDefault.forEach(function(x){ if(o.evalDays.indexOf(x)<0) o.evalDays.push(x); });
+  o.qOff = cleanNum(s.qOff,0,1e6)|0; o.attShow = cleanNum(s.attShow,10,1000)|0;
+  o.savedAt = cleanNum(s.savedAt,0,9e15); o.lastBackup = cleanNum(s.lastBackup,0,9e15);
+  var pr = s.prior||{}; o.prior = {days: cleanNum(pr.days,0,400)|0, from: cleanDate(pr.from), to: cleanDate(pr.to)};
+  var rg = s.range||{}; o.range = {preset: ["7","30","month","lastmonth","start","custom"].indexOf(rg.preset)>=0 ? rg.preset : "30", from: cleanDate(rg.from), to: cleanDate(rg.to)};
+  own(s.prog).forEach(function(id){ var v = s.prog[id], c = {}; if(!v || typeof v!=="object") return; ["l","u","s","r"].forEach(function(k){ if(v[k]==="P" || cleanDate(v[k])) c[k] = v[k]; }); if(Object.keys(c).length) o.prog[id] = c; });
+  own(s.att).forEach(function(k){ if(RX_DATE.test(k) && ["p","a","h"].indexOf(s.att[k])>=0) o.att[k] = s.att[k]; });
+  own(s.monthly).forEach(function(k){ var m = s.monthly[k], c = {}; if(!m || typeof m!=="object") return; if(m.st==="p"||m.st==="a") c.st = m.st; if(typeof m.sc==="number" && isFinite(m.sc)) c.sc = cleanNum(m.sc,0,20); if(c.st || "sc" in c) o.monthly[k] = c; });
+  own(s.renamed).forEach(function(k){ var v = cleanStr(s.renamed[k]).trim(); if(v) o.renamed[k] = v; });
+  own(s.removed).forEach(function(k){ o.removed[k] = 1; });
+  own(s.custom).forEach(function(k){ if(!Array.isArray(s.custom[k])) return; o.custom[k] = s.custom[k].filter(function(c){ return c && RX_ID.test(c.id) && cleanStr(c.t).trim(); }).slice(0,200).map(function(c){ return {id:c.id, t:cleanStr(c.t).trim()}; }); });
+  own(s.cunits).forEach(function(k){ if(!Array.isArray(s.cunits[k])) return; o.cunits[k] = s.cunits[k].filter(function(c){ return c && /^u\d{1,16}$/.test(c.id) && cleanStr(c.t).trim(); }).slice(0,100).map(function(c){ return {id:c.id, t:cleanStr(c.t).trim()}; }); });
+  return o;
+}
+function parseState(raw){ try{ if(typeof raw!=="string" || raw.length > 3000000) return null; return sanitize(JSON.parse(raw)); }catch(e){ return null; } }
+function loadState(){
+  var raw = null;
+  try{ raw = localStorage.getItem(KEY); }catch(e){ raw = memStore; }
+  if(!raw) return defState();
+  var s = parseState(raw);
+  if(!s){ try{ localStorage.setItem(KEY+"-damaged-"+Date.now(), raw); }catch(e){} return defState(); }
+  return s;
+}
+var S = loadState();
+function hasProgress(s){ return !!(s && s.prog && Object.keys(s.prog).length>0); }
+function countSteps(s){ var n=0; if(s && s.prog) for(var k in s.prog){ for(var j in s.prog[k]) if(s.prog[k][j]) n++; } return n; }
+/* merge two copies so nothing recorded on either side is lost */
+function mergeStates(a, b){
+  if(!b) return a; if(!a) return b;
+  var base = (b.savedAt||0) > (a.savedAt||0) ? b : a, other = base===a ? b : a;
+  var out = JSON.parse(JSON.stringify(base));
+  function fillMap(k){ var o = other[k]||{}; out[k] = out[k]||{}; for(var x in o){ if(!(x in out[k])) out[k][x] = o[x]; } }
+  var op = other.prog||{}; for(var id in op){ var dst = out.prog[id] = out.prog[id]||{}; for(var st in op[id]){ if(op[id][st] && !dst[st]) dst[st] = op[id][st]; } }
+  ["att","monthly","renamed","removed"].forEach(fillMap);
+  ["custom","cunits"].forEach(function(k){ var o = other[k]||{}; out[k] = out[k]||{}; for(var key in o){ var have = {}; (out[k][key]||[]).forEach(function(c){ have[c.id]=1; }); out[k][key] = (out[k][key]||[]).concat((o[key]||[]).filter(function(c){ return !have[c.id]; })); } });
+  if(!(out.prior && +out.prior.days) && other.prior && +other.prior.days) out.prior = other.prior;
+  if(!out.setup && other.setup){ out.setup = true; out.track = other.track; }
+  out.lastBackup = Math.max(a.lastBackup||0, b.lastBackup||0);
+  out.savedAt = Math.max(a.savedAt||0, b.savedAt||0);
+  return out;
+}
+/* writes to the extra copies wait until the first sync has merged them in */
+var synced = false;
+function writeLocal(){ var raw = JSON.stringify(S); memStore = raw; try{ localStorage.setItem(KEY, raw); }catch(e){} return raw; }
+function save(){ S.savedAt = Date.now(); var raw = writeLocal(); if(synced){ idbPut(raw); cloudPush(); } }
+/* ---- IndexedDB: a second copy + daily snapshots ---- */
+var idb = null;
+function idbOpen(cb){ if(idb) return cb(idb); try{ var rq = indexedDB.open("study-app",1); rq.onupgradeneeded = function(){ rq.result.createObjectStore("kv"); }; rq.onsuccess = function(){ idb = rq.result; cb(idb); }; rq.onerror = function(){ cb(null); }; }catch(e){ cb(null); } }
+function idbPut(raw, key){ idbOpen(function(db){ if(!db) return; try{ db.transaction("kv","readwrite").objectStore("kv").put(raw, key||KEY); }catch(e){} }); }
+function idbGet(cb, key){ idbOpen(function(db){ if(!db) return cb(null); try{ var rq = db.transaction("kv").objectStore("kv").get(key||KEY); rq.onsuccess = function(){ cb(rq.result||null); }; rq.onerror = function(){ cb(null); }; }catch(e){ cb(null); } }); }
+function idbDel(key){ idbOpen(function(db){ if(!db) return; try{ db.transaction("kv","readwrite").objectStore("kv").delete(key); }catch(e){} }); }
+function snapIndex(cb){ idbGet(function(raw){ var l=[]; try{ l = JSON.parse(raw)||[]; }catch(e){} cb(Array.isArray(l)?l:[]); }, KEY+"-snaps"); }
+function takeSnapshot(){
+  if(!hasProgress(S)) return;
+  var d = today();
+  snapIndex(function(list){
+    var raw = JSON.stringify(S), key = KEY+"-snap-"+d;
+    idbPut(raw, key);
+    list = list.filter(function(x){ return x.d!==d; }); list.push({d:d, steps:countSteps(S)}); list.sort(function(a,b){ return a.d<b.d?-1:1; });
+    while(list.length>10){ idbDel(KEY+"-snap-"+list.shift().d); }
+    idbPut(JSON.stringify(list), KEY+"-snaps");
+  });
+}
+function applyState(s, msg){ S = s; writeLocal(); applyTheme(); renderAll(); if(msg) toast(msg); if(!S.setup || !CFG.sections[S.track]) showSetup(); else $("setup").classList.remove("on"); }
+/* ---- cloud copy in the person's Claude account (only inside the published page) ---- */
+var cloudRef = null, cloudTimer = null, cloudBusy = false, cloudAgain = false;
+function cloudPush(){ if(!cloudRef) return; clearTimeout(cloudTimer); cloudTimer = setTimeout(cloudWrite, 1500); }
+function cloudWrite(){ if(!cloudRef) return; if(cloudBusy){ cloudAgain = true; return; } cloudBusy = true;
+  cloudRef.set({json: JSON.stringify(S), at: S.savedAt||Date.now(), steps: countSteps(S)}).then(function(){ cloudBusy=false; setCloud("☁️ تقدمك محفوظ كمان في حسابك، ومش هيضيع لو الموبايل اتمسح."); if(cloudAgain){ cloudAgain=false; cloudWrite(); } }, function(){ cloudBusy=false; setCloud("☁️ مقدرناش نحفظ في الحساب دلوقتي، بس التقدم محفوظ على الموبايل."); }); }
+function setCloud(m){ var c = $("cloudStatus"); if(c){ c.textContent = m; c.hidden = false; } }
+function cloudFetch(){ // resolves the remote state or null; never rejects
+  return new Promise(function(res){
+    if(!window.claude || typeof window.claude.use!=="function") return res(null);
+    var done = false, tm = setTimeout(function(){ if(!done){ done=true; res(null); } }, 12000);
+    Promise.all([window.claude.use("db"), window.claude.use("user")]).then(function(r){
+      var db = r[0], user = r[1]; if(!db || !user || !user.id) return null;
+      return user.id().then(function(uid){ if(!uid) return null; var ref = db.doc("data/users/"+uid+"/state"); return ref.get().then(function(snap){ cloudRef = ref; return snap; }); });
+    }).then(function(snap){ if(done) return; done=true; clearTimeout(tm); var d = snap && snap.exists ? snap.data() : null; res(d && d.json ? parseState(d.json) : (snap ? "empty" : null)); })
+      .catch(function(){ if(!done){ done=true; clearTimeout(tm); res(null); } });
+  });
+}
+function initialSync(){
+  idbGet(function(raw){
+    var fromIdb = raw ? parseState(raw) : null, before = countSteps(S), wasSetup = S.setup+"|"+S.track;
+    if(fromIdb) S = mergeStates(S, fromIdb);
+    cloudFetch().then(function(remote){
+      if(remote && remote!=="empty") S = mergeStates(S, remote);
+      var after = countSteps(S);
+      synced = true;
+      if(after !== before || (S.setup+"|"+S.track)!==wasSetup) applyState(S, after>before ? "رجّعنا تقدمك المحفوظ ✔" : "");
+      if(hasProgress(S) || S.setup){ var raw2 = writeLocal(); idbPut(raw2); if(cloudRef) cloudWrite(); }
+      if(cloudRef && !hasProgress(S)) setCloud("☁️ أول ما تبدأي، تقدمك هيتحفظ في حسابك كمان.");
+      takeSnapshot();
+    });
+  });
+}
+/* another tab of the same page changed the data */
+window.addEventListener("storage", function(e){ if(e.key!==KEY || !e.newValue) return; var s = parseState(e.newValue); if(s){ S = mergeStates(S, s); renderAll(); } });
+
+/* ---------- helpers ---------- */
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c];}); }
+function pad(n){ return (n<10?"0":"")+n; }
+function d2s(d){ return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+function s2d(s){ var p = s.split("-"); return new Date(+p[0], +p[1]-1, +p[2]); }
+function today(){ return d2s(new Date()); }
+function addDays(d,n){ var x = new Date(d.getFullYear(), d.getMonth(), d.getDate()+n); return x; }
+function niceDate(s){ var d = s2d(s); return DAYN[d.getDay()]+" "+d.getDate()+" "+MON[d.getMonth()]; }
+function isRTLText(t){ return /[؀-ۿ]/.test(t); }
+function toast(m){ var t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove("on");},1900); }
+function daysW(n){ return n===1?"يوم واحد":(n===2?"يومين":(n>=3&&n<=10?n+" أيام":n+" يوم")); }
+function lessons(n){ return n===1?"درس واحد":(n===2?"درسين":(n>=3&&n<=10?n+" دروس":n+" درس")); }
+function dlg(msg, opts, cb){ opts = opts||{}; $("dlgMsg").textContent = msg; var inp = $("dlgIn"); inp.hidden = !opts.input; inp.value = opts.value||""; $("dlgOk").textContent = opts.ok||"تمام"; $("dlgOk").className = "btn"+(opts.danger?" danger":"");
+  var m = $("dlg"); m.classList.add("on"); if(opts.input) setTimeout(function(){ try{ inp.focus(); inp.select(); }catch(e){} },50);
+  function close(v){ m.classList.remove("on"); $("dlgOk").onclick = null; $("dlgNo").onclick = null; cb(v); }
+  $("dlgOk").onclick = function(){ close(opts.input ? inp.value : true); }; $("dlgNo").onclick = function(){ close(opts.input ? null : false); }; }
+function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
+function confetti(n){
+  var cols=["#7b4bb7","#d1557f","#f2b134","#1f8a5b","#3b82c4"];
+  for(var i=0;i<(n||40);i++){ var c=document.createElement("div"); c.className="cf"; c.style.left=(Math.random()*100)+"vw"; c.style.background=pick(cols); c.style.animationDuration=(1.4+Math.random()*1.6)+"s"; c.style.animationDelay=(Math.random()*.3)+"s"; document.body.appendChild(c); (function(x){ setTimeout(function(){ if(x.parentNode) x.parentNode.removeChild(x); },3600); })(c); }
+}
+function applyTheme(){ if(S.theme) document.documentElement.setAttribute("data-theme",S.theme); else document.documentElement.removeAttribute("data-theme"); }
+
+/* ---------- curriculum model ---------- */
+function activeSubjects(){ var s = CFG.sections[S.track]; return s ? s.subjects.slice() : []; }
+function wt(sk){ return (CFG.weights && CFG.weights[sk]) || 100; }
+function inScope(pi){ return S.scope==="all" || S.scope==="p"+pi; }
+function nm(id, def){ return (S.renamed && S.renamed[id]) || def; }
+function getUnits(sk, pi){
+  var out = [];
+  CURR[sk].parts[pi][1].forEach(function(u,ui){ out.push({key:sk+"."+pi+"."+ui, title:nm(sk+"."+pi+"."+ui,u[0]), base:u[1], ui:ui}); });
+  ((S.cunits||{})[sk+"."+pi]||[]).forEach(function(cu){ out.push({key:sk+"."+pi+"."+cu.id, title:nm(sk+"."+pi+"."+cu.id,cu.t), base:null, custom:true, cid:cu.id}); });
+  return out;
+}
+function unitTopics(u){
+  var out = [];
+  if(u.base) u.base.split("|").forEach(function(tt,ti){ var id = u.key+"."+ti; if(!S.removed[id]) out.push({id:id,title:nm(id,tt)}); });
+  (S.custom[u.key]||[]).forEach(function(c){ out.push({id:c.id,title:nm(c.id,c.t),custom:true}); });
+  return out;
+}
+function unitKeyOf(id){ if(id.indexOf("c.")===0){ var p = id.slice(2).split("."); p.pop(); return p.join("."); } return id.split(".").slice(0,3).join("."); }
+function subjTopics(sk, scoped){
+  var out = [];
+  CURR[sk].parts.forEach(function(p,pi){ if(scoped && !inScope(pi)) return; getUnits(sk,pi).forEach(function(u){ unitTopics(u).forEach(function(tp){ tp.pi=pi; tp.uk=u.key; out.push(tp); }); }); });
+  return out;
+}
+function stepsDone(id){ var p = S.prog[id]; if(!p) return 0; var n=0; STEPS.forEach(function(s){ if(p[s[0]]) n++; }); return n; }
+function subjStats(sk, scoped){
+  var ts = subjTopics(sk, scoped), steps = 0, done = 0, by = {l:0,u:0,s:0,r:0};
+  ts.forEach(function(t){ var n = stepsDone(t.id); steps += n; if(n===4) done++; var p=S.prog[t.id]; if(p) STEPS.forEach(function(s){ if(p[s[0]]) by[s[0]]++; }); });
+  var total = ts.length*4;
+  return {topics:ts.length, done:done, steps:steps, total:total, pct: total? steps/total*100 : 0, by:by};
+}
+function overall(){
+  var subs = activeSubjects(), sum=0, wsum=0, done=0, topics=0, steps=0, total=0, by={l:0,u:0,s:0,r:0};
+  subs.forEach(function(sk){ var st = subjStats(sk,true), w = st.total ? wt(sk) : 0; wsum += w; sum += st.pct*w; done+=st.done; topics+=st.topics; steps+=st.steps; total+=st.total; STEPS.forEach(function(s){ by[s[0]] += (st.topics? st.by[s[0]]/st.topics*100 : 0)*w; }); });
+  wsum = wsum||1; STEPS.forEach(function(s){ by[s[0]] = by[s[0]]/wsum; });
+  return {pct: sum/wsum, done:done, topics:topics, left:topics-done, steps:steps, total:total, by:by};
+}
+// all step dates (for logs)
+function priorDate(){ return (S.prior && S.prior.to) || d2s(addDays(s2d(S.start||"2026-09-12"),0)); }
+function stepDate(v){ return v==="P" ? priorDate() : v; }
+function allStepDates(){
+  var out = [];
+  activeSubjects().forEach(function(sk){ subjTopics(sk,false).forEach(function(t){ var p = S.prog[t.id]; if(p) STEPS.forEach(function(s){ var v = p[s[0]]; if(v) out.push({d:stepDate(v), sk:sk, pi:t.pi, prior: v==="P"}); }); }); });
+  return out;
+}
+
+/* ---------- attendance ---------- */
+function isEval(w){ return (S.evalDays||[]).indexOf(w)>=0; }
+function hasEval(){ return (S.evalDays||[]).length>0; }
+function isSchool(w){ return (S.schoolDays||[0,1,2,3,4]).indexOf(w)>=0 || isEval(w); }
+// kind: "all" (all school days) or "eval" (Tue/Wed); optional from/to (strings)
+function attDays(kind, from, to){
+  var out = [], st = s2d(S.start||"2026-09-12"), end = new Date(); end = new Date(end.getFullYear(), end.getMonth(), end.getDate());
+  if(from){ var f = s2d(from); if(f>st) st = f; }
+  if(to){ var tt = s2d(to); if(tt<end) end = tt; }
+  if(st > end) return out;
+  for(var d = st; d <= end; d = addDays(d,1)){ var w = d.getDay(); if(kind==="eval" ? isEval(w) : isSchool(w)) out.push(d2s(d)); }
+  return out.reverse();
+}
+var RATES = [[95,"ممتاز","ok","🌟"],[90,"جيد جدًا","ok","👏"],[80,"جيد","mid","🙂"],[70,"مقبول","mid","⚠️"],[0,"ضعيف","low","🚨"]];
+function rate(pct){ if(pct===null) return null; pct = Math.round(pct); for(var i=0;i<RATES.length;i++){ if(pct>=RATES[i][0]) return RATES[i]; } return RATES[RATES.length-1]; }
+function rateBadge(pct){ var r = rate(pct); return r ? '<span class="badge '+r[2]+'">'+r[3]+' '+r[1]+'</span>' : '<span class="badge">مفيش أيام متسجلة</span>'; }
+function attStats(kind, from, to){
+  var days = attDays(kind||"eval", from, to), p=0, a=0, h=0, un=0, streak=0;
+  days.forEach(function(ds){ var v = S.att[ds]; if(v==="p"){ p++; } else if(v==="a"){ a++; } else if(v==="h"){ h++; } else un++; });
+  // streak: from most recent backwards, skipping holidays & unmarked today
+  for(var i=0;i<days.length;i++){ var v=S.att[days[i]]; if(v==="h") continue; if(!v && i===0 && days[i]===today()) continue; if(v==="p") streak++; else break; }
+  var counted = p + a;
+  return {p:p,a:a,h:h,un:un,pct: counted? p/counted*100 : null, streak:streak, total:days.length};
+}
+
+/* ---------- points & level ---------- */
+function points(){
+  var o = overall(), at = attStats("all"), atE = attStats("eval"), m = 0;
+  for(var k in S.monthly){ if(S.monthly[k] && S.monthly[k].st==="p") m++; }
+  return o.steps*10 + o.done*20 + at.p*10 + atE.p*10 + m*25;
+}
+function level(pts){ var cur = LEVELS[0], nxt = null; for(var i=0;i<LEVELS.length;i++){ if(pts>=LEVELS[i][0]){ cur=LEVELS[i]; nxt=LEVELS[i+1]||null; } } return {cur:cur,nxt:nxt}; }
+
+/* ---------- streak (study days) ---------- */
+function studyStreak(){
+  var set = {}; allStepDates().forEach(function(x){ if(!x.prior) set[x.d]=1; });
+  var d = new Date(), n = 0; d = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  if(!set[d2s(d)]) d = addDays(d,-1);
+  while(set[d2s(d)]){ n++; d = addDays(d,-1); }
+  return n;
+}
+
+/* ---------- header ---------- */
+function renderHeader(){
+  $("hello").textContent = (S.name||CFG.name) ? "أهلًا يا "+(S.name||CFG.name)+" 👋" : "أهلًا بيكي 👋";
+  var h = new Date().getHours(), greet = h<12 ? "صباح الخير ☀️" : (h<18 ? "مساء الفل 🌤️" : "مساء النور 🌙");
+  var sec = CFG.sections[S.track], tr = sec ? sec.meta : "";
+  $("meta").textContent = greet+" · "+CFG.grade+(tr?" · "+tr:"");
+  var pts = points(), lv = level(pts);
+  $("lvlEm").textContent = lv.cur[1]; $("lvlName").textContent = "مستواكي: "+lv.cur[2];
+  if(lv.nxt){ var span = lv.nxt[0]-lv.cur[0]; $("lvlBar").style.width = Math.min(100,(pts-lv.cur[0])/span*100)+"%"; $("lvlPts").textContent = pts+" / "+lv.nxt[0]+" ⭐"; }
+  else { $("lvlBar").style.width="100%"; $("lvlPts").textContent = pts+" ⭐"; }
+}
+
+/* ---------- home ---------- */
+function dayIndex(){ var d = new Date(); return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000); }
+function renderQuote(){
+  var q = QUOTES[((dayIndex()+S.qOff)%QUOTES.length+QUOTES.length)%QUOTES.length];
+  var tags = {"موقف":"📜 موقف ملهم","مثل":"🗣️ مثل","شعر":"✒️ بيت شعر","عبارة":"💬 عبارة اليوم","كلمة":"💜 كلمة ليكي","English":"🇬🇧 English quote"};
+  $("qTag").textContent = tags[q[0]]||q[0];
+  var tx = $("qTx"); tx.textContent = q[1].replace(/\{N\}/g, S.name||CFG.name||"بطلة"); tx.className = "tx"+(q[0]==="English"?" en":""); tx.style.textAlign = q[0]==="English" ? "left" : "";
+  $("qBy").textContent = q[2] ? "— "+q[2] : "";
+}
+function renderNudge(){
+  var t = today(), w = new Date().getDay(), stepsToday = allStepDates().filter(function(x){return x.d===t;}).length, msg;
+  var tw = (w+1)%7;
+  if(isSchool(w) && !isEval(w) && !S.att[t] && new Date().getHours()>=14) msg = "🏫 روحتي المدرسة النهارده؟ سجّلي حضورك من صفحة الحضور.";
+  else if(isEval(w) && !S.att[t]) msg = "📌 النهارده "+DAYN[w]+"، يوم تقييم! ماتنسيش تروحي، وبعدها علّمي عليه في صفحة الحضور.";
+  else if(isEval(tw)) msg = stepsToday ? "عملتي "+stepsToday+" خطوة النهارده 👏 وبكرة يوم تقييم، جهّزي نفسك." : "بكرة يوم تقييم 📆 راجعي اللي اتاخد عشان تبقي جاهزة.";
+  else if(stepsToday===0) msg = "لسه مابدأتيش النهارده… خطوة واحدة بس تكفي تبدأي بيها 💪";
+  else if(stepsToday<4) msg = "حلو! عملتي "+stepsToday+" خطوة النهارده. يلا واحدة كمان؟ ✨";
+  else msg = "يوم قوي! "+stepsToday+" خطوة النهارده 🔥 ماتنسيش ترتاحي شوية.";
+  $("nudge").textContent = msg;
+}
+function ringSVG(pct, color){
+  var r=52, c=2*Math.PI*r, off=c*(1-pct/100);
+  return '<svg width="120" height="120" viewBox="0 0 120 120"><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="var(--soft)" stroke-width="12"/><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="'+color+'" stroke-width="12" stroke-linecap="round" stroke-dasharray="'+c.toFixed(2)+'" stroke-dashoffset="'+off.toFixed(2)+'"/></svg>';
+}
+function renderHome(){
+  renderQuote(); renderNudge();
+  var o = overall();
+  $("ring").innerHTML = ringSVG(o.pct,"var(--accent)")+'<div class="c"><b class="en">'+Math.round(o.pct)+'%</b><span>من المنهج</span></div>';
+  var colors = {l:"var(--s-l)",u:"var(--s-u)",s:"var(--s-s)",r:"var(--s-r)"};
+  $("legend").innerHTML = STEPS.map(function(s){ var v=o.by[s[0]]; return '<div class="sl"><span class="d" style="background:'+colors[s[0]]+'"></span><span style="width:70px">'+s[1]+' '+s[2]+'</span><span class="bar"><i style="width:'+v.toFixed(1)+'%;background:'+colors[s[0]]+'"></i></span><span class="p en">'+Math.round(v)+'%</span></div>'; }).join("");
+  $("stDone").textContent = o.done; $("stLeft").textContent = o.left; $("stStreak").textContent = studyStreak();
+  var pd = +(S.prior&&S.prior.days)||0, ad = appStudyDays(); $("stTotalDays").textContent = pd+ad;
+  $("stTotalSub").textContent = (pd ? pd+" يوم قبل التطبيق + " : "")+ad+" يوم من التطبيق";
+  var showNudge = hasProgress(S) && (Date.now() - (S.lastBackup||0) > 7*86400000);
+  $("backupNudge").hidden = !showNudge; if(showNudge) $("backupNudgeTx").textContent = S.lastBackup ? "آخر نسخة نزّلتيها من "+Math.floor((Date.now()-S.lastBackup)/86400000)+" يوم. نزّلي نسخة جديدة واحتفظي بيها عشان تقدمك مايضيعش." : "لسه مانزّلتيش أي نسخة. نزّلي نسخة واحتفظي بيها، عشان لو بيانات المتصفح اتمسحت ترجّعي تقدمك.";
+  $("restoreCard").hidden = hasProgress(S);
+  var R = renderRange(), allD = allStepDates();
+  // subjects
+  $("subjList").innerHTML = activeSubjects().map(function(sk){ var st = subjStats(sk,true), c = CURR[sk], tot1 = {}; tot1[sk] = st.total;
+    var g = pctAt(R.to, allD, tot1, [sk]) - pctAt(d2s(addDays(R.f,-1)), allD, tot1, [sk]);
+    return '<div class="subj-row" data-sk="'+sk+'"><span class="ic">'+c.icon+'</span><div style="flex:1;min-width:0"><div class="nm">'+esc(c.name)+'</div><div class="pbar" style="margin-top:4px"><i style="width:'+st.pct.toFixed(1)+'%;background:'+c.color+'"></i></div><div class="muted" style="font-size:12px;margin-top:2px">'+st.done+' من '+st.topics+' درس خلص · فاضل '+(st.topics-st.done)+(g>0?' · <b style="color:var(--good)">+'+g.toFixed(1)+'% في الفترة</b>':'')+'</div></div><span class="pc en">'+Math.round(st.pct)+'%</span></div>'; }).join("");
+  var rows = $("subjList").querySelectorAll(".subj-row");
+  for(var i=0;i<rows.length;i++){ rows[i].addEventListener("click",function(){ curSubj = this.getAttribute("data-sk"); curPart = firstOpenPart(curSubj); go("curr"); }); }
+  renderToday(); renderCharts(R); renderPace();
+}
+function nextStepFor(sk){
+  var ts = subjTopics(sk,true);
+  for(var i=0;i<ts.length;i++){ var p = S.prog[ts[i].id]||{}; for(var j=0;j<STEPS.length;j++){ if(!p[STEPS[j][0]]) return {t:ts[i], s:STEPS[j]}; } }
+  return null;
+}
+function renderToday(){
+  var box = $("today"), html = "";
+  activeSubjects().forEach(function(sk){ var n = nextStepFor(sk), c = CURR[sk];
+    if(!n){ html += '<div class="task"><span class="chk" style="border-color:var(--good);color:var(--good)">🏁</span><div class="t"><b>'+esc(c.name)+'</b><span>خلّصتي كل المطلوب في المادة دي! 🎉</span></div></div>'; return; }
+    html += '<div class="task"><button class="chk" type="button" data-id="'+n.t.id+'" data-s="'+n.s[0]+'" aria-label="تم">'+n.s[1]+'</button><div class="t"><b'+(isRTLText(n.t.title)?'':' class="en" style="text-align:right"')+'>'+esc(n.t.title)+'</b><span>'+c.icon+' '+esc(c.name)+' · الخطوة: '+n.s[2]+'</span></div></div>'; });
+  box.innerHTML = html;
+  var bs = box.querySelectorAll("button.chk");
+  for(var i=0;i<bs.length;i++){ bs[i].addEventListener("click",function(){ toggleStep(this.getAttribute("data-id"), this.getAttribute("data-s")); }); }
+}
+var PRESETS = [["7","آخر 7 أيام"],["30","آخر 30 يوم"],["month","الشهر ده"],["lastmonth","الشهر اللي فات"],["start","من أول الدراسة"],["custom","فترة مخصصة"]];
+function getRange(){
+  var r = S.range||{preset:"30"}, t = new Date(); t = new Date(t.getFullYear(),t.getMonth(),t.getDate());
+  var f, e = t;
+  if(r.preset==="7") f = addDays(t,-6);
+  else if(r.preset==="30") f = addDays(t,-29);
+  else if(r.preset==="month") f = new Date(t.getFullYear(), t.getMonth(), 1);
+  else if(r.preset==="lastmonth"){ f = new Date(t.getFullYear(), t.getMonth()-1, 1); e = new Date(t.getFullYear(), t.getMonth(), 0); }
+  else if(r.preset==="start") f = s2d(S.start||"2026-09-12");
+  else { f = r.from ? s2d(r.from) : addDays(t,-29); e = r.to ? s2d(r.to) : t; }
+  if(f>e){ var x=f; f=e; e=x; }
+  return {from:d2s(f), to:d2s(e), f:f, e:e, days:Math.round((e-f)/86400000)+1};
+}
+function pctAt(ds, dates, totals, subs){
+  var acc = {}; subs.forEach(function(sk){acc[sk]=0;});
+  dates.forEach(function(x){ if(x.d<=ds && inScope(x.pi)) acc[x.sk]++; });
+  var sum = 0, ws = 0; subs.forEach(function(sk){ if(!(totals[sk]>0)) return; sum += acc[sk]/totals[sk]*100*wt(sk); ws += wt(sk); }); return sum/(ws||1);
+}
+function topicDoneDate(id){ var p = S.prog[id]; if(!p) return null; var m = ""; for(var i=0;i<STEPS.length;i++){ var v = p[STEPS[i][0]]; if(!v) return null; v = stepDate(v); if(v>m) m=v; } return m; }
+function priorInRange(from, to){
+  var pr = S.prior||{}, n = +pr.days||0; if(!n) return 0;
+  var pf = pr.from || S.start || "2026-09-12", pt = pr.to || pf; if(pt < pf){ var x=pf; pf=pt; pt=x; }
+  var a = from > pf ? from : pf, b = to < pt ? to : pt; if(a > b) return 0;
+  var span = Math.round((s2d(pt)-s2d(pf))/86400000)+1, ov = Math.round((s2d(b)-s2d(a))/86400000)+1;
+  return Math.min(ov, Math.round(n*ov/span));
+}
+function appStudyDays(){ var set = {}; allStepDates().forEach(function(x){ if(!x.prior) set[x.d]=1; }); return Object.keys(set).length; }
+function renderRange(){
+  var R = getRange(), r = S.range||{};
+  $("rPresets").innerHTML = PRESETS.map(function(p){ return '<button type="button" data-p="'+p[0]+'" class="'+((r.preset||"30")===p[0]?"on":"")+'">'+p[1]+'</button>'; }).join("");
+  var bs = $("rPresets").querySelectorAll("button");
+  for(var i=0;i<bs.length;i++){ bs[i].addEventListener("click",function(){ var p=this.getAttribute("data-p"), cur=getRange(); S.range = {preset:p, from: p==="custom"?cur.from:"", to: p==="custom"?cur.to:""}; save(); renderHome(); }); }
+  $("rFrom").value = R.from; $("rTo").value = R.to;
+  $("rLabel").textContent = "من "+niceDate(R.from)+" إلى "+niceDate(R.to)+" ("+daysW(R.days)+")";
+  var dates = allStepDates(), inR = dates.filter(function(x){ return !x.prior && x.d>=R.from && x.d<=R.to; });
+  var days = {}; inR.forEach(function(x){ days[x.d]=1; }); var studyDays = Object.keys(days).length + priorInRange(R.from, R.to);
+  var t = today(), effDays = Math.max(1, Math.round((s2d(R.to<t?R.to:t)-R.f)/86400000)+1);
+  var doneT = 0; activeSubjects().forEach(function(sk){ subjTopics(sk,true).forEach(function(tp){ var dd = topicDoneDate(tp.id); if(dd && dd>=R.from && dd<=R.to) doneT++; }); });
+  var subs = activeSubjects(), totals = {}; subs.forEach(function(sk){ totals[sk] = subjStats(sk,true).total; });
+  var before = d2s(addDays(R.f,-1)), gain = pctAt(R.to, dates, totals, subs) - pctAt(before, dates, totals, subs);
+  var aAll = attStats("all", R.from, R.to), aEv = attStats("eval", R.from, R.to);
+  function st(v,l,extra){ return '<div class="stat"><div class="v">'+v+'</div><div class="l">'+l+'</div>'+(extra||"")+'</div>'; }
+  $("rStats").innerHTML =
+    st('<span class="en">+'+gain.toFixed(1)+'%</span>',"زيادة في نسبة المنهج")+
+    st(inR.length,"خطوة عملتيها")+
+    st(doneT,"درس خلّصتيه بالكامل")+
+    st(studyDays+' <span style="font-size:14px;color:var(--muted)">/ '+effDays+'</span>',"يوم ذاكرتي فيه")+
+    st((inR.length/effDays).toFixed(1),"متوسط خطوات في اليوم")+
+    st(Math.round(studyDays/effDays*100)+'%',"التزام بالمذاكرة")+
+    st(aAll.pct===null?"—":'<span class="en">'+Math.round(aAll.pct)+'%</span>',"🏫 حضور المدرسة",'<div style="margin-top:4px">'+rateBadge(aAll.pct)+'</div>')+
+    (hasEval() ? st(aEv.pct===null?"—":'<span class="en">'+Math.round(aEv.pct)+'%</span>',"⭐ حضور أيام التقييم",'<div style="margin-top:4px">'+rateBadge(aEv.pct)+'</div>') : "");
+  return R;
+}
+function renderCharts(R){
+  var dates = allStepDates(), cnt = {}; dates.forEach(function(x){ if(!x.prior) cnt[x.d]=(cnt[x.d]||0)+1; });
+  var t = new Date(); t = new Date(t.getFullYear(),t.getMonth(),t.getDate());
+  // buckets: daily (<=31), weekly (<=140), monthly
+  var mode = R.days<=31 ? "d" : (R.days<=140 ? "w" : "m"), buckets = [];
+  if(mode==="d"){ for(var d=R.f; d<=R.e; d=addDays(d,1)){ buckets.push({a:d, b:d, lab:String(d.getDate()), ev:isEval(d.getDay())}); } }
+  else if(mode==="w"){ for(var d2=R.f; d2<=R.e; d2=addDays(d2,7)){ var b = addDays(d2,6); if(b>R.e) b=R.e; buckets.push({a:d2, b:b, lab:d2.getDate()+"/"+(d2.getMonth()+1)}); } }
+  else { var m = new Date(R.f.getFullYear(), R.f.getMonth(), 1); while(m<=R.e){ var a = m<R.f?R.f:m, bb = new Date(m.getFullYear(), m.getMonth()+1, 0); if(bb>R.e) bb=R.e; buckets.push({a:a, b:bb, lab:MON[m.getMonth()]}); m = new Date(m.getFullYear(), m.getMonth()+1, 1); } }
+  buckets.forEach(function(k){ var n=0; for(var x=k.a; x<=k.b; x=addDays(x,1)) n += cnt[d2s(x)]||0; k.n=n; k.today = (d2s(k.a)<=d2s(t) && d2s(t)<=d2s(k.b)); });
+  var N = buckets.length, max = Math.max(4, Math.max.apply(null, buckets.map(function(x){return x.n;})));
+  var W=340,H=160,pl=6,pr=6,pt=18,pb=28, bw=(W-pl-pr)/N, gap = Math.min(6, bw*0.25), labEvery = Math.ceil(N/14);
+  var svg = '<svg style="direction:ltr" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="عدد الخطوات">';
+  buckets.forEach(function(k,i){ var h=(H-pt-pb)*k.n/max, X=W-pr-(i+1)*bw+gap/2, Y=H-pb-h, w=bw-gap;
+    if(k.n) svg += '<rect x="'+X.toFixed(1)+'" y="'+Y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+Math.min(4,w/2).toFixed(1)+'" fill="'+(k.today?"var(--accent2)":"var(--accent)")+'"><title>'+k.lab+': '+k.n+'</title></rect>';
+    if(k.n && N<=20) svg += '<text x="'+(X+w/2).toFixed(1)+'" y="'+(Y-4).toFixed(1)+'" text-anchor="middle" font-size="9.5" fill="var(--muted)">'+k.n+'</text>';
+    if(i%labEvery===0 || i===N-1) svg += '<text x="'+(X+w/2).toFixed(1)+'" y="'+(H-pb+13)+'" text-anchor="middle" font-size="9" fill="'+(k.today?"var(--accent2)":"var(--muted)")+'">'+k.lab+'</text>';
+    if(k.ev) svg += '<circle cx="'+(X+w/2).toFixed(1)+'" cy="'+(H-6)+'" r="2" fill="var(--good)"/>';
+  });
+  svg += '<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+(H-pb)+'" y2="'+(H-pb)+'" stroke="var(--line)"/></svg>';
+  var unit = mode==="d"?"كل عمود = يوم":(mode==="w"?"كل عمود = أسبوع":"كل عمود = شهر");
+  var tot = buckets.reduce(function(a,x){return a+x.n;},0), best = buckets.reduce(function(a,x){ return x.n>a.n?x:a; },{n:0});
+  $("chartDays").innerHTML = svg + '<div class="muted">'+unit+' · المجموع: <b>'+tot+'</b> خطوة'+(best.n?' · أحسن '+(mode==="d"?"يوم":(mode==="w"?"أسبوع":"شهر"))+': <b>'+best.lab+'</b> ('+best.n+')':'')+(mode==="d"?(hasEval()?' · النقطة الخضرا = يوم تقييم':''):'')+'</div>';
+  // cumulative
+  var subs = activeSubjects(), totals = {}; subs.forEach(function(sk){ totals[sk] = subjStats(sk,true).total; });
+  var endC = R.e>t ? t : R.e, nDays = Math.max(1, Math.round((endC-R.f)/86400000)+1);
+  if(endC<R.f){ $("chartCum").innerHTML = '<div class="empty">الفترة دي لسه ماجتش.</div>'; return; }
+  var scoped = dates.filter(function(x){ return inScope(x.pi); }).sort(function(a,b){ return a.d<b.d?-1:1; });
+  var acc = {}; subs.forEach(function(sk){acc[sk]=0;}); var j=0, pts=[];
+  for(var k=0;k<nDays;k++){ var ds = d2s(addDays(R.f,k)); while(j<scoped.length && scoped[j].d<=ds){ acc[scoped[j].sk]++; j++; } var sum=0, ws=0; subs.forEach(function(sk){ if(!(totals[sk]>0)) return; sum += acc[sk]/totals[sk]*100*wt(sk); ws += wt(sk); }); pts.push(sum/(ws||1)); }
+  var minV = Math.floor(Math.min.apply(null,pts)/5)*5, maxV = Math.max(minV+10, Math.ceil(Math.max.apply(null,pts)/5)*5);
+  var W2=340,H2=160,L=34,Rr=8,T=12,B=24;
+  var sx = function(i){ return W2-Rr-(nDays<=1?0:(i/(nDays-1))*(W2-L-Rr)); }, sy = function(v){ return H2-B-((v-minV)/(maxV-minV))*(H2-T-B); };
+  var s2 = '<svg style="direction:ltr" viewBox="0 0 '+W2+' '+H2+'" role="img" aria-label="تطور النسبة">';
+  [minV, (minV+maxV)/2, maxV].forEach(function(v){ s2 += '<line x1="'+(W2-Rr)+'" x2="'+L+'" y1="'+sy(v).toFixed(1)+'" y2="'+sy(v).toFixed(1)+'" stroke="var(--line)"/><text x="'+(L-4)+'" y="'+(sy(v)+3).toFixed(1)+'" text-anchor="end" font-size="9.5" fill="var(--muted)">'+(Math.round(v*10)/10)+'%</text>'; });
+  var path = pts.map(function(v,i){ return (i?"L":"M")+sx(i).toFixed(1)+" "+sy(v).toFixed(1); }).join(" ");
+  if(pts.length>1) s2 += '<path d="'+path+' L'+sx(pts.length-1).toFixed(1)+' '+sy(minV).toFixed(1)+' L'+sx(0).toFixed(1)+' '+sy(minV).toFixed(1)+' Z" fill="var(--accent)" opacity=".12"/>';
+  s2 += '<path d="'+path+'" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>';
+  var last = pts[pts.length-1]; s2 += '<circle cx="'+sx(pts.length-1).toFixed(1)+'" cy="'+sy(last).toFixed(1)+'" r="4" fill="var(--accent2)"/>';
+  s2 += '<text x="'+(W2-Rr)+'" y="'+(H2-6)+'" text-anchor="end" font-size="9.5" fill="var(--muted)">'+R.f.getDate()+' '+MON[R.f.getMonth()]+'</text><text x="'+L+'" y="'+(H2-6)+'" text-anchor="start" font-size="9.5" fill="var(--accent2)">'+endC.getDate()+' '+MON[endC.getMonth()]+'</text></svg>';
+  $("chartCum").innerHTML = s2 + '<div class="muted">من <b class="en">'+pts[0].toFixed(1)+'%</b> لـ <b class="en">'+last.toFixed(1)+'%</b> في الفترة دي.</div>';
+}
+function renderPace(){
+  var o = overall(), left = o.total - o.steps, box = $("pace");
+  if(!S.target){ box.innerHTML = '<div class="muted">حددي تاريخ تخلّصي فيه المنهج من الإعدادات، وهقولك محتاجة كام خطوة في اليوم.</div><button class="btn ghost sm" style="margin-top:8px" id="goSet">حددي التاريخ</button>'; $("goSet").addEventListener("click",function(){ go("set"); }); return; }
+  var t = new Date(); t = new Date(t.getFullYear(),t.getMonth(),t.getDate());
+  var days = Math.round((s2d(S.target)-t)/86400000);
+  if(left<=0){ box.innerHTML = '<b>🎉 خلّصتي المطلوب! فاضل المراجعة النهائية.</b>'; return; }
+  if(days<=0){ box.innerHTML = '<div>التاريخ اللي حددتيه عدّى. حددي تاريخ جديد من الإعدادات.</div>'; return; }
+  var perDay = left/days, perWeekTopics = (o.left/days*7);
+  var dates = allStepDates(), since = d2s(addDays(t,-6)), last7 = dates.filter(function(x){ return !x.prior && x.d>=since; }).length/7;
+  var ok = last7 >= perDay;
+  box.innerHTML = '<div class="grid2"><div class="stat"><div class="v">'+days+'</div><div class="l">يوم فاضل</div></div><div class="stat"><div class="v">'+left+'</div><div class="l">خطوة فاضلة</div></div></div>'+
+   '<p style="margin:10px 0 4px">محتاجة تعملي حوالي <b>'+Math.ceil(perDay)+' خطوات في اليوم</b>، يعني تقريبًا <b>'+lessons(Math.ceil(perWeekTopics))+' في الأسبوع</b>.</p>'+
+   '<div><span class="badge '+(ok?"ok":"mid")+'">'+(ok?"✔ ماشية في الطريق الصح":"⚡ محتاجة تزوّدي شوية")+'</span> <span class="muted">متوسطك آخر أسبوع: '+last7.toFixed(1)+' خطوة/يوم</span></div>';
+}
+
+/* ---------- toggle ---------- */
+function toggleStep(id, s){
+  var p = S.prog[id] || {}, before = stepsDone(id);
+  if(p[s]) delete p[s]; else p[s] = today();
+  if(Object.keys(p).length) S.prog[id] = p; else delete S.prog[id];
+  save();
+  var after = stepsDone(id);
+  if(after>before){ if(after===4){ toast(pick(DONE_MSG)); confetti(50); checkUnitDone(id); } else toast(pick(PRAISE)); }
+  renderAll();
+}
+function checkUnitDone(id){
+  var key = unitKeyOf(id), p = key.split("."), sk = p[0], pi = +p[1]; if(!CURR[sk]) return;
+  var u = getUnits(sk,pi).filter(function(x){ return x.key===key; })[0]; if(!u) return;
+  var ts = unitTopics(u); if(ts.length && ts.every(function(x){ return stepsDone(x.id)===4; })){ setTimeout(function(){ toast("🏆 خلّصتي "+u.title+" كلها!"); confetti(90); },1200); }
+}
+
+/* ---------- curriculum page ---------- */
+var curSubj = null, curPart = 0, openUnits = {};
+function firstOpenPart(sk){ if(S.scope==="p1") return 1; return 0; }
+function renderCurr(){
+  var subs = activeSubjects(); if(!curSubj || subs.indexOf(curSubj)<0) curSubj = subs[0];
+  $("subjTabs").innerHTML = subs.map(function(sk){ return '<button type="button" data-sk="'+sk+'" class="'+(sk===curSubj?"on":"")+'">'+CURR[sk].icon+' '+esc(CURR[sk].name)+'</button>'; }).join("");
+  var bs = $("subjTabs").querySelectorAll("button"); for(var i=0;i<bs.length;i++){ bs[i].addEventListener("click",function(){ curSubj=this.getAttribute("data-sk"); curPart=0; renderCurr(); }); }
+  var c = CURR[curSubj]; if(curPart >= c.parts.length) curPart = 0;
+  $("partTabs").innerHTML = c.parts.map(function(p,pi){ return '<button type="button" data-pi="'+pi+'" class="'+(pi===curPart?"on":"")+'">'+p[0]+'</button>'; }).join("");
+  var pb = $("partTabs").querySelectorAll("button"); for(var j=0;j<pb.length;j++){ pb[j].addEventListener("click",function(){ curPart=+this.getAttribute("data-pi"); renderCurr(); }); }
+  $("partTabs").parentNode.style.display = c.parts.length>1 ? "" : "none";
+  var st = subjStats(curSubj,true);
+  $("subjHead").innerHTML = '<div class="row" style="justify-content:space-between"><b>'+c.icon+' '+esc(c.name)+'</b><b class="en" style="color:'+c.color+'">'+Math.round(st.pct)+'%</b></div><div class="pbar" style="margin-top:6px"><i style="width:'+st.pct.toFixed(1)+'%;background:'+c.color+'"></i></div><div class="muted" style="margin-top:4px">'+st.done+' درس خلص من '+st.topics+' · '+st.steps+' خطوة من '+st.total+(S.scope!=="all"?' · (حسب الهدف في الإعدادات)':'')+'</div>'+(c.note?'<div class="nudge" style="margin:10px 0 0;font-size:13.5px;box-shadow:none;background:var(--soft)">✏️ '+esc(c.note)+'</div>':'');
+  var units = getUnits(curSubj,curPart), html = "";
+  units.forEach(function(u){
+    var ts = unitTopics(u), sd = 0; ts.forEach(function(x){ sd += stepsDone(x.id); });
+    var tot = ts.length*4, pct = tot? sd/tot*100 : 0, key = u.key, open = openUnits[key];
+    var en = !isRTLText(u.title);
+    html += '<details class="unit" data-key="'+key+'"'+(open?" open":"")+'><summary><div class="ut"><span'+(en?' class="en" style="text-align:right"':'')+'>'+esc(u.title)+'</span><span class="en">'+Math.round(pct)+'%</span></div><div class="pbar"><i style="width:'+pct.toFixed(1)+'%;background:'+(pct>=100?"var(--good)":c.color)+'"></i></div></summary>';
+    ts.forEach(function(x){ var pr = S.prog[x.id]||{}, n = stepsDone(x.id), ten = !isRTLText(x.title);
+      html += '<div class="topic'+(n===4?" done":"")+'"><div class="tt"><span class="nm'+(ten?' en':'')+'"'+(ten?' style="text-align:right"':'')+'>'+(n===4?"✅ ":"")+esc(x.title)+'</span><span style="white-space:nowrap">'+(n<4?'<button class="del" type="button" data-prior="'+x.id+'" aria-label="ذاكرته قبل كده" title="ذاكرته قبل كده" style="color:var(--accent);font-size:12.5px">⏮ قبل كده</button>':'')+'<button class="del" type="button" data-ren="'+x.id+'" aria-label="تعديل الاسم" style="color:var(--muted)">✏️</button><button class="del" type="button" data-del="'+x.id+'" aria-label="حذف">✕</button></span></div><div class="stepbtns">'+
+        STEPS.map(function(s){ var on = !!pr[s[0]]; return '<button type="button" class="sb'+(on?" on":"")+'" data-id="'+x.id+'" data-s="'+s[0]+'"'+(on?' title="'+esc(pr[s[0]]==="P"?"قبل التطبيق":pr[s[0]])+'"':'')+'><span class="e">'+s[1]+'</span>'+s[2]+'</button>'; }).join("")+'</div></div>'; });
+    if(!ts.length) html += '<div class="topic muted">مفيش دروس هنا لسه. ضيفي دروس الوحدة من تحت.</div>';
+    html += '<div class="addt"><input type="text" placeholder="ضيفي درس…" data-add="'+key+'"><button class="btn sm" type="button" data-addbtn="'+key+'">+</button></div>';
+    html += '<div class="addt" style="justify-content:space-between;border-top:0;padding-top:0"><button class="btn ghost sm" type="button" data-renu="'+key+'">✏️ اسم الوحدة</button>'+(ts.length && sd<tot?'<button class="btn ghost sm" type="button" data-prioru="'+key+'">⏮ الوحدة كلها متذاكرة</button>':'')+''+(u.custom?'<button class="btn ghost sm" type="button" data-delu="'+curSubj+"."+curPart+"|"+u.cid+'" style="color:var(--bad);border-color:var(--bad)">حذف الوحدة</button>':'')+'</div></details>';
+  });
+  html += '<div class="card" style="padding:10px"><div class="row" style="flex-wrap:nowrap"><input type="text" id="newUnit" placeholder="ضيفي وحدة/فصل جديد…"><button class="btn sm" type="button" id="newUnitBtn">+ وحدة</button></div></div>';
+  var box = $("units"); box.innerHTML = html;
+  var ds = box.querySelectorAll("details.unit"); for(var a=0;a<ds.length;a++){ ds[a].addEventListener("toggle",function(){ openUnits[this.getAttribute("data-key")] = this.open; }); }
+  var sbs = box.querySelectorAll("button.sb"); for(var b=0;b<sbs.length;b++){ sbs[b].addEventListener("click",function(){ toggleStep(this.getAttribute("data-id"), this.getAttribute("data-s")); }); }
+  var dels = box.querySelectorAll("button[data-del]"); for(var d=0;d<dels.length;d++){ dels[d].addEventListener("click",function(){ removeTopic(this.getAttribute("data-del")); }); }
+  var adds = box.querySelectorAll("button[data-addbtn]"); for(var e=0;e<adds.length;e++){ adds[e].addEventListener("click",function(){ addTopic(this.getAttribute("data-addbtn")); }); }
+  var rn = box.querySelectorAll("button[data-ren]"); for(var g=0;g<rn.length;g++){ rn[g].addEventListener("click",function(){ renameItem(this.getAttribute("data-ren")); }); }
+  var ru = box.querySelectorAll("button[data-renu]"); for(var h=0;h<ru.length;h++){ ru[h].addEventListener("click",function(){ renameItem(this.getAttribute("data-renu")); }); }
+  var du = box.querySelectorAll("button[data-delu]"); for(var q=0;q<du.length;q++){ du[q].addEventListener("click",function(){ var v=this.getAttribute("data-delu").split("|"); dlg("تحذفي الوحدة دي وكل دروسها؟",{ok:"احذفي",danger:true},function(ok){ if(!ok) return; S.cunits[v[0]] = (S.cunits[v[0]]||[]).filter(function(cu){ return cu.id!==v[1]; }); save(); renderAll(); }); }); }
+  var pb2 = box.querySelectorAll("button[data-prior]"); for(var z=0;z<pb2.length;z++){ pb2[z].addEventListener("click",function(){ markPrior([this.getAttribute("data-prior")]); }); }
+  var pu = box.querySelectorAll("button[data-prioru]"); for(var y=0;y<pu.length;y++){ pu[y].addEventListener("click",function(){ var key=this.getAttribute("data-prioru"), sk=key.split(".")[0], pi=+key.split(".")[1]; var u = getUnits(sk,pi).filter(function(x){return x.key===key;})[0]; if(!u) return; var ids = unitTopics(u).map(function(x){return x.id;}); dlg("تعلّمي كل دروس «"+u.title+"» إنها اتذاكرت قبل التطبيق (الخطوات الأربعة)؟ تقدري تشيلي أي خطوة بعدين.",{ok:"علّميها"},function(ok){ if(ok) markPrior(ids); }); }); }
+  var nu = $("newUnitBtn"); if(nu) nu.addEventListener("click",function(){ var v=$("newUnit").value.trim(); if(!v) return; var k=curSubj+"."+curPart; (S.cunits[k]=S.cunits[k]||[]).push({id:"u"+Date.now(), t:v}); openUnits[k+".u"]=true; save(); toast("اتضافت الوحدة ✔ ضيفي دروسها"); renderAll(); });
+  var ins = box.querySelectorAll("input[data-add]"); for(var f=0;f<ins.length;f++){ ins[f].addEventListener("keydown",function(ev){ if(ev.key==="Enter") addTopic(this.getAttribute("data-add")); }); }
+}
+function markPrior(ids){ var n=0; ids.forEach(function(id){ var p = S.prog[id]||{}; STEPS.forEach(function(s){ if(!p[s[0]]){ p[s[0]]="P"; n++; } }); S.prog[id]=p; }); save(); toast(n ? "اتعلّم كمذاكرة سابقة ⏮ ✔" : "متعلّم بالفعل"); renderAll(); }
+function addTopic(key){
+  var inp = document.querySelector('input[data-add="'+key+'"]'), v = inp.value.trim(); if(!v) return;
+  (S.custom[key] = S.custom[key]||[]).push({id:"c."+key+"."+Date.now(), t:v}); openUnits[key]=true; save(); toast("اتضاف الدرس ✔"); renderAll();
+}
+function currentName(id){ var found = id; activeSubjects().forEach(function(sk){ CURR[sk].parts.forEach(function(p,pi){ getUnits(sk,pi).forEach(function(u){ if(u.key===id) found=u.title; unitTopics(u).forEach(function(x){ if(x.id===id) found=x.title; }); }); }); }); return found; }
+function renameItem(id){
+  dlg("الاسم الجديد:",{input:true,value:currentName(id),ok:"احفظي"},function(v){ if(v===null) return; v = v.trim(); if(!v) return;
+  S.renamed[id] = v; save(); renderAll(); toast("اتغير الاسم ✔"); });
+}
+function removeTopic(id){
+  dlg("تشيلي الدرس ده من القائمة؟",{ok:"شيليه",danger:true},function(ok){ if(!ok) return;
+  if(id.indexOf("c.")===0){ for(var k in S.custom){ S.custom[k] = S.custom[k].filter(function(c){ return c.id!==id; }); } }
+  else S.removed[id] = 1;
+  delete S.prog[id]; save(); renderAll(); });
+}
+
+/* ---------- attendance page ---------- */
+function renderAtt(){
+  function fill(sfx, at){
+    $("attPct"+sfx).textContent = at.pct===null ? "—" : Math.round(at.pct)+"%";
+    $("attBar"+sfx).style.width = (at.pct||0)+"%";
+    $("attBadge"+sfx).innerHTML = rateBadge(at.pct);
+    $("attSub"+sfx).textContent = "حضرتي "+at.p+" · غبتي "+at.a+" · إجازات "+at.h+(at.un?" · مش متسجل "+at.un:"")+(at.streak?" · 🔥 "+at.streak+" حضور ورا بعض":"");
+  }
+  fill("All", attStats("all")); fill("", attStats("eval"));
+  var RL = ['<span class="en">95%</span> فأكتر','<span class="en">90–94%</span>','<span class="en">80–89%</span>','<span class="en">70–79%</span>','أقل من <span class="en">70%</span>'];
+  $("rateScale").innerHTML = RATES.map(function(r,i){ return '<span class="badge '+r[2]+'" style="margin:2px">'+r[3]+' '+r[1]+': '+RL[i]+'</span>'; }).join(" ")+'<div style="margin-top:6px">النسبة = أيام الحضور ÷ (حضور + غياب). أيام الإجازة والأيام اللي مش متسجلة مش بتتحسب.</div>';
+  var days = attDays("all"), html = "";
+  var t = new Date(); t = new Date(t.getFullYear(),t.getMonth(),t.getDate()); var up = null;
+  for(var i=1;i<8;i++){ var d = addDays(t,i); if(isSchool(d.getDay())){ up = d; break; } }
+  if(up) html += '<div class="att"><div class="dt">'+niceDate(d2s(up))+(isEval(up.getDay())?' ⭐':'')+'<small>يوم الدراسة الجاي 📌</small></div><span class="muted">قريب</span></div>';
+  days.slice(0, S.attShow).forEach(function(ds){ var v = S.att[ds]||"", isT = ds===today(), ev = isEval(s2d(ds).getDay());
+    html += '<div class="att"'+(ev?' style="background:linear-gradient(90deg,transparent,var(--soft))"':'')+'><div class="dt">'+niceDate(ds)+(ev?' ⭐':'')+(isT?'<small>النهارده</small>':(ev?'<small>يوم تقييم</small>':''))+'</div><div class="pick" data-d="'+ds+'"><button type="button" class="p'+(v==="p"?" on":"")+'" data-v="p" aria-label="حضرت">✅</button><button type="button" class="a'+(v==="a"?" on":"")+'" data-v="a" aria-label="غبت">❌</button><button type="button" class="h'+(v==="h"?" on":"")+'" data-v="h" aria-label="إجازة">🏖️</button></div></div>'; });
+  if(!days.length) html += '<div class="empty">لسه مفيش أيام حضور من تاريخ البداية.</div>';
+  $("attList").innerHTML = html;
+  $("attMore").style.display = days.length > S.attShow ? "" : "none";
+  var ps = $("attList").querySelectorAll(".pick button");
+  for(var j=0;j<ps.length;j++){ ps[j].addEventListener("click",function(){ var ds = this.parentNode.getAttribute("data-d"), v = this.getAttribute("data-v"); if(S.att[ds]===v) delete S.att[ds]; else { S.att[ds]=v; if(v==="p") toast(pick(["حضور ✔ برافو!","كده تمام 👏","التزام يستاهل التحية 🌟"])); } save(); renderAll(); }); }
+  // monthly grid
+  $("monthlyCard").style.display = S.showMonthly ? "" : "none"; $("monthlyTitle").textContent = CFG.monthlyTitle;
+  $("evalCard").style.display = hasEval() ? "" : "none";
+  $("evalTitle").textContent = "⭐ الهدف: حضور كل "+(S.evalDays||[]).slice().sort().map(function(i){return DAYN[i];}).join(" و")+" (أيام التقييم)";
+  var cols = CFG.monthlyCols;
+  var g = '<tr><th>المادة</th>'+cols.map(function(c){return '<th style="font-size:11.5px;font-weight:600">'+c[1]+'</th>';}).join("")+'</tr>';
+  activeSubjects().forEach(function(sk){ g += '<tr><td>'+CURR[sk].icon+' '+esc(CURR[sk].name)+'</td>'+cols.map(function(c){ var k = sk+"."+c[0], m = S.monthly[k]||{}, st = m.st||"";
+    var icon = st==="p"?"✅":(st==="a"?"❌":"⬜");
+    return '<td><div class="mcell"><button type="button" data-mk="'+k+'" aria-label="الحالة">'+icon+'</button><input type="number" min="0" max="20" step="0.5" inputmode="decimal" placeholder="/20" data-ms="'+k+'" value="'+(typeof m.sc==="number"?m.sc:"")+'" class="en"></div></td>'; }).join("")+'</tr>'; });
+  $("mGrid").innerHTML = g;
+  var mb = $("mGrid").querySelectorAll("button[data-mk]");
+  for(var a=0;a<mb.length;a++){ mb[a].addEventListener("click",function(){ var k=this.getAttribute("data-mk"), m=S.monthly[k]||{}; m.st = !m.st ? "p" : (m.st==="p" ? "a" : ""); if(!m.st && (m.sc===undefined||m.sc===null)) delete S.monthly[k]; else S.monthly[k]=m; save(); if(m.st==="p") toast("تقييم شهري ✔ 💪"); renderAll(); }); }
+  var mi = $("mGrid").querySelectorAll("input[data-ms]");
+  for(var b=0;b<mi.length;b++){ mi[b].addEventListener("change",function(){ var k=this.getAttribute("data-ms"), m=S.monthly[k]||{}, v=this.value.trim(); if(v===""){ delete m.sc; } else { var n = Math.max(0,Math.min(20,parseFloat(v))); if(isNaN(n)) return; m.sc=n; if(!m.st) m.st="p"; } if(!m.st && m.sc===undefined) delete S.monthly[k]; else S.monthly[k]=m; save(); var btn = document.querySelector('button[data-mk="'+k+'"]'); if(btn) btn.textContent = m.st==="p"?"✅":(m.st==="a"?"❌":"⬜"); renderHeader(); renderMStats(); }); }
+  renderMStats();
+}
+function renderMStats(){
+  var cols = CFG.monthlyCols, att=0, miss=0, scs=[]; activeSubjects().forEach(function(sk){ cols.forEach(function(c){ var m=S.monthly[sk+"."+c[0]]; if(!m) return; if(m.st==="p") att++; if(m.st==="a") miss++; if(typeof m.sc==="number") scs.push(m.sc); }); });
+  var avg = scs.length ? scs.reduce(function(x,y){return x+y;},0)/scs.length : null;
+  $("mStats").innerHTML = '<span>✅ حضرتي <b>'+att+'</b></span><span>❌ غبتي <b>'+miss+'</b></span><span>📊 متوسط درجاتك <b class="en">'+(avg===null?"—":avg.toFixed(1)+" / 20")+'</b></span>';
+}
+$("attMore").addEventListener("click",function(){ S.attShow += 10; save(); renderAtt(); });
+$("attWeek").addEventListener("click",function(){
+  var t = new Date(); t = new Date(t.getFullYear(),t.getMonth(),t.getDate()); var n = 0;
+  for(var i=0;i<7;i++){ var d = addDays(t,-i); if(i>0 && d.getDay()===5) break; var ds = d2s(d); if(ds < (S.start||"")) break; if(isSchool(d.getDay()) && !S.att[ds]){ S.att[ds]="p"; n++; } if(d.getDay()===0) break; }
+  save(); renderAll(); toast(n ? "اتسجل "+n+" يوم حضور ✔" : "كل أيام الأسبوع ده متسجلة بالفعل");
+});
+function setCustomRange(){ var f=$("rFrom").value, e=$("rTo").value; if(!f||!e) return; S.range = {preset:"custom", from:f, to:e}; save(); renderHome(); }
+$("rFrom").addEventListener("change", setCustomRange);
+$("rTo").addEventListener("change", setCustomRange);
+
+/* ---------- settings ---------- */
+function renderSnaps(){
+  snapIndex(function(list){
+    var box = $("snapList"); if(!box) return;
+    if(!list.length){ box.innerHTML = '<div class="muted">لسه مفيش نسخ تلقائية.</div>'; return; }
+    list = list.filter(function(x){ return x && RX_DATE.test(x.d); }); box.innerHTML = list.slice().reverse().map(function(x){ return '<div class="att"><div class="dt">'+niceDate(x.d)+'<small>'+(x.steps|0)+' خطوة</small></div><button class="btn ghost sm" type="button" data-snap="'+x.d+'">رجّعي النسخة دي</button></div>'; }).join("");
+    var bs = box.querySelectorAll("button[data-snap]"); for(var i=0;i<bs.length;i++){ bs[i].addEventListener("click",function(){ var d=this.getAttribute("data-snap"); dlg("ترجّعي تقدمك زي ما كان يوم "+niceDate(d)+"؟ أي حاجة اتسجلت بعد اليوم ده هتتشال. (هناخد نسخة من الحالي الأول عشان لو غيرتي رأيك)",{ok:"رجّعيها"},function(ok){ if(!ok) return; idbGet(function(raw){ var s = raw && parseState(raw); if(!s){ toast("النسخة دي مش متاحة"); return; } idbPut(JSON.stringify(S), KEY+"-before-restore"); S = s; save(); applyState(S, "رجعت نسخة "+niceDate(d)+" ✔"); }, KEY+"-snap-"+d); }); }); }
+  });
+}
+function renderSet(){
+  renderSnaps();
+  $("sName").value = S.name;
+  $("sTrackLbl").textContent = CFG.sectionWord;
+  var sel = $("sTrack"); sel.innerHTML = Object.keys(CFG.sections).map(function(k){ var s = CFG.sections[k]; return '<option value="'+k+'"'+(S.track===k?" selected":"")+'>'+s.sub+' — '+s.label+'</option>'; }).join("");
+  var DN = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"], sd = S.schoolDays||[0,1,2,3,4], ed = S.evalDays||[];
+  $("sDays").innerHTML = DN.map(function(n,i){ return '<button type="button" data-w="'+i+'" class="'+((sd.indexOf(i)>=0||ed.indexOf(i)>=0)?"on":"")+'">'+n+'</button>'; }).join("");
+  var wb = $("sDays").querySelectorAll("button"); for(var w=0;w<wb.length;w++){ wb[w].addEventListener("click",function(){ var i=+this.getAttribute("data-w"); if(isEval(i)){ toast("ده يوم تقييم، شيليه من أيام التقييم الأول"); return; } var arr=(S.schoolDays||[0,1,2,3,4]).slice(), k=arr.indexOf(i); if(k>=0) arr.splice(k,1); else arr.push(i); S.schoolDays=arr; save(); renderSet(); }); }
+  $("sEval").innerHTML = DN.map(function(n,i){ return '<button type="button" data-w="'+i+'" class="'+(ed.indexOf(i)>=0?"on":"")+'">'+n+' ⭐</button>'; }).join("");
+  $("sEvalNote").textContent = CFG.evalLocked ? "أيام التقييم ثابتة: "+CFG.evalDefault.map(function(i){return DN[i];}).join(" و") : (ed.length ? "" : "مفيش أيام تقييم متحددة. اختاري لو عندك أيام لازم تحضريها.");
+  var eb = $("sEval").querySelectorAll("button"); for(var e2=0;e2<eb.length;e2++){ eb[e2].addEventListener("click",function(){ var i=+this.getAttribute("data-w"); if(CFG.evalLocked && CFG.evalDefault.indexOf(i)>=0){ toast("الأيام دي أيام تقييم ثابتة"); return; } var arr=(S.evalDays||[]).slice(), k=arr.indexOf(i); if(k>=0) arr.splice(k,1); else { arr.push(i); var sdd=(S.schoolDays||[]).slice(); if(sdd.indexOf(i)<0){ sdd.push(i); S.schoolDays=sdd; } } S.evalDays=arr; save(); renderSet(); }); }
+  $("sMonthly").checked = !!S.showMonthly;
+  var pr = S.prior||{}; $("pDays").value = pr.days||""; $("pFrom").value = pr.from||""; $("pTo").value = pr.to||"";
+  $("pNote").textContent = pr.days ? "اتحسب "+pr.days+" يوم مذاكرة سابقة"+(pr.from&&pr.to?" من "+niceDate(pr.from)+" لـ "+niceDate(pr.to):"")+" ✔" : "";
+  $("sStart").value = S.start||""; $("sTarget").value = S.target||""; var scs = CFG.scopes || [["all","المنهج كله (الجزء الأول والتاني)"],["p0","الجزء الأول بس"],["p1","الجزء التاني بس"]]; $("sScope").innerHTML = scs.map(function(o){ return '<option value="'+o[0]+'">'+o[1]+'</option>'; }).join(""); $("sScope").style.display = scs.length>1?"":"none"; $("sScopeLbl").style.display = scs.length>1?"":"none"; if(!scs.some(function(o){return o[0]===S.scope;})) S.scope="all"; $("sScope").value = S.scope; $("sTheme").value = S.theme||"";
+}
+$("sName").addEventListener("input",function(){ S.name = cleanStr(this.value,20).trim()||CFG.name; save(); renderHeader(); });
+$("sTrack").addEventListener("change",function(){ S.track = this.value; save(); toast("اتغيرت الشعبة/المادة. تقدمك في كل المواد محفوظ."); renderAll(); });
+function savePrior(){ var n = parseInt($("pDays").value,10); S.prior = {days: isNaN(n)||n<0 ? 0 : Math.min(n,400), from:$("pFrom").value, to:$("pTo").value}; save(); renderHeader(); var pr=S.prior; $("pNote").textContent = pr.days ? "اتحسب "+pr.days+" يوم مذاكرة سابقة"+(pr.from&&pr.to?" من "+niceDate(pr.from)+" لـ "+niceDate(pr.to):"")+" ✔" : ""; }
+["pDays","pFrom","pTo"].forEach(function(id){ $(id).addEventListener("change", savePrior); });
+$("sMonthly").addEventListener("change",function(){ S.showMonthly = this.checked; save(); });
+$("sStart").addEventListener("change",function(){ if(this.value){ S.start=this.value; save(); renderAll(); } });
+$("sTarget").addEventListener("change",function(){ S.target=this.value; save(); renderAll(); });
+$("sScope").addEventListener("change",function(){ S.scope=this.value; save(); renderAll(); });
+$("sTheme").addEventListener("change",function(){ S.theme=this.value; save(); applyTheme(); });
+function backupText(){ return JSON.stringify(S); }
+function restore(txt){
+  var s = parseState(txt);
+  if(!s || !("prog" in s)){ toast("الملف ده مش نسخة صحيحة"); return false; }
+  var before = countSteps(S); S = mergeStates(S, s); save(); applyState(S); toast("رجعت النسخة ✔ اتضاف "+Math.max(0,countSteps(S)-before)+" خطوة"); return true;
+}
+function exportBackup(){
+  var name = (CFG.key.split("-")[0])+"-backup-"+today()+".json", data = backupText();
+  function done(){ S.lastBackup = Date.now(); save(); renderAll(); toast("اتنزلت النسخة ✔ احتفظي بيها"); }
+  function fallback(){ try{ var blob = new Blob([data],{type:"application/json"}), a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); },500); done(); } catch(e){ toast("التنزيل مش شغال هنا، استخدمي النسخ اليدوي"); } }
+  if(window.claude && typeof window.claude.use==="function"){
+    window.claude.use("downloads").then(function(dl){ if(!dl) return fallback(); return dl.save({filename:name, data:data}).then(function(){ done(); }, function(e){ if(e && e.code==="unavailable") fallback(); }); }, fallback);
+  } else fallback();
+}
+$("bExport").addEventListener("click", exportBackup);
+$("bExport2").addEventListener("click", exportBackup);
+$("bLater").addEventListener("click",function(){ S.lastBackup = Date.now() - 4*86400000; save(); renderAll(); });
+$("bImport2").addEventListener("click",function(){ $("fImport").click(); });
+$("bImport").addEventListener("click",function(){ $("fImport").click(); });
+$("fImport").addEventListener("change",function(){ var f = this.files && this.files[0]; if(!f) return; var r = new FileReader(); r.onload = function(){ restore(String(r.result)); }; r.readAsText(f); this.value=""; });
+document.querySelector("details summary.muted").parentNode.addEventListener("toggle",function(){ if(this.open) $("tBackup").value = backupText(); });
+$("bCopy").addEventListener("click",function(){ var t=$("tBackup"); t.value = backupText(); t.select(); try{ if(navigator.clipboard) navigator.clipboard.writeText(t.value).then(function(){toast("اتنسخ ✔");},function(){ document.execCommand("copy"); toast("اتنسخ ✔"); }); else { document.execCommand("copy"); toast("اتنسخ ✔"); } }catch(e){ toast("انسخيه يدوي"); } });
+$("bPaste").addEventListener("click",function(){ var v=$("tBackup").value.trim(); if(v) restore(v); });
+$("bReset").addEventListener("click",function(){ dlg("متأكدة إنك عايزة تمسحي كل التقدم؟ مش هينفع ترجعيه غير من نسخة احتياطية.",{ok:"امسحي",danger:true},function(ok){ if(!ok) return; var keep = {name:S.name,track:S.track,setup:true,start:S.start,theme:S.theme,evalDays:S.evalDays,schoolDays:S.schoolDays}; S = defState(); for(var k in keep) S[k]=keep[k]; save(); renderAll(); toast("بداية جديدة 🌱"); }); });
+
+/* ---------- quote button ---------- */
+$("qNext").addEventListener("click",function(){ S.qOff++; save(); renderQuote(); });
+
+/* ---------- nav ---------- */
+var page = "home";
+function go(p){ page = p; var ps = document.querySelectorAll("section.page"); for(var i=0;i<ps.length;i++) ps[i].classList.toggle("on", ps[i].getAttribute("data-p")===p); var bs = $("nav").querySelectorAll("button"); for(var j=0;j<bs.length;j++) bs[j].classList.toggle("on", bs[j].getAttribute("data-p")===p); renderPage(); window.scrollTo(0,0); }
+var nb = $("nav").querySelectorAll("button"); for(var n=0;n<nb.length;n++){ nb[n].addEventListener("click",function(){ go(this.getAttribute("data-p")); }); }
+function renderPage(){ if(page==="home") renderHome(); else if(page==="curr") renderCurr(); else if(page==="att") renderAtt(); else renderSet(); }
+function renderAll(){ renderHeader(); renderPage(); }
+
+/* ---------- setup ---------- */
+function showSetup(){
+  var box = $("setupOpts"), choice = S.track||"";
+  $("setupHi").textContent = (S.name||CFG.name) ? "أهلًا يا "+(S.name||CFG.name)+" 🌸" : "أهلًا بيكي 🌸"; $("setupName").value = S.name||CFG.name||""; $("setupTx").textContent = CFG.setupText;
+  box.innerHTML = Object.keys(CFG.sections).map(function(k){ var s = CFG.sections[k]; return '<div class="opt'+(choice===k?" on":"")+'" data-k="'+k+'"><span class="e">'+s.icon+'</span><div><b>'+esc(s.label)+'</b><div class="muted">'+esc(s.sub)+'</div></div></div>'; }).join("");
+  var os = box.querySelectorAll(".opt"); for(var i=0;i<os.length;i++){ os[i].addEventListener("click",function(){ choice = this.getAttribute("data-k"); for(var j=0;j<os.length;j++) os[j].classList.toggle("on", os[j]===this); $("setupGo").disabled=false; }); }
+  $("setupGo").disabled = !choice;
+  $("setupGo").onclick = function(){ if(!choice) return; var nmv = cleanStr($("setupName").value,20).trim(); if(nmv) S.name = nmv; S.track = choice; S.setup = true; save(); $("setup").classList.remove("on"); renderAll(); confetti(40); toast(S.name ? "يلا بينا يا "+S.name+" 🚀" : "يلا بينا 🚀"); };
+  $("setup").classList.add("on");
+}
+$("attInfo").innerHTML = CFG.attInfo.map(function(x){ return "<li>"+x+"</li>"; }).join("");
+$("footNote").textContent = CFG.footNote;
+$("weightNote").textContent = CFG.weightNote;
+applyTheme();
+if(!S.setup || !CFG.sections[S.track]) showSetup();
+go("home");
+try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function(){}); }catch(e){}
+initialSync();
+})();
+</script>
+<script>
+(function(){
+  if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); }
+  var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+  if(standalone) return;
+  var ios = /iphone|ipad|ipod/i.test(navigator.userAgent), deferred = null;
+  function card(html){ var n = document.getElementById("nudge"); if(!n || document.getElementById("installCard")) return null; var c = document.createElement("div"); c.className = "card"; c.id = "installCard"; c.style.borderColor = "var(--accent)"; c.innerHTML = html; n.parentNode.insertBefore(c, n); return c; }
+  window.addEventListener("beforeinstallprompt", function(e){ e.preventDefault(); deferred = e;
+    var c = card('<h3>📲 ثبّتي التطبيق على الموبايل</h3><div class="muted" style="margin-bottom:8px">هيبقى ليه أيقونة على الشاشة، ويفتح من غير نت، وتقدمك يفضل محفوظ.</div><button class="btn" type="button" id="installBtn">ثبّتي دلوقتي</button>');
+    if(c) document.getElementById("installBtn").onclick = function(){ deferred.prompt(); deferred.userChoice.then(function(){ c.remove(); deferred = null; }); };
+  });
+  if(ios) setTimeout(function(){ card('<h3>📲 ثبّتي التطبيق على الآيفون</h3><div class="muted">من Safari دوسي زرار المشاركة ⬆️ وبعدين «إضافة إلى الشاشة الرئيسية». لازم تفتحيه من الأيقونة دايمًا عشان تقدمك يفضل محفوظ.</div>'); }, 1500);
+  window.addEventListener("appinstalled", function(){ var c = document.getElementById("installCard"); if(c) c.remove(); });
+})();
+</script>
+</body>
+</html>
