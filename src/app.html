@@ -1612,7 +1612,7 @@ function checkCurriculum(){
   if(!/^https?:/.test(location.protocol) || navigator.onLine===false) return;
   fetch("curriculum.json", {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
     if(!j || !(j.v > currV) || !validCurr(j.CURR, j.STAGES)) return;
-    applyCurr(j.CURR, j.STAGES); currV = j.v; try{ localStorage.setItem("khutwa-curr", JSON.stringify(j)); }catch(e){}
+    applyCurr(j.CURR, j.STAGES); currV = j.v; try{ localStorage.setItem("khutwa-curr", JSON.stringify(j)); }catch(e){} try{ localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){}
     renderAll(); toast("📚 المناهج اتحدثت"+(j.note?": "+cleanStr(j.note,80):""));
   }).catch(function(){});
 }
@@ -1673,6 +1673,7 @@ if(!S.setup || !S.gender || !CFG.sections[S.track]) showSetup();
 go("home");
 try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function(){}); }catch(e){}
 initialSync();
+(function(){ try{ var seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10); if(seen && seen < currV && S.setup) toast("📚 المناهج اتحدثت: دروس جديدة اتضافت، وتقدمك زي ما هو"); localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){} })();
 checkCurriculum();
 (function(){ var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone===true;
   stat("/app", false, "التطبيق"); stat(standalone ? "open-installed" : "open-browser", true, standalone ? "فتح من الأيقونة" : "فتح من المتصفح");

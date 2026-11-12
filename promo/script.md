@@ -1,62 +1,108 @@
-# سكريبت فيديو خُطوة (v3)
+# سكريبت فيديو خُطوة (v5)
 
 
 ## لوحة 1: الهوك
 
 | # | الكلام | English | على السبورة | الأداء |
 |---|---|---|---|---|
-| 1 | ذاكرت تلاتين يوم ورا بعض. [[0.3]] ولو سألتك: خلّصت كام في المية من المنهج؟ | You studied thirty days in a row. So what percent of the curriculum have you finished? | نتيجة شهر بتتشطب يوم يوم، وجنبها ؟٪ كبيرة | سؤال |
+| 1 | ذاكرت تلاتين يوم ورا بعض. [[0.3]] ولو سألتك: خلّصت كام في المية من المنهج؟ | You studied thirty days in a row. So what percent of the curriculum have you finished? | نتيجة شهر بتتشطب، وجنبها ؟٪ كبيرة | سؤال |
 | 2 | مش عارف؟ [[0.4]] انت بتذاكر، [[0.2]] بس مش شايف نفسك وصلت لفين. | Not sure? You study, but you can't see how far you've come. | طالب تحت سلّم عليه ضباب | جدية |
 
-## لوحة 2: خُطوة + خريطة الأسئلة
+## لوحة 2: خُطوة + الخمس محطات
 
 | # | الكلام | English | على السبورة | الأداء |
 |---|---|---|---|---|
-| 3 | علشان كده عملنا خُطوة: [[0.3]] تطبيق مجاني لطلاب الثانوي في مصر. | That's why we built Khutwa: a free app for secondary students in Egypt. | لوجو خُطوة: 4 درجات وشمس | توقيع |
-| 4 | هات ورقة وقلم، واكتب ورايا تلات أسئلة. | Grab a pen and paper, and write down three questions. | ورقة وقلم | شرح بالبلدي |
-| 5 | واحد: أنا فين من المنهج؟ [[0.3]] اتنين: أذاكر إزاي من غير ما أنسى؟ | One: where am I in the curriculum? Two: how do I study without forgetting? | سؤال 1 و2 بيتكتبوا ويتثبتوا فوق على الشمال | سؤال |
-| 6 | تلاتة: أطمّن أهلي إزاي، [[0.2]] من غير ما حد يسألني: ذاكرت؟ | Three: how do I reassure my parents without hearing 'did you study?' | سؤال 3 يتكتب ويتثبت | سؤال |
+| 3 | علشان كده عملنا خُطوة: [[0.3]] تطبيق مجاني لطلبة ثانوي. [[0.2]] والفيديو ده هيوريك كل حاجة فيه. | That's why we built Khutwa: a free app for secondary students. This video shows you everything in it. | لوجو خُطوة + كتالوج بيتفتح | توقيع |
+| 4 | هات ورقة وقلم، [[0.2]] واكتب ورايا خمس محطات. | Grab a pen and paper, and write down five stops. | ورقة وقلم | شرح بالبلدي |
+| 5 | تنزّله، [[0.2]] تبدأه، [[0.2]] تذاكر بيه، [[0.2]] تتابع بيه، [[0.2]] وتحدّثه. | Install it, set it up, study with it, track with it, update it. | 5 محطات بتتكتب وتتثبت فوق على الشمال | مصطلح |
+| 6 | ولو انت أب ولا أم، [[0.2]] استنى المحطة الرابعة. | If you're a parent, wait for stop four. | نجمة جنب المحطة 4 | سؤال |
 
-## لوحة 3: سؤال 1: أنا فين من المنهج؟
-
-| # | الكلام | English | على السبورة | الأداء |
-|---|---|---|---|---|
-| 7 | نبدأ بالأول. [[0.3]] دروسك جاهزة حسب سنتك، وكل درس أربع خطوات. | Let's start. Your lessons are ready for your year, and each has four steps. | قايمة دروس + 4 درجات سلّم فاضية | شرح بالبلدي |
-| 8 | تسمعه، [[0.2]] تفهمه، [[0.2]] تحل عليه، [[0.2]] وتراجعه. [[0.3]] وكل خطوة تخلّصها، تعلّم عليها. | Listen, understand, practise, review. Tick each step you finish. | أيقونة على كل درجة (ودن، لمبة، قلم، سهم دايري) وعلامة صح عليها | مصطلح |
-| 9 | والتطبيق يجمعهم في رقم واحد: [[0.2]] نسبتك من المنهج كله. | The app adds them into one number: your share of the whole curriculum. | أعمدة المواد بتصب في دايرة واحدة: 68٪ | جدية |
-| 10 | وقّف الفيديو واحسب: لو منهجك مية درس، يبقى كام خطوة؟ [[3.0]] | Pause and calculate: a hundred lessons means how many steps? | 100 × 4 = ؟ مع تكتكة 3 ثواني | وقفة تفكير |
-| 11 | أربعمية خطوة. [[0.3]] كتير؟ [[0.3]] لأ، ما انت هتمشيها خطوة خطوة. | Four hundred steps. A lot? No, you'll take them one at a time. | 400 تظهر، وبعدين تتقسم لمربعات صغيرة | نكتة |
-
-## لوحة 4: سؤال 2: أذاكر إزاي من غير ما أنسى؟
+## لوحة 3: محطة 1: تنزّله
 
 | # | الكلام | English | على السبورة | الأداء |
 |---|---|---|---|---|
-| 12 | السؤال التاني: [[0.2]] رقم تليفون حفظته امبارح، والنهارده نسيته؟ [[0.3]] الدرس كده برضه. | Question two: a phone number you learned yesterday and forgot today? Lessons work the same way. | رقم تليفون بيبهت ويختفي | سؤال |
-| 13 | بعد ما تخلّص الدرس، خُطوة ترتّب مراجعته: [[0.2]] بعد تلات أيام، [[0.2]] وسبعة، [[0.2]] وأربعتاشر، [[0.2]] وتلاتين. | After you finish a lesson, Khutwa schedules its reviews: after three days, then seven, fourteen and thirty. | خط زمني: نقط 3 · 7 · 14 · 30 | مصطلح |
-| 14 | يعني بالبلدي: [[0.3]] تراجع قبل ما تنسى، مش بعد ما تنسى. | In plain words: review before you forget, not after. | سهم «قبل» ✓ و«بعد» ✗ | شرح بالبلدي |
+| 7 | المحطة الأولى: تنزّله. [[0.3]] خُطوة مش في المتجر. [[0.3]] طب ده آمن؟ [[0.3]] استنى للآخر. | Stop one: install it. Khutwa isn't in the store. Is that safe? Wait till the end. | اللينك كبير + علامة استفهام | سؤال |
+| 8 | أندرويد: افتح اللينك من كروم. [[0.2]] آيفون: من سفاري. [[0.2]] والخطوات مكتوبة قدامك. | Android: open the link in Chrome. iPhone: in Safari. The steps are on the board. | كروم ← «تثبيت التطبيق» / سفاري ← مشاركة ← «إضافة إلى الشاشة الرئيسية» | شرح بالبلدي |
+| 9 | ومن هنا ورايح، [[0.2]] افتحه دايمًا من الأيقونة، مش من المتصفح. | From now on, always open it from the icon, not the browser. | أيقونة خُطوة ✓ / متصفح ✗ | جدية |
 
-## لوحة 5: سؤال 3: أطمّن أهلي إزاي؟
-
-| # | الكلام | English | على السبورة | الأداء |
-|---|---|---|---|---|
-| 15 | السؤال التالت: أهلك عايزين يطّمنوا، وانت زهقت من سؤال: ذاكرت؟ | Question three: your parents want peace of mind, and you're tired of 'did you study?' | فقاعة «ذاكرت؟» بتتكرر | نكتة |
-| 16 | تسجّل رقمهم مرة، [[0.2]] وبضغطة يوصلهم تقرير على واتساب. | Save their number once, and one tap sends them a WhatsApp report. | موبايل ورسالة تقرير: النسبة · أيام المذاكرة · الحضور | شرح بالبلدي |
-| 17 | بس التقرير هو اللي انت علّمته، [[0.2]] فخلّيك صادق مع نفسك. | But the report is what you ticked, so be honest with yourself. | مراية وطالب بيبص فيها | جدية |
-
-## لوحة 6: بياناتك ولكل المراحل
+## لوحة 4: محطة 2: تبدأه
 
 | # | الكلام | English | على السبورة | الأداء |
 |---|---|---|---|---|
-| 18 | بياناتك هتروح فين؟ [[0.4]] ولا حتة يا صديقي! [[0.2]] هتفضل على موبايلك. | Where does your data go? Nowhere, my friend. It stays on your phone. | موبايل وعليه قفل | دهشة |
-| 19 | من غير حساب ولا إعلانات، [[0.2]] وبعد أول فتحة بيشتغل من غير نت. | No account, no ads, and after the first visit it works offline. | 3 أيقونات: حساب ✗، إعلان ✗، واي فاي مشطوب | جدية |
-| 20 | ولكل سنين الثانوي، [[0.2]] بكالوريا وعام. | For every secondary year, Baccalaureate and general. | 5 شرايح للمراحل + «منهجك مش متسجل؟ ضيف دروسك بنفسك» | شرح بالبلدي |
+| 10 | المحطة التانية: تبدأه. [[0.3]] أربع أسئلة بالكتير. [[0.3]] لا إيميل، ولا باسورد، ولا رقم جلوس. | Stop two: set it up. Four questions at most. No email, no password, no seat number. | شاشة «أهلًا في خُطوة» + ✗✗✗ | نكتة |
+| 11 | اسمك، [[0.2]] ولد ولا بنت، [[0.2]] سنتك وشعبتك أو مسارك، [[0.2]] ومنهجك ينزل لك جاهز لو موجود. | Your name, boy or girl, your year and track, and your curriculum loads ready if it's listed. | الاسم · ولد/بنت · أولى / تانية وتالتة (عام أو بكالوريا) ← الشعبة أو المسار | شرح بالبلدي |
+| 12 | وآخر سؤال: مين يتابعك؟ [[0.3]] رقم بابا ولا ماما، [[0.2]] ولو مش عايز، سيبه فاضي. | Last: who follows you? Mum's or Dad's number, or leave it empty. | حتى 3 أرقام واتساب (اختياري) · والإعدادات: «المذاكرة اللي قبل التطبيق» | شرح بالبلدي |
 
-## لوحة 7: الملخص والدعوة
+## لوحة 5: محطة 3: الرئيسية
 
 | # | الكلام | English | على السبورة | الأداء |
 |---|---|---|---|---|
-| 21 | نلخّص: [[0.3]] النسبة قدامك، [[0.2]] أربع خطوات ومراجعة في وقتها، [[0.2]] وتقرير بضغطة. | Summary: your percentage in front of you, four steps with timely reviews, and a one-tap report. | جدول الملخص: كل سؤال ← إجابته | جدية |
-| 22 | اكتب في الكومنتات: [[0.2]] مادة خمسين درس، وخلّصت ستين خطوة. [[0.2]] كام في المية؟ | Comment: a fifty-lesson subject, sixty steps done. What percent? | 50 درس · 60 خطوة = ؟٪ | سؤال |
-| 23 | اللينك تحت الفيديو. [[0.3]] ضيفه على الشاشة الرئيسية، ويفتح زي أي تطبيق. | The link is below. Add it to your home screen and it opens like any app. | اللينك + أيقونة على الشاشة · آيفون: سفاري ← مشاركة ← إضافة إلى الشاشة الرئيسية | شرح بالبلدي |
-| 24 | الثانوية مش قفزة. [[0.4]] الثانوية سلّم. [[0.3]] ابدأ النهارده بخُطوة واحدة. | Secondary school isn't a jump. It's a staircase. Start today with one step. | السلّم كامل والشمس فوقه، ولوجو خُطوة | توقيع |
-| 25 | أنا أحمد الألفي. [[0.3]] Add Value. | I'm Ahmed El-Alfy. Add Value. | لوجو Add Value + الجينجل | توقيع |
+| 13 | المحطة التالتة: تذاكر بيه. [[0.3]] أول زرار تحت: الرئيسية. | Stop three: study with it. First button: Home. | شريط تحت: الرئيسية · المنهج · الخطة · الحضور · المزيد | شرح بالبلدي |
+| 14 | أهم كارت فيها: [[0.2]] نسبتك من المنهج كله، [[0.2]] رقم واحد واضح. | Its key card: your share of the whole curriculum, one clear number. | دايرة 68٪ | جدية |
+| 15 | زي عدّاد البنزين في العربية: [[0.2]] بصّة واحدة، وتعرف فاضل قد إيه. [[0.3]] يعني بالبلدي: انت عارف انت فين. | Like a car's fuel gauge: one glance and you know what's left. In plain words: you know where you stand. | عدّاد بنزين بإبرة | شرح بالبلدي |
+| 16 | وتحتها مهام النهارده: [[0.2]] الخطوة الجاية في كل مادة، [[0.2]] من غير ما تحتار تبدأ منين. | Below, today's tasks: the next step in each subject, no guessing where to start. | مهام النهارده · مراجعات النهارده · وقت المذاكرة · كلمة اليوم · تقرير الفترة (من–إلى) | شرح بالبلدي |
+
+## لوحة 6: المنهج
+
+| # | الكلام | English | على السبورة | الأداء |
+|---|---|---|---|---|
+| 17 | تاني زرار: المنهج. [[0.3]] مادة، [[0.2]] جواها وحدات، [[0.2]] وجوا كل وحدة دروسها. | Second button: the curriculum. Subject, units, lessons. | شجرة: مادة ← وحدة ← درس | شرح بالبلدي |
+| 18 | وكل درس أربع خطوات: [[0.2]] تسمعه، [[0.2]] تفهمه، [[0.2]] تحل عليه، [[0.2]] وتراجعه. | Each lesson has four steps: listen, understand, practise, review. | 4 درجات: ودن، لمبة، قلم، سهم دايري | مصطلح |
+| 19 | تخلّص خطوة، [[0.2]] تعلّم عليها، [[0.2]] والنسبة تزيد قدام عينك. | Finish a step, tick it, and watch your percentage rise. | علامة صح ← الدايرة تزيد | دهشة |
+| 20 | وقّف الفيديو واحسب: لو منهجك مية درس، يبقى كام خطوة؟ [[3.0]] | Pause and calculate: a hundred lessons means how many steps? | 100 × 4 = ؟ مع تكتكة 3 ثواني | وقفة تفكير |
+| 21 | أربعمية خطوة. [[0.3]] كتير؟ [[0.3]] لأ، ما انت هتمشيها خطوة خطوة. | Four hundred steps. A lot? No, you'll take them one at a time. | 400 تتقسم لمربعات صغيرة | نكتة |
+| 22 | وتحت كل درس: [[0.2]] تايمر خمسة وعشرين دقيقة، [[0.2]] وغلطاته، [[0.2]] ولينك فيديو الشرح. | Under each lesson: a twenty-five-minute timer, its mistakes, and the explanation video link. | 3 زراير: ⏱ 25:00 + 5 راحة · 📝 غلطات · 🔗 مصادر | شرح بالبلدي |
+| 23 | ولو درس ناقص، [[0.2]] أو منهجك لسه مش متسجل، [[0.2]] تضيف الدروس بنفسك. | If a lesson is missing, or your curriculum isn't listed yet, add lessons yourself. | زرار «➕ وحدة جديدة» | شرح بالبلدي |
+
+## لوحة 7: الخطة والمراجعة
+
+| # | الكلام | English | على السبورة | الأداء |
+|---|---|---|---|---|
+| 24 | تالت زرار: الخطة. [[0.3]] تحط هدفك، [[0.2]] مثلًا تمانين في المية، [[0.2]] وميعاد الامتحان. | Third button: the plan. Set a goal, say eighty percent, and your exam date. | «🎯 هدفي»: 80٪ + تاريخ | شرح بالبلدي |
+| 25 | فيقولك محتاج كام خطوة في اليوم، [[0.2]] ويوزّعهم على الأسبوع لوحده. | It tells you how many steps a day you need, and spreads them over the week itself. | كارت: فاضل 48 خطوة · 6 في اليوم ← جدول أسبوع | شرح بالبلدي |
+| 26 | وتضيف امتحاناتك، [[0.2]] فتشوف باقي كام يوم على كل امتحان. | Add your exams and see how many days are left for each. | «امتحان فيزياء · باقي 23 يوم» | جدية |
+| 27 | ولما الامتحانات تقرّب، [[0.2]] شغّل وضع الامتحانات، [[0.2]] والمهام تركّز على المراجعة. | When exams get close, turn on exam mode and tasks focus on review. | زرار «وضع الامتحانات» بيتفتح | شرح بالبلدي |
+| 28 | عمرك حفظت رقم تليفون امبارح، [[0.2]] ونسيته النهارده؟ [[1.0]] الدرس بيعمل كده بالظبط. | Ever learned a phone number yesterday and forgot it today? Lessons do exactly that. | رقم تليفون بيبهت | سؤال |
+| 29 | علشان كده، [[0.2]] أول ما تخلّص درس بخطواته الأربعة، [[0.2]] يرجع لك تراجعه بعد تلات أيام. | So once you finish all four steps of a lesson, it comes back for review after three days. | خط زمني: 3 أيام | مصطلح |
+| 30 | وبعد أسبوع، [[0.2]] وأسبوعين، [[0.2]] وشهر. | Then after a week, two weeks, and a month. | خط زمني: أسبوع · أسبوعين · شهر | مصطلح |
+| 31 | يعني بالبلدي: [[0.3]] تراجع قبل ما تنسى، مش بعد ما تنسى. | In plain words: review before you forget, not after. | سهم «قبل» ✓ و«بعد» ✗ | شرح بالبلدي |
+
+## لوحة 8: الحضور
+
+| # | الكلام | English | على السبورة | الأداء |
+|---|---|---|---|---|
+| 32 | رابع زرار: الحضور. [[0.3]] تعلّم كل يوم: حضرت ولا غبت. | Fourth button: attendance. Mark each day: present or absent. | نتيجة أيام: ✓ ✓ ✗ ✓ | شرح بالبلدي |
+| 33 | ويطلع لك نسبة حضورك وتقييمها، [[0.2]] وأيام التقييم بتختارها من الإعدادات. | You get your attendance percentage and rating; assessment days are picked in settings. | 92٪ · جيد جدًا · ⭐ أيام التقييم · جدول التقييمات الشهرية (من الإعدادات) | شرح بالبلدي |
+
+## لوحة 9: محطة 4: تتابع بيه
+
+| # | الكلام | English | على السبورة | الأداء |
+|---|---|---|---|---|
+| 34 | المحطة الرابعة: تتابع بيه. [[0.3]] آخر زرار: المزيد. | Stop four: track with it. Last button: More. | 4 مربعات: الأوسمة · الغلطات · شارك · المتابعة | شرح بالبلدي |
+| 35 | فاكر التلاتين يوم ورا بعض؟ [[0.3]] ليهم وسام. [[0.2]] ولأول خطوة، ولخمسين خطوة، ولأول ساعة كمان. | Remember the thirty days in a row? There's a badge for that. And for your first step, fifty steps, your first hour. | أوسمة بتنور: أول خطوة · 50 خطوة · أول ساعة · شهر كامل | نكتة |
+| 36 | وكشكول الغلطات: [[0.2]] كل غلطاتك في مكان واحد، [[0.2]] وتختبر نفسك فيها قبل الامتحان. | The mistakes notebook: all your mistakes in one place, and you test yourself before the exam. | كارت بيتقلب: الغلطة / الصح | جدية |
+| 37 | أهلك عايزين يطّمنوا، [[0.2]] وانت زهقت من: [[0.2]] ذاكرت؟ ذاكرت؟ [[0.3]] ذاكرت؟ | Your parents want peace of mind, and you're sick of: studied? studied? studied? | فقاعة «ذاكرت؟» بتتكرر ×3 | نكتة |
+| 38 | من «شارك تقدمك»: [[0.2]] واتساب يفتح والتقرير جاهز، [[0.2]] تدوس إرسال وخلاص. [[0.2]] أو تبعت صورة، أو لينك. | From 'Share progress': WhatsApp opens with the report ready, you tap Send. Or send an image or a link. | موبايل: رسالة · صورة · لينك | شرح بالبلدي |
+| 39 | بس التقرير بيقول اللي انت علّمت عليه. [[0.3]] فخلّيك صادق مع نفسك. | But the report shows only what you ticked. So be honest with yourself. | مراية | جدية |
+| 40 | وللأهل والمدرسين: [[0.2]] لوحة المتابعة، [[0.2]] يحطوا فيها لينكات كذا طالب، ويشوفوهم مع بعض. | For parents and teachers: the follow-up board shows several students' report links together. | لوحة فيها 3 طلاب ونسبهم | شرح بالبلدي |
+
+## لوحة 10: بياناتك · محطة 5: تحدّثه
+
+| # | الكلام | English | على السبورة | الأداء |
+|---|---|---|---|---|
+| 41 | فاكر سؤال: آمن؟ [[0.3]] بياناتك مش بتروح ولا حتة يا صديقي! [[0.2]] إلا اللي انت تبعته بإيدك. | Remember 'is it safe?' Your data goes nowhere, my friend, except what you send yourself. | موبايل وعليه قفل | دهشة |
+| 42 | من غير حساب ولا إعلانات، [[0.2]] وبعد أول فتحة بيشتغل من غير نت. | No account, no ads, and after the first visit it works offline. | حساب ✗ · إعلان ✗ · واي فاي مشطوب | جدية |
+| 43 | بس لو مسحت المتصفح ولا غيّرت موبايلك، [[0.2]] تقدمك يروح. [[0.3]] فنزّل نسخة احتياطية كل أسبوع. | But clear the browser or change phones and progress is gone. So download a backup every week. | ملف بيتنقل من موبايل لموبايل | جدية |
+| 44 | المحطة الخامسة: تحدّثه. [[0.3]] انت مش محتاج تعمل حاجة. | Stop five: update it. You don't need to do anything. | سهم دايري حوالين اللوجو | دهشة |
+| 45 | كل ما تفتحه والنت شغال، [[0.2]] بيجيب آخر نسخة، [[0.2]] وتقدمك مكانه. | Each time you open it online, it fetches the latest version, and your progress stays put. | موبايل + واي فاي ← نسخة جديدة ✓ | شرح بالبلدي |
+| 46 | ولو نزلت دروس جديدة، [[0.2]] هتلاقيها في المنهج، [[0.2]] ورسالة تقولك: المناهج اتحدثت. | If new lessons come out, they appear in the curriculum, with a message: curriculum updated. | تنبيه «📚 المناهج اتحدثت» | شرح بالبلدي |
+
+## لوحة 11: الملخص والدعوة
+
+| # | الكلام | English | على السبورة | الأداء |
+|---|---|---|---|---|
+| 47 | نلخّص الخمس محطات: [[0.3]] تنزّله من اللينك، [[0.2]] وتبدأه بأربع أسئلة بالكتير. | To sum up the five stops: install from the link, set up with four questions at most. | الجدول: محطة ← إجابتها | جدية |
+| 48 | تذاكر بأربع خطوات لكل درس، [[0.2]] تتابع بالتقرير، [[0.2]] وتحدّثه لوحده. | Study with four steps per lesson, track with the report, and it updates itself. | باقي الجدول | جدية |
+| 49 | اكتب في الكومنتات: [[0.2]] مادة خمسين درس، وخلّصت ستين خطوة. [[0.2]] كام في المية؟ | Comment: a fifty-lesson subject, sixty steps done. What percent? | 50 درس · 60 خطوة = ؟٪ | سؤال |
+| 50 | اللينك تحت الفيديو. [[0.3]] الثانوية مش قفزة. [[0.4]] الثانوية سلّم. | The link is below. Secondary school isn't a jump. It's a staircase. | السلّم كامل والشمس فوقه | جدية |
+| 51 | ابدأ النهارده بخُطوة واحدة. [[0.4]] أنا أحمد الألفي. [[0.3]] Add Value. | Start today with one step. I'm Ahmed El-Alfy. Add Value. | لوجو خُطوة ← لوجو Add Value + الجينجل | توقيع |
