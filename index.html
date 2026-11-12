@@ -1,19 +1,132 @@
 <!doctype html>
-<html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self'; base-uri 'none'; form-action 'none'">
-<meta name="referrer" content="no-referrer"><meta name="robots" content="noindex, nofollow">
-<title>رحلة المذاكرة</title>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#103B3C">
+<meta name="description" content="خُطوة: تطبيق مجاني لطلاب الثانوي في مصر يحسب نسبة المذاكرة من المنهج والحضور، ويشتغل من غير نت.">
+<link rel="icon" type="image/png" href="app/icon-192.png">
+<link rel="apple-touch-icon" href="app/apple-touch-icon.png">
+<title>خُطوة</title>
 <style>
-:root{--bg:#f7f3fb;--card:#fff;--ink:#22192e;--muted:#73697f;--line:#e9e1f1}
-@media (prefers-color-scheme: dark){:root{--bg:#16121c;--card:#211b2a;--ink:#efe9f6;--muted:#a99fb6;--line:#342b40}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,system-ui,sans-serif;padding:32px 16px}
-main{max-width:480px;margin:0 auto;display:grid;gap:12px}
-h1{font-size:22px;margin:0 0 8px}
-a{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;color:inherit;text-decoration:none}
-a img{width:56px;height:56px;border-radius:14px}
-b{font-size:17px} span{display:block;color:var(--muted);font-size:13.5px}
-</style></head><body><main>
-<h1>رحلة المذاكرة 📚</h1>
-<a href="bac2/"><img src="bac2/icon-192.png" alt=""><div><b>مذاكرتي</b><span>تانية ثانوي بكالوريا</span></div></a>
-<a href="sec3/"><img src="sec3/icon-192.png" alt=""><div><b>مذاكرتي</b><span>تالتة ثانوي عامة</span></div></a>
-</main></body></html>
+/* Hero = the logo's world: deep Nile ink with a sunrise dot; four step colors carry the story down the page. */
+:root{
+  --bg:#F2F5F3; --card:#FFFFFF; --ink:#0F2526; --muted:#5B6E70; --line:#DCE6E2;
+  --hero:#103B3C; --on-hero:#F4F1E8; --sun:#F2A541; --accent:#0E6F62; --on-accent:#FFFFFF;
+  --l:#2F7FC1; --u:#C27A0E; --s:#0F8A6E; --r:#5D5FB0;
+}
+@media (prefers-color-scheme: dark){ :root{ --bg:#0B1718; --card:#132425; --ink:#E7F0EE; --muted:#93A7A7; --line:#243A3B; --hero:#0E2B2C; --accent:#3DBFA3; --on-accent:#05201A; --l:#5EA6E2; --u:#E3A23E; --s:#3DBFA3; --r:#8E8FE0; color-scheme:dark } }
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,"Noto Sans Arabic",system-ui,sans-serif;line-height:1.7;font-size:16.5px}
+.wrap{max-width:880px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.hero{background:var(--hero);color:var(--on-hero);position:relative;overflow:hidden;padding-block:calc(28px + env(safe-area-inset-top,0px)) 56px;border-radius:0 0 36px 36px}
+.hero::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;inset:-140px -120px auto auto;background:radial-gradient(circle,rgba(242,165,65,.32),transparent 62%)}
+.hero .wrap{position:relative;z-index:1}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px}
+.mark img{width:40px;height:40px;border-radius:11px}
+.pill{font-size:12.5px;border:1px solid rgba(244,241,232,.35);border-radius:999px;padding:3px 12px;opacity:.9}
+h1{font-size:clamp(34px,8vw,58px);line-height:1.15;margin:38px 0 10px;text-wrap:balance;font-weight:800}
+h1 em{font-style:normal;color:var(--sun)}
+.lead{font-size:clamp(16px,3.6vw,19px);max-width:34em;opacity:.92;margin:0 0 24px}
+.cta{display:inline-flex;align-items:center;gap:8px;background:var(--sun);color:#1D1406;font-weight:800;text-decoration:none;border-radius:16px;padding:14px 22px;font-size:17px}
+.cta:focus-visible,.ghost:focus-visible{outline:3px solid var(--on-hero);outline-offset:3px}
+.ghost{display:inline-flex;color:var(--on-hero);text-decoration:none;border:1.5px solid rgba(244,241,232,.45);border-radius:16px;padding:12px 18px;margin-inline-start:8px}
+.stairs{display:flex;align-items:flex-end;gap:6px;height:120px;margin-top:34px;max-width:360px}
+.stairs div{flex:1;border-radius:12px 12px 4px 4px;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;font-size:13px;font-weight:700;color:#0F2526}
+section{padding-block:40px 8px}
+h2{font-size:clamp(24px,5vw,32px);margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 20px;max-width:40em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0}
+.card h3{margin:0 0 4px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.ico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:10px}
+.story{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;max-width:46em}
+.story p{margin:0 0 12px}
+.story .sig{color:var(--muted);font-size:14px;margin:0}
+.steps{counter-reset:s;display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.steps li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
+.steps li::before{counter-increment:s;content:counter(s);flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.stages{display:flex;flex-wrap:wrap;gap:8px}
+.stages span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:15px}
+footer{padding-block:36px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:14px}
+footer b{color:var(--ink)}
+@media (prefers-reduced-motion: no-preference){ .stairs div{animation:rise .7s cubic-bezier(.2,.8,.2,1) both} .stairs div:nth-child(2){animation-delay:.08s}.stairs div:nth-child(3){animation-delay:.16s}.stairs div:nth-child(4){animation-delay:.24s} @keyframes rise{from{transform:scaleY(.55);transform-origin:bottom}to{transform:scaleY(1);transform-origin:bottom}} }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="top"><div class="mark"><img src="app/icon-192.png" alt="">خُطوة</div><span class="pill">مجاني · من غير إعلانات</span></div>
+    <h1>الثانوية سلّم.<br>اطلعه <em>خُطوة</em> خُطوة.</h1>
+    <p class="lead">تطبيق لطلاب الثانوي في مصر: علّم على كل درس بخطواته الأربعة، واعرف ذاكرت كام في المية من المنهج، وفاضلك قد إيه، ونسبة حضورك، يوم بيوم.</p>
+    <a class="cta" href="app/">ابدأ دلوقتي ←</a><a class="ghost" href="story.html">الحكاية</a>
+    <div class="stairs" aria-hidden="true">
+      <div style="height:34%;background:#7FB7E8">🎧</div><div style="height:56%;background:#F5C26B">💡</div><div style="height:78%;background:#6FD3B0">✍️</div><div style="height:100%;background:#F4F1E8">🔁</div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section>
+    <h2>كل درس = 4 خطوات</h2>
+    <p class="sub">مش بس «ذاكرت ولا لأ». خُطوة بتقسم كل درس لنفس الخطوات اللي بتذاكر بيها فعلًا، وبتحسب نسبتك منها.</p>
+    <div class="grid">
+      <div class="card"><div class="ico" style="background:color-mix(in srgb,var(--l) 16%,transparent)">🎧</div><h3>تسمع</h3><p>المحاضرة أو الشرح.</p></div>
+      <div class="card"><div class="ico" style="background:color-mix(in srgb,var(--u) 16%,transparent)">💡</div><h3>تفهم</h3><p>تفهم الدرس مع الشرح.</p></div>
+      <div class="card"><div class="ico" style="background:color-mix(in srgb,var(--s) 16%,transparent)">✍️</div><h3>تحل</h3><p>الأسئلة والتمارين.</p></div>
+      <div class="card"><div class="ico" style="background:color-mix(in srgb,var(--r) 16%,transparent)">🔁</div><h3>تراجع</h3><p>مراجعة للتثبيت.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>لكل سنين الثانوي</h2>
+    <p class="sub">المناهج متحطة بوحداتها ودروسها لسنة 2026/2027، وتقدر تعدّل أو تضيف أي درس.</p>
+    <div class="stages"><span>🌱 أولى ثانوي</span><span>🌿 تانية ثانوي بكالوريا</span><span>🌳 تانية ثانوي عام</span><span>🎓 تالتة ثانوي بكالوريا (من 2027/2028)</span><span>🏆 تالتة ثانوي عام</span></div>
+  </section>
+
+  <section>
+    <h2>اللي جوه التطبيق</h2>
+    <div class="grid" style="margin-top:16px">
+      <div class="card"><h3>📊 نسبة المنهج</h3><p>ذاكرت كام في المية من كل مادة ومن المنهج كله، محسوبة بدرجات المواد.</p></div>
+      <div class="card"><h3>🗓️ تقرير أي فترة</h3><p>من أي يوم لأي يوم: زودت كام، ذاكرت كام يوم، ومتوسطك في اليوم.</p></div>
+      <div class="card"><h3>🏫 الحضور</h3><p>نسبة حضور المدرسة وأيام التقييم بتقدير: ممتاز، جيد جدًا، جيد…</p></div>
+      <div class="card"><h3>🎯 الوتيرة</h3><p>حدد ميعاد، وخُطوة تقولك محتاج كام خطوة في اليوم.</p></div>
+      <div class="card"><h3>💬 كلمة كل يوم</h3><p>مواقف ملهمة وأمثال وأبيات شعر وكلمات تحفيز.</p></div>
+      <div class="card"><h3>🔒 بياناتك ليك</h3><p>كل حاجة على موبايلك بس، وبيشتغل من غير نت، ومعاه نسخ احتياطية.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>الحكاية</h2>
+    <div class="story" style="margin-top:14px">
+      <p style="color:var(--muted);font-size:14px;margin-bottom:6px">٧ نوفمبر · ٤:٤٥ الفجر</p>
+      <p>البيت نايم، وأحمد بيصوّر 4 صفحات من كتاب إنجليزي بتاع ملك، بنت أخوه في تانية بكالوريا. سؤاله: «أذاكر معاها إزاي من غير ما أبقى المدرس التقيل؟»</p>
+      <p>الإجابة كانت لعبة، ملك فيها هي اللي بتشرح لعمها. واللعبة كشفت سؤال أكبر: ملك، ومعاها سلمى في تالتة ثانوي، بيذاكروا كل يوم… ومش عارفين خلّصوا كام في المية.</p>
+      <p>اللعبة بقت جدول، والجدول بقى تطبيق. البيانات ضاعت مرة، والآيفون رفض مرة، وكل مرة اتصلح. لحد ما بقى واضح إن المهم مش الرقم. <b>المهم إنك تشوف نفسك بتطلع.</b></p>
+      <p class="sig">ومن هنا «خُطوة»: سلّم بـ4 درجات لكل درس، وفوقه شمس، والشمس دي الحلم.</p>
+      <p style="margin:12px 0 0"><a href="story.html" style="color:var(--accent);font-weight:700">اقرا الحكاية كاملة ←</a></p>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>تثبيت التطبيق على الموبايل</h2>
+    <p class="sub">مرة واحدة بس، وبعدها تفتحه من الأيقونة زي أي تطبيق.</p>
+    <div class="grid">
+      <div><h3 style="margin:0 0 8px">أندرويد</h3><ol class="steps"><li>افتح <b>خُطوة</b> في Chrome.</li><li>دوس «ثبّت دلوقتي»، أو من قائمة Chrome ⋮ اختار «تثبيت التطبيق».</li><li>افتحه دايمًا من الأيقونة.</li></ol></div>
+      <div><h3 style="margin:0 0 8px">آيفون</h3><ol class="steps"><li>افتح <b>خُطوة</b> في Safari.</li><li>زرار المشاركة ⬆️ ← «إضافة إلى الشاشة الرئيسية».</li><li>افتحه دايمًا من الأيقونة، مش من Safari.</li></ol></div>
+    </div>
+    <p style="margin-top:20px"><a class="cta" href="app/">ابدأ دلوقتي ←</a></p>
+  </section>
+</main>
+
+<footer>
+  <div>Created by <b>Add Value</b></div>
+  <div>صُنع بحب لملك وسلمى وكل طلاب الثانوي في مصر</div>
+</footer>
+</body>
+</html>
