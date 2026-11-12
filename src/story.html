@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#103B3C">
+<meta name="description" content="حكاية خُطوة: الثانوية مش قفزة، الثانوية سلّم. كل درس 4 درجات، وكل درجة بتتحسب لك.">
+<link rel="icon" type="image/png" href="app/icon-192.png">
+<title>حكاية خُطوة</title>
+<style>
+/* Hero = the logo's world: deep Nile ink with a sunrise dot; four step colors carry the story down the page. */
+:root{
+  --bg:#F2F5F3; --card:#FFFFFF; --ink:#0F2526; --muted:#5B6E70; --line:#DCE6E2;
+  --hero:#103B3C; --on-hero:#F4F1E8; --sun:#F2A541; --accent:#0E6F62; --on-accent:#FFFFFF;
+  --l:#2F7FC1; --u:#C27A0E; --s:#0F8A6E; --r:#5D5FB0;
+}
+@media (prefers-color-scheme: dark){ :root{ --bg:#0B1718; --card:#132425; --ink:#E7F0EE; --muted:#93A7A7; --line:#243A3B; --hero:#0E2B2C; --accent:#3DBFA3; --on-accent:#05201A; --l:#5EA6E2; --u:#E3A23E; --s:#3DBFA3; --r:#8E8FE0; color-scheme:dark } }
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:"Segoe UI",Tahoma,"Noto Sans Arabic",system-ui,sans-serif;line-height:1.7;font-size:16.5px}
+.wrap{max-width:880px;margin:0 auto;padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.hero{background:var(--hero);color:var(--on-hero);position:relative;overflow:hidden;padding-block:calc(28px + env(safe-area-inset-top,0px)) 56px;border-radius:0 0 36px 36px}
+.hero::after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;inset:-140px -120px auto auto;background:radial-gradient(circle,rgba(242,165,65,.32),transparent 62%)}
+.hero .wrap{position:relative;z-index:1}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mark{display:flex;align-items:center;gap:10px;font-weight:800;font-size:22px}
+.mark img{width:40px;height:40px;border-radius:11px}
+.pill{font-size:12.5px;border:1px solid rgba(244,241,232,.35);border-radius:999px;padding:3px 12px;opacity:.9}
+h1{font-size:clamp(34px,8vw,58px);line-height:1.15;margin:38px 0 10px;text-wrap:balance;font-weight:800}
+h1 em{font-style:normal;color:var(--sun)}
+.lead{font-size:clamp(16px,3.6vw,19px);max-width:34em;opacity:.92;margin:0 0 24px}
+.cta{display:inline-flex;align-items:center;gap:8px;background:var(--sun);color:#1D1406;font-weight:800;text-decoration:none;border-radius:16px;padding:14px 22px;font-size:17px}
+.cta:focus-visible,.ghost:focus-visible{outline:3px solid var(--on-hero);outline-offset:3px}
+.ghost{display:inline-flex;color:var(--on-hero);text-decoration:none;border:1.5px solid rgba(244,241,232,.45);border-radius:16px;padding:12px 18px;margin-inline-start:8px}
+.stairs{display:flex;align-items:flex-end;gap:6px;height:120px;margin-top:34px;max-width:360px}
+.stairs div{flex:1;border-radius:12px 12px 4px 4px;display:flex;align-items:flex-start;justify-content:center;padding-top:8px;font-size:13px;font-weight:700;color:#0F2526}
+section{padding-block:40px 8px}
+h2{font-size:clamp(24px,5vw,32px);margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 20px;max-width:40em}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0}
+.card h3{margin:0 0 4px;font-size:17px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.ico{width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:10px}
+.story{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:22px;max-width:46em}
+.story p{margin:0 0 12px}
+.story .sig{color:var(--muted);font-size:14px;margin:0}
+.steps{counter-reset:s;display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.steps li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:flex-start}
+.steps li::before{counter-increment:s;content:counter(s);flex:0 0 28px;height:28px;border-radius:50%;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.stages{display:flex;flex-wrap:wrap;gap:8px}
+.stages span{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:15px}
+footer{padding-block:36px calc(28px + env(safe-area-inset-bottom,0px));text-align:center;color:var(--muted);font-size:14px}
+footer b{color:var(--ink)}
+@media (prefers-reduced-motion: no-preference){ .stairs div{animation:rise .7s cubic-bezier(.2,.8,.2,1) both} .stairs div:nth-child(2){animation-delay:.08s}.stairs div:nth-child(3){animation-delay:.16s}.stairs div:nth-child(4){animation-delay:.24s} @keyframes rise{from{transform:scaleY(.55);transform-origin:bottom}to{transform:scaleY(1);transform-origin:bottom}} }
+
+.chap{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;margin-top:14px;max-width:44em}
+.chap .k{font-size:13px;color:var(--muted);letter-spacing:.3px}
+.chap h2{font-size:22px;margin:2px 0 8px}
+.chap p{margin:0 0 10px;line-height:1.95}
+.pull{font-size:clamp(20px,4.6vw,26px);font-weight:800;line-height:1.5;border-inline-start:5px solid var(--sun);padding-inline-start:14px;margin:26px 0;max-width:30em}
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+.four div{border-radius:14px;padding:12px 4px;text-align:center;font-weight:700;color:#0F2526}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="top"><a class="mark" href="./" style="color:inherit;text-decoration:none"><img src="app/icon-192.png" alt="">خُطوة</a><span class="pill">الحكاية</span></div>
+    <h1 style="margin-top:34px">الساعة <em>11</em> بالليل.</h1>
+    <p class="lead">في أوضة طالب ثانوي: كتب مفتوحة، كشكول نصه متشخبط، وسؤال مالوش إجابة: «أنا فين من المنهج؟»</p>
+  </div>
+</header>
+<main class="wrap">
+  <div class="chap"><div class="k">١ · السؤال</div><h2>🌙 مش كسل… تيه</h2>
+    <p>هو مش كسلان. بيذاكر كل يوم. بس كل يوم شبه اللي قبله: درس يخلص، ودرس يبدأ، والآخر مش باين.</p>
+    <p>ومع الوقت التعب مابيبقاش من المذاكرة، بيبقى من إنه مش شايف نفسه بيتقدم.</p></div>
+  <p class="pull">الطريق الطويل مابيتمشيش مرة واحدة.<br>بيتطلع درجة درجة.</p>
+  <div class="chap"><div class="k">٢ · الفكرة</div><h2>🪜 أربع درجات لكل درس</h2>
+    <p>من هنا اتولدت خُطوة. كل درس بيتقسم لأربع درجات واضحة:</p>
+    <div class="four"><div style="background:#7FB7E8">🎧<br>تسمع</div><div style="background:#F5C26B">💡<br>تفهم</div><div style="background:#6FD3B0">✍️<br>تحل</div><div style="background:#F4F1E8">🔁<br>تراجع</div></div>
+    <p style="margin-top:12px">وكل درجة بتطلعها بتتحسب لك، وتتجمع لحد ما تبقى رقم حقيقي: <b>نسبتك من المنهج كله</b>. تقدر تشوف الرقم ده بيزيد كل يوم.</p></div>
+  <div class="chap"><div class="k">٣ · الرحلة</div><h2>🧭 ومش بس الرقم</h2>
+    <p>خُطوة بتفكرك تراجع قبل ما تنسى، وبتنظم أسبوعك، وبتعد معاك للامتحان، وبتحفظ غلطاتك عشان ماتتكررش.</p>
+    <p>ولما تحب، بتبعت لأهلك تقرير بضغطة، من غير ما حد يسألك «ذاكرت؟».</p></div>
+  <div class="chap"><div class="k">٤ · المبادئ</div><h2>✋ 3 حاجات مش هنتنازل عنها</h2>
+    <p>• <b>مجانية.</b> المذاكرة حق لكل طالب.<br>• <b>خاصة.</b> بياناتك على موبايلك بس. من غير حساب، ومن غير ما حد يشوفها.<br>• <b>بسيطة.</b> تفتحها، تعلّم، تكمّل. حتى من غير نت.</p></div>
+  <div class="chap"><div class="k">٥ · اللوجو</div><h2>☀️ سلّم وشمس</h2>
+    <p>اللوجو هو الفكرة نفسها: سلّم بأربع درجات بألوان الخطوات الأربعة، وفوقه شمس.</p>
+    <p>الشمس دي هدفك، سواء كان كلية أو مجموع، أو إنك تقفل السنة وانت فخور بنفسك.</p></div>
+  <p class="pull">الثانوية مش قفزة.<br>الثانوية سلّم.</p>
+  <section style="text-align:center"><h2>ابدأ النهارده بخُطوة واحدة.</h2><p class="sub" style="margin-inline:auto">الباقي هييجي ورا بعضه.</p><a class="cta" href="app/">افتح خُطوة ←</a></section>
+</main>
+<footer><div>Created by <b>Add Value</b></div><div>مُهداة لكل طلاب الثانوي في مصر</div></footer>
+<!--GC-->
+</body>
+</html>

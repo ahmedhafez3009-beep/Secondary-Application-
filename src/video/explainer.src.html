@@ -1,0 +1,312 @@
+<title>خُطوة: الفيديو التوضيحي</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+@font-face{font-family:"Lalezar";src:url(__LALEZAR__) format("truetype");font-display:block}
+@font-face{font-family:"Cairo";src:url(__CAIRO__) format("truetype");font-weight:200 1000;font-display:block}
+:root{--hero:#103B3C;--paper:#F4F1E8;--bg:#F2F5F3;--ink:#0F2526;--muted:#5B6E70;--teal:#0E6F62;--orange:#E08A22;
+--sl:#2F7FC1;--su:#C27A0E;--ss:#0F8A6E;--sr:#5D5FB0;--av-green:#1EA05F;--av-gold:#F5BE32;--av-navy:#0E2A47;--wa:#25D366;
+--l1:#7FB7E8;--l2:#F5C26B;--l3:#6FD3B0;--l4:#F4F1E8;--sun:#F2A541}
+*{box-sizing:border-box}
+html,body{margin:0;background:#0a1b1c;overflow:hidden}
+#wrap{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#stage{position:relative;width:1080px;height:1920px;overflow:hidden;direction:rtl;font-family:"Cairo","DejaVu Sans",sans-serif;color:var(--ink);transform-origin:center center;flex:none}
+.sc{position:absolute;inset:0;display:none}
+.L{font-family:"Lalezar","Cairo",sans-serif;font-weight:400;line-height:1.15}
+.a{position:absolute;will-change:transform,opacity}
+.cx{left:0;right:0;text-align:center}
+.card{background:#fff;border-radius:44px;box-shadow:0 18px 50px rgba(16,59,60,.14)}
+.ltr{direction:ltr;unicode-bidi:isolate}
+#dip{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:50}
+#ui{position:fixed;left:0;right:0;bottom:max(16px,env(safe-area-inset-bottom,0px));display:flex;justify-content:center;gap:12px;z-index:9;font-family:"Cairo",sans-serif}
+#ui button{font:700 16px "Cairo",sans-serif;border:0;border-radius:999px;padding:12px 22px;background:#F4F1E8;color:#103B3C;cursor:pointer}
+#ui button.pri{background:#1EA05F;color:#fff}
+.render #ui{display:none}
+/* scene bits */
+.chip{display:inline-block;padding:22px 40px;border-radius:999px;font:800 46px "Cairo";}
+.bar{height:30px;border-radius:15px;background:rgba(244,241,232,.14);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:15px;transform-origin:right center}
+.stepc{position:absolute;width:210px;border-radius:34px;color:#fff;text-align:center;padding-top:26px}
+.badge{position:absolute;width:150px;height:150px}
+</style>
+
+<div id="wrap"><div id="stage">
+
+<!-- S1 HOOK -->
+<section class="sc" id="s1" style="background:var(--hero);color:var(--paper)">
+  <div class="a cx" id="s1k" style="top:430px;font:700 44px Cairo;color:#9fc7bd">سؤال صغير…</div>
+  <div class="a cx L" id="s1a" style="top:540px;font-size:150px">ذاكرت كام</div>
+  <div class="a cx L" id="s1b" style="top:730px;font-size:150px">في المية<span id="s1q" style="display:inline-block;color:var(--av-gold)">؟</span></div>
+  <div class="a cx" id="s1c" style="top:960px;font:700 52px Cairo;color:#cfe3dc">من المنهج كله… مش من الدرس ده بس</div>
+  <div id="s1w"></div>
+  <div class="a cx" id="s1d" style="top:1560px;font:800 50px Cairo;color:var(--av-gold)">لو مش عارف الرقم… مش لوحدك</div>
+</section>
+
+<!-- S2 LOGO -->
+<section class="sc" id="s2" style="background:var(--paper)">
+  <svg class="a" id="s2logo" viewBox="0 0 512 512" style="left:290px;top:360px;width:500px;height:500px">
+    <rect id="s2bg" width="512" height="512" rx="116" fill="#103B3C"/>
+    <rect id="s2r1" x="330" y="350" width="90" height="64" rx="12" fill="#7FB7E8"/>
+    <rect id="s2r2" x="246" y="280" width="96" height="134" rx="12" fill="#F5C26B"/>
+    <rect id="s2r3" x="162" y="210" width="96" height="204" rx="12" fill="#6FD3B0"/>
+    <rect id="s2r4" x="92" y="140" width="82" height="274" rx="12" fill="#F4F1E8"/>
+    <circle id="s2sun" cx="133" cy="86" r="32" fill="#F2A541"/>
+  </svg>
+  <div class="a cx L" id="s2name" style="top:900px;font-size:230px;color:var(--hero)">خُطوة</div>
+  <div class="a cx" id="s2tag" style="top:1200px;font:800 58px Cairo;color:var(--teal)">الثانوية سلّم. اطلعه خُطوة خُطوة.</div>
+  <div class="a cx" id="s2av" style="top:1500px"><span style="display:inline-flex;align-items:center;gap:18px;background:var(--av-navy);color:#fff;border-radius:999px;padding:18px 40px;font:700 40px Cairo" class="ltr">Created by <b style="color:var(--av-gold);font-weight:900">Add&nbsp;Value</b><i style="width:22px;height:22px;border-radius:50%;background:var(--av-green);display:inline-block"></i></span></div>
+</section>
+
+<!-- S3 FOUR STEPS -->
+<section class="sc" id="s3" style="background:var(--bg)">
+  <div class="a cx L" id="s3t" style="top:250px;font-size:120px;color:var(--hero)">كل درس = 4 خطوات</div>
+  <div class="a cx" id="s3s" style="top:420px;font:700 48px Cairo;color:var(--muted)">علّم على كل خطوة تخلّصها</div>
+  <div id="s3steps"></div>
+  <div class="a cx" id="s3f" style="top:1560px;font:800 54px Cairo;color:var(--teal)">والتطبيق يحسب الباقي لوحده</div>
+</section>
+
+<!-- S4 PROGRESS -->
+<section class="sc" id="s4" style="background:var(--hero);color:var(--paper)">
+  <div class="a cx L" id="s4t" style="top:190px;font-size:104px">النسبة الحقيقية من المنهج</div>
+  <svg class="a" id="s4ring" viewBox="0 0 600 600" style="left:240px;top:380px;width:600px;height:600px">
+    <circle cx="300" cy="300" r="250" fill="none" stroke="rgba(244,241,232,.12)" stroke-width="56"/>
+    <circle id="s4arc" cx="300" cy="300" r="250" fill="none" stroke="#6FD3B0" stroke-width="56" stroke-linecap="round" transform="rotate(-90 300 300)" stroke-dasharray="1571" stroke-dashoffset="1571"/>
+  </svg>
+  <div class="a cx" id="s4num" style="top:560px;font:900 190px Cairo;line-height:1"><span class="ltr" id="s4n">0%</span></div>
+  <div class="a cx" id="s4lab" style="top:770px;font:700 32px Cairo;color:#9fc7bd">من منهج السنة كلها</div>
+  <div id="s4bars" class="a" style="left:120px;right:120px;top:1100px"></div>
+</section>
+
+<!-- S5 STAGES + GENDER -->
+<section class="sc" id="s5" style="background:var(--paper)">
+  <div class="a cx L" id="s5t" style="top:220px;font-size:116px;color:var(--hero)">لكل سنين الثانوي</div>
+  <div class="a cx" id="s5s" style="top:390px;font:700 46px Cairo;color:var(--muted)">بكل المناهج والشُّعب</div>
+  <div id="s5chips"></div>
+  <div class="a cx L" id="s5g" style="top:1150px;font-size:90px;color:var(--hero)">ولد ولا بنت؟</div>
+  <div class="a" id="s5tog" style="left:390px;top:1300px;width:300px;height:130px;border-radius:65px;background:#dfe8e4">
+    <div id="s5knob" style="position:absolute;top:10px;right:10px;width:140px;height:110px;border-radius:55px;background:var(--teal);color:#fff;font:800 42px Cairo;display:flex;align-items:center;justify-content:center">بنت</div>
+  </div>
+  <div class="a cx" id="s5msg" style="top:1500px"><span id="s5bub" style="display:inline-block;background:#fff;border-radius:40px;padding:30px 54px;font:800 58px Cairo;color:var(--hero);box-shadow:0 14px 40px rgba(16,59,60,.12)">برافو يا بطلة، كمّلي!</span></div>
+  <div class="a cx" id="s5f" style="top:1700px;font:700 40px Cairo;color:var(--muted)">التطبيق بيكلّمك بصيغتك</div>
+</section>
+
+<!-- S6 FOCUS: POMODORO + SPACED REVIEW -->
+<section class="sc" id="s6" style="background:var(--bg)">
+  <div class="a cx L" id="s6t" style="top:180px;font-size:112px;color:var(--hero)">مذاكرة أذكى… مش أطول</div>
+  <div class="a card" id="s6pomo" style="left:90px;right:90px;top:400px;height:620px">
+    <svg viewBox="0 0 400 400" style="position:absolute;right:50px;top:130px;width:360px;height:360px">
+      <circle cx="200" cy="200" r="170" fill="none" stroke="#e3ece8" stroke-width="30"/>
+      <circle id="s6arc" cx="200" cy="200" r="170" fill="none" stroke="#E08A22" stroke-width="30" stroke-linecap="round" transform="rotate(-90 200 200)" stroke-dasharray="1068" stroke-dashoffset="0"/>
+    </svg>
+    <div style="position:absolute;right:50px;top:130px;width:360px;height:360px;display:flex;align-items:center;justify-content:center;font:900 92px Cairo;color:var(--hero)"><span class="ltr" id="s6clk">25:00</span></div>
+    <div style="position:absolute;left:50px;top:150px;width:420px;text-align:right">
+      <div class="L" style="font-size:76px;color:var(--hero)">مؤقت تركيز</div>
+      <div style="font:700 44px Cairo;color:var(--muted);margin-top:14px">25 دقيقة مذاكرة<br>و 5 راحة</div>
+      <div id="s6min" style="font:800 40px Cairo;color:var(--orange);margin-top:30px">والدقايق بتتحسب لك</div>
+    </div>
+  </div>
+  <div class="a card" id="s6rev" style="left:90px;right:90px;top:1110px;height:560px">
+    <div class="L" style="position:absolute;right:60px;top:50px;font-size:72px;color:var(--hero)">مراجعة في وقتها</div>
+    <div style="position:absolute;right:60px;top:150px;font:700 40px Cairo;color:var(--muted)">التطبيق يفكّرك بالدرس قبل ما تنساه</div>
+    <div id="s6line" style="position:absolute;right:110px;left:110px;top:345px;height:10px;border-radius:5px;background:#e3ece8"><i id="s6fill" style="display:block;height:100%;width:100%;border-radius:5px;background:var(--sr);transform-origin:right center;transform:scaleX(0)"></i></div>
+    <div id="s6dots"></div>
+  </div>
+</section>
+
+<!-- S7 PLAN + EXAMS -->
+<section class="sc" id="s7" style="background:var(--hero);color:var(--paper)">
+  <div class="a cx L" id="s7t" style="top:190px;font-size:110px">خطة الأسبوع</div>
+  <div class="a cx" id="s7s" style="top:350px;font:700 46px Cairo;color:#9fc7bd">هدف واضح، ومواد موزعة على الأيام</div>
+  <div id="s7week" class="a" style="left:90px;right:90px;top:470px;height:560px"></div>
+  <div class="a" id="s7exam" style="left:150px;right:150px;top:1150px;height:520px;border-radius:48px;background:var(--paper);color:var(--hero);text-align:center">
+    <div style="font:800 50px Cairo;margin-top:56px">امتحان الفيزياء بعد</div>
+    <div style="font:900 230px Cairo;line-height:1.1;color:var(--orange)"><span class="ltr" id="s7n">30</span></div>
+    <div style="font:800 56px Cairo">يوم</div>
+  </div>
+</section>
+
+<!-- S8 ATTENDANCE + MISTAKES -->
+<section class="sc" id="s8" style="background:var(--paper)">
+  <div class="a cx L" id="s8t" style="top:160px;font-size:104px;color:var(--hero)">حضور وغلطات… متسجلين</div>
+  <div class="a card" id="s8att" style="left:90px;right:90px;top:360px;height:560px">
+    <div class="L" style="position:absolute;right:60px;top:46px;font-size:70px;color:var(--hero)">الحضور</div>
+    <div style="position:absolute;left:60px;top:40px;font:900 96px Cairo;color:var(--good,#1F8A5B)"><span class="ltr" id="s8pct">0%</span></div>
+    <div id="s8days"></div>
+    <div id="s8stars" style="position:absolute;right:60px;bottom:50px;display:flex;gap:16px;align-items:center"></div>
+  </div>
+  <div class="a" id="s8flip" style="left:140px;right:140px;top:1010px;height:640px;perspective:2400px">
+    <div id="s8card" style="position:absolute;inset:0;transform-style:preserve-3d">
+      <div style="position:absolute;inset:0;backface-visibility:hidden;border-radius:44px;background:#fff;border:6px solid #C2413A;box-shadow:0 18px 50px rgba(16,59,60,.14);text-align:center">
+        <div class="L" style="font-size:66px;color:#C2413A;margin-top:60px">كشكول الغلطات</div>
+        <div style="font:700 44px Cairo;color:var(--muted);margin-top:40px">غلطت في:</div>
+        <div style="font:900 72px Cairo;color:var(--hero);margin-top:20px">قانون أوم</div>
+        <div style="font:700 38px Cairo;color:var(--muted);margin-top:50px">اقلب الكارت قبل الامتحان</div>
+      </div>
+      <div style="position:absolute;inset:0;backface-visibility:hidden;transform:rotateY(180deg);border-radius:44px;background:var(--hero);color:var(--paper);text-align:center">
+        <div class="L" style="font-size:66px;color:var(--l3);margin-top:60px">الصح</div>
+        <div style="font:900 84px Cairo;margin-top:60px">ت = ج ÷ م</div>
+        <div style="font:700 42px Cairo;color:#9fc7bd;margin-top:50px">التيار = الجهد ÷ المقاومة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S9 BADGES -->
+<section class="sc" id="s9" style="background:var(--hero);color:var(--paper)">
+  <div class="a cx L" id="s9t" style="top:200px;font-size:120px"><span class="ltr">27</span> شارة تكسبها</div>
+  <div class="a cx" id="s9s" style="top:380px;font:700 46px Cairo;color:#9fc7bd">كل ما تطلع سلمة… تاخد شارة</div>
+  <div id="s9grid"></div>
+  <div class="a cx" id="s9big" style="top:1430px"><span style="display:inline-block;background:var(--av-gold);color:var(--hero);border-radius:999px;padding:24px 56px;font:900 56px Cairo">🔥 7 أيام مذاكرة ورا بعض</span></div>
+</section>
+
+<!-- S10 WHATSAPP REPORT -->
+<section class="sc" id="s10" style="background:var(--bg)">
+  <div class="a cx L" id="s10t" style="top:150px;font-size:100px;color:var(--hero)">تقرير لولي الأمر</div>
+  <div class="a cx" id="s10s" style="top:300px;font:700 46px Cairo;color:var(--muted)">على واتساب، بضغطة واحدة</div>
+  <div class="a" id="s10ph" style="left:200px;top:420px;width:680px;height:1300px;border-radius:90px;background:#0F2526;padding:22px">
+    <div style="position:absolute;inset:22px;border-radius:70px;overflow:hidden;background:#EFE7DC">
+      <div style="height:170px;background:#075E54;color:#fff;display:flex;align-items:flex-end;padding:0 40px 30px;gap:22px">
+        <div style="width:84px;height:84px;border-radius:50%;background:#c9d8d4;flex:none"></div>
+        <div><div style="font:800 44px Cairo">ولي الأمر</div><div style="font:600 28px Cairo;opacity:.8">متصل الآن</div></div>
+      </div>
+      <div id="s10msg" style="position:absolute;right:34px;left:70px;top:230px;background:#DCF8C6;border-radius:30px 6px 30px 30px;padding:30px 34px;font:700 36px/1.6 Cairo;color:#0F2526;box-shadow:0 3px 8px rgba(0,0,0,.08)">
+        <div style="font-weight:900">📊 تقرير خُطوة الأسبوعي</div>
+        <div>تانية بكالوريا</div>
+        <div style="margin-top:14px">✅ نسبة المنهج: <span class="ltr">68%</span></div>
+        <div>📅 الأسبوع ده: 34 خطوة</div>
+        <div>🏫 الحضور: <span class="ltr">92%</span></div>
+        <div>🔥 <span class="ltr">7</span> أيام مذاكرة ورا بعض</div>
+        <div style="margin-top:14px;color:#0b6e99;font-weight:800">🔗 افتح التقرير كامل</div>
+      </div>
+      <div id="s10tick" style="position:absolute;left:96px;top:880px;font:800 30px Cairo;color:#34B7F1" class="ltr">✓✓ 9:41</div>
+    </div>
+  </div>
+  <div id="s10tap" class="a" style="left:470px;top:1610px;width:140px;height:140px;border-radius:50%;background:rgba(37,211,102,.35);border:6px solid var(--wa)"></div>
+</section>
+
+<!-- S11 PRIVACY -->
+<section class="sc" id="s11" style="background:var(--hero);color:var(--paper)">
+  <div class="a cx L" id="s11t" style="top:230px;font-size:120px">ومعاه راحة بال</div>
+  <div id="s11items"></div>
+</section>
+
+<!-- S12 CTA -->
+<section class="sc" id="s12" style="background:var(--paper)">
+  <svg class="a" id="s12logo" viewBox="0 0 512 512" style="left:400px;top:230px;width:280px;height:280px">
+    <rect width="512" height="512" rx="116" fill="#103B3C"/><rect x="330" y="350" width="90" height="64" rx="12" fill="#7FB7E8"/><rect x="246" y="280" width="96" height="134" rx="12" fill="#F5C26B"/><rect x="162" y="210" width="96" height="204" rx="12" fill="#6FD3B0"/><rect x="92" y="140" width="82" height="274" rx="12" fill="#F4F1E8"/><circle cx="133" cy="86" r="32" fill="#F2A541"/>
+  </svg>
+  <div class="a cx L" id="s12a" style="top:600px;font-size:132px;color:var(--hero)">ابدأ النهارده</div>
+  <div class="a cx L" id="s12b" style="top:770px;font-size:132px;color:var(--teal)">بخُطوة واحدة</div>
+  <div class="a cx" id="s12url" style="top:1010px"><span class="ltr" style="display:inline-block;background:#fff;border:4px solid var(--teal);border-radius:30px;padding:24px 30px;font:800 30px Cairo;color:var(--hero)">ahmedhafez3009-beep.github.io/Secondary-Application-</span></div>
+  <div class="a cx" id="s12c" style="top:1160px;font:700 46px Cairo;color:var(--muted)">افتح اللينك ← ثبّته على الموبايل كتطبيق</div>
+  <div class="a cx" id="s12free" style="top:1260px;font:900 54px Cairo;color:var(--orange)">مجاني · من غير حساب · من غير إعلانات</div>
+  <div class="a cx" id="s12av" style="top:1520px">
+    <div style="font:700 38px Cairo;color:var(--muted)" class="ltr">Created by</div>
+    <div class="ltr" style="display:inline-flex;align-items:center;gap:22px;margin-top:10px">
+      <span style="width:84px;height:84px;border-radius:24px;background:var(--av-green);display:inline-flex;align-items:center;justify-content:center"><svg width="52" height="52" viewBox="0 0 52 52"><path d="M26 8v36M8 26h36" stroke="#fff" stroke-width="9" stroke-linecap="round"/></svg></span>
+      <span style="font:900 92px Cairo;color:var(--av-navy);letter-spacing:-1px">Add <span style="color:var(--av-green)">Value</span></span>
+    </div>
+    <div id="s12line" style="height:10px;width:520px;margin:18px auto 0;border-radius:5px;background:var(--av-gold);transform-origin:center"></div>
+  </div>
+</section>
+
+<div id="dip"></div>
+</div></div>
+<div id="ui"><button class="pri" id="play" type="button">▶ تشغيل بالصوت</button><button id="replay" type="button">↺ من الأول</button></div>
+<audio id="aud" preload="auto" src="__AUDIO__"></audio>
+
+<script>
+var RENDER=/[?&]render/.test(location.search);
+if(RENDER)document.documentElement.className="render";
+var $=function(i){return document.getElementById(i)};
+function cl(x){return x<0?0:x>1?1:x}
+function E(x){x=cl(x);return x*x*(3-2*x)}
+function seg(t,a,d){return E((t-a)/(d||.5))}
+function back(t,a,d){var p=cl((t-a)/(d||.45));if(p<=0)return 0;var c=1.6;return 1+(c+1)*Math.pow(p-1,3)+c*Math.pow(p-1,2)}
+function st(el,o,x,y,s,r){el.style.opacity=o;el.style.transform="translate("+(x||0)+"px,"+(y||0)+"px) scale("+(s==null?1:s)+") rotate("+(r||0)+"deg)"}
+function rise(el,t,a,d,dy){var p=seg(t,a,d||.55);st(el,p,0,(1-p)*(dy==null?60:dy))}
+function popin(el,t,a,d){var p=back(t,a,d);st(el,cl((t-a)/.15),0,0,Math.max(0,p))}
+function mk(parent,html){var d=document.createElement("div");d.innerHTML=html;var e=d.firstElementChild;$(parent).appendChild(e);return e}
+
+/* timeline (seconds) */
+var SC=[["s1",0,5],["s2",5,10.5],["s3",10.5,18],["s4",18,24.5],["s5",24.5,31],["s6",31,37.5],["s7",37.5,43.5],["s8",43.5,50],["s9",50,55.5],["s10",55.5,62.5],["s11",62.5,67.5],["s12",67.5,76]];
+var DUR=76;
+
+/* build dynamic pieces */
+var words=["عربي","إنجليزي","فيزياء","كيمياء","أحياء","تاريخ","رياضة","جغرافيا","فلسفة","إحصاء"];
+var W1=words.map(function(w,i){var x=80+((i*317)%860),y=1170+((i*137)%320);return mk("s1w",'<div class="a" style="left:'+x+'px;top:'+y+'px;font:800 '+(40+(i%3)*10)+'px Cairo;color:rgba(244,241,232,.28)">'+w+'</div>')});
+var STEPS=[["سماع","#2F7FC1","ear"],["فهم","#C27A0E","bulb"],["حل","#0F8A6E","pen"],["مراجعة","#5D5FB0","loop"]];
+var ICON={ear:'<path d="M40 70c0-22 14-38 34-38s34 16 34 36c0 16-10 22-18 30-6 6-6 14-10 20-4 8-12 10-18 8" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/><path d="M60 72c0-10 6-18 15-18s15 8 15 16" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/>',
+bulb:'<path d="M74 28c-20 0-34 15-34 33 0 13 7 21 13 28 4 5 6 9 6 15h30c0-6 2-10 6-15 6-7 13-15 13-28 0-18-14-33-34-33z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/><path d="M60 118h28M64 132h20" stroke="#fff" stroke-width="10" stroke-linecap="round"/>',
+pen:'<path d="M40 112l8-26 52-52 18 18-52 52z" fill="none" stroke="#fff" stroke-width="10" stroke-linejoin="round"/><path d="M90 44l18 18" stroke="#fff" stroke-width="10"/><path d="M40 128h70" stroke="#fff" stroke-width="10" stroke-linecap="round"/>',
+loop:'<path d="M110 70a36 36 0 1 1-12-27" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/><path d="M100 22v24H76" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>'};
+var S3=STEPS.map(function(s,i){var h=300+i*190,right=60+i*245;return mk("s3steps",'<div class="stepc a" style="right:'+right+'px;top:'+(1480-h)+'px;height:'+h+'px;background:'+s[1]+'"><svg viewBox="0 0 148 148" style="width:120px;height:120px">'+ICON[s[2]]+'</svg><div style="font:900 50px Cairo;margin-top:6px">'+s[0]+'</div><svg class="ck" viewBox="0 0 100 100" style="position:absolute;left:50%;margin-left:-50px;bottom:28px;width:100px;height:100px"><circle cx="50" cy="50" r="44" fill="#fff"/><path d="M28 52l15 15 30-32" fill="none" stroke="'+s[1]+'" stroke-width="11" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="80" stroke-dashoffset="80"/></svg></div>')});
+var SUBJ=[["عربي",82,"#F5C26B"],["إنجليزي",74,"#7FB7E8"],["فيزياء",61,"#6FD3B0"],["كيمياء",55,"#F2A541"],["تاريخ",47,"#c9a7f0"]];
+var S4=SUBJ.map(function(s,i){return mk("s4bars",'<div class="a" style="left:0;right:0;top:'+(i*130)+'px"><div style="display:flex;justify-content:space-between;font:800 40px Cairo;margin-bottom:12px"><span>'+s[0]+'</span><span class="ltr">'+s[1]+'%</span></div><div class="bar"><i style="width:'+s[1]+'%;background:'+s[2]+'"></i></div></div>')});
+var CH=[["أولى ثانوي","#7FB7E8"],["تانية بكالوريا","#F5C26B"],["تانية عام","#6FD3B0"],["تالتة بكالوريا","#c9a7f0"],["تالتة عام","#F2A541"]];
+var S5=CH.map(function(c,i){var row=i<2?0:i<4?1:2,col=i<2?i:i<4?i-2:0;var y=540+row*170;var x=row==2?0:(col==0?1:-1)*215;return mk("s5chips",'<div class="a cx" style="top:'+y+'px;transform:translateX('+x+'px)"><span class="chip" style="background:'+c[1]+';color:#103B3C">'+c[0]+'</span></div>')});
+var GAPS=[3,7,14,30];
+var S6=GAPS.map(function(g,i){var x=110+i*((900-220)/3);return mk("s6dots",'<div class="a" style="right:'+(x-50)+'px;top:300px;width:100px;text-align:center"><div class="dot" style="width:100px;height:100px;border-radius:50%;background:#e3ece8;border:8px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.08)"></div><div style="font:900 52px Cairo;color:var(--hero);margin-top:14px" class="ltr">'+g+'</div><div style="font:700 32px Cairo;color:var(--muted)">يوم</div></div>')});
+var DAYS=["سبت","حد","اتنين","تلات","أربع","خميس","جمعة"],BL=[["#F5C26B","#7FB7E8"],["#6FD3B0"],["#F5C26B","#c9a7f0"],["#7FB7E8"],["#6FD3B0","#F2A541"],["#c9a7f0","#7FB7E8"],["#F2A541"]];
+var S7=[];DAYS.forEach(function(d,i){var x=i*(900/7);mk("s7week",'<div style="position:absolute;right:'+x+'px;top:0;width:'+(900/7-14)+'px;text-align:center;font:800 34px Cairo;color:#9fc7bd">'+d+'</div>');BL[i].forEach(function(c,j){S7.push(mk("s7week",'<div class="a" style="right:'+x+'px;top:'+(80+j*200)+'px;width:'+(900/7-14)+'px;height:180px;border-radius:24px;background:'+c+'"></div>'))})});
+var S8D=[["الثلاثاء",1],["الأربعاء",1],["الثلاثاء",1],["الأربعاء",0],["الثلاثاء",1],["الأربعاء",1]].map(function(d,i){return mk("s8days",'<div class="a" style="right:'+(60+i*130)+'px;top:210px;width:110px;text-align:center"><div style="width:110px;height:110px;border-radius:28px;background:'+(d[1]?"#1F8A5B":"#C2413A")+';display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" width="64" height="64">'+(d[1]?'<path d="M24 52l17 17 36-38" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>':'<path d="M30 30l40 40M70 30l-40 40" stroke="#fff" stroke-width="12" stroke-linecap="round"/>')+'</svg></div><div style="font:700 26px Cairo;color:var(--muted);margin-top:8px">'+d[0]+'</div></div>')});
+var STAR='<svg viewBox="0 0 100 100" width="70" height="70"><path d="M50 6l13 28 30 3-23 20 7 30-27-16-27 16 7-30L7 37l30-3z" fill="#F5BE32" stroke="#d99a12" stroke-width="3" stroke-linejoin="round"/></svg>';
+var S8S=[0,1,2,3,4].map(function(i){var e=document.createElement("div");e.className="";e.style.cssText="opacity:"+(i<4?1:.25);e.innerHTML=STAR;$("s8stars").appendChild(e);return e});
+mk("s8stars",'<div style="font:800 38px Cairo;color:var(--muted);margin-right:14px">تقييمك لليوم</div>');
+var BC=["#7FB7E8","#F5C26B","#6FD3B0","#F2A541","#c9a7f0","#F4F1E8"],BI=["1","5","10","25","50","100%","7","30","★","✓","A+","🏆"];
+var S9=BI.map(function(b,i){var r=Math.floor(i/4),c=i%4;var x=120+c*220,y=520+r*270;return mk("s9grid",'<svg class="badge a" viewBox="0 0 100 100" style="right:'+x+'px;top:'+y+'px;width:170px;height:170px"><path d="M50 4l40 23v46L50 96 10 73V27z" fill="'+BC[i%6]+'" stroke="rgba(255,255,255,.6)" stroke-width="3"/><text x="50" y="62" text-anchor="middle" font-family="Cairo" font-weight="900" font-size="30" fill="#103B3C">'+b+'</text></svg>')});
+var PRIV=[["مجاني","ومن غير إعلانات","#F5C26B",'<text x="60" y="80" text-anchor="middle" font-family="Cairo" font-weight="900" font-size="60" fill="#103B3C">0</text>'],
+["بيشتغل من غير نت","ثبّته مرة… وذاكر في أي حتة","#6FD3B0",'<path d="M20 50a56 56 0 0 1 80 0M34 66a36 36 0 0 1 52 0M48 82a16 16 0 0 1 24 0" fill="none" stroke="#103B3C" stroke-width="9" stroke-linecap="round"/><path d="M22 22l76 76" stroke="#C2413A" stroke-width="10" stroke-linecap="round"/>'],
+["بياناتك على موبايلك بس","من غير حساب، ومن غير ما حد يشوفها","#7FB7E8",'<rect x="30" y="54" width="60" height="46" rx="10" fill="#103B3C"/><path d="M42 54V40a18 18 0 0 1 36 0v14" fill="none" stroke="#103B3C" stroke-width="10"/><circle cx="60" cy="76" r="7" fill="#7FB7E8"/>']];
+var S11=PRIV.map(function(p,i){return mk("s11items",'<div class="a" style="right:110px;left:110px;top:'+(500+i*340)+'px;height:290px;border-radius:44px;background:rgba(244,241,232,.08);display:flex;align-items:center;gap:40px;padding:0 50px"><div style="flex:none;width:170px;height:170px;border-radius:50%;background:'+p[2]+';display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 120 120" width="120" height="120">'+p[3]+'</svg></div><div><div class="L" style="font-size:62px">'+p[0]+'</div><div style="font:700 38px Cairo;color:#9fc7bd;margin-top:6px">'+p[1]+'</div></div></div>')});
+
+/* per-scene renderers: t = local time */
+var R={
+s1:function(t){rise($("s1k"),t,.15);rise($("s1a"),t,.45);rise($("s1b"),t,.85);popin($("s1q"),t,1.25,.5);rise($("s1c"),t,1.9);
+  
+  W1.forEach(function(w,i){var a=2.5+i*.08;st(w,seg(t,a,.4),Math.sin(t*1.3+i)*24,Math.cos(t*1.1+i*2)*18+(1-seg(t,a,.4))*30,1,Math.sin(t+i)*6)});
+  rise($("s1d"),t,3.4)},
+s2:function(t){var b=back(t,.1,.55);st($("s2logo"),cl(t/.15),0,0,.6+.4*Math.max(0,b));
+  ["s2r1","s2r2","s2r3","s2r4"].forEach(function(id,i){var p=back(t,.35+i*.16,.45);var e=$(id);e.style.transformBox="fill-box";e.style.transformOrigin="50% 100%";e.style.transform="scaleY("+Math.max(0,p)+")"});
+  var sp=back(t,1.05,.5);var s=$("s2sun");s.style.transformBox="fill-box";s.style.transformOrigin="50% 50%";s.style.transform="translateY("+(-(1-cl((t-1.05)/.5))*120)+"px) scale("+Math.max(0,sp)+")";
+  popin($("s2name"),t,1.5,.55);rise($("s2tag"),t,2.3);rise($("s2av"),t,3.0,.5,40)},
+s3:function(t){rise($("s3t"),t,.1);rise($("s3s"),t,.5);
+  S3.forEach(function(e,i){var a=1.0+i*.75;var p=seg(t,a,.5);st(e,p,0,(1-p)*120);var ck=e.querySelector(".ck path");ck.style.strokeDashoffset=80*(1-seg(t,a+.45,.35));e.querySelector(".ck").style.transform="scale("+Math.max(0,back(t,a+.35,.4))+")"});
+  rise($("s3f"),t,4.6)},
+s4:function(t){rise($("s4t"),t,.1);var p=back(t,.3,.6);st($("s4ring"),cl(t/.3),0,0,.7+.3*Math.max(0,p));
+  var c=seg(t,.7,1.2);$("s4arc").style.strokeDashoffset=1571*(1-.68*c);$("s4n").textContent=Math.round(68*c)+"%";st($("s4num"),cl((t-.5)/.3),0,0,1+.08*Math.sin(Math.PI*cl((t-1.9)/.4)));
+  rise($("s4lab"),t,1.6);S4.forEach(function(e,i){var a=2.3+i*.28;rise(e,t,a,.45,30);e.querySelector("i").style.transform="scaleX("+seg(t,a+.15,.7)+")"})},
+s5:function(t){rise($("s5t"),t,.1);rise($("s5s"),t,.5);S5.forEach(function(e,i){var p=back(t,.9+i*.2,.45);e.style.opacity=cl((t-.9-i*.2)/.15);var tx=e.style.transform.match(/translateX\(([-\d.]+)px\)/);var x=e.dataset.x||(tx?tx[1]:0);e.dataset.x=x;e.style.transform="translateX("+x+"px) scale("+Math.max(0,p)+")"});
+  rise($("s5g"),t,2.6);popin($("s5tog"),t,2.9,.45);var sw=seg(t,4.2,.4);var k=$("s5knob");k.style.transform="translateX("+(-140*sw)+"px)";k.textContent=sw>.5?"ولد":"بنت";k.style.background=sw>.5?"#2F7FC1":"#0E6F62";
+  rise($("s5msg"),t,3.3,.45,30);var b=$("s5bub");b.textContent=sw>.5?"برافو يا بطل، كمّل!":"برافو يا بطلة، كمّلي!";var fl=1-Math.sin(Math.PI*cl((t-4.2)/.4))*.12;b.style.transform="scale("+fl+")";rise($("s5f"),t,4.8)},
+s6:function(t){rise($("s6t"),t,.1);rise($("s6pomo"),t,.5,.55,80);var r=seg(t,1.0,2.6);var secs=Math.round(25*60-r*95);$("s6clk").textContent=(Math.floor(secs/60)+":"+("0"+secs%60).slice(-2));$("s6arc").style.strokeDashoffset=1068*(r*95/1500);
+  rise($("s6min"),t,1.8,.4,20);rise($("s6rev"),t,2.4,.55,80);$("s6fill").style.transform="scaleX("+seg(t,3.1,2.2)+")";
+  S6.forEach(function(e,i){var a=3.1+i*.62;var d=e.querySelector(".dot");d.style.background=t>a?"#5D5FB0":"#e3ece8";d.style.transform="scale("+(t>a?Math.max(.01,back(t,a,.35)):1)+")";st(e,seg(t,2.6,.4),0,0,1)})},
+s7:function(t){rise($("s7t"),t,.1);rise($("s7s"),t,.45);S7.forEach(function(e,i){var a=.9+i*.12;var p=back(t,a,.4);e.style.opacity=cl((t-a)/.12);e.style.transform="scaleY("+Math.max(0,p)+")";e.style.transformOrigin="50% 0"});
+  rise($("s7exam"),t,2.7,.55,100);var c=seg(t,3.3,1.0);$("s7n").textContent=Math.round(30-7*c);st($("s7n"),1,0,0,1+.1*Math.sin(Math.PI*cl((t-4.3)/.35)))},
+s8:function(t){rise($("s8t"),t,.1);rise($("s8att"),t,.4,.55,80);S8D.forEach(function(e,i){popin(e,t,.9+i*.14,.4)});$("s8pct").textContent=Math.round(92*seg(t,.9,.9))+"%";
+  S8S.forEach(function(e,i){var a=1.9+i*.12;e.style.transform="scale("+Math.max(0,back(t,a,.35))+")"});
+  rise($("s8flip"),t,2.4,.55,80);var f=seg(t,4.0,.7);$("s8card").style.transform="rotateY("+(180*f)+"deg)"},
+s9:function(t){rise($("s9t"),t,.1);rise($("s9s"),t,.5);S9.forEach(function(e,i){var a=.9+i*.1;var p=back(t,a,.45);e.style.opacity=cl((t-a)/.12);e.style.transform="scale("+Math.max(0,p)+") rotate("+((1-cl((t-a)/.45))*-30+Math.sin(t*2+i)*3)+"deg)"});
+  popin($("s9big"),t,2.6,.5)},
+s10:function(t){rise($("s10t"),t,.1);rise($("s10s"),t,.45);rise($("s10ph"),t,.6,.6,140);var tp=cl((t-1.4)/.6);st($("s10tap"),tp<=0||tp>=1?0:(1-tp)*.9,0,0,.5+tp*.9);
+  var m=back(t,1.9,.5);var e=$("s10msg");e.style.opacity=cl((t-1.9)/.15);e.style.transformOrigin="100% 0";e.style.transform="scale("+Math.max(0,m)+")";rise($("s10tick"),t,3.0,.35,10)},
+s11:function(t){rise($("s11t"),t,.1);S11.forEach(function(e,i){var a=.6+i*.9;var p=seg(t,a,.5);st(e,p,(1-p)*-120,0);var ic=e.firstElementChild;ic.style.transform="scale("+Math.max(0,back(t,a+.15,.45))+")"})},
+s12:function(t){var b=back(t,.1,.55);st($("s12logo"),cl(t/.15),0,0,Math.max(0,b));rise($("s12a"),t,.6);rise($("s12b"),t,1.0);popin($("s12url"),t,1.8,.5);rise($("s12c"),t,2.5);rise($("s12free"),t,3.1);
+  rise($("s12av"),t,4.0,.6,50);$("s12line").style.transform="scaleX("+seg(t,4.6,.6)+")"}
+};
+function render(T){T=Math.max(0,Math.min(DUR-1e-4,T));
+  for(var i=0;i<SC.length;i++){var s=SC[i],el=$(s[0]);if(T>=s[1]&&T<s[2]){el.style.display="block";R[s[0]](T-s[1])}else el.style.display="none"}
+  var d=0;for(var j=1;j<SC.length;j++){var b=SC[j][1];var x=Math.abs(T-b);if(x<.16)d=Math.max(d,1-x/.16)}
+  if(T>DUR-.5)d=Math.max(d,0);$("dip").style.opacity=E(d)*.95}
+window.render=render;window.DUR=DUR;window.SC=SC;
+/* fit to window */
+function fit(){var s=Math.min(innerWidth/1080,innerHeight/1920);$("stage").style.transform=RENDER?"none":"scale("+s+")"}
+addEventListener("resize",fit);fit();
+render(RENDER?0:0.0001+5.8);
+if(!RENDER){var aud=$("aud"),t0=null,raf=null,playing=false;
+  function loop(){var T=aud&&!aud.paused?aud.currentTime:(performance.now()-t0)/1000;render(T);if(T<DUR)raf=requestAnimationFrame(loop);else{playing=false;$("play").textContent="▶ تشغيل بالصوت"}}
+  function start(){cancelAnimationFrame(raf);t0=performance.now();try{aud.currentTime=0;var pr=aud.play();if(pr&&pr.catch)pr.catch(function(){})}catch(e){}playing=true;$("play").textContent="⏸ إيقاف";loop()}
+  $("play").onclick=function(){if(playing){aud.pause();cancelAnimationFrame(raf);playing=false;this.textContent="▶ تشغيل بالصوت"}else start()};
+  $("replay").onclick=start;
+}
+</script>
