@@ -62,7 +62,7 @@ open(OUT+'/app/sw.js','w',encoding='utf-8').write(sw)
 def page(src,dst,path,title):
     s=open(src,encoding='utf-8').read()
     if GC:
-        js='<script>(function(){try{if(navigator.doNotTrack==="1")return;var u="https://%s.goatcounter.com/count?p=%s&t=%s&s="+(screen.width||0)+(document.referrer&&document.referrer.indexOf(location.host)<0?"&r="+encodeURIComponent(document.referrer.split("?")[0].slice(0,200)):"")+"&rnd="+Math.random().toString(36).slice(2);if(navigator.sendBeacon)navigator.sendBeacon(u);else{var i=new Image();i.src=u;}}catch(e){}})();</script>' % (GC, path, title)
+        js='<script>(function(){try{if(navigator.doNotTrack==="1")return;var u="https://%s.goatcounter.com/count?p=%s&t=%s&s="+(screen.width||0)+(document.referrer&&document.referrer.indexOf(location.host)<0?"&r="+encodeURIComponent(document.referrer.split("?")[0].slice(0,200)):"")+"&rnd="+Math.random().toString(36).slice(2);var m=location.search.match(/[?&](utm_campaign|utm_source|ref)=([\\w.-]{1,40})/);if(m)u+="&q="+encodeURIComponent(m[1]+"="+m[2]);if(navigator.sendBeacon)navigator.sendBeacon(u);else{var i=new Image();i.src=u;}}catch(e){}})();</script>' % (GC, path, title)
         s=s.replace('<!--GC-->',js)
         if "connect-src 'self'" in s: s=s.replace("connect-src 'self'", "connect-src 'self' https://%s.goatcounter.com" % GC, 1)
         else: s=__import__('re').sub(r"(content=\"default-src 'none';)", r"\1 connect-src https://%s.goatcounter.com;" % GC, s, count=1)

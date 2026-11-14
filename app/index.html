@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#103B3C">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self'; connect-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self'; connect-src 'self' https://khutwa.goatcounter.com; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="خُطوة: نسبة المذاكرة من المنهج والحضور لطلاب الثانوي. Created by Add Value.">
 <link rel="manifest" href="manifest.webmanifest">
@@ -1055,7 +1055,7 @@ var STAGES = {
 }
 };
 var CFG = {
- key:"khutwa-v1", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, gc:"", siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
+ key:"khutwa-v1", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, gc:"khutwa", siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
  evalDefault:[], evalLocked:false, monthlyDefault:false,
  setupText:"كل درس بيتذاكر على 4 خطوات: 🎧 تسمعي، 💡 تفهمي، ✍️ تحلي، 🔁 تراجعي. اختاري سنتك وشعبتك، والتطبيق هيجهزلك المنهج كله.",
  attInfo:["الحضور المنتظم بيخليكي ماشية مع الشرح أول بأول، ومش هتتراكم عليكي الدروس.","لو فيه أيام لازم تحضريها (تقييمات أو امتحانات أو حصص مهمة)، حدديها من الإعدادات كأيام تقييم ⭐ وهتظهر ليها نسبة لوحدها.","تأكدي من قواعد الحضور ونسب التقييمات المطلوبة من مدرستك، لأنها ممكن تتعدل."],
@@ -1307,6 +1307,7 @@ function stat(path, isEvent, title){
     if(!CFG.gc || S.noStats || navigator.doNotTrack==="1" || !/^https?:$/.test(location.protocol)) return;
     var u = "https://"+CFG.gc+".goatcounter.com/count?p="+encodeURIComponent(path)+(isEvent?"&e=true":"")+"&t="+encodeURIComponent(title||path)+"&s="+(screen.width||0)+"&rnd="+Math.random().toString(36).slice(2);
     if(!isEvent && document.referrer && document.referrer.indexOf(location.host)<0) u += "&r="+encodeURIComponent(document.referrer.split("?")[0].slice(0,200));
+    if(!isEvent){ var m=location.search.match(/[?&](utm_campaign|utm_source|ref)=([\w.-]{1,40})/);if(m)u+="&q="+encodeURIComponent(m[1]+"="+m[2]); }
     if(navigator.sendBeacon) navigator.sendBeacon(u); else { var i = new Image(); i.src = u; }
   }catch(e){}
 }

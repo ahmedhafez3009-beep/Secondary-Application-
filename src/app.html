@@ -764,6 +764,7 @@ function stat(path, isEvent, title){
     if(!CFG.gc || S.noStats || navigator.doNotTrack==="1" || !/^https?:$/.test(location.protocol)) return;
     var u = "https://"+CFG.gc+".goatcounter.com/count?p="+encodeURIComponent(path)+(isEvent?"&e=true":"")+"&t="+encodeURIComponent(title||path)+"&s="+(screen.width||0)+"&rnd="+Math.random().toString(36).slice(2);
     if(!isEvent && document.referrer && document.referrer.indexOf(location.host)<0) u += "&r="+encodeURIComponent(document.referrer.split("?")[0].slice(0,200));
+    if(!isEvent){ var m=location.search.match(/[?&](utm_campaign|utm_source|ref)=([\w.-]{1,40})/);if(m)u+="&q="+encodeURIComponent(m[1]+"="+m[2]); }
     if(navigator.sendBeacon) navigator.sendBeacon(u); else { var i = new Image(); i.src = u; }
   }catch(e){}
 }
