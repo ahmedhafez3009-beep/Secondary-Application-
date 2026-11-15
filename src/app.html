@@ -1646,7 +1646,7 @@ function showSetup(){
   g1();
   $("setupNext1").onclick = function(){ name = cleanStr($("setupName").value,20).trim(); renderStages(); show(1); };
   function renderStages(){
-    $("setupStages").innerHTML = Object.keys(STAGES).map(function(k){ var s = STAGES[k]; return '<div class="opt'+(stage===k?" on":"")+'" data-k="'+k+'"><span class="e">'+({e4:"🧩",e5:"🧭",e6:"🚀",p1:"✏️",p2:"📏",p3:"🎯",a1:"🌱",b2:"🌿",g2:"🌳",b3:"🎓",g3:"🏆"}[k]||"📘")+'</span><div><b>'+esc(s.label)+'</b><div class="muted">'+esc(s.sub)+'</div></div></div>'; }).join("");
+    $("setupStages").innerHTML = Object.keys(STAGES).map(function(k){ var s = STAGES[k]; return '<div class="opt'+(stage===k?" on":"")+'" data-k="'+k+'"><span class="e">'+({e1:"🖍️",e2:"🎈",e3:"⭐",e4:"🧩",e5:"🧭",e6:"🚀",p1:"✏️",p2:"📏",p3:"🎯",a1:"🌱",b2:"🌿",g2:"🌳",b3:"🎓",g3:"🏆"}[k]||"📘")+'</span><div><b>'+esc(s.label)+'</b><div class="muted">'+esc(s.sub)+'</div></div></div>'; }).join("");
     var os = $("setupStages").querySelectorAll(".opt"); for(var i=0;i<os.length;i++){ os[i].onclick = function(){ if(stage!==this.getAttribute("data-k")) track = ""; stage = this.getAttribute("data-k"); for(var j=0;j<os.length;j++) os[j].classList.toggle("on", os[j]===this); $("setupNext2").disabled = false; }; }
     $("setupNext2").disabled = !stage;
   }
