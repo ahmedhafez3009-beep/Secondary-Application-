@@ -181,6 +181,18 @@ nav.bottom button.on .e svg{stroke-width:2.3}
 .info li{margin-bottom:4px}
 .center{text-align:center}
 [hidden]{display:none!important}
+.vsw{position:absolute;top:50px;left:14px;z-index:2;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.12);color:var(--on-hero);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation}
+.vsw.hold{background:rgba(255,255,255,.35)}
+.kidhero{display:flex;align-items:center;gap:14px;border-color:var(--accent2)}
+.kidhero .em{font-size:52px;line-height:1}
+.kidhero b{font-size:20px;display:block}
+.kidhero .st{font-size:28px;font-weight:800;color:var(--accent2)}
+body.kid .card:has(> h3[data-ring]),body.kid #statGrid,body.kid #rangeCard,body.kid .card.chart,body.kid #paceCard,body.kid #backupNudge,body.kid #restoreCard,body.kid #weekSend,body.kid #stTotalBox,body.kid #nav [data-p=plan],body.kid #nav [data-p=att],body.kid #nav [data-p=set],body.kid #subjSub{display:none!important}
+body.kid .task{padding:12px 0}
+body.kid .task .chk{width:58px;height:58px;font-size:28px;flex:0 0 58px}
+body.kid .task b{font-size:18px}
+body.kid h3{font-size:18px}
+body.kid .quote .tx{font-size:19px}
 .tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:12px}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 12px;text-align:right;font:inherit;color:var(--ink);cursor:pointer;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:2px;min-height:86px}
 .tile .e{font-size:22px}.tile b{font-size:15px}.tile span{font-size:12.5px;color:var(--muted)}
@@ -216,6 +228,7 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
 <header class="top">
   <div class="wrap">
     <div class="brandbar"><button class="brandbtn" type="button" id="openStory" aria-label="الرئيسية"><svg viewBox="0 0 512 512" aria-hidden="true"><rect width="512" height="512" rx="116" fill="#103B3C"/><rect x="330" y="350" width="90" height="64" rx="12" fill="#7FB7E8"/><rect x="246" y="280" width="96" height="134" rx="12" fill="#F5C26B"/><rect x="162" y="210" width="96" height="204" rx="12" fill="#6FD3B0"/><rect x="92" y="140" width="82" height="274" rx="12" fill="#F4F1E8"/><circle cx="133" cy="86" r="32" fill="#F2A541"/></svg><b>خُطوة</b></button><span class="muted" style="color:inherit;opacity:.7;font-size:12px" id="stageTag"></span></div>
+    <button type="button" class="vsw" id="viewSw" hidden></button>
     <p class="hi" id="hello"></p>
     <div class="meta" id="meta"></div>
     <div class="lvl"><span class="em" id="lvlEm">🌱</span><div style="flex:1;min-width:0"><div style="display:flex;justify-content:space-between;font-size:13.5px"><b id="lvlName">بذرة</b><span id="lvlPts" class="en"></span></div><div class="bar"><i id="lvlBar" style="width:0"></i></div></div></div>
@@ -232,6 +245,7 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
     <div class="tx" id="qTx"></div>
     <div class="by" id="qBy"></div>
   </div>
+  <div class="card kidhero" id="kidHero" hidden></div>
   <div class="nudge" id="nudge"></div>
   <div class="card" id="examBanner" hidden style="border-color:var(--accent2);display:flex;gap:12px;align-items:center"></div>
   <div class="card" id="weekSend" hidden style="border-color:var(--accent)">
@@ -245,7 +259,7 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
   </div>
 
   <div class="card">
-    <h3>📊 ذاكرتي كام % من المنهج؟</h3>
+    <h3 id="ringTitle" data-ring>📊 ذاكرتي كام % من المنهج؟</h3>
     <div class="ringwrap">
       <div class="ring" id="ring"></div>
       <div class="steps-legend" id="legend"></div>
@@ -253,18 +267,18 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
     <div class="muted" style="margin-top:8px">كل درس فيه 4 خطوات: 🎧 استماع، 💡 فهم، ✍️ حل، 🔁 مراجعة. <span id="weightNote"></span></div>
   </div>
 
-  <div class="grid2" style="margin-bottom:12px;grid-template-columns:1fr 1fr 1fr">
+  <div class="grid2" id="statGrid" style="margin-bottom:12px;grid-template-columns:1fr 1fr 1fr">
     <div class="stat"><div class="v" id="stDone">0</div><div class="l">درس خلص</div></div>
     <div class="stat"><div class="v" id="stLeft">0</div><div class="l">درس فاضل</div></div>
     <div class="stat"><div class="v" id="stStreak">0</div><div class="l">🔥 يوم ورا بعض</div></div>
   </div>
-  <div class="stat" style="margin-bottom:12px;display:flex;align-items:center;gap:12px;text-align:right"><div class="v" id="stTotalDays" style="min-width:56px;text-align:center">0</div><div style="flex:1;min-width:0"><div style="font-weight:700">📚 إجمالي أيام المذاكرة</div><div class="l" id="stTotalSub"></div></div></div>
-  <div class="card" id="backupNudge" style="border-color:var(--accent2)" hidden><h3>💾 احفظي نسخة من تقدمك</h3><div class="muted" id="backupNudgeTx" style="margin-bottom:8px"></div><div class="row"><button class="btn" type="button" id="bExport2">⬇️ نزّلي نسخة دلوقتي</button><button class="btn ghost" type="button" id="bLater">بعدين</button></div></div>
+  <div class="stat" id="stTotalBox" style="margin-bottom:12px;display:flex;align-items:center;gap:12px;text-align:right"><div class="v" id="stTotalDays" style="min-width:56px;text-align:center">0</div><div style="flex:1;min-width:0"><div style="font-weight:700">📚 إجمالي أيام المذاكرة</div><div class="l" id="stTotalSub"></div></div></div>
+  <div class="card" id="backupNudge" style="border-color:var(--accent2)" hidden><h3 id="bkTitle">💾 احفظي نسخة من تقدمك</h3><div class="muted" id="backupNudgeTx" style="margin-bottom:8px"></div><div class="row"><button class="btn" type="button" id="bExport2">⬇️ نزّلي نسخة دلوقتي</button><button class="btn ghost" type="button" id="bLater">بعدين</button></div></div>
   <div class="card" id="restoreCard" hidden><h3>🔄 بياناتك اختفت؟</h3><div class="muted" style="margin-bottom:8px">لو كنتي بتستخدمي التطبيق قبل كده وتقدمك مش ظاهر، رجّعيه من آخر نسخة احتياطية نزّلتيها.</div><button class="btn" type="button" id="bImport2">⬆️ رجّعي نسخة</button></div>
 
   <div class="card" id="rangeCard">
     <h3>🗓️ تقرير الفترة</h3>
-    <div class="muted" style="margin-bottom:6px">اختاري الفترة اللي عايزة تشوفي تقدمك فيها، من أي يوم لأي يوم.</div>
+    <div class="muted" id="rIntro" style="margin-bottom:6px">اختاري الفترة اللي عايزة تشوفي تقدمك فيها، من أي يوم لأي يوم.</div>
     <div class="tabs" id="rPresets" style="margin-bottom:8px"></div>
     <div class="grid2">
       <label class="muted">من<input type="date" id="rFrom"></label>
@@ -275,8 +289,8 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
   </div>
 
   <div class="card">
-    <h3>📚 تقدمك في كل مادة</h3>
-    <div class="muted" style="margin-bottom:2px">النسبة الكلية، وجنبها اللي زوّدتيه في الفترة المختارة.</div>
+    <h3 id="subjTitle">📚 تقدمك في كل مادة</h3>
+    <div class="muted" id="subjSub" style="margin-bottom:2px">النسبة الكلية، وجنبها اللي زوّدتيه في الفترة المختارة.</div>
     <div id="subjList"></div>
   </div>
 
@@ -288,12 +302,12 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
 
   <div class="card">
     <h3 id="todayTitle">✅ مهام النهارده</h3>
-    <div class="muted" style="margin-bottom:4px">الخطوة الجاية في كل مادة. علّمي عليها لما تخلّصيها.</div>
+    <div class="muted" id="todaySub" style="margin-bottom:4px">الخطوة الجاية في كل مادة. علّمي عليها لما تخلّصيها.</div>
     <div id="today"></div>
   </div>
 
   <div class="card chart">
-    <h3>📅 خطواتك في الفترة المختارة</h3>
+    <h3 id="chTitle">📅 خطواتك في الفترة المختارة</h3>
     <div id="chartDays"></div>
   </div>
 
@@ -372,8 +386,11 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
     <input type="text" id="sName" maxlength="20">
     <div style="height:10px"></div>
     <div style="height:10px"></div>
-    <label class="muted">نكلّمك إزاي؟</label>
+    <label class="muted" id="sGQ">نكلّمك إزاي؟</label>
     <div class="seg" id="sGender" style="margin-top:4px"><button type="button" data-g="m">👦 ولد</button><button type="button" data-g="f">👧 بنت</button></div>
+    <div class="muted" style="margin-top:10px">مين بيستخدم التطبيق؟</div>
+    <div class="seg" id="sWho" style="margin-top:4px"><button type="button" data-w="self">🎒 الطالب نفسه</button><button type="button" data-w="parent">👪 ولي الأمر</button></div>
+    <div class="seg" id="sPG" style="margin-top:6px"><button type="button" data-pg="f">👩 الأم</button><button type="button" data-pg="m">👨 الأب</button></div>
     <div style="height:10px"></div>
     <label class="muted">السنة الدراسية</label>
     <select id="sStage"></select>
@@ -554,6 +571,7 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
   <button data-p="curr" type="button"><span class="e"><svg viewBox="0 0 24 24"><path d="M3 5h6a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H3z"/><path d="M21 5h-6a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h7z"/></svg></span>المنهج</button>
   <button data-p="plan" type="button"><span class="e"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span>الخطة</button>
   <button data-p="att" type="button"><span class="e"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><path d="M9 15l2 2 4-4"/></svg></span>الحضور</button>
+  <button data-p="badges" type="button" id="navStars" hidden><span class="e"><svg viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg></span>نجومي</button>
   <button data-p="set" type="button"><span class="e"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg></span>المزيد</button>
 </nav>
 
@@ -562,10 +580,13 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
     <div class="stepdots" id="setupDots"><i></i><i></i><i></i><i></i></div>
     <div id="setupS1">
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="width:44px;height:44px;flex:0 0 44px" id="setupLogo"></span><h2 style="margin:0" id="setupHi">أهلًا في خُطوة</h2></div>
-      <p class="muted" style="margin-top:0">كل درس بيتذاكر على 4 خطوات: 🎧 سماع، 💡 فهم، ✍️ حل، 🔁 مراجعة. وخُطوة بتحسب نسبة المذاكرة من المنهج، واللي فاضل، والحضور، يوم بيوم.</p>
-      <label class="muted" for="setupName">الاسم (بيتحفظ على الموبايل بس)</label>
+      <p class="muted" style="margin-top:0">كل درس بيتذاكر على 4 خطوات: 🎧 استماع، 💡 فهم، ✍️ حل، 🔁 مراجعة. وخُطوة بتحسب نسبة المذاكرة من المنهج، واللي فاضل، والحضور، يوم بيوم.</p>
+      <div class="muted" style="margin-bottom:4px">مين اللي هيستخدم خُطوة؟</div>
+      <div class="seg" id="setupWho"><button type="button" data-w="self">🎒 أنا اللي بذاكر</button><button type="button" data-w="parent">👪 أنا ولي الأمر</button></div>
+      <div id="setupPG" hidden><div class="muted" style="margin:10px 0 4px">وحضرتك؟</div><div class="seg" id="setupPGs"><button type="button" data-pg="f">👩 الأم</button><button type="button" data-pg="m">👨 الأب</button></div></div>
+      <label class="muted" for="setupName" id="setupNameL" style="display:block;margin-top:12px">الاسم (بيتحفظ على الموبايل بس)</label>
       <input type="text" id="setupName" maxlength="20" style="margin:4px 0 12px">
-      <div class="muted" style="margin-bottom:4px">نكلّمك إزاي؟</div>
+      <div class="muted" style="margin-bottom:4px" id="setupGQ">نكلّمك إزاي؟</div>
       <div class="seg" id="setupGender"><button type="button" data-g="m">👦 ولد</button><button type="button" data-g="f">👧 بنت</button></div>
       <button class="btn" id="setupNext1" type="button" style="width:100%;margin-top:14px" disabled>التالي</button>
     </div>
@@ -609,7 +630,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "أولى ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · رياضيات",
 "icon": "📒",
 "meta": "",
@@ -662,7 +683,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تانية ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات",
 "icon": "📒",
 "meta": "",
@@ -716,7 +737,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تالتة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات",
 "icon": "📒",
 "meta": "",
@@ -770,7 +791,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "رابعة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📙",
 "meta": "",
@@ -826,7 +847,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "خامسة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📙",
 "meta": "",
@@ -882,7 +903,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "سادسة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📙",
 "meta": "",
@@ -938,7 +959,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "أولى إعدادي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📗",
 "meta": "",
@@ -994,7 +1015,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تانية إعدادي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📗",
 "meta": "",
@@ -1050,7 +1071,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تالتة إعدادي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📗",
 "meta": "",
@@ -1632,6 +1653,40 @@ var QUOTES = [
 <script>
 (function(){
 "use strict";
+var KIDQ = [
+"كل درس [بتخلّصه|بتخلّصيه] بيجيبلك نجوم جديدة ⭐",
+"[انت شاطر|انتي شاطرة] يا {N}، وكل يوم [بتتعلم|بتتعلمي] حاجة جديدة 🌱",
+"خطوة صغيرة كل يوم بتطلّعك السلّم كله لفوق 🪜",
+"الغلط مش عيب. الغلط بيعلّمنا 💡",
+"ربع ساعة تركيز، وبعدها [تلعب|تلعبي] براحتك 🎈",
+"[اقرا|اقري] بصوت عالي، ودانك كمان بتذاكر [معاك|معاكي] 🎧",
+"لو الدرس صعب، [خد|خدي] نفس عميق [وابدأ|وابدئي] من الأول 🌬️",
+"السؤال للمدرّس شطارة، مش كسوف 🙋",
+"[رتّب|رتّبي] شنطتك بالليل، الصبح يبقى أسهل 🎒",
+"النوم بدري بيخلّي مخك صاحي في الفصل 😴",
+"كل حرف [بتكتبه|بتكتبيه] بإيدك بيفضل في دماغك ✍️",
+"[اشرب|اشربي] مية [وكُل|وكُلي] فطارك قبل المدرسة 🥪",
+"المراجعة بتخلّي الدرس صاحبك ✨",
+"النهارده أحسن من امبارح، وبكرة هيبقى أحلى 🌈",
+"[ساعد|ساعدي] [صاحبك|صاحبتك] في درس، [هتفهمه|هتفهميه] [انت|انتي] كمان أحسن 🤝",
+"يا {N}، النجوم [مستنياك|مستنياكي] النهارده! 🌟"];
+var PTIPS = [
+"ربع ساعة مذاكرة كل يوم أحسن من ساعتين يوم الإجازة بس ⏱️",
+"<امدح|امدحي> المجهود، مش الدرجة بس. «[ذاكرت|ذاكرتي] كويس النهارده» بتفرق أكتر من «[جبت|جبتي] كام؟» 💛",
+"مكان ثابت للمذاكرة، من غير تلفزيون، والموبايل للتطبيق بس 📵",
+"<اسأل|اسألي> {N}: «إيه أحلى حاجة [اتعلمتها|اتعلمتيها] النهارده؟» بدل «[ذاكرت|ذاكرتي]؟» 🗣️",
+"النوم بدري جزء من المذاكرة. اللي بينام متأخر مش بيركّز 😴",
+"لو الدرس صعب، <قسّمه|قسّميه> حتت صغيرة: سماع، بعدين فهم، بعدين حل ✂️",
+"<سيب|سيبي> {N} [يعلّم|تعلّم] على الخطوة بإيد[ه|ها]. إحساس [إنه عملها|إنها عملتها] لوحد[ه|ها] بيفرق 👆",
+"<قارن|قارني> {N} بنفس[ه|ها] امبارح، مش بزمايل[ه|ها] 📈",
+"الغلط فرصة. <اكتب|اكتبي> السؤال اللي [غلط|غلطت] فيه في «كشكول الغلطات» وارجعوله بعد كام يوم 📝",
+"<ابعت|ابعتي> تقرير الأسبوع لحد تاني بيتابع مع {N}، عشان المتابعة تبقى مشتركة 📤",
+"كل ربع ساعة تركيز تستاهل 5 دقايق راحة 🎈",
+"يوم التقييم مش يوم خوف. مراجعة هادية قبلها بأسبوع أحسن من سهر الليلة الأخيرة 📆",
+"القراية بصوت عالي مع {N} كل يوم شوية بتساعد في العربي 📖",
+"لو <لاحظت|لاحظتي> حاجة مش مفهومة، <كلّم|كلّمي> المدرّس بدري. الحل بدري أسهل 🏫",
+"النجمة اللي {N} [بياخدها|بتاخدها] في التطبيق، <احتفل|احتفلي> بيها [معاه|معاها] 🌟",
+"مش لازم <تكون|تكوني> <مدرّس|مدرّسة>. وجودك جنب {N} وقت المذاكرة لوحده بيفرق 🤍"];
 var STEPS = [["l","🎧","استماع"],["u","💡","فهم"],["s","✍️","حل"],["r","🔁","مراجعة"]];
 var KEY = CFG.key;
 var DAYN = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
@@ -1642,7 +1697,7 @@ var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! 
 
 /* ---------- state ---------- */
 var memStore = null;
-function defState(){ return {v:5,noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
+function defState(){ return {v:5,who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
 function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
 var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
@@ -1658,6 +1713,7 @@ function sanitize(s){
   o.name = cleanStr(s.name, 20).trim();
   o.stage = typeof s.stage==="string" && STAGES.hasOwnProperty(s.stage) ? s.stage : "";
   o.gender = s.gender==="m" || s.gender==="f" ? s.gender : "";
+  o.who = s.who==="parent" ? "parent" : "self"; o.pg = s.pg==="m" || s.pg==="f" ? s.pg : ""; o.view = ["std","kid","parent"].indexOf(s.view)>=0 ? s.view : "";
   var stg = STAGES[o.stage];
   o.track = stg && typeof s.track==="string" && stg.sections.hasOwnProperty(s.track) ? s.track : "";
   o.setup = s.setup===true && !!o.track;
@@ -1789,11 +1845,19 @@ window.addEventListener("storage", function(e){ if(e.key!==KEY || !e.newValue) r
 
 
 /* ---- he/she wording: texts are written for a girl and switched word by word for a boy ---- */
+function isPrim(){ return /^e\d$/.test(S.stage||""); }
+function V(){ if(S.view==="kid" && isPrim()) return "kid"; if(S.view==="std" || S.view==="parent") return S.view; return S.who==="parent" ? "parent" : (isPrim() ? "kid" : "std"); }
+function ag(){ return V()==="parent" ? (S.pg||"f") : S.gender; }
+function cg(m, f){ return S.gender==="m" ? m : f; }
+function kidName(){ return S.name || cg("بطلنا","بطلتنا"); }
+function rr(s){ return String(s).replace(/<([^|<>]*)\|([^<>]*)>/g, function(x,a,b){ return S.pg==="m" ? a : b; }).replace(/\[([^|\]]*)\|([^\]]*)\]/g, function(x,a,b){ return cg(a,b); }).replace(/\{N\}/g, kidName()); }
+function pt(std, par){ return V()==="parent" ? rr(par) : std; }
+function own2(el, v){ if(!el) return; if(V()==="std") el.removeAttribute("data-nog"); else el.setAttribute("data-nog",""); if(v!=null) el.textContent = v; }
 var GMAP = {"ابعتيلهم": "ابعتلهم", "تدوسي": "تدوس", "احفظي": "احفظ", "اكتبيه": "اكتبه", "خدي": "خد", "شاركي": "شارك", "الصقي": "الصق", "توصلي": "توصل", "وصلتي": "وصلت", "ارفعي": "ارفع", "ركّزي": "ركّز", "حدديها": "حددها", "اختبري": "اختبر", "عرفتيها": "عرفتها", "غلطتي": "غلطت", "تعرفيه": "تعرفه", "سجّلي": "سجّل", "ضيفيها": "ضيفها", "راجعتيه": "راجعته", "تراجعيها": "تراجعها", "متتنسيش": "متتنساش", "معاكي": "معاك", "نزّلناها": "نزّلناها", "ابعتي": "ابعت", "تحدّثيه": "تحدّثه", "تحبي": "تحب", "مستعدة": "مستعد", "عايزة": "عايز", "دوسي": "دوس", "اكتبيه": "اكتبه", "خلّصتي": "خلّصت", "ابتسمي": "ابتسم", "احتفظي": "احتفظ", "واحتفظي": "واحتفظ", "احذفي": "احذف", "احفظي": "احفظ", "اختاري": "اختار", "ارجعي": "ارجع", "استخدمي": "استخدم", "اعرضي": "اعرض", "افتكري": "افتكر", "اكتبي": "اكتب", "واكتبي": "واكتب", "اكتبيه": "اكتبه", "امسحي": "امسح", "انتي": "انت", "وانتي": "وانت", "انسخي": "انسخ", "انسخيه": "انسخه", "بتاعة": "بتاع", "بتذاكري": "بتذاكر", "بتذاكريه": "بتذاكره", "بتستخدمي": "بتستخدم", "بتفتحيه": "بتفتحه", "بطلة": "بطل", "بيخليكي": "بيخليك", "بيكي": "بيك", "بيوريكي": "بيوريك", "ابدأي": "ابدأ", "وابدأي": "وابدأ", "تبدأي": "تبدأ", "تبطّلي": "تبطّل", "تبقي": "تبقى", "تأكدي": "تأكد", "اتأكدي": "اتأكد", "تحذفي": "تحذف", "تحسي": "تحس", "تحضريها": "تحضرها", "تخلّصي": "تخلّص", "تخلّصيها": "تخلّصها", "تذاكري": "تذاكر", "تراجعي": "تراجع", "ترتاحي": "ترتاح", "ترجّعي": "ترجّع", "ترجعيه": "ترجعه", "تزوّدي": "تزوّد", "تشوفي": "تشوف", "تشيلي": "تشيل", "تعلّمي": "تعلّم", "تعملي": "تعمل", "تغيريها": "تغيرها", "تقدري": "تقدر", "تكوني": "تكون", "ثقي": "ثق", "جامدة": "جامد", "جهّزي": "جهّز", "حابة": "حابب", "حاسة": "حاسس", "حددي": "حدد", "حدديها": "حددها", "حددتيه": "حددته", "حضرتي": "حضرت", "حضرتيه": "حضرته", "حطيتي": "حطيت", "خلّصتي": "خلّصت", "خلّصتيه": "خلّصته", "خلّصتيها": "خلّصتها", "دوسي": "دوس", "ذاكرتي": "ذاكرت", "ذاكرتيه": "ذاكرته", "ذاكرتيها": "ذاكرتها", "راجعي": "راجع", "رجّعي": "رجّع", "رجّعيه": "رجّعه", "رجّعيها": "رجّعها", "روحتي": "روحت", "زوّدتيه": "زوّدته", "زوّدتي": "زوّدت", "سجّلي": "سجّل", "شطورة": "شاطر", "شيليه": "شيله", "شيليها": "شيلها", "ضيفي": "ضيف", "ضيفيها": "ضيفها", "عايزة": "عايز", "عدّليها": "عدّلها", "فعدّليها": "فعدّلها", "عدّلي": "عدّل", "عليكي": "عليك", "علّمي": "علّم", "علّميها": "علّمها", "عملتي": "عملت", "عملتيها": "عملتها", "غبتي": "غبت", "غيرتي": "غيرت", "غيّرتي": "غيّرت", "فذاكري": "فذاكر", "قارني": "قارن", "قرّبتي": "قرّبت", "قسّميه": "قسّمه", "قسّميها": "قسّمها", "كمّلي": "كمّل", "كنتي": "كنت", "ليكي": "ليك", "ماشية": "ماشي", "متأكدة": "متأكد", "محتاجة": "محتاج", "مستعدة": "مستعد", "مستواكي": "مستواك", "مشتتة": "مشتت", "نزّلتيها": "نزّلتها", "نزّلتي": "نزّلت", "نزّلي": "نزّل", "واسألي": "واسأل", "مابدأتيش": "مابدأتش", "ماتسيبيهوش": "ماتسيبهوش", "ماتقارنيش": "ماتقارنش", "ماتنسيش": "ماتنساش", "مانزّلتيش": "مانزّلتش", "متفوقة": "متفوق", "نجمة": "نجم", "ذاكرتيش": "ذاكرتش", "اختبري": "اختبر", "تختاري": "تختار", "اقري": "اقرا", "ابعتي": "ابعت", "افتحي": "افتح", "خليكي": "خليك", "اعملي": "اعمل", "جربي": "جرب", "بتحبي": "بتحب", "تحبي": "تحب", "ترجعي": "ترجع", "تحطي": "تحط", "تكتبي": "تكتب", "تدوسي": "تدوس", "تسمعي": "تسمع", "تفهمي": "تفهم", "تحلي": "تحل", "تنزّلي": "تنزّل", "غيري": "غير", "تفضلي": "تفضل", "ماتخافيش": "ماتخافش", "اسألي": "اسأل", "ارتاحي": "ارتاح", "نامي": "نام", "حاولي": "حاول", "اسمعي": "اسمع", "افهمي": "افهم", "حلي": "حل", "ابقي": "ابقى", "قوليلي": "قولي", "بيكى": "بيك"};
 var GRX = new RegExp("(^|[^\\u0600-\\u06FF])(" + Object.keys(GMAP).sort(function(a,b){ return b.length-a.length; }).join("|") + ")(?=[^\\u0600-\\u06FF]|$)", "g");
-function gx(s){ if(S.gender!=="m" || typeof s!=="string") return s; return s.replace(GRX, function(m, pre, w){ return pre + GMAP[w]; }); }
+function gx(s){ if(ag()!=="m" || typeof s!=="string") return s; return s.replace(GRX, function(m, pre, w){ return pre + GMAP[w]; }); }
 function genderize(root){
-  if(!root || S.gender!=="m") return;
+  if(!root || ag()!=="m") return;
   var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode:function(n){ for(var e=n.parentNode; e && e!==root.parentNode; e=e.parentNode){ if(e.nodeType===1 && (e.hasAttribute("data-nog") || e.tagName==="SCRIPT" || e.tagName==="STYLE")) return NodeFilter.FILTER_REJECT; } return NodeFilter.FILTER_ACCEPT; }});
   var n; while((n = w.nextNode())){ var v = gx(n.nodeValue); if(v!==n.nodeValue) n.nodeValue = v; }
   var ph = root.querySelectorAll("[placeholder]"); for(var i=0;i<ph.length;i++){ var a = ph[i].getAttribute("placeholder"), b = gx(a); if(a!==b) ph[i].setAttribute("placeholder", b); }
@@ -1922,13 +1986,13 @@ function studyStreak(){
 
 /* ---------- header ---------- */
 function renderHeader(){
-  $("hello").textContent = (S.name||CFG.name) ? "أهلًا يا "+(S.name||CFG.name)+" 👋" : "أهلًا بيكي 👋";
+  var vw = V(); $("hello").textContent = vw==="parent" ? "أهلًا 👋 بنتابع "+kidName()+" سوا" : (vw==="kid" ? "أهلًا يا "+kidName()+" 🌟" : ((S.name||CFG.name) ? "أهلًا يا "+(S.name||CFG.name)+" 👋" : "أهلًا بيكي 👋")); own2($("hello"));
   var h = new Date().getHours(), greet = h<12 ? "صباح الخير ☀️" : (h<18 ? "مساء الفل 🌤️" : "مساء النور 🌙");
   var sec = CFG.sections[S.track], tr = sec ? sec.meta : "";
   $("meta").textContent = greet+(tr?" · "+tr:"");
   $("stageTag").textContent = CFG.grade;
   var pts = points(), lv = level(pts);
-  $("lvlEm").textContent = lv.cur[1]; $("lvlName").textContent = "مستواكي: "+lv.cur[2];
+  $("lvlEm").textContent = lv.cur[1]; var lvn = vw==="std" ? lv.cur[2] : lv.cur[2].replace("بطلة",cg("بطل","بطلة")).replace("متفوقة",cg("متفوق","متفوقة")); $("lvlName").textContent = (vw==="parent" ? "مستوى "+kidName()+": " : (vw==="kid" ? rr("[مستواك|مستواكي]: ") : "مستواكي: "))+lvn; own2($("lvlName"));
   if(lv.nxt){ var span = lv.nxt[0]-lv.cur[0]; $("lvlBar").style.width = Math.min(100,(pts-lv.cur[0])/span*100)+"%"; $("lvlPts").textContent = pts+" / "+lv.nxt[0]+" ⭐"; }
   else { $("lvlBar").style.width="100%"; $("lvlPts").textContent = pts+" ⭐"; }
 }
@@ -1936,6 +2000,11 @@ function renderHeader(){
 /* ---------- home ---------- */
 function dayIndex(){ var d = new Date(); return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000); }
 function renderQuote(){
+  var vw = V(), tx0 = $("qTx");
+  if(vw!=="std"){ var L = vw==="kid" ? KIDQ : PTIPS, k = L[((dayIndex()+S.qOff)%L.length+L.length)%L.length];
+    if(vw==="parent" && !isPrim()) L = L.filter(function(x){ return !/نجمة|القراية|التقييم|كل ربع ساعة/.test(x); }), k = L[((dayIndex()+S.qOff)%L.length+L.length)%L.length];
+    $("qTag").textContent = vw==="kid" ? "🌟 كلمة "+cg("ليك","ليكي") : "💛 نصيحة لولي الأمر"; own2(tx0, rr(k)); tx0.className = "tx"; tx0.style.textAlign = ""; $("qBy").textContent = ""; return; }
+  tx0.removeAttribute("data-nog");
   var q = QUOTES[((dayIndex()+S.qOff)%QUOTES.length+QUOTES.length)%QUOTES.length];
   var tags = {"موقف":"📜 موقف ملهم","مثل":"🗣️ مثل","شعر":"✒️ بيت شعر","عبارة":"💬 عبارة اليوم","كلمة":"💜 كلمة ليكي","English":"🇬🇧 English quote"};
   $("qTag").textContent = tags[q[0]]||q[0];
@@ -1951,7 +2020,18 @@ function renderNudge(){
   else if(stepsToday===0) msg = "لسه مابدأتيش النهارده… خطوة واحدة بس تكفي تبدأي بيها 💪";
   else if(stepsToday<4) msg = "حلو! عملتي "+stepsToday+" خطوة النهارده. يلا واحدة كمان؟ ✨";
   else msg = "يوم قوي! "+stepsToday+" خطوة النهارده 🔥 ماتنسيش ترتاحي شوية.";
-  $("nudge").textContent = msg;
+  if(V()==="parent"){ var n = kidName();
+    if(isSchool(w) && !isEval(w) && !S.att[t] && new Date().getHours()>=14) msg = rr("🏫 "+n+" [راح|راحت] المدرسة النهارده؟ <سجّل|سجّلي> الحضور من صفحة الحضور.");
+    else if(isEval(w) && !S.att[t]) msg = rr("📌 النهارده يوم تقييم لـ"+n+". بعد ما [يرجع|ترجع] <سجّل|سجّلي> حضور[ه|ها] في صفحة الحضور.");
+    else if(isEval(tw)) msg = rr("📆 بكرة يوم تقييم. مراجعة خفيفة مع "+n+" النهارده كفاية.");
+    else if(stepsToday===0) msg = rr(n+" لسه [ماذاكرش|ماذاكرتش] النهارده. ربع ساعة سوا كفاية كبداية 💛");
+    else msg = rr(n+" [عمل|عملت] "+stepsW(stepsToday)+" النهارده 👏 ")+(S.pg==="m" ? cg("شجّعه","شجّعها") : cg("شجّعيه","شجّعيها"))+"، كلمة حلوة بتفرق.";
+  } else if(V()==="kid"){
+    if(stepsToday===0) msg = rr("يلا نبدأ! أول نجمة النهارده [مستنياك|مستنياكي] ⭐");
+    else if(stepsToday<4) msg = rr("برافو! "+stepsW(stepsToday)+" النهارده 👏 تيجي نعمل واحدة كمان؟");
+    else msg = rr("يوم جامد! "+stepsW(stepsToday)+" النهارده 🔥 [تستاهل|تستاهلي] [تلعب|تلعبي] شوية دلوقتي 🎈");
+  }
+  $("nudge").textContent = msg; own2($("nudge"));
 }
 function ringSVG(pct, color){
   var r=52, c=2*Math.PI*r, off=c*(1-pct/100);
@@ -1959,6 +2039,17 @@ function ringSVG(pct, color){
 }
 function renderHome(){
   renderQuote(); renderNudge();
+  var vw = V(), n = kidName();
+  own2($("ringTitle"), vw==="parent" ? rr("📊 "+n+" [ذاكر|ذاكرت] كام % من المنهج؟") : (vw==="kid" ? rr("📊 [خلّصت|خلّصتي] كام % من دروسك؟") : "📊 ذاكرتي كام % من المنهج؟"));
+  own2($("subjTitle"), vw==="parent" ? "📚 تقدم "+n+" في كل مادة" : (vw==="kid" ? "📚 موادي" : "📚 تقدمك في كل مادة"));
+  own2($("todaySub"), vw==="parent" ? rr("الخطوة الجاية في كل مادة. <علّم|علّمي> عليها، أو <سيب|سيبي> "+n+" [يعلّم|تعلّم] [بنفسه|بنفسها].") : (vw==="kid" ? rr("[دوس|دوسي] على الزرار لما [تخلّص|تخلّصي] الخطوة ⭐") : "الخطوة الجاية في كل مادة. علّمي عليها لما تخلّصيها."));
+  own2($("timeStart"), vw==="kid" ? "⏳ ربع ساعة تركيز" : (vw==="parent" ? rr("<ابدأ|ابدئي> مؤقت") : "ابدأي مؤقت"));
+  own2($("bkTitle"), pt("💾 احفظي نسخة من تقدمك","💾 <احفظ|احفظي> نسخة من تقدّم {N}"));
+  own2($("rIntro"), pt("اختاري الفترة اللي عايزة تشوفي تقدمك فيها، من أي يوم لأي يوم.","<اختار|اختاري> الفترة اللي <عايز|عايزة> <تشوف|تشوفي> فيها تقدّم {N}، من أي يوم لأي يوم."));
+  own2($("chTitle"), pt("📅 خطواتك في الفترة المختارة","📅 خطوات {N} في الفترة المختارة"));
+  own2($("subjSub"), pt("النسبة الكلية، وجنبها اللي زوّدتيه في الفترة المختارة.","النسبة الكلية، وجنبها اللي {N} [زوّده|زوّدته] في الفترة المختارة."));
+  var kh = $("kidHero"); kh.hidden = vw!=="kid";
+  if(vw==="kid"){ var pts = points(); kh.innerHTML = '<span class="em">'+cg("🦸‍♂️","🦸‍♀️")+'</span><div style="flex:1;min-width:0"><b>'+esc(rr("[يا بطل|يا بطلة]! النجوم بتاعتك"))+'</b><div class="st en">'+pts+' ⭐</div><div class="muted">'+esc(rr("كل خطوة [بتخلّصها|بتخلّصيها] بتجيبلك 10 نجوم ⭐"))+'</div></div>'; own2(kh); }
   var o = overall();
   $("ring").innerHTML = ringSVG(o.pct,"var(--accent)")+'<div class="c"><b class="en">'+Math.round(o.pct)+'%</b><span>من المنهج</span></div>';
   var colors = {l:"var(--s-l)",u:"var(--s-u)",s:"var(--s-s)",r:"var(--s-r)"};
@@ -1973,7 +2064,7 @@ function renderHome(){
   // subjects
   $("subjList").innerHTML = activeSubjects().map(function(sk){ var st = subjStats(sk,true), c = CURR[sk], tot1 = {}; tot1[sk] = st.total;
     var g = pctAt(R.to, allD, tot1, [sk]) - pctAt(d2s(addDays(R.f,-1)), allD, tot1, [sk]);
-    return '<div class="subj-row" data-sk="'+sk+'"><span class="ic">'+c.icon+'</span><div style="flex:1;min-width:0"><div class="nm">'+esc(c.name)+'</div><div class="pbar" style="margin-top:4px"><i style="width:'+st.pct.toFixed(1)+'%;background:'+c.color+'"></i></div><div class="muted" style="font-size:12px;margin-top:2px">'+st.done+' من '+st.topics+' درس خلص · فاضل '+(st.topics-st.done)+(g>0?' · <b style="color:var(--good)">+'+g.toFixed(1)+'% في الفترة</b>':'')+'</div></div><span class="pc en">'+Math.round(st.pct)+'%</span></div>'; }).join("");
+    return '<div class="subj-row" data-sk="'+sk+'"><span class="ic">'+c.icon+'</span><div style="flex:1;min-width:0"><div class="nm">'+esc(c.name)+'</div><div class="pbar" style="margin-top:4px"><i style="width:'+st.pct.toFixed(1)+'%;background:'+c.color+'"></i></div><div class="muted" style="font-size:12px;margin-top:2px">'+st.done+' من '+st.topics+' درس خلص · فاضل '+(st.topics-st.done)+(g>0 && V()!=="kid"?' · <b style="color:var(--good)">+'+g.toFixed(1)+'% في الفترة</b>':'')+'</div></div><span class="pc en">'+Math.round(st.pct)+'%</span></div>'; }).join("");
   var rows = $("subjList").querySelectorAll(".subj-row");
   for(var i=0;i<rows.length;i++){ rows[i].addEventListener("click",function(){ curSubj = this.getAttribute("data-sk"); curPart = firstOpenPart(curSubj); go("curr"); }); }
   var dueSend = (S.contacts||[]).length && (new Date().getDay()===S.reportDay ? S.lastReport!==today() : (!S.lastReport || daysTo(S.lastReport) <= -8));
@@ -1988,9 +2079,9 @@ function nextStepFor(sk){
   return null;
 }
 function renderToday(){
-  var box = $("today"), html = ""; $("todayTitle").textContent = gx(S.examMode ? "✅ مهام النهارده · وضع الامتحانات" : "✅ مهام النهارده");
+  var box = $("today"), html = ""; $("todayTitle").textContent = V()==="kid" ? "🌟 مهامي النهارده" : (V()==="parent" ? "✅ مهام "+kidName()+" النهارده" : gx(S.examMode ? "✅ مهام النهارده · وضع الامتحانات" : "✅ مهام النهارده")); own2($("todayTitle"));
   activeSubjects().forEach(function(sk){ var n = nextStepFor(sk), c = CURR[sk];
-    if(!n){ html += '<div class="task"><span class="chk" style="border-color:var(--good);color:var(--good)">🏁</span><div class="t"><b>'+esc(c.name)+'</b><span>خلّصتي كل المطلوب في المادة دي! 🎉</span></div></div>'; return; }
+    if(!n){ html += '<div class="task"><span class="chk" style="border-color:var(--good);color:var(--good)">🏁</span><div class="t"><b>'+esc(c.name)+'</b><span data-nog>'+esc(V()==="std" ? gx("خلّصتي كل المطلوب في المادة دي! 🎉") : (V()==="parent" ? rr(kidName()+" [خلّص|خلّصت] كل المطلوب في المادة دي 🎉") : rr("[خلّصت|خلّصتي] المادة دي كلها! 🏆")))+'</span></div></div>'; return; }
     html += '<div class="task"><button class="chk" type="button" data-id="'+n.t.id+'" data-s="'+n.s[0]+'" aria-label="تم">'+n.s[1]+'</button><div class="t"><b data-nog'+(isRTLText(n.t.title)?'':' class="en" style="text-align:right"')+'>'+esc(n.t.title)+'</b><span>'+c.icon+' '+esc(c.name)+' · الخطوة: '+n.s[2]+'</span></div></div>'; });
   box.innerHTML = html;
   var bs = box.querySelectorAll("button.chk");
@@ -2040,10 +2131,10 @@ function renderRange(){
   function st(v,l,extra){ return '<div class="stat"><div class="v">'+v+'</div><div class="l">'+l+'</div>'+(extra||"")+'</div>'; }
   $("rStats").innerHTML =
     st('<span class="en">+'+gain.toFixed(1)+'%</span>',"زيادة في نسبة المنهج")+
-    st(inR.length,"خطوة عملتيها")+
+    st(inR.length,pt("خطوة عملتيها","خطوة [عملها|عملتها] {N}"))+
     st('<span style="font-size:20px">'+fmtMin(minutesIn(R.from,R.to))+'</span>',"⏱ وقت المذاكرة")+
-    st(doneT,"درس خلّصتيه بالكامل")+
-    st(studyDays+' <span style="font-size:14px;color:var(--muted)">/ '+effDays+'</span>',"يوم ذاكرتي فيه")+
+    st(doneT,pt("درس خلّصتيه بالكامل","درس {N} [خلّصه|خلّصته] بالكامل"))+
+    st(studyDays+' <span style="font-size:14px;color:var(--muted)">/ '+effDays+'</span>',pt("يوم ذاكرتي فيه","يوم {N} [ذاكر|ذاكرت] فيه"))+
     st((inR.length/effDays).toFixed(1),"متوسط خطوات في اليوم")+
     st(Math.round(studyDays/effDays*100)+'%',"التزام بالمذاكرة")+
     st(aAll.pct===null?"—":'<span class="en">'+Math.round(aAll.pct)+'%</span>',"🏫 حضور المدرسة",'<div style="margin-top:4px">'+rateBadge(aAll.pct)+'</div>')+
@@ -2094,7 +2185,7 @@ function renderCharts(R){
 function renderPace(){ renderPace0(); try{ genderize($("pace")); }catch(e){} }
 function renderPace0(){
   var o = overall(), left = o.total - o.steps, box = $("pace");
-  if(!S.target){ box.innerHTML = '<div class="muted">حددي تاريخ تخلّصي فيه المنهج من الإعدادات، وهقولك محتاجة كام خطوة في اليوم.</div><button class="btn ghost sm" style="margin-top:8px" id="goSet">حددي التاريخ</button>'; $("goSet").addEventListener("click",function(){ go("set"); }); return; }
+  if(!S.target){ box.innerHTML = '<div class="muted" data-nog>'+esc(V()==="parent" ? rr("<حدد|حددي> تاريخ {N} [يخلّص|تخلّص] فيه المنهج من الإعدادات، وهقولك [محتاج|محتاجة] كام خطوة في اليوم.") : gx("حددي تاريخ تخلّصي فيه المنهج من الإعدادات، وهقولك محتاجة كام خطوة في اليوم."))+'</div><button class="btn ghost sm" style="margin-top:8px" id="goSet">حددي التاريخ</button>'; $("goSet").addEventListener("click",function(){ go("set"); }); return; }
   var t = new Date(); t = new Date(t.getFullYear(),t.getMonth(),t.getDate());
   var days = Math.round((s2d(S.target)-t)/86400000);
   if(left<=0){ box.innerHTML = '<b>🎉 خلّصتي المطلوب! فاضل المراجعة النهائية.</b>'; return; }
@@ -2255,6 +2346,9 @@ function renderSet(){
   $("sTrackLbl").textContent = CFG.sectionWord;
   $("sStage").innerHTML = Object.keys(STAGES).map(function(k){ return '<option value="'+k+'"'+(S.stage===k?" selected":"")+'>'+esc(STAGES[k].label)+'</option>'; }).join("");
   var gbs = $("sGender").querySelectorAll("button"); for(var gi=0;gi<gbs.length;gi++){ gbs[gi].classList.toggle("on", gbs[gi].getAttribute("data-g")===S.gender); gbs[gi].onclick = function(){ S.gender = this.getAttribute("data-g"); save(); renderAll(); }; }
+  var wbs = $("sWho").querySelectorAll("button"); for(var wi=0;wi<wbs.length;wi++){ wbs[wi].classList.toggle("on", wbs[wi].getAttribute("data-w")===S.who); wbs[wi].onclick = function(){ S.who = this.getAttribute("data-w"); if(S.who==="parent" && !S.pg) S.pg = "f"; S.view = ""; save(); renderAll(); }; }
+  $("sPG").hidden = S.who!=="parent"; own2($("sGQ"), S.who==="parent" ? "ولد ولا بنت؟" : "نكلّمك إزاي؟");
+  var pbs = $("sPG").querySelectorAll("button"); for(var pj=0;pj<pbs.length;pj++){ pbs[pj].classList.toggle("on", pbs[pj].getAttribute("data-pg")===S.pg); pbs[pj].onclick = function(){ S.pg = this.getAttribute("data-pg"); save(); renderAll(); }; }
   var sel = $("sTrack"); sel.innerHTML = Object.keys(CFG.sections).map(function(k){ var s = CFG.sections[k]; return '<option value="'+k+'"'+(S.track===k?" selected":"")+'>'+s.sub+' — '+s.label+'</option>'; }).join("");
   var DN = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"], sd = S.schoolDays||[0,1,2,3,4], ed = S.evalDays||[];
   $("sDays").innerHTML = DN.map(function(n,i){ return '<button type="button" data-w="'+i+'" class="'+((sd.indexOf(i)>=0||ed.indexOf(i)>=0)?"on":"")+'">'+n+'</button>'; }).join("");
@@ -2351,14 +2445,14 @@ function tmOn(){ return S.timer && S.timer.on; }
 function tmElapsed(){ var t = S.timer; if(!tmOn()) return 0; return (t.acc||0) + (t.paused ? 0 : Date.now() - t.startAt); }
 function tmLen(){ return (S.timer.phase==="b" ? TM.b : TM.w) * 60000; }
 function logMinutes(ms, sk){ var m = Math.floor(ms/60000); if(m<1) return 0; var d = today(); S.time[d] = S.time[d]||{}; var k = sk || "_"; S.time[d][k] = (S.time[d][k]||0) + m; return m; }
-function timerStart(tid, sk){ if(tmOn() && S.timer.phase==="w"){ logMinutes(Math.min(tmElapsed(), tmLen()), S.timer.sk); } S.timer = {on:true, tid:tid||"", sk:sk||"", phase:"w", startAt:Date.now(), acc:0, paused:false}; save(); tmTick(); toast("بدأت 25 دقيقة مذاكرة ⏱ ركّزي!"); }
+function timerStart(tid, sk){ if(tmOn() && S.timer.phase==="w"){ logMinutes(Math.min(tmElapsed(), tmLen()), S.timer.sk); } S.timer = {on:true, tid:tid||"", sk:sk||"", phase:"w", startAt:Date.now(), acc:0, paused:false}; save(); tmTick(); toast(V()==="kid" ? rr("⏳ يلا! ربع ساعة تركيز [يا بطل|يا بطلة]") : (V()==="parent" ? rr("⏱ المؤقت بدأ لـ{N}: "+TM.w+" دقيقة") : "بدأت "+TM.w+" دقيقة مذاكرة ⏱ ركّزي!")); }
 function timerStop(){ if(!tmOn()) return; var m = S.timer.phase==="w" ? logMinutes(Math.min(tmElapsed(), tmLen()), S.timer.sk) : 0; S.timer = {on:false}; save(); tmTick(); toast(m ? "اتسجل "+fmtMin(m)+" مذاكرة ✔" : "المؤقت وقف"); renderAll(); }
 function tmTick(){
   var bar = $("timerBar"); if(!tmOn()){ bar.hidden = true; document.body.classList.remove("timing"); return; }
   var t = S.timer, el = tmElapsed(), len = tmLen();
   if(el >= len){
     beep2();
-    if(t.phase==="w"){ logMinutes(len, t.sk); S.timer = {on:true, tid:t.tid, sk:t.sk, phase:"b", startAt:Date.now(), acc:0, paused:false}; save(); toast("خلّصتي 25 دقيقة 👏 خدي راحة 5 دقايق ☕"); renderAll(); }
+    if(t.phase==="w"){ logMinutes(len, t.sk); S.timer = {on:true, tid:t.tid, sk:t.sk, phase:"b", startAt:Date.now(), acc:0, paused:false}; save(); toast(V()==="kid" ? rr("[شاطر|شاطرة]! [خلّصت|خلّصتي] ربع ساعة 🎉 [خد|خدي] راحة 5 دقايق") : (V()==="parent" ? rr("👏 {N} [خلّص|خلّصت] "+TM.w+" دقيقة. وقت راحة 5 دقايق") : "خلّصتي "+TM.w+" دقيقة 👏 خدي راحة 5 دقايق ☕")); renderAll(); }
     else { S.timer = {on:true, tid:t.tid, sk:t.sk, phase:"w", startAt:Date.now(), acc:0, paused:true}; save(); toast("الراحة خلصت. دوسي ▶ لجولة كمان"); }
     t = S.timer; el = tmElapsed(); len = tmLen();
   }
@@ -2661,29 +2755,49 @@ function checkCurriculum(){
 
 /* ---------- nav ---------- */
 var page = "home";
-function go(p){ page = p; var ps = document.querySelectorAll("section.page"); for(var i=0;i<ps.length;i++) ps[i].classList.toggle("on", ps[i].getAttribute("data-p")===p); var navP = ["badges","mist","share","watch"].indexOf(p)>=0 ? "set" : p; var bs = $("nav").querySelectorAll("button"); for(var j=0;j<bs.length;j++) bs[j].classList.toggle("on", bs[j].getAttribute("data-p")===navP); renderPage(); window.scrollTo(0,0); }
+function go(p){ page = p; var ps = document.querySelectorAll("section.page"); for(var i=0;i<ps.length;i++) ps[i].classList.toggle("on", ps[i].getAttribute("data-p")===p); var navP = (p==="badges" && V()==="kid") ? "badges" : (["badges","mist","share","watch"].indexOf(p)>=0 ? "set" : p); var bs = $("nav").querySelectorAll("button"); for(var j=0;j<bs.length;j++) bs[j].classList.toggle("on", bs[j].getAttribute("data-p")===navP); renderPage(); window.scrollTo(0,0); }
 var prevPage = "home";
 var tl = document.querySelectorAll("[data-go]"); for(var ti=0;ti<tl.length;ti++){ tl[ti].addEventListener("click",function(){ go(this.getAttribute("data-go")); }); }
 var bk = document.querySelectorAll("[data-back]"); for(var bi=0;bi<bk.length;bi++){ bk[bi].addEventListener("click",function(){ go("set"); }); }
 $("openStory").addEventListener("click",function(){ go("home"); });
+(function(){ var sw = $("viewSw"), tmr = null, done = false;
+  function toParent(){ S.view = "parent"; save(); renderAll(); go("home"); toast(rr("أهلًا بيك<|ي> 👪 ده وضع ولي الأمر")); }
+  function down(e){ if(V()==="parent") return; done = false; sw.classList.add("hold"); tmr = setTimeout(function(){ done = true; sw.classList.remove("hold"); toParent(); }, 1500); }
+  function up(){ clearTimeout(tmr); sw.classList.remove("hold"); }
+  sw.addEventListener("pointerdown", down); sw.addEventListener("pointerup", up); sw.addEventListener("pointerleave", up); sw.addEventListener("pointercancel", up);
+  sw.addEventListener("contextmenu", function(e){ e.preventDefault(); });
+  sw.addEventListener("click", function(){ if(done){ done = false; return; }
+    if(V()==="parent"){ S.view = isPrim() ? "kid" : "std"; save(); renderAll(); go("home"); toast(rr("<سلّم|سلّمي> الموبايل لـ"+kidName()+" 🧒")); return; }
+    toast(rr("زرار ولي الأمر بيفتح لو [دوست|دوستي] عليه شوية ⏳")); }); })();
 var nb = $("nav").querySelectorAll("button"); for(var n=0;n<nb.length;n++){ nb[n].addEventListener("click",function(){ go(this.getAttribute("data-p")); }); }
 function renderPage(){ if(page==="home") renderHome(); else if(page==="curr") renderCurr(); else if(page==="att") renderAtt(); else if(page==="plan") renderPlan(); else if(page==="badges") renderBadges(); else if(page==="mist") renderMist(); else if(page==="share") renderShare(); else if(page==="watch") renderWatch(); else if(page==="story"){} else { renderSet(); renderTiles(); } genderize(document.querySelector("main")); }
 function renderTiles(){ var got = Object.keys(S.badges).length; $("tileBadges").textContent = gx(got+" من "+BADGES.length+" وسام"); var open = S.mist.filter(function(m){ return m.ok<3; }).length; $("tileMist").textContent = S.mist.length ? open+" لسه · "+(S.mist.length-open)+" اتصلحت" : "سجّلي أسئلتك الغلط"; }
-function renderAll(){ checkBadges(); renderHeader(); renderPage(); tmTick(); genderize(document.querySelector("header.top")); }
+function applyView(){ var vw = V(); document.body.classList.toggle("kid", vw==="kid"); document.body.classList.toggle("pview", vw==="parent"); TM.w = vw==="kid" ? 15 : 25; $("navStars").hidden = vw!=="kid";
+  var sw = $("viewSw"), can = isPrim() || S.who==="parent"; sw.hidden = !can || !S.setup;
+  if(can) sw.textContent = vw==="parent" ? (isPrim() ? "🧒 وضع الطفل" : "🎒 وضع الطالب") : "👪 ولي الأمر"; }
+function renderAll(){ applyView(); checkBadges(); renderHeader(); renderPage(); tmTick(); genderize(document.querySelector("header.top")); }
 
 /* ---------- setup ---------- */
 function contactRows(list){ var h = ""; for(var i=0;i<3;i++){ var c = list[i]||{n:"",num:""}; h += '<div class="grid2" style="margin-bottom:8px"><input type="text" data-cn="'+i+'" maxlength="30" placeholder="'+(["ماما","بابا","المدرس"][i])+'" value="'+esc(c.n)+'"><input type="tel" data-cnum="'+i+'" inputmode="tel" class="en" placeholder="01xxxxxxxxx" value="'+esc(c.num ? (c.num.indexOf("20")===0 && c.num.length===12 ? "0"+c.num.slice(2) : "+"+c.num) : "")+'"></div>'; } return h; }
 function readContacts(box){ var out = [], bad = false; for(var i=0;i<3;i++){ var n = cleanStr(box.querySelector('[data-cn="'+i+'"]').value,30).trim(), raw = box.querySelector('[data-cnum="'+i+'"]').value.trim(); if(!raw) continue; var num = normNum(raw); if(!num){ bad = true; continue; } out.push({n:n || ["ماما","بابا","المدرس"][i], num:num}); }
   if(bad){ toast("فيه رقم مش صحيح. اكتبيه كده: 01xxxxxxxxx"); return null; } return out; }
 function showSetup(){
-  var name = S.name||"", gender = S.gender||"", stage = S.stage||"", track = S.track||"";
+  var name = S.name||"", gender = S.gender||"", stage = S.stage||"", track = S.track||"", who = S.who||"self", pg = S.pg||"";
+  function w1(){ var bs = $("setupWho").querySelectorAll("button"); for(var i=0;i<bs.length;i++) bs[i].classList.toggle("on", bs[i].getAttribute("data-w")===who);
+    var ps = $("setupPGs").querySelectorAll("button"); for(var j=0;j<ps.length;j++) ps[j].classList.toggle("on", ps[j].getAttribute("data-pg")===pg);
+    $("setupPG").hidden = who!=="parent";
+    $("setupNameL").textContent = who==="parent" ? "اسم ابنك أو بنتك (بيتحفظ على الموبايل بس)" : "الاسم (بيتحفظ على الموبايل بس)";
+    $("setupGQ").textContent = who==="parent" ? "ولد ولا بنت؟" : "نكلّمك إزاي؟";
+    if($("setupNext1")) $("setupNext1").disabled = !gender || (who==="parent" && !pg); }
+  var wb0 = $("setupWho").querySelectorAll("button"); for(var wi=0;wi<wb0.length;wi++){ wb0[wi].onclick = function(){ who = this.getAttribute("data-w"); S.who = who; w1(); }; }
+  var pb0 = $("setupPGs").querySelectorAll("button"); for(var pi0=0;pi0<pb0.length;pi0++){ pb0[pi0].onclick = function(){ pg = this.getAttribute("data-pg"); S.pg = pg; w1(); }; }
   $("setupLogo").innerHTML = document.querySelector(".brandbtn svg").outerHTML.replace('aria-hidden="true"','aria-hidden="true" style="width:44px;height:44px"');
   $("setupName").value = name;
   function dots(n){ var d = $("setupDots").children; for(var i=0;i<d.length;i++) d[i].className = i===n ? "on" : ""; }
   function show(n){ ["setupS1","setupS2","setupS3","setupS4"].forEach(function(id,i){ $(id).hidden = i!==n; }); dots(n); genderize($("setup")); }
-  function g1(){ var bs = $("setupGender").querySelectorAll("button"); for(var i=0;i<bs.length;i++) bs[i].classList.toggle("on", bs[i].getAttribute("data-g")===gender); $("setupNext1").disabled = !gender; }
+  function g1(){ var bs = $("setupGender").querySelectorAll("button"); for(var i=0;i<bs.length;i++) bs[i].classList.toggle("on", bs[i].getAttribute("data-g")===gender); $("setupNext1").disabled = !gender || (who==="parent" && !pg); }
   var gb = $("setupGender").querySelectorAll("button"); for(var i=0;i<gb.length;i++){ gb[i].onclick = function(){ gender = this.getAttribute("data-g"); S.gender = gender; g1(); genderize($("setup")); }; }
-  g1();
+  g1(); w1();
   $("setupNext1").onclick = function(){ name = cleanStr($("setupName").value,20).trim(); renderStages(); show(1); };
   function renderStages(){
     $("setupStages").innerHTML = Object.keys(STAGES).map(function(k){ var s = STAGES[k]; return '<div class="opt'+(stage===k?" on":"")+'" data-k="'+k+'"><span class="e">'+({e1:"🖍️",e2:"🎈",e3:"⭐",e4:"🧩",e5:"🧭",e6:"🚀",p1:"✏️",p2:"📏",p3:"🎯",a1:"🌱",b2:"🌿",g2:"🌳",b3:"🎓",g3:"🏆"}[k]||"📘")+'</span><div><b>'+esc(s.label)+'</b><div class="muted">'+esc(s.sub)+'</div></div></div>'; }).join("");
@@ -2703,7 +2817,7 @@ function showSetup(){
   function step4(){ $("setupContacts").innerHTML = contactRows(S.contacts||[]); show(3); }
   $("setupSkip4").onclick = function(){ finish(); };
   $("setupGo4").onclick = function(){ var cs = readContacts($("setupContacts")); if(cs===null) return; S.contacts = cs; finish(); };
-  function finish(){ stat("setup-"+stage+"-"+track, true, "اختيار السنة والشعبة"); stat("gender-"+gender, true, gender==="m"?"ولد":"بنت"); S.name = name; S.gender = gender; S.stage = stage; S.track = track; S.setup = true; curSubj = null; curPart = 0; save(); $("setup").classList.remove("on"); renderAll(); confetti(40); toast(S.name ? "يلا بينا يا "+S.name+" 🚀" : "يلا بينا 🚀"); }
+  function finish(){ stat("setup-"+stage+"-"+track, true, "اختيار السنة والشعبة"); stat("gender-"+gender, true, gender==="m"?"ولد":"بنت"); S.name = name; S.gender = gender; S.stage = stage; S.track = track; S.setup = true; S.who = who; S.pg = who==="parent" ? pg : ""; S.view = ""; stat("who-"+who, true, who==="parent" ? "ولي أمر" : "طالب"); curSubj = null; curPart = 0; save(); $("setup").classList.remove("on"); renderAll(); confetti(40); toast(V()==="parent" ? "يلا نتابع "+kidName()+" سوا 🚀" : (S.name ? "يلا بينا يا "+S.name+" 🚀" : "يلا بينا 🚀")); }
   show(0);
   $("setup").classList.add("on");
 }

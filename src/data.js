@@ -9,7 +9,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "أولى ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · رياضيات",
 "icon": "📒",
 "meta": "",
@@ -62,7 +62,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تانية ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات",
 "icon": "📒",
 "meta": "",
@@ -116,7 +116,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تالتة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات",
 "icon": "📒",
 "meta": "",
@@ -170,7 +170,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "رابعة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📙",
 "meta": "",
@@ -226,7 +226,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "خامسة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📙",
 "meta": "",
@@ -282,7 +282,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "سادسة ابتدائي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📙",
 "meta": "",
@@ -338,7 +338,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "أولى إعدادي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📗",
 "meta": "",
@@ -394,7 +394,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تانية إعدادي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📗",
 "meta": "",
@@ -450,7 +450,7 @@ var STAGES = {
 "sectionWord": "الصف",
 "sections": {
 "all": {
-"label": "تالتة إعدادي",
+"label": "المواد الأساسية",
 "sub": "عربي · إنجليزي · رياضيات · علوم · دراسات",
 "icon": "📗",
 "meta": "",
