@@ -110,9 +110,9 @@ U5 Nucleic Acids and DNA: Discovery of the Genetic Material|DNA Structure|DNA Re
 U6 Nucleic Acids and Protein Synthesis: RNA and Its Types|Protein Synthesis: Transcription and Translation|Mutations|Genetic Engineering and Its Applications
 U7 Earth Science: Geology and Its Branches|Components of Planet Earth|Earth Movements: Folds, Faults and Joints|Minerals and Crystal Systems|Rocks and Their Types
 ## g3 chemistry (translated from the Arabic syllabus; English book not yet checked)
-U1 Transition Elements: First Transition Series Elements and Their General Properties|Magnetic Properties, Catalytic Activity and Colours|Iron: Ores and Extraction|Properties of Iron, Its Oxides and Alloys
+U1 Transition Elements: First Transition Series Elements and Their General Properties|Magnetic Properties and Catalytic Activity|Iron: Ores and Extraction|Properties of Iron, Its Oxides and Alloys
 U2 Chemical Analysis: Qualitative Analysis: Acid Radicals (Anions)|Qualitative Analysis: Basic Radicals (Cations)|Quantitative Analysis: Volumetric Analysis (Titration)|Quantitative Analysis: Gravimetric Analysis
-U3 Chemical Equilibrium: Reversible Reactions and the Law of Mass Action|Factors Affecting Equilibrium (Le Chatelier's Principle)|Ionic Equilibrium and Ostwald's Dilution Law|Ionic Product of Water and pH|Hydrolysis of Salts and Solubility Product
+U3 Chemical Equilibrium: Reversible Reactions and the Law of Mass Action|Factors Affecting Equilibrium (Le Chatelier's Principle)|Ionic Equilibrium and Ostwald's Dilution Law|Ionic Product of Water and pH|Solubility Product
 U4 Electrochemistry: Galvanic Cells and Electrode Potential|Primary and Secondary Cells (Batteries)|Corrosion of Metals and Its Protection|Electrolytic Cells and Faraday's Laws|Applications of Electrolysis
 U5 Organic Chemistry: Introduction to Organic Chemistry and Nomenclature|Alkanes|Alkenes|Alkynes|Cyclic and Aromatic Hydrocarbons|Alkyl Halides and Alcohols|Phenols|Carboxylic Acids|Esters
 ## g3 physics (translated from the Arabic syllabus; English book not yet checked)
