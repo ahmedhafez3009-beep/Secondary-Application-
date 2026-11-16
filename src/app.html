@@ -210,6 +210,12 @@ body.timing{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
 .wrow .pc{font-size:20px;font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;min-width:56px;text-align:center}
 canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;display:block;margin:0 auto;border:1px solid var(--line)}
 .empty{text-align:center;color:var(--muted);padding:12px}
+html[dir="ltr"] .muted, html[dir="ltr"] .nm, html[dir="ltr"] b, html[dir="ltr"] li, html[dir="ltr"] .tx{unicode-bidi:plaintext}
+html[dir="ltr"] .vsw{left:auto;right:14px}
+html[dir="ltr"] .quote .nx{left:auto;right:10px}
+html[dir="ltr"] .tile, html[dir="ltr"] .mgrid td:first-child{text-align:left}
+html[dir="ltr"] [style*="text-align:right"]{text-align:start!important}
+html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
 </style>
 </head>
 <body>
@@ -377,6 +383,8 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
     <div style="height:10px"></div>
     <label class="muted" id="sGQ">نكلّمك إزاي؟</label>
     <div class="seg" id="sGender" style="margin-top:4px"><button type="button" data-g="m">👦 ولد</button><button type="button" data-g="f">👧 بنت</button></div>
+    <div class="muted" style="margin-top:10px">لغة التطبيق · App language</div>
+    <div class="seg" id="sLang" style="margin-top:4px" data-keep><button type="button" data-l="ar">العربي</button><button type="button" data-l="en">English</button></div>
     <div class="muted" style="margin-top:10px">مين بيستخدم التطبيق؟</div>
     <div class="seg" id="sWho" style="margin-top:4px"><button type="button" data-w="self">🎒 الطالب نفسه</button><button type="button" data-w="parent">👪 ولي الأمر</button></div>
     <div class="seg" id="sPG" style="margin-top:6px"><button type="button" data-pg="f">👩 الأم</button><button type="button" data-pg="m">👨 الأب</button></div>
@@ -568,7 +576,7 @@ canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;dis
   <div class="sheet">
     <div class="stepdots" id="setupDots"><i></i><i></i><i></i><i></i></div>
     <div id="setupS1">
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="width:44px;height:44px;flex:0 0 44px" id="setupLogo"></span><h2 style="margin:0" id="setupHi">أهلًا في خُطوة</h2></div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span style="width:44px;height:44px;flex:0 0 44px" id="setupLogo"></span><h2 style="margin:0;flex:1" id="setupHi">أهلًا في خُطوة</h2><button type="button" class="btn ghost sm" id="setupLang" data-keep style="flex:0 0 auto">English</button></div>
       <p class="muted" style="margin-top:0">كل درس بيتذاكر على 4 خطوات: 🎧 استماع، 💡 فهم، ✍️ حل، 🔁 مراجعة. وخُطوة بتحسب نسبة المذاكرة من المنهج، واللي فاضل، والحضور، يوم بيوم.</p>
       <div class="muted" style="margin-bottom:4px">مين اللي هيستخدم خُطوة؟</div>
       <div class="seg" id="setupWho"><button type="button" data-w="self">🎒 أنا اللي بذاكر</button><button type="button" data-w="parent">👪 أنا ولي الأمر</button></div>
@@ -657,7 +665,7 @@ var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! 
 
 /* ---------- state ---------- */
 var memStore = null;
-function defState(){ return {v:5,who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
+function defState(){ return {v:5,lang:"ar",who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
 function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
 var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
@@ -673,6 +681,7 @@ function sanitize(s){
   o.name = cleanStr(s.name, 20).trim();
   o.stage = typeof s.stage==="string" && STAGES.hasOwnProperty(s.stage) ? s.stage : "";
   o.gender = s.gender==="m" || s.gender==="f" ? s.gender : "";
+  o.lang = s.lang==="en" ? "en" : "ar";
   o.who = s.who==="parent" ? "parent" : "self"; o.pg = s.pg==="m" || s.pg==="f" ? s.pg : ""; o.view = ["std","kid","parent"].indexOf(s.view)>=0 ? s.view : "";
   var stg = STAGES[o.stage];
   o.track = stg && typeof s.track==="string" && stg.sections.hasOwnProperty(s.track) ? s.track : "";
@@ -805,6 +814,43 @@ window.addEventListener("storage", function(e){ if(e.key!==KEY || !e.newValue) r
 
 
 /* ---- he/she wording: texts are written for a girl and switched word by word for a boy ---- */
+/* ---------- i18n: Arabic is the source; English is applied to the DOM ---------- */
+var EN = (typeof I18N_EN!=="undefined") ? I18N_EN : {}, ENP = [];
+function isEN(){ return S && S.lang==="en"; }
+var AR_RE = /[\u0600-\u06FF]/;
+var ENX = (typeof I18N_PFX!=="undefined") ? I18N_PFX : [], ENT = (typeof I18N_TOK!=="undefined") ? I18N_TOK : {};
+var ENT_RE = new RegExp("(^|[^\\u0600-\\u06FF])("+Object.keys(ENT).sort(function(a,b){return b.length-a.length;}).join("|")+")(?=$|[^\\u0600-\\u06FF])","g");
+function enKey(s){ var k = s;
+  [S.name, "بطلتنا", "بطلنا"].forEach(function(n){ if(n && k.indexOf(n)>=0) k = k.split(n).join("{N}"); });
+  var nums = [], toks = []; k = k.replace(/[0-9٠-٩]+(?:[.,][0-9٠-٩]+)?/g, function(m){ nums.push(m); return "#"; });
+  if(Object.keys(ENT).length) k = k.replace(ENT_RE, function(m, pre, w){ toks.push(ENT[w]); return pre+"@"; });
+  return {k:k, nums:nums, toks:toks}; }
+function enName(){ return S.name || (cg("our hero","our hero")); }
+function trCore(core){
+  if(EN[core]!=null) return EN[core];
+  var e = enKey(core), v = EN[e.k];
+  if(v!=null){ var i = 0, j = 0; return enSing(v.replace(/#/g, function(){ return e.nums[i++]||""; }).replace(/@/g, function(){ return e.toks[j++]||""; }).replace(/\{N\}/g, enName())); }
+  for(var p=0; p<ENX.length; p++){ if(core.indexOf(ENX[p][0])===0){ return ENX[p][1]+trS(core.slice(ENX[p][0].length)); } }
+  if(core.indexOf(" — ")>0) return core.split(" — ").map(trS).join(" — ");
+  if(core.indexOf(" · ")>0) return core.split(" · ").map(trS).join(" · ");
+  var a = core.match(/^([^؀-ۿ«]+)([\s\S]+)$/), b = core.match(/^([\s\S]*[؀-ۿ»])([^؀-ۿ»]+)$/), r;
+  if(a && (r = trCore(a[2].trim()))!=null) return a[1]+r;
+  if(b && (r = trCore(b[1].trim()))!=null) return r+b[2];
+  var c = core.match(/^([\s\S]*?)([\s·:،.]+)$/); if(c && c[1] && (r = trCore(c[1].trim()))!=null) return r+c[2];
+  return null; }
+function enSing(s){ return s.replace(/(^|[^\d.,])1 (steps|lessons|days|study days|badges|units|hours|reviews|numbers|mistakes)\b/g, function(m, p, w){ return p+"1 "+w.replace(/s$/,""); }); }
+function trS(s){ if(!s || !AR_RE.test(s)) return s; var lead = s.match(/^\s*/)[0], trail = s.match(/\s*$/)[0], core = s.trim();
+  var v = trCore(core); return v==null ? s : lead+v+trail; }
+function trNode(n){ if(n.nodeType===3){ if(AR_RE.test(n.nodeValue)){ var p = n.parentNode; if(p && p.closest && p.closest("[data-keep]")) return; var v = trS(n.nodeValue); if(v!==n.nodeValue) n.nodeValue = v; } return; }
+  if(n.nodeType!==1 || n.hasAttribute("data-keep")) return;
+  ["placeholder","aria-label","title"].forEach(function(a){ var v = n.getAttribute(a); if(v && AR_RE.test(v)){ var w = trS(v); if(w!==v) n.setAttribute(a, w); } });
+  if(n.tagName==="SCRIPT" || n.tagName==="STYLE") return;
+  for(var c = n.firstChild; c; c = c.nextSibling) trNode(c); }
+var enObs = null;
+function applyLang(){ var en = isEN(); document.documentElement.lang = en ? "en" : "ar"; document.documentElement.dir = en ? "ltr" : "rtl";
+  if(en && !enObs && window.MutationObserver){ enObs = new MutationObserver(function(ms){ if(!isEN()) return; ms.forEach(function(m){ if(m.type==="characterData") trNode(m.target); else for(var i=0;i<m.addedNodes.length;i++) trNode(m.addedNodes[i]); if(m.type==="attributes") trNode(m.target); }); });
+    enObs.observe(document.documentElement, {subtree:true, childList:true, characterData:true, attributes:true, attributeFilter:["placeholder","aria-label","title"]}); }
+  if(en) trNode(document.body); }
 function isPrim(){ return /^e\d$/.test(S.stage||""); }
 function V(){ if(S.view==="kid" && isPrim()) return "kid"; if(S.view==="std" || S.view==="parent") return S.view; return S.who==="parent" ? "parent" : (isPrim() ? "kid" : "std"); }
 function ag(){ return V()==="parent" ? (S.pg||"f") : S.gender; }
@@ -815,9 +861,9 @@ function pt(std, par){ return V()==="parent" ? rr(par) : std; }
 function own2(el, v){ if(!el) return; if(V()==="std") el.removeAttribute("data-nog"); else el.setAttribute("data-nog",""); if(v!=null) el.textContent = v; }
 var GMAP = {"ابعتيلهم": "ابعتلهم", "تدوسي": "تدوس", "احفظي": "احفظ", "اكتبيه": "اكتبه", "خدي": "خد", "شاركي": "شارك", "الصقي": "الصق", "توصلي": "توصل", "وصلتي": "وصلت", "ارفعي": "ارفع", "ركّزي": "ركّز", "حدديها": "حددها", "اختبري": "اختبر", "عرفتيها": "عرفتها", "غلطتي": "غلطت", "تعرفيه": "تعرفه", "سجّلي": "سجّل", "ضيفيها": "ضيفها", "راجعتيه": "راجعته", "تراجعيها": "تراجعها", "متتنسيش": "متتنساش", "معاكي": "معاك", "نزّلناها": "نزّلناها", "ابعتي": "ابعت", "تحدّثيه": "تحدّثه", "تحبي": "تحب", "مستعدة": "مستعد", "عايزة": "عايز", "دوسي": "دوس", "اكتبيه": "اكتبه", "خلّصتي": "خلّصت", "ابتسمي": "ابتسم", "احتفظي": "احتفظ", "واحتفظي": "واحتفظ", "احذفي": "احذف", "احفظي": "احفظ", "اختاري": "اختار", "ارجعي": "ارجع", "استخدمي": "استخدم", "اعرضي": "اعرض", "افتكري": "افتكر", "اكتبي": "اكتب", "واكتبي": "واكتب", "اكتبيه": "اكتبه", "امسحي": "امسح", "انتي": "انت", "وانتي": "وانت", "انسخي": "انسخ", "انسخيه": "انسخه", "بتاعة": "بتاع", "بتذاكري": "بتذاكر", "بتذاكريه": "بتذاكره", "بتستخدمي": "بتستخدم", "بتفتحيه": "بتفتحه", "بطلة": "بطل", "بيخليكي": "بيخليك", "بيكي": "بيك", "بيوريكي": "بيوريك", "ابدأي": "ابدأ", "وابدأي": "وابدأ", "تبدأي": "تبدأ", "تبطّلي": "تبطّل", "تبقي": "تبقى", "تأكدي": "تأكد", "اتأكدي": "اتأكد", "تحذفي": "تحذف", "تحسي": "تحس", "تحضريها": "تحضرها", "تخلّصي": "تخلّص", "تخلّصيها": "تخلّصها", "تذاكري": "تذاكر", "تراجعي": "تراجع", "ترتاحي": "ترتاح", "ترجّعي": "ترجّع", "ترجعيه": "ترجعه", "تزوّدي": "تزوّد", "تشوفي": "تشوف", "تشيلي": "تشيل", "تعلّمي": "تعلّم", "تعملي": "تعمل", "تغيريها": "تغيرها", "تقدري": "تقدر", "تكوني": "تكون", "ثقي": "ثق", "جامدة": "جامد", "جهّزي": "جهّز", "حابة": "حابب", "حاسة": "حاسس", "حددي": "حدد", "حدديها": "حددها", "حددتيه": "حددته", "حضرتي": "حضرت", "حضرتيه": "حضرته", "حطيتي": "حطيت", "خلّصتي": "خلّصت", "خلّصتيه": "خلّصته", "خلّصتيها": "خلّصتها", "دوسي": "دوس", "ذاكرتي": "ذاكرت", "ذاكرتيه": "ذاكرته", "ذاكرتيها": "ذاكرتها", "راجعي": "راجع", "رجّعي": "رجّع", "رجّعيه": "رجّعه", "رجّعيها": "رجّعها", "روحتي": "روحت", "زوّدتيه": "زوّدته", "زوّدتي": "زوّدت", "سجّلي": "سجّل", "شطورة": "شاطر", "شيليه": "شيله", "شيليها": "شيلها", "ضيفي": "ضيف", "ضيفيها": "ضيفها", "عايزة": "عايز", "عدّليها": "عدّلها", "فعدّليها": "فعدّلها", "عدّلي": "عدّل", "عليكي": "عليك", "علّمي": "علّم", "علّميها": "علّمها", "عملتي": "عملت", "عملتيها": "عملتها", "غبتي": "غبت", "غيرتي": "غيرت", "غيّرتي": "غيّرت", "فذاكري": "فذاكر", "قارني": "قارن", "قرّبتي": "قرّبت", "قسّميه": "قسّمه", "قسّميها": "قسّمها", "كمّلي": "كمّل", "كنتي": "كنت", "ليكي": "ليك", "ماشية": "ماشي", "متأكدة": "متأكد", "محتاجة": "محتاج", "مستعدة": "مستعد", "مستواكي": "مستواك", "مشتتة": "مشتت", "نزّلتيها": "نزّلتها", "نزّلتي": "نزّلت", "نزّلي": "نزّل", "واسألي": "واسأل", "مابدأتيش": "مابدأتش", "ماتسيبيهوش": "ماتسيبهوش", "ماتقارنيش": "ماتقارنش", "ماتنسيش": "ماتنساش", "مانزّلتيش": "مانزّلتش", "متفوقة": "متفوق", "نجمة": "نجم", "ذاكرتيش": "ذاكرتش", "اختبري": "اختبر", "تختاري": "تختار", "اقري": "اقرا", "ابعتي": "ابعت", "افتحي": "افتح", "خليكي": "خليك", "اعملي": "اعمل", "جربي": "جرب", "بتحبي": "بتحب", "تحبي": "تحب", "ترجعي": "ترجع", "تحطي": "تحط", "تكتبي": "تكتب", "تدوسي": "تدوس", "تسمعي": "تسمع", "تفهمي": "تفهم", "تحلي": "تحل", "تنزّلي": "تنزّل", "غيري": "غير", "تفضلي": "تفضل", "ماتخافيش": "ماتخافش", "اسألي": "اسأل", "ارتاحي": "ارتاح", "نامي": "نام", "حاولي": "حاول", "اسمعي": "اسمع", "افهمي": "افهم", "حلي": "حل", "ابقي": "ابقى", "قوليلي": "قولي", "بيكى": "بيك"};
 var GRX = new RegExp("(^|[^\\u0600-\\u06FF])(" + Object.keys(GMAP).sort(function(a,b){ return b.length-a.length; }).join("|") + ")(?=[^\\u0600-\\u06FF]|$)", "g");
-function gx(s){ if(ag()!=="m" || typeof s!=="string") return s; return s.replace(GRX, function(m, pre, w){ return pre + GMAP[w]; }); }
+function gx(s){ if(isEN()) return s; if(ag()!=="m" || typeof s!=="string") return s; return s.replace(GRX, function(m, pre, w){ return pre + GMAP[w]; }); }
 function genderize(root){
-  if(!root || ag()!=="m") return;
+  if(!root || ag()!=="m" || isEN()) return;
   var w = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {acceptNode:function(n){ for(var e=n.parentNode; e && e!==root.parentNode; e=e.parentNode){ if(e.nodeType===1 && (e.hasAttribute("data-nog") || e.tagName==="SCRIPT" || e.tagName==="STYLE")) return NodeFilter.FILTER_REJECT; } return NodeFilter.FILTER_ACCEPT; }});
   var n; while((n = w.nextNode())){ var v = gx(n.nodeValue); if(v!==n.nodeValue) n.nodeValue = v; }
   var ph = root.querySelectorAll("[placeholder]"); for(var i=0;i<ph.length;i++){ var a = ph[i].getAttribute("placeholder"), b = gx(a); if(a!==b) ph[i].setAttribute("placeholder", b); }
@@ -843,9 +889,9 @@ function addDays(d,n){ var x = new Date(d.getFullYear(), d.getMonth(), d.getDate
 function niceDate(s){ var d = s2d(s); return DAYN[d.getDay()]+" "+d.getDate()+" "+MON[d.getMonth()]; }
 function isRTLText(t){ return /[؀-ۿ]/.test(t); }
 function toast(m){ var t=$("toast"); t.textContent=gx(m); t.classList.add("on"); clearTimeout(toast._t); toast._t=setTimeout(function(){t.classList.remove("on");},1900); }
-function daysW(n){ return n===1?"يوم واحد":(n===2?"يومين":(n>=3&&n<=10?n+" أيام":n+" يوم")); }
-function stepsW(n){ return n===1?"خطوة واحدة":(n===2?"خطوتين":(n>=3&&n<=10?n+" خطوات":n+" خطوة")); }
-function lessons(n){ return n===1?"درس واحد":(n===2?"درسين":(n>=3&&n<=10?n+" دروس":n+" درس")); }
+function daysW(n){ if(isEN()) return n+" يوم"; return n===1?"يوم واحد":(n===2?"يومين":(n>=3&&n<=10?n+" أيام":n+" يوم")); }
+function stepsW(n){ if(isEN()) return n+" خطوة"; return n===1?"خطوة واحدة":(n===2?"خطوتين":(n>=3&&n<=10?n+" خطوات":n+" خطوة")); }
+function lessons(n){ if(isEN()) return n+" درس"; return n===1?"درس واحد":(n===2?"درسين":(n>=3&&n<=10?n+" دروس":n+" درس")); }
 function dlg(msg, opts, cb){ opts = opts||{}; $("dlgMsg").textContent = gx(msg); var inp = $("dlgIn"); inp.hidden = !opts.input; inp.value = opts.value||""; $("dlgOk").textContent = opts.ok||"تمام"; $("dlgNo").textContent = opts.cancelText||"إلغاء"; $("dlgOk").className = "btn"+(opts.danger?" danger":"");
   var m = $("dlg"); m.classList.add("on"); if(opts.input) setTimeout(function(){ try{ inp.focus(); inp.select(); }catch(e){} },50);
   function close(v){ m.classList.remove("on"); $("dlgOk").onclick = null; $("dlgNo").onclick = null; cb(v); }
@@ -961,11 +1007,15 @@ function renderHeader(){
 function dayIndex(){ var d = new Date(); return Math.floor(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())/86400000); }
 function renderQuote(){
   var vw = V(), tx0 = $("qTx");
-  if(vw!=="std"){ var L = vw==="kid" ? KIDQ : PTIPS, k = L[((dayIndex()+S.qOff)%L.length+L.length)%L.length];
-    if(vw==="parent" && !isPrim()) L = L.filter(function(x){ return !/نجمة|القراية|التقييم|كل ربع ساعة/.test(x); }), k = L[((dayIndex()+S.qOff)%L.length+L.length)%L.length];
+  var EQ = (isEN() && typeof I18N_Q!=="undefined" && I18N_Q.QUOTES) ? I18N_Q : null;
+  if(vw!=="std"){ var L0 = vw==="kid" ? KIDQ : PTIPS, LE = EQ ? (vw==="kid" ? EQ.KIDQ : EQ.PTIPS) : L0, ix = L0.map(function(x,i){ return i; });
+    if(vw==="parent" && !isPrim()) ix = ix.filter(function(i){ return !/نجمة|القراية|التقييم|كل ربع ساعة/.test(L0[i]); });
+    var k = LE[ix[((dayIndex()+S.qOff)%ix.length+ix.length)%ix.length]];
+    if(EQ){ $("qTag").textContent = vw==="kid" ? "🌟 A word for you" : "💛 Tip for parents"; tx0.textContent = k.replace(/\{N\}/g, enName()); tx0.setAttribute("data-nog",""); tx0.className = "tx"; tx0.style.textAlign = ""; $("qBy").textContent = ""; return; }
     $("qTag").textContent = vw==="kid" ? "🌟 كلمة "+cg("ليك","ليكي") : "💛 نصيحة لولي الأمر"; own2(tx0, rr(k)); tx0.className = "tx"; tx0.style.textAlign = ""; $("qBy").textContent = ""; return; }
   tx0.removeAttribute("data-nog");
-  var q = QUOTES[((dayIndex()+S.qOff)%QUOTES.length+QUOTES.length)%QUOTES.length];
+  var QL = EQ ? EQ.QUOTES : QUOTES, q = QL[((dayIndex()+S.qOff)%QL.length+QL.length)%QL.length];
+  if(EQ){ $("qTag").textContent = EQ.TAGS[q[0]]||q[0]; tx0.textContent = q[1].replace(/\{N\}/g, S.name||"champ"); tx0.className = "tx"; tx0.style.textAlign = ""; $("qBy").textContent = q[2] ? "— "+q[2] : ""; return; }
   var tags = {"موقف":"📜 موقف ملهم","مثل":"🗣️ مثل","شعر":"✒️ بيت شعر","عبارة":"💬 عبارة اليوم","كلمة":"💜 كلمة ليكي","English":"🇬🇧 English quote"};
   $("qTag").textContent = tags[q[0]]||q[0];
   var tx = $("qTx"); tx.textContent = q[1].replace(/\{N\}/g, S.name||CFG.name||"بطلة"); tx.className = "tx"+(q[0]==="English"?" en":""); tx.style.textAlign = q[0]==="English" ? "left" : "";
@@ -1013,7 +1063,7 @@ function renderHome(){
   var o = overall();
   $("ring").innerHTML = ringSVG(o.pct,"var(--accent)")+'<div class="c"><b class="en">'+Math.round(o.pct)+'%</b><span>من المنهج</span></div>';
   var colors = {l:"var(--s-l)",u:"var(--s-u)",s:"var(--s-s)",r:"var(--s-r)"};
-  $("legend").innerHTML = STEPS.map(function(s){ var v=o.by[s[0]]; return '<div class="sl"><span class="d" style="background:'+colors[s[0]]+'"></span><span style="width:70px">'+s[1]+' '+s[2]+'</span><span class="bar"><i style="width:'+v.toFixed(1)+'%;background:'+colors[s[0]]+'"></i></span><span class="p en">'+Math.round(v)+'%</span></div>'; }).join("");
+  $("legend").innerHTML = STEPS.map(function(s){ var v=o.by[s[0]]; return '<div class="sl"><span class="d" style="background:'+colors[s[0]]+'"></span><span style="width:'+(isEN()?96:70)+'px;white-space:nowrap">'+s[1]+' '+s[2]+'</span><span class="bar"><i style="width:'+v.toFixed(1)+'%;background:'+colors[s[0]]+'"></i></span><span class="p en">'+Math.round(v)+'%</span></div>'; }).join("");
   $("stDone").textContent = o.done; $("stLeft").textContent = o.left; $("stStreak").textContent = studyStreak();
   var pd = +(S.prior&&S.prior.days)||0, ad = appStudyDays(); $("stTotalDays").textContent = pd+ad;
   $("stTotalSub").textContent = (pd ? pd+" يوم قبل التطبيق + " : "")+ad+" يوم من التطبيق";
@@ -1113,7 +1163,7 @@ function renderCharts(R){
   var N = buckets.length, max = Math.max(4, Math.max.apply(null, buckets.map(function(x){return x.n;})));
   var W=340,H=160,pl=6,pr=6,pt=18,pb=28, bw=(W-pl-pr)/N, gap = Math.min(6, bw*0.25), labEvery = Math.ceil(N/14);
   var svg = '<svg style="direction:ltr" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="عدد الخطوات">';
-  buckets.forEach(function(k,i){ var h=(H-pt-pb)*k.n/max, X=W-pr-(i+1)*bw+gap/2, Y=H-pb-h, w=bw-gap;
+  buckets.forEach(function(k,i){ var h=(H-pt-pb)*k.n/max, X=isEN()?pl+i*bw+gap/2:W-pr-(i+1)*bw+gap/2, Y=H-pb-h, w=bw-gap;
     if(k.n) svg += '<rect x="'+X.toFixed(1)+'" y="'+Y.toFixed(1)+'" width="'+w.toFixed(1)+'" height="'+h.toFixed(1)+'" rx="'+Math.min(4,w/2).toFixed(1)+'" fill="'+(k.today?"var(--accent2)":"var(--accent)")+'"><title>'+k.lab+': '+k.n+'</title></rect>';
     if(k.n && N<=20) svg += '<text x="'+(X+w/2).toFixed(1)+'" y="'+(Y-4).toFixed(1)+'" text-anchor="middle" font-size="9.5" fill="var(--muted)">'+k.n+'</text>';
     if(i%labEvery===0 || i===N-1) svg += '<text x="'+(X+w/2).toFixed(1)+'" y="'+(H-pb+13)+'" text-anchor="middle" font-size="9" fill="'+(k.today?"var(--accent2)":"var(--muted)")+'">'+k.lab+'</text>';
@@ -1132,14 +1182,14 @@ function renderCharts(R){
   for(var k=0;k<nDays;k++){ var ds = d2s(addDays(R.f,k)); while(j<scoped.length && scoped[j].d<=ds){ acc[scoped[j].sk]++; j++; } var sum=0, ws=0; subs.forEach(function(sk){ if(!(totals[sk]>0)) return; sum += acc[sk]/totals[sk]*100*wt(sk); ws += wt(sk); }); pts.push(sum/(ws||1)); }
   var minV = Math.floor(Math.min.apply(null,pts)/5)*5, maxV = Math.max(minV+10, Math.ceil(Math.max.apply(null,pts)/5)*5);
   var W2=340,H2=160,L=34,Rr=8,T=12,B=24;
-  var sx = function(i){ return W2-Rr-(nDays<=1?0:(i/(nDays-1))*(W2-L-Rr)); }, sy = function(v){ return H2-B-((v-minV)/(maxV-minV))*(H2-T-B); };
+  var sx = function(i){ var f = nDays<=1?0:(i/(nDays-1))*(W2-L-Rr); return isEN() ? L+f : W2-Rr-f; }, sy = function(v){ return H2-B-((v-minV)/(maxV-minV))*(H2-T-B); };
   var s2 = '<svg style="direction:ltr" viewBox="0 0 '+W2+' '+H2+'" role="img" aria-label="تطور النسبة">';
   [minV, (minV+maxV)/2, maxV].forEach(function(v){ s2 += '<line x1="'+(W2-Rr)+'" x2="'+L+'" y1="'+sy(v).toFixed(1)+'" y2="'+sy(v).toFixed(1)+'" stroke="var(--line)"/><text x="'+(L-4)+'" y="'+(sy(v)+3).toFixed(1)+'" text-anchor="end" font-size="9.5" fill="var(--muted)">'+(Math.round(v*10)/10)+'%</text>'; });
   var path = pts.map(function(v,i){ return (i?"L":"M")+sx(i).toFixed(1)+" "+sy(v).toFixed(1); }).join(" ");
   if(pts.length>1) s2 += '<path d="'+path+' L'+sx(pts.length-1).toFixed(1)+' '+sy(minV).toFixed(1)+' L'+sx(0).toFixed(1)+' '+sy(minV).toFixed(1)+' Z" fill="var(--accent)" opacity=".12"/>';
   s2 += '<path d="'+path+'" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>';
   var last = pts[pts.length-1]; s2 += '<circle cx="'+sx(pts.length-1).toFixed(1)+'" cy="'+sy(last).toFixed(1)+'" r="4" fill="var(--accent2)"/>';
-  s2 += '<text x="'+(W2-Rr)+'" y="'+(H2-6)+'" text-anchor="end" font-size="9.5" fill="var(--muted)">'+R.f.getDate()+' '+MON[R.f.getMonth()]+'</text><text x="'+L+'" y="'+(H2-6)+'" text-anchor="start" font-size="9.5" fill="var(--accent2)">'+endC.getDate()+' '+MON[endC.getMonth()]+'</text></svg>';
+  s2 += '<text x="'+(isEN()?L:W2-Rr)+'" y="'+(H2-6)+'" text-anchor="'+(isEN()?"start":"end")+'" font-size="9.5" fill="var(--muted)">'+R.f.getDate()+' '+MON[R.f.getMonth()]+'</text><text x="'+(isEN()?W2-Rr:L)+'" y="'+(H2-6)+'" text-anchor="'+(isEN()?"end":"start")+'" font-size="9.5" fill="var(--accent2)">'+endC.getDate()+' '+MON[endC.getMonth()]+'</text></svg>';
   $("chartCum").innerHTML = s2 + '<div class="muted">من <b class="en">'+pts[0].toFixed(1)+'%</b> لـ <b class="en">'+last.toFixed(1)+'%</b> في الفترة دي.</div>';
 }
 function renderPace(){ renderPace0(); try{ genderize($("pace")); }catch(e){} }
@@ -1306,6 +1356,7 @@ function renderSet(){
   $("sTrackLbl").textContent = CFG.sectionWord;
   $("sStage").innerHTML = Object.keys(STAGES).map(function(k){ return '<option value="'+k+'"'+(S.stage===k?" selected":"")+'>'+esc(STAGES[k].label)+'</option>'; }).join("");
   var gbs = $("sGender").querySelectorAll("button"); for(var gi=0;gi<gbs.length;gi++){ gbs[gi].classList.toggle("on", gbs[gi].getAttribute("data-g")===S.gender); gbs[gi].onclick = function(){ S.gender = this.getAttribute("data-g"); save(); renderAll(); }; }
+  var lbs = $("sLang").querySelectorAll("button"); for(var li=0;li<lbs.length;li++){ lbs[li].classList.toggle("on", lbs[li].getAttribute("data-l")===S.lang); lbs[li].onclick = function(){ var l = this.getAttribute("data-l"); if(l===S.lang) return; S.lang = l; save(); location.reload(); }; }
   var wbs = $("sWho").querySelectorAll("button"); for(var wi=0;wi<wbs.length;wi++){ wbs[wi].classList.toggle("on", wbs[wi].getAttribute("data-w")===S.who); wbs[wi].onclick = function(){ S.who = this.getAttribute("data-w"); if(S.who==="parent" && !S.pg) S.pg = "f"; S.view = ""; save(); renderAll(); }; }
   $("sPG").hidden = S.who!=="parent"; own2($("sGQ"), S.who==="parent" ? "ولد ولا بنت؟" : "نكلّمك إزاي؟");
   var pbs = $("sPG").querySelectorAll("button"); for(var pj=0;pj<pbs.length;pj++){ pbs[pj].classList.toggle("on", pbs[pj].getAttribute("data-pg")===S.pg); pbs[pj].onclick = function(){ S.pg = this.getAttribute("data-pg"); save(); renderAll(); }; }
@@ -1616,7 +1667,9 @@ function expandPacked(a, ST, CU){
   return {v:1, n:a[1], g:a[2]?"m":"f", st: st ? st.label : "", tr: sec ? sec.meta || sec.label : "", d: dt(a[5]), p:a[6],
     s:(Array.isArray(a[7])?a[7]:[]).map(function(v,i){ return [CU[subs[i]] ? CU[subs[i]].name : "مادة "+(i+1), v]; }), a:[a[8], a[9]], w:[a[10], a[11], a[12]], k:a[13], b:a[14], x: a[15] ? [a[15], dt(a[16])] : null};
 }
-function weekMessage(){
+function weekMessage(){ var m = weekMessage0(); return isEN() ? m.split("\n").map(enLine).join("\n") : m; }
+function enLine(l){ if(!AR_RE.test(l)) return l; var v = trS(l); if(v!==l) return v; var m = l.match(/^(• |📌 )?(.*?)(: [\d.]+%| بعد .*)$/); if(m){ var tail = m[3].indexOf(" بعد ")===0 ? " in "+trS(m[3].slice(5)) : m[3]; return (m[1]||"")+trS(m[2])+tail; } return v; }
+function weekMessage0(){
   var r = reportData(), w = r.w, he = S.gender==="m";
   return "📊 تقرير خُطوة"+(r.n?" · "+r.n:"")+"\n"+r.st+(r.tr?" · "+r.tr:"")+"\n\n"+
     "✅ نسبة المنهج: "+r.p+"%\n"+
@@ -1628,6 +1681,7 @@ function weekMessage(){
 }
 function drawShare(){
   var cv = $("shareCanvas"), c = cv.getContext("2d"), W = 1080, H = 1350, r = reportData(), cs = getComputedStyle(document.documentElement);
+  if(isEN() && !c.__en){ var ft = c.fillText; c.fillText = function(s, x, y, mw){ var d0 = c.direction; c.direction = "ltr"; var o = mw===undefined ? ft.call(c, trS(String(s)), x, y) : ft.call(c, trS(String(s)), x, y, mw); c.direction = d0; return o; }; c.__en = true; }
   c.clearRect(0,0,W,H); c.fillStyle = "#103B3C"; c.fillRect(0,0,W,H);
   var g = c.createRadialGradient(W-120,140,10,W-120,140,520); g.addColorStop(0,"rgba(242,165,65,.35)"); g.addColorStop(1,"rgba(242,165,65,0)"); c.fillStyle = g; c.fillRect(0,0,W,H);
   function rr(x,y,w,h,rad,col){ c.fillStyle = col; c.beginPath(); c.moveTo(x+rad,y); c.arcTo(x+w,y,x+w,y+h,rad); c.arcTo(x+w,y+h,x,y+h,rad); c.arcTo(x,y+h,x,y,rad); c.arcTo(x,y,x+w,y,rad); c.closePath(); c.fill(); }
@@ -1656,7 +1710,7 @@ function saveBlob(b, name){ var a = document.createElement("a"); a.href = URL.cr
 $("imgSave").addEventListener("click",function(){ canvasBlob(function(b){ if(b) saveBlob(b, "khutwa-"+today()+".png"); toast("اتنزلت الصورة ✔"); }); });
 $("imgShare").addEventListener("click",function(){ stat("share-image", true, "مشاركة صورة التقدم"); canvasBlob(function(b){ if(!b) return; var f = null; try{ f = new File([b], "khutwa-"+today()+".png", {type:"image/png"}); }catch(e){} if(f && navigator.canShare && navigator.canShare({files:[f]})){ navigator.share({files:[f], title:"تقدمي في خُطوة"}).catch(function(){}); } else { saveBlob(b, "khutwa-"+today()+".png"); toast("الموبايل ده مش بيدعم المشاركة المباشرة، فنزّلنا الصورة"); } }); });
 function copyText(v){ try{ navigator.clipboard.writeText(v).then(function(){ toast("اتنسخ ✔"); }, function(){ toast("انسخيه يدوي"); }); }catch(e){ toast("انسخيه يدوي"); } }
-function reportText(){ return weekMessage().replace("\n\nخُطوة · Created by Add Value","")+"\n\n🔗 التقرير كامل:\n"+reportUrl()+"\n\nخُطوة · Created by Add Value"; }
+function reportText(){ return weekMessage().replace("\n\n"+trS("خُطوة · Created by Add Value"),"")+"\n\n"+trS("🔗 التقرير كامل:")+"\n"+reportUrl()+"\n\n"+trS("خُطوة · Created by Add Value"); }
 function contactButtons(box){
   var cs = S.contacts||[];
   box.innerHTML = cs.length ? cs.map(function(c,i){ return '<a class="btn" data-sendi="'+i+'" href="'+esc(waLink(c.num, reportText()))+'" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;margin-bottom:8px">📤 ابعتي لـ <span data-nog>'+esc(c.n)+'</span></a>'; }).join("") : '<div class="muted">مفيش أرقام متسجلة. ضيفيها من المزيد ← الإعدادات ← أرقام المتابعة.</div>';
@@ -1665,7 +1719,7 @@ function contactButtons(box){
 function renderShare(){
   contactButtons($("sendBtns"));
   drawShare();
-  var u = reportUrl(); $("repLink").value = u; $("repWa").href = "https://wa.me/?text="+encodeURIComponent("📊 تقرير مذاكرتي في خُطوة:\n"+u);
+  var u = reportUrl(); $("repLink").value = u; $("repWa").href = "https://wa.me/?text="+encodeURIComponent(trS("📊 تقرير مذاكرتي في خُطوة:")+"\n"+u);
   var m = weekMessage(); $("weekMsg").value = m; $("msgWa").href = "https://wa.me/?text="+encodeURIComponent(m);
 }
 $("repCopy").addEventListener("click",function(){ stat("share-report-link", true, "نسخ لينك التقرير"); copyText($("repLink").value); });
@@ -1735,7 +1789,7 @@ function renderTiles(){ var got = Object.keys(S.badges).length; $("tileBadges").
 function applyView(){ var vw = V(); document.body.classList.toggle("kid", vw==="kid"); document.body.classList.toggle("pview", vw==="parent"); TM.w = vw==="kid" ? 15 : 25; $("navStars").hidden = vw!=="kid";
   var sw = $("viewSw"), can = isPrim() || S.who==="parent"; sw.hidden = !can || !S.setup;
   if(can) sw.textContent = vw==="parent" ? (isPrim() ? "🧒 وضع الطفل" : "🎒 وضع الطالب") : "👪 ولي الأمر"; }
-function renderAll(){ applyView(); checkBadges(); renderHeader(); renderPage(); tmTick(); genderize(document.querySelector("header.top")); }
+function renderAll(){ applyLang(); applyView(); checkBadges(); renderHeader(); renderPage(); tmTick(); genderize(document.querySelector("header.top")); }
 
 /* ---------- setup ---------- */
 function contactRows(list){ var h = ""; for(var i=0;i<3;i++){ var c = list[i]||{n:"",num:""}; h += '<div class="grid2" style="margin-bottom:8px"><input type="text" data-cn="'+i+'" maxlength="30" placeholder="'+(["ماما","بابا","المدرس"][i])+'" value="'+esc(c.n)+'"><input type="tel" data-cnum="'+i+'" inputmode="tel" class="en" placeholder="01xxxxxxxxx" value="'+esc(c.num ? (c.num.indexOf("20")===0 && c.num.length===12 ? "0"+c.num.slice(2) : "+"+c.num) : "")+'"></div>'; } return h; }
@@ -1784,7 +1838,9 @@ function showSetup(){
 $("attInfo").innerHTML = CFG.attInfo.map(function(x){ return "<li>"+x+"</li>"; }).join("");
 $("footNote").textContent = CFG.footNote;
 $("weightNote").textContent = CFG.weightNote;
-applyTheme();
+(function(){ var b = $("setupLang"); if(!b) return; b.textContent = isEN() ? "العربي" : "English"; b.onclick = function(){ S.lang = isEN() ? "ar" : "en"; save(); location.reload(); }; })();
+applyLang(); applyTheme();
+window.__kw = {go:go, renderAll:renderAll};
 if(!S.setup || !S.gender || !CFG.sections[S.track]) showSetup();
 go("home");
 try{ renderHeader(); genderize(document.querySelector("header.top")); }catch(e){}

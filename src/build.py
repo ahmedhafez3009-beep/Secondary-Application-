@@ -4,10 +4,10 @@ import pathlib
 GC=(pathlib.Path('gc.txt').read_text().strip() if pathlib.Path('gc.txt').exists() else '')
 assert GC=='' or __import__('re').fullmatch(r'[a-z0-9-]{2,40}',GC)
 shutil.rmtree(OUT,ignore_errors=True); os.makedirs(OUT+'/app')
-VER='kw-v5'
+VER='kw-v6'
 t=open('app.html',encoding='utf-8').read()
 q=open('quotes.js',encoding='utf-8').read().replace('["كلمة","فخورين بيكي يا {N} 💜","أحمد"]','["كلمة","فخورين بيكي يا {N} 💜","خُطوة"]')
-html=t.replace('/*DATA*/',open('data.js',encoding='utf-8').read().replace('__GC__',GC)).replace('/*QUOTES*/',q).replace('__TITLE__','خُطوة')
+html=t.replace('/*DATA*/',open('data.js',encoding='utf-8').read().replace('__GC__',GC)+'\n'+(open('i18n_en.js',encoding='utf-8').read() if os.path.exists('i18n_en.js') else '')).replace('/*QUOTES*/',q).replace('__TITLE__','خُطوة')
 head_add='''<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self'; connect-src 'self'__GCCSP__; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="خُطوة: نسبة المذاكرة من المنهج والحضور لطلاب الثانوي. Created by Add Value.">
