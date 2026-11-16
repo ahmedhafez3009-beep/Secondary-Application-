@@ -4,7 +4,7 @@ import pathlib
 GC=(pathlib.Path('gc.txt').read_text().strip() if pathlib.Path('gc.txt').exists() else '')
 assert GC=='' or __import__('re').fullmatch(r'[a-z0-9-]{2,40}',GC)
 shutil.rmtree(OUT,ignore_errors=True); os.makedirs(OUT+'/app')
-VER='kw-v7'
+VER='kw-v8'
 t=open('app.html',encoding='utf-8').read()
 q=open('quotes.js',encoding='utf-8').read().replace('["كلمة","فخورين بيكي يا {N} 💜","أحمد"]','["كلمة","فخورين بيكي يا {N} 💜","خُطوة"]')
 html=t.replace('/*DATA*/',open('data.js',encoding='utf-8').read().replace('__GC__',GC)+'\n'+(open('i18n_en.js',encoding='utf-8').read() if os.path.exists('i18n_en.js') else '')).replace('/*QUOTES*/',q).replace('__TITLE__','خُطوة')
@@ -61,7 +61,7 @@ self.addEventListener("fetch", e => {
   const req = e.request; if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
   if (req.url.indexOf("version.json")>=0) return;
   if (req.url.indexOf("/quiz/")>=0) { e.respondWith(fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; }).catch(() => caches.match(req).then(r => r || new Response("null", {status: 504, headers: {"Content-Type": "application/json"}})))); return; }
-  if (req.url.endsWith("curriculum.json")) { e.respondWith(fetch(req).catch(() => caches.match(req).then(r => r || new Response("null", {status: 504, headers: {"Content-Type": "application/json"}})))); return; }
+  if (req.url.endsWith("curriculum.json") || req.url.endsWith("curriculum2.json")) { e.respondWith(fetch(req).catch(() => caches.match(req).then(r => r || new Response("null", {status: 504, headers: {"Content-Type": "application/json"}})))); return; }
   if (req.mode === "navigate") {
     e.respondWith(fetch(req.url, {cache: "no-cache", credentials: "same-origin"}).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put("./index.html", copy)); return res; }).catch(() => caches.match("./index.html")));
     return;
@@ -86,9 +86,11 @@ page('landing.html','index.html','%2F','%D8%A7%D9%84%D8%B5%D9%81%D8%AD%D8%A9%20%
 page('story.html','story.html','%2Fstory','%D8%A7%D9%84%D8%AD%D9%83%D8%A7%D9%8A%D8%A9')
 page('report.html','report.html','%2Freport','%D8%AA%D9%82%D8%B1%D9%8A%D8%B1%20%D9%88%D9%84%D9%8A%20%D8%A3%D9%85%D8%B1')
 import subprocess
-cj=subprocess.run(['node','-e','const fs=require("fs");const vm=require("vm");const c={};vm.createContext(c);vm.runInContext(fs.readFileSync("data.js","utf8").replace(/var CFG[\\s\\S]*$/,"")+";this.o={v:CURR_VERSION,CURR:CURR,STAGES:STAGES};",c);process.stdout.write(JSON.stringify(c.o));'],capture_output=True,text=True,cwd='.')
+cj=subprocess.run(['node','-e','const fs=require("fs");const vm=require("vm");const c={};vm.createContext(c);vm.runInContext(fs.readFileSync("data.js","utf8").replace(/var CFG[\\s\\S]*$/,"")+";this.o={v:CURR_VERSION,CURR:CURR,STAGES:STAGES,MIG:(typeof CURR_MIG!=\x27undefined\x27?CURR_MIG:{})};",c);process.stdout.write(JSON.stringify(c.o));'],capture_output=True,text=True,cwd='.')
 assert cj.returncode==0, cj.stderr
-open(OUT+'/app/curriculum.json','w',encoding='utf-8').write(cj.stdout)
+open(OUT+'/app/curriculum2.json','w',encoding='utf-8').write(cj.stdout)
+# older app builds read curriculum.json: keep it frozen at v7 so they never get a newer layout their code cannot migrate
+open(OUT+'/app/curriculum.json','w',encoding='utf-8').write(open('legacy/curriculum_v7.json',encoding='utf-8').read())
 # lesson quizzes: src/quiz/<subject>.json -> app/quiz/, plus an index of lessons that have questions
 import glob
 os.makedirs(OUT+'/app/quiz',exist_ok=True); qidx={}

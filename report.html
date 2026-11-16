@@ -45,7 +45,7 @@ window.addEventListener("hashchange",function(){ location.reload(); });
   function dt(x){ x=String(x||""); return /^\d{8}$/.test(x) ? x.slice(0,4)+"-"+x.slice(4,6)+"-"+x.slice(6) : ""; }
   function expand(a, ST, CU){ if(!Array.isArray(a)||a[0]!==2) return null; var st=ST&&ST[a[3]], sec=st&&st.sections&&st.sections[a[4]], subs=sec?sec.subjects:[];
     return {v:1,n:a[1],g:a[2]?"m":"f",st:st?st.label:"",tr:sec?(sec.meta||sec.label):"",d:dt(a[5]),p:a[6],s:(Array.isArray(a[7])?a[7]:[]).map(function(v,i){ return [CU&&CU[subs[i]]?CU[subs[i]].name:"مادة "+(i+1), v]; }),a:[a[8],a[9]],w:[a[10],a[11],a[12]],k:a[13],b:a[14],x:a[15]?[a[15],dt(a[16])]:null}; }
-  if(Array.isArray(r)){ var packed=r; r=null; fetch("app/curriculum.json").then(function(x){ return x.ok?x.json():null; }).catch(function(){ return null; }).then(function(j){ render(expand(packed, j&&j.STAGES, j&&j.CURR)); }); return; }
+  if(Array.isArray(r)){ var packed=r; r=null; fetch("app/curriculum2.json").then(function(x){ return x.ok ? x : fetch("app/curriculum.json"); }).then(function(x){ return x.ok?x.json():null; }).catch(function(){ return null; }).then(function(j){ render(expand(packed, j&&j.STAGES, j&&j.CURR)); }); return; }
   render(r && r.v===1 ? r : null);
   function render(r){
   if(!r){ root.innerHTML='<div class="err"><h2>اللينك ده مش تقرير صحيح</h2><p>اطلب من الطالب يبعت لينك جديد من خُطوة ← المزيد ← شارك تقدمك.</p><a class="cta" href="./">تعرّف على خُطوة</a></div>'; return; }

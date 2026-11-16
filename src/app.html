@@ -682,7 +682,7 @@ var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! 
 
 /* ---------- state ---------- */
 var memStore = null;
-function defState(){ return {v:5,lang:"ar",school:"ar",quiz:{},who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
+function defState(){ return {cv:(typeof CURR_VERSION==="number"?CURR_VERSION:1),v:5,lang:"ar",school:"ar",quiz:{},who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
 function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
 var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
@@ -732,7 +732,37 @@ function sanitize(s){
   o.watch = (Array.isArray(s.watch)?s.watch:[]).filter(function(x){ return x && typeof x.k==="string" && x.k.length<=80 && x.r && typeof x.r==="object"; }).slice(0,300).map(function(x){ var r = x.r; return {k:cleanStr(x.k,80), r:{n:cleanStr(r.n,20), g:r.g==="m"?"m":"f", st:cleanStr(r.st,40), tr:cleanStr(r.tr,60), d:cleanDate(r.d), p:cleanNum(r.p,0,100), s:(Array.isArray(r.s)?r.s:[]).slice(0,8).map(function(y){ return [cleanStr(y&&y[0],40), cleanNum(y&&y[1],0,100)]; }), a:[r.a&&r.a[0]!==null&&r.a[0]!==undefined?cleanNum(r.a[0],0,100):null, r.a&&r.a[1]!==null&&r.a[1]!==undefined?cleanNum(r.a[1],0,100):null], w:[cleanNum(r.w&&r.w[0],0,1e5)|0, cleanNum(r.w&&r.w[1],0,1e6)|0, cleanNum(r.w&&r.w[2],0,7)|0], k:cleanNum(r.k,0,5000)|0, b:cleanNum(r.b,0,500)|0}}; }).filter(function(x){ return x.r.d; });
   o.contacts = (Array.isArray(s.contacts)?s.contacts:[]).map(function(c){ return c && {n:cleanStr(c.n,30).trim(), num:normNum(c.num)}; }).filter(function(c){ return c && c.num; }).slice(0,3);
   o.reportDay = s.reportDay===+s.reportDay && s.reportDay>=0 && s.reportDay<=6 ? s.reportDay : 5; o.lastReport = cleanDate(s.lastReport);
+  /* progress saved before this app recorded its curriculum version was made on version 7 or older */
+  o.cv = cleanNum(s.cv,0,1e5)|0 || baseVersion(o); migrateIds(o, typeof CURR_MIG==="object" ? CURR_MIG : {}, CURR_VERSION);
   return o;
+}
+/* progress saved without a version: tell the Sec 3 applied-maths layouts apart by the lesson ids they use (ids that exist in one layout only), otherwise go by the version this device last saw */
+function baseVersion(o){ var ks = Object.keys(o.prog||{}).concat(Object.keys(o.renamed||{}), Object.keys(o.rev||{}), Object.keys(o.links||{}));
+  var oldOnly = /^g3amath\.0\.(0\.1|1\.2|3\.1|3\.2)$/, newOnly = /^g3amath\.0\.[45]\./;
+  if(ks.some(function(k){ return oldOnly.test(k); })) return 5; if(ks.some(function(k){ return newOnly.test(k); })) return 7;
+  /* a step dated before 16 Nov 2026 was ticked on the old layout (the new one went live that day) */
+  var early = Object.keys(o.prog||{}).some(function(k){ var v = o.prog[k]; return /^g3amath\./.test(k) && ["l","u","s","r"].some(function(x){ return typeof v[x]==="string" && /^\d{4}-/.test(v[x]) && v[x] < "2026-11-16"; }); });
+  if(early) return 5;
+  var seen = 0; try{ seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10)||0; }catch(e){} return seen && seen <= 5 ? 5 : 7; }
+/* move everything keyed by a lesson id to the lesson's new id after a curriculum change */
+function migrateIds(o, MIG, toV){
+  var vs = Object.keys(MIG||{}).map(Number).filter(function(v){ return v > o.cv && v <= toV; }).sort(function(a,b){ return a-b; });
+  vs.forEach(function(v){ var m = MIG[v]; if(!m || typeof m!=="object") return;
+    var mv = function(id){ return Object.prototype.hasOwnProperty.call(m, id) ? m[id] : id; };
+    ["prog","renamed","removed","quiz","rev","links"].forEach(function(f){ var src = o[f], dst = {}; if(!src) return;
+      Object.keys(src).forEach(function(k){ var n = mv(k), v = src[k];
+        if(!Object.prototype.hasOwnProperty.call(dst, n)){ dst[n] = v; return; }
+        if(f==="prog"){ ["l","u","s","r"].forEach(function(x){ if(v[x] && !dst[n][x]) dst[n][x] = v[x]; }); }
+        else if(f==="links"){ dst[n] = dst[n].concat(v).slice(0,20); }
+        else if(f==="quiz"){ if(v.b > dst[n].b) dst[n] = v; }
+        else if(f==="rev"){ if((v.n||0) > (dst[n].n||0)) dst[n] = v; }
+        else if(f==="renamed"){ if(n===k) dst[n] = v; }
+      }); o[f] = dst; });
+    Object.keys(o.time||{}).forEach(function(d){ var src = o.time[d], dst = {}; Object.keys(src).forEach(function(k){ var n = mv(k); dst[n] = Math.min(1440, (dst[n]||0) + src[k]); }); o.time[d] = dst; });
+    (o.mist||[]).forEach(function(x){ x.tid = mv(x.tid); });
+    if(o.timer && o.timer.tid) o.timer.tid = mv(o.timer.tid);
+  });
+  o.cv = Math.max(o.cv, toV);
 }
 function normNum(v){ var d = String(v||"").replace(/[^\d+]/g,"").replace(/^\+/,"").replace(/^00/,""); if(/^01\d{9}$/.test(d)) d = "2"+d; else if(/^1\d{9}$/.test(d)) d = "20"+d; return /^\d{10,15}$/.test(d) ? d : ""; }
 function waLink(num, text){ return "https://wa.me/"+num+"?text="+encodeURIComponent(text); }
@@ -1710,14 +1740,14 @@ function reportData(){
     a:[at.pct===null?null:Math.round(at.pct), ae.pct===null?null:Math.round(ae.pct)], w:[w.steps, w.min, w.days], k:studyStreak(), b:Object.keys(S.badges).length, x:e?[e.t, e.d]:null};
 }
 /* short link payload: numbers + keys only; names come from the curriculum on the site */
-function reportPacked(){ var r = reportData(); return [2, r.n, r.g==="m"?1:0, S.stage, S.track, r.d.replace(/-/g,""), r.p, r.s.map(function(x){ return x[1]; }), r.a[0], r.a[1], r.w[0], r.w[1], r.w[2], r.k, r.b, r.x?r.x[0]:"", r.x?r.x[1].replace(/-/g,""):""]; }
+function reportPacked(){ var r = reportData(); return [2, r.n, r.g==="m"?1:0, S.stage, S.track, r.d.replace(/-/g,""), r.p, r.s.map(function(x){ return x[1]; }), r.a[0], r.a[1], r.w[0], r.w[1], r.w[2], r.k, r.b, r.x?r.x[0]:"", r.x?r.x[1].replace(/-/g,""):"", S.school==="exp"?1:0]; }
 function siteBase(){ if(/^https?:$/.test(location.protocol)){ return location.href.split("#")[0].split("?")[0].replace(/[^\/]*$/,"").replace(/app\/$/,""); } return CFG.siteUrl; }
 function reportUrl(){ return siteBase() + "report.html#r=" + b64u(JSON.stringify(reportPacked())); }
 function expandPacked(a, ST, CU){
   if(!Array.isArray(a) || a[0]!==2) return null; var st = ST[a[3]], sec = st && st.sections[a[4]], subs = sec ? sec.subjects : [];
   function dt(x){ x = String(x||""); return /^\d{8}$/.test(x) ? x.slice(0,4)+"-"+x.slice(4,6)+"-"+x.slice(6) : ""; }
   return {v:1, n:a[1], g:a[2]?"m":"f", st: st ? st.label : "", tr: sec ? sec.meta || sec.label : "", d: dt(a[5]), p:a[6],
-    s:(Array.isArray(a[7])?a[7]:[]).map(function(v,i){ return [CU[subs[i]] ? CU[subs[i]].name : "مادة "+(i+1), v]; }), a:[a[8], a[9]], w:[a[10], a[11], a[12]], k:a[13], b:a[14], x: a[15] ? [a[15], dt(a[16])] : null};
+    s:(Array.isArray(a[7])?a[7]:[]).map(function(v,i){ var k = a[17]===1 && CU[subs[i]+"X"] ? subs[i]+"X" : subs[i]; return [CU[k] ? CU[k].name : "مادة "+(i+1), v]; }), a:[a[8], a[9]], w:[a[10], a[11], a[12]], k:a[13], b:a[14], x: a[15] ? [a[15], dt(a[16])] : null};
 }
 function weekMessage(){ var m = weekMessage0(); return isEN() ? m.split("\n").map(enLine).join("\n") : m; }
 function enLine(l){ if(!AR_RE.test(l)) return l; var v = trS(l); if(v!==l) return v; var m = l.match(/^(• |📌 )?(.*?)(: [\d.]+%| بعد .*)$/); if(m){ var tail = m[3].indexOf(" بعد ")===0 ? " in "+trS(m[3].slice(5)) : m[3]; return (m[1]||"")+trS(m[2])+tail; } return v; }
@@ -1809,12 +1839,12 @@ function validCurr(c, st){
 }
 function applyCurr(c, st){ Object.keys(CURR).forEach(function(k){ delete CURR[k]; }); Object.keys(c).forEach(function(k){ CURR[k] = c[k]; }); Object.keys(STAGES).forEach(function(k){ delete STAGES[k]; }); Object.keys(st).forEach(function(k){ STAGES[k] = st[k]; }); }
 var currV = (typeof CURR_VERSION==="number") ? CURR_VERSION : 1;
-try{ var cs = JSON.parse(localStorage.getItem("khutwa-curr")||"null"); if(cs && cs.v > currV && validCurr(cs.CURR, cs.STAGES)){ applyCurr(cs.CURR, cs.STAGES); currV = cs.v; } }catch(e){}
+try{ var cs = JSON.parse(localStorage.getItem("khutwa-curr")||"null"); if(cs && cs.v > currV && validCurr(cs.CURR, cs.STAGES)){ applyCurr(cs.CURR, cs.STAGES); currV = cs.v; if(cs.MIG && typeof cs.MIG==="object" && S.cv < cs.v){ migrateIds(S, cs.MIG, cs.v); save(); } } }catch(e){}
 function checkCurriculum(){
   if(!/^https?:/.test(location.protocol) || navigator.onLine===false) return;
-  fetch("curriculum.json", {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
+  fetch("curriculum2.json", {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){
     if(!j || !(j.v > currV) || !validCurr(j.CURR, j.STAGES)) return;
-    applyCurr(j.CURR, j.STAGES); currV = j.v; try{ localStorage.setItem("khutwa-curr", JSON.stringify(j)); }catch(e){} try{ localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){}
+    applyCurr(j.CURR, j.STAGES); if(j.MIG && typeof j.MIG==="object"){ migrateIds(S, j.MIG, j.v); save(); } currV = j.v; try{ localStorage.setItem("khutwa-curr", JSON.stringify(j)); }catch(e){} try{ localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){}
     renderAll(); toast("📚 المناهج اتحدثت"+(j.note?": "+cleanStr(j.note,80):""));
   }).catch(function(){});
 }
