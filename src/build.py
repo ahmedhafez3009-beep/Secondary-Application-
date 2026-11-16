@@ -4,7 +4,7 @@ import pathlib
 GC=(pathlib.Path('gc.txt').read_text().strip() if pathlib.Path('gc.txt').exists() else '')
 assert GC=='' or __import__('re').fullmatch(r'[a-z0-9-]{2,40}',GC)
 shutil.rmtree(OUT,ignore_errors=True); os.makedirs(OUT+'/app')
-VER='kw-v6'
+VER='kw-v7'
 t=open('app.html',encoding='utf-8').read()
 q=open('quotes.js',encoding='utf-8').read().replace('["كلمة","فخورين بيكي يا {N} 💜","أحمد"]','["كلمة","فخورين بيكي يا {N} 💜","خُطوة"]')
 html=t.replace('/*DATA*/',open('data.js',encoding='utf-8').read().replace('__GC__',GC)+'\n'+(open('i18n_en.js',encoding='utf-8').read() if os.path.exists('i18n_en.js') else '')).replace('/*QUOTES*/',q).replace('__TITLE__','خُطوة')
@@ -50,6 +50,7 @@ self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c =>
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith("kw-") && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", e => {
   const req = e.request; if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
+  if (req.url.indexOf("/quiz/")>=0) { e.respondWith(fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; }).catch(() => caches.match(req).then(r => r || new Response("null", {status: 504, headers: {"Content-Type": "application/json"}})))); return; }
   if (req.url.endsWith("curriculum.json")) { e.respondWith(fetch(req).catch(() => caches.match(req).then(r => r || new Response("null", {status: 504, headers: {"Content-Type": "application/json"}})))); return; }
   if (req.mode === "navigate") {
     e.respondWith(fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put("./index.html", copy)); return res; }).catch(() => caches.match("./index.html")));
@@ -77,6 +78,14 @@ import subprocess
 cj=subprocess.run(['node','-e','const fs=require("fs");const vm=require("vm");const c={};vm.createContext(c);vm.runInContext(fs.readFileSync("data.js","utf8").replace(/var CFG[\\s\\S]*$/,"")+";this.o={v:CURR_VERSION,CURR:CURR,STAGES:STAGES};",c);process.stdout.write(JSON.stringify(c.o));'],capture_output=True,text=True,cwd='.')
 assert cj.returncode==0, cj.stderr
 open(OUT+'/app/curriculum.json','w',encoding='utf-8').write(cj.stdout)
+# lesson quizzes: src/quiz/<subject>.json -> app/quiz/, plus an index of lessons that have questions
+import glob
+os.makedirs(OUT+'/app/quiz',exist_ok=True); qidx={}
+for f in sorted(glob.glob('quiz/*.json')):
+    q=json.load(open(f,encoding='utf-8')); sk=os.path.basename(f)[:-5]
+    qidx[sk]=sorted(k for k,v in q.get('by',{}).items() if v)
+    json.dump(q,open(OUT+'/app/quiz/'+sk+'.json','w',encoding='utf-8'),ensure_ascii=False,separators=(',',':'))
+json.dump(qidx,open(OUT+'/app/quiz/index.json','w',encoding='utf-8'),ensure_ascii=False,separators=(',',':'))
 open(OUT+'/robots.txt','w').write('User-agent: *\nAllow: /\n')
 open(OUT+'/README.md','w',encoding='utf-8').write('''# خُطوة
 

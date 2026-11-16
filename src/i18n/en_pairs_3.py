@@ -127,3 +127,8 @@ P += [("أسماء الفصول من فهرس كتاب الوزارة #/#، وت
 ("الوحدات والدروس من فهرس كتاب الوزارة #/#، فممكن اسم درس يفرق كلمة عن كتابك؛ لو حصل، عدّليه ✏️. والترم التاني ضيفيه أول ما يبدأ.","Units and lessons are from the ministry #/# book contents, so a lesson name may differ slightly from your book; edit it ✏️. Add Term 2 once it starts."),
 ("الوحدات والدروس من فهرس كتاب الوزارة #/#.","Units and lessons are from the ministry #/# book contents."),
 ("أسماء الفصول من فهرس كتاب الوزارة #/#، وتقسيم الدروس تقريبي. عدّلي ✏️ أي درس يختلف عن كتابك.","Chapter names are from the ministry #/# book contents; the lesson split is approximate. Edit ✏️ any lesson that differs from your book.")]
+P += [("🧠 اختبار","🧠 Quiz"),("🧠 اختبار (#%)","🧠 Quiz (#%)"),("🧠 اختبار الدرس","🧠 Lesson quiz"),("بيحمّل الأسئلة…","Loading questions…"),("مفيش أسئلة للدرس ده لسه.","No questions for this lesson yet."),
+("الأسئلة محتاجة نت أول مرة. جربي تاني لما النت يرجع.","Questions need internet the first time. Try again when you're back online."),
+("ممتاز! 🎉","Excellent! 🎉"),("شغل حلو 👏","Nice work 👏"),("قرّبتي، راجعي الدرس وجربي تاني 💪","Almost! Review the lesson and try again 💪"),("راجعي الدرس الأول وبعدين جربي تاني 🌱","Review the lesson first, then try again 🌱"),
+("أحسن نتيجة ليكي: #%","Your best score: #%"),("📝 حطّي الأسئلة الغلط في كشكول الغلطات (#)","📝 Put the wrong answers in the mistakes notebook (#)"),("🔁 اختبار تاني","🔁 Try again"),
+("سؤال # من #","Question # of #"),("السؤال اللي بعده ←","Next question →"),("النتيجة 🏁","Result 🏁")]
