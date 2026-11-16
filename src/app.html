@@ -751,7 +751,7 @@ function migrateIds(o, MIG, toV){
     /* unit keys (sk.part.unit) follow their first lesson's move: custom lessons and unit renames are keyed by unit */
     var um = {}; Object.keys(m).forEach(function(a){ var ua = a.split(".").slice(0,3).join("."), ub = String(m[a]).split(".").slice(0,3).join("."); if(ua!==ub && !Object.prototype.hasOwnProperty.call(um, ua) && /\.0$/.test(a)) um[ua] = ub; });
     var mv = function(id){ return Object.prototype.hasOwnProperty.call(m, id) ? m[id] : (Object.prototype.hasOwnProperty.call(um, id) ? um[id] : id); };
-    if(o.custom){ var cu = {}; Object.keys(o.custom).forEach(function(k){ var n = Object.prototype.hasOwnProperty.call(um, k) ? um[k] : k; cu[n] = (cu[n]||[]).concat(o.custom[k]); }); o.custom = cu; }
+    if(o.custom){ var cu = {}; Object.keys(o.custom).forEach(function(k){ var n = mv(k); cu[n] = (cu[n]||[]).concat(o.custom[k]); }); o.custom = cu; }
     ["prog","renamed","removed","quiz","rev","links"].forEach(function(f){ var src = o[f], dst = {}; if(!src) return;
       Object.keys(src).forEach(function(k){ var n = mv(k), v = src[k];
         if(!Object.prototype.hasOwnProperty.call(dst, n)){ dst[n] = v; return; }
