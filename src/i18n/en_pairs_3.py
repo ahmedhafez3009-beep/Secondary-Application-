@@ -132,3 +132,4 @@ P += [("🧠 اختبار","🧠 Quiz"),("🧠 اختبار (#%)","🧠 Quiz (#%
 ("ممتاز! 🎉","Excellent! 🎉"),("شغل حلو 👏","Nice work 👏"),("قرّبتي، راجعي الدرس وجربي تاني 💪","Almost! Review the lesson and try again 💪"),("راجعي الدرس الأول وبعدين جربي تاني 🌱","Review the lesson first, then try again 🌱"),
 ("أحسن نتيجة ليكي: #%","Your best score: #%"),("📝 حطّي الأسئلة الغلط في كشكول الغلطات (#)","📝 Put the wrong answers in the mistakes notebook (#)"),("🔁 اختبار تاني","🔁 Try again"),
 ("سؤال # من #","Question # of #"),("السؤال اللي بعده ←","Next question →"),("النتيجة 🏁","Result 🏁")]
+P += [("✨ فيه نسخة جديدة من خُطوة","✨ A new version of Khutwa is available"),("تحديث","Refresh")]

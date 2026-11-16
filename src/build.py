@@ -23,7 +23,15 @@ head_add=head_add.replace('__GCCSP__',(' https://'+GC+'.goatcounter.com') if GC 
 html=html.replace('<meta name="theme-color" content="#103B3C">','<meta name="theme-color" content="#103B3C">\n'+head_add,1)
 inst='''<script>
 (function(){
-  if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); }
+  var APPV = "__APPV__", reg = null, asked = false;
+  function bar(){ if(asked || document.getElementById("updBar")) return; asked = true; var d = document.createElement("div"); d.id = "updBar"; d.setAttribute("style","position:fixed;left:12px;right:12px;top:calc(10px + env(safe-area-inset-top,0px));z-index:200;background:#103B3C;color:#fff;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:center;box-shadow:0 6px 24px rgba(0,0,0,.25);font:inherit");
+    d.innerHTML = '<span style="flex:1">\u2728 فيه نسخة جديدة من خُطوة</span><button type="button" style="border:0;border-radius:10px;padding:8px 14px;background:#F2A541;color:#103B3C;font:inherit;font-weight:700">تحديث</button>';
+    d.querySelector("button").onclick = function(){ try{ if(reg && reg.waiting) reg.waiting.postMessage("skip"); }catch(e){} location.reload(); };
+    document.body.appendChild(d); }
+  function check(){ try{ fetch("version.json?t="+Date.now(), {cache:"no-store"}).then(function(r){ return r.ok ? r.json() : null; }).then(function(j){ if(j && j.v && j.v !== APPV) bar(); }).catch(function(){}); if(reg) reg.update().catch(function(){}); }catch(e){} }
+  if("serviceWorker" in navigator){ window.addEventListener("load",function(){ navigator.serviceWorker.register("sw.js").then(function(r){ reg = r; }).catch(function(){}); }); }
+  window.addEventListener("load", function(){ setTimeout(check, 2500); });
+  document.addEventListener("visibilitychange", function(){ if(document.visibilityState==="visible") check(); });
   var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
   if(standalone) return;
   var ios = /iphone|ipad|ipod/i.test(navigator.userAgent), deferred = null;
@@ -37,7 +45,7 @@ inst='''<script>
 })();
 </script>
 </body>'''
-html=html.replace('</body>',inst,1)
+html=html.replace('</body>',inst.replace('__APPV__',VER),1)
 open(OUT+'/app/index.html','w',encoding='utf-8').write(html)
 for fn in ['icon-192.png','icon-512.png','icon-maskable-512.png','apple-touch-icon.png']: shutil.copy('brand/'+fn, OUT+'/app/'+fn)
 shutil.copy('brand/logo.svg', OUT+'/logo.svg')
@@ -47,19 +55,22 @@ json.dump(man,open(OUT+'/app/manifest.webmanifest','w',encoding='utf-8'),ensure_
 sw='''const CACHE = "%s";
 const ASSETS = ["./","./index.html","./manifest.webmanifest","./icon-192.png","./icon-512.png","./icon-maskable-512.png","./apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting())); });
+self.addEventListener("message", e => { if (e.data === "skip") self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k.startsWith("kw-") && k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener("fetch", e => {
   const req = e.request; if (req.method !== "GET" || new URL(req.url).origin !== location.origin) return;
+  if (req.url.indexOf("version.json")>=0) return;
   if (req.url.indexOf("/quiz/")>=0) { e.respondWith(fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; }).catch(() => caches.match(req).then(r => r || new Response("null", {status: 504, headers: {"Content-Type": "application/json"}})))); return; }
   if (req.url.endsWith("curriculum.json")) { e.respondWith(fetch(req).catch(() => caches.match(req).then(r => r || new Response("null", {status: 504, headers: {"Content-Type": "application/json"}})))); return; }
   if (req.mode === "navigate") {
-    e.respondWith(fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put("./index.html", copy)); return res; }).catch(() => caches.match("./index.html")));
+    e.respondWith(fetch(req.url, {cache: "no-cache", credentials: "same-origin"}).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put("./index.html", copy)); return res; }).catch(() => caches.match("./index.html")));
     return;
   }
   e.respondWith(caches.match(req).then(hit => hit || fetch(req).then(res => { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); return res; })));
 });
 ''' % VER
 open(OUT+'/app/sw.js','w',encoding='utf-8').write(sw)
+json.dump({'v':VER},open(OUT+'/app/version.json','w',encoding='utf-8'))
 def page(src,dst,path,title):
     s=open(src,encoding='utf-8').read()
     if GC:
