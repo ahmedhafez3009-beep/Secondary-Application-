@@ -5,6 +5,8 @@ R='/home/claude/secondary-application-/src/'
 titles=json.loads(subprocess.check_output(['node','-e','''const fs=require("fs");eval(fs.readFileSync("%sdata.js","utf8")+";global.C=CURR");const o=[];C["%s"].parts.forEach(p=>p[1].forEach(u=>u[1].split("|").forEach(l=>o.push(l))));console.log(JSON.stringify(o))'''%(R,sk)]))
 by={}
 for f in files: by.update(json.load(open(f))['by'])
+for qs in by.values():
+  for q in qs: q.pop('chg',None)
 bad=[k for k in by if k not in titles]; missing=[t for t in titles if t not in by]
 for k,qs in by.items():
   for q in qs:
