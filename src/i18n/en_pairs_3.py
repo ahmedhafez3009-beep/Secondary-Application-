@@ -118,7 +118,12 @@ P += [("يوم فاضل","days left"),("خطوة فاضلة","steps left"),("م�
 ("لحد @ # @ (# يوم).","until @ @ # (# days)."),("يعني","That's"),
 ("عرفتيها #/#","got it #/#"),("📖 عرفتيها #/#","📖 got it #/#"),("# يوم","# days"),
 ("أهلًا 👋 بنتابع {N} سوا","Hi 👋 Let's follow {N}'s progress together")]
-P += [("نوع المدرسة","School type"),("🏫 مدرسة عربي","🏫 Arabic school"),("🌍 مدرسة لغات (تجريبي)","🌍 Language school (experimental)"),
-("في مدارس اللغات، الرياضيات والعلوم بالإنجليزي.","In language schools, Maths and Science are taught in English."),
-("الرياضيات والعلوم بقت بالإنجليزي ✔","Maths and Science are now in English ✔"),("الرياضيات والعلوم بقت بالعربي ✔","Maths and Science are now in Arabic ✔"),
+P += [("نوع المدرسة","School type"),("🏫 مدرسة عربي","🏫 Arabic school"),("🌍 مدرسة لغات / تجريبي","🌍 Language school (experimental)"),
+("في مدارس اللغات، الرياضيات والعلوم بيتدرسوا بالإنجليزي.","In language schools, Maths and Science are taught in English."),
+("الرياضيات والعلوم بقوا بالإنجليزي ✔","Maths and Science are now in English ✔"),("الرياضيات والعلوم بقوا بالعربي ✔","Maths and Science are now in Arabic ✔"),
 ("Term 1 chapters","Term 1 chapters")]
+P += [("شوفي إزاي تستخدمي خُطوة","See how to use Khutwa"),("فيديو شرح على يوتيوب","Walkthrough video on YouTube"),("🎬 فيديو شرح التطبيق","🎬 App walkthrough video"),("كل حاجة عن خُطوة في فيديو واحد على يوتيوب.","Everything in Khutwa in one YouTube video."),("▶ شوفي الفيديو","▶ Watch the video")]
+P += [("أسماء الفصول من فهرس كتاب الوزارة #/#، وتقسيم الدروس تقريبي. عدّلي ✏️ أي درس يختلف عن كتابك، والترم التاني ضيفيه أول ما يبدأ.","Chapter names are from the ministry #/# book contents; the lesson split is approximate. Edit ✏️ any lesson that differs from your book, and add Term 2 once it starts."),
+("الوحدات والدروس من فهرس كتاب الوزارة #/#، فممكن اسم درس يفرق كلمة عن كتابك؛ لو حصل، عدّليه ✏️. والترم التاني ضيفيه أول ما يبدأ.","Units and lessons are from the ministry #/# book contents, so a lesson name may differ slightly from your book; edit it ✏️. Add Term 2 once it starts."),
+("الوحدات والدروس من فهرس كتاب الوزارة #/#.","Units and lessons are from the ministry #/# book contents."),
+("أسماء الفصول من فهرس كتاب الوزارة #/#، وتقسيم الدروس تقريبي. عدّلي ✏️ أي درس يختلف عن كتابك.","Chapter names are from the ministry #/# book contents; the lesson split is approximate. Edit ✏️ any lesson that differs from your book.")]
