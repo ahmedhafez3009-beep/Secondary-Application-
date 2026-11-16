@@ -211,6 +211,7 @@ body.timing{padding-bottom:calc(150px + env(safe-area-inset-bottom))}
 canvas#shareCanvas{width:100%;max-width:360px;height:auto;border-radius:16px;display:block;margin:0 auto;border:1px solid var(--line)}
 .empty{text-align:center;color:var(--muted);padding:12px}
 html[dir="ltr"] .muted, html[dir="ltr"] .nm, html[dir="ltr"] b, html[dir="ltr"] li, html[dir="ltr"] .tx{unicode-bidi:plaintext}
+.nm, [data-lt]{unicode-bidi:plaintext}
 html[dir="ltr"] .vsw{left:auto;right:14px}
 html[dir="ltr"] .quote .nx{left:auto;right:10px}
 html[dir="ltr"] .tile, html[dir="ltr"] .mgrid td:first-child{text-align:left}
@@ -394,6 +395,9 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
     <div style="height:10px"></div>
     <label class="muted" id="sTrackLbl"></label>
     <select id="sTrack"></select>
+    <div style="height:10px"></div>
+    <label class="muted">نوع المدرسة</label>
+    <div class="seg" id="sSchool" style="margin-top:6px"><button type="button" data-sc="ar">🏫 مدرسة عربي</button><button type="button" data-sc="exp">🌍 مدرسة لغات (تجريبي)</button></div><div class="muted" style="margin-top:4px">في مدارس اللغات، الرياضيات والعلوم بالإنجليزي.</div>
     <div class="muted" style="margin-top:6px">لو غيّرتي السنة، تقدمك في السنة القديمة بيفضل محفوظ وترجعيله في أي وقت.</div>
   </div>
   <div class="card">
@@ -590,6 +594,8 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
     <div id="setupS2" hidden>
       <h2 style="margin-top:0">في سنة كام؟</h2>
       <div id="setupStages"></div>
+      <label class="muted" style="display:block;margin-top:10px">نوع المدرسة</label>
+      <div class="seg" id="setupSchool" style="margin-top:6px"><button type="button" data-sc="ar">🏫 مدرسة عربي</button><button type="button" data-sc="exp">🌍 مدرسة لغات (تجريبي)</button></div><div class="muted" style="margin-top:4px">في مدارس اللغات، الرياضيات والعلوم بالإنجليزي.</div>
       <div class="row" style="margin-top:6px"><button class="btn ghost" id="setupBack2" type="button" style="flex:1">رجوع</button><button class="btn" id="setupNext2" type="button" style="flex:2" disabled>التالي</button></div>
     </div>
     <div id="setupS3" hidden>
@@ -665,7 +671,7 @@ var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! 
 
 /* ---------- state ---------- */
 var memStore = null;
-function defState(){ return {v:5,lang:"ar",who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
+function defState(){ return {v:5,lang:"ar",school:"ar",who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
 function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
 var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
@@ -681,7 +687,7 @@ function sanitize(s){
   o.name = cleanStr(s.name, 20).trim();
   o.stage = typeof s.stage==="string" && STAGES.hasOwnProperty(s.stage) ? s.stage : "";
   o.gender = s.gender==="m" || s.gender==="f" ? s.gender : "";
-  o.lang = s.lang==="en" ? "en" : "ar";
+  o.lang = s.lang==="en" ? "en" : "ar"; o.school = s.school==="exp" ? "exp" : "ar";
   o.who = s.who==="parent" ? "parent" : "self"; o.pg = s.pg==="m" || s.pg==="f" ? s.pg : ""; o.view = ["std","kid","parent"].indexOf(s.view)>=0 ? s.view : "";
   var stg = STAGES[o.stage];
   o.track = stg && typeof s.track==="string" && stg.sections.hasOwnProperty(s.track) ? s.track : "";
@@ -904,7 +910,7 @@ function confetti(n){
 function applyTheme(){ if(S.theme) document.documentElement.setAttribute("data-theme",S.theme); else document.documentElement.removeAttribute("data-theme"); }
 
 /* ---------- curriculum model ---------- */
-function activeSubjects(){ var s = CFG.sections[S.track]; return s ? s.subjects.slice() : []; }
+function activeSubjects(){ var s = CFG.sections[S.track]; return s ? s.subjects.map(function(k){ return S.school==="exp" && CURR[k+"X"] ? k+"X" : k; }) : []; }
 function wt(sk){ return (CFG.weights && CFG.weights[sk]) || 100; }
 function inScope(pi){ return S.scope==="all" || S.scope==="p"+pi; }
 function nm(id, def){ return (S.renamed && S.renamed[id]) || def; }
@@ -1356,6 +1362,7 @@ function renderSet(){
   $("sTrackLbl").textContent = CFG.sectionWord;
   $("sStage").innerHTML = Object.keys(STAGES).map(function(k){ return '<option value="'+k+'"'+(S.stage===k?" selected":"")+'>'+esc(STAGES[k].label)+'</option>'; }).join("");
   var gbs = $("sGender").querySelectorAll("button"); for(var gi=0;gi<gbs.length;gi++){ gbs[gi].classList.toggle("on", gbs[gi].getAttribute("data-g")===S.gender); gbs[gi].onclick = function(){ S.gender = this.getAttribute("data-g"); save(); renderAll(); }; }
+  var scs = $("sSchool").querySelectorAll("button"); for(var si=0;si<scs.length;si++){ scs[si].classList.toggle("on", scs[si].getAttribute("data-sc")===S.school); scs[si].onclick = function(){ var v = this.getAttribute("data-sc"); if(v===S.school) return; S.school = v; save(); curSubj = null; curPart = 0; renderAll(); toast(v==="exp" ? "الرياضيات والعلوم بقت بالإنجليزي ✔" : "الرياضيات والعلوم بقت بالعربي ✔"); }; }
   var lbs = $("sLang").querySelectorAll("button"); for(var li=0;li<lbs.length;li++){ lbs[li].classList.toggle("on", lbs[li].getAttribute("data-l")===S.lang); lbs[li].onclick = function(){ var l = this.getAttribute("data-l"); if(l===S.lang) return; S.lang = l; save(); location.reload(); }; }
   var wbs = $("sWho").querySelectorAll("button"); for(var wi=0;wi<wbs.length;wi++){ wbs[wi].classList.toggle("on", wbs[wi].getAttribute("data-w")===S.who); wbs[wi].onclick = function(){ S.who = this.getAttribute("data-w"); if(S.who==="parent" && !S.pg) S.pg = "f"; S.view = ""; save(); renderAll(); }; }
   $("sPG").hidden = S.who!=="parent"; own2($("sGQ"), S.who==="parent" ? "ولد ولا بنت؟" : "نكلّمك إزاي؟");
@@ -1796,7 +1803,8 @@ function contactRows(list){ var h = ""; for(var i=0;i<3;i++){ var c = list[i]||{
 function readContacts(box){ var out = [], bad = false; for(var i=0;i<3;i++){ var n = cleanStr(box.querySelector('[data-cn="'+i+'"]').value,30).trim(), raw = box.querySelector('[data-cnum="'+i+'"]').value.trim(); if(!raw) continue; var num = normNum(raw); if(!num){ bad = true; continue; } out.push({n:n || ["ماما","بابا","المدرس"][i], num:num}); }
   if(bad){ toast("فيه رقم مش صحيح. اكتبيه كده: 01xxxxxxxxx"); return null; } return out; }
 function showSetup(){
-  var name = S.name||"", gender = S.gender||"", stage = S.stage||"", track = S.track||"", who = S.who||"self", pg = S.pg||"";
+  var name = S.name||"", gender = S.gender||"", stage = S.stage||"", track = S.track||"", who = S.who||"self", pg = S.pg||"", school = S.school||"ar";
+  (function(){ var bs = $("setupSchool").querySelectorAll("button"); function on(){ for(var i=0;i<bs.length;i++) bs[i].classList.toggle("on", bs[i].getAttribute("data-sc")===school); } on(); for(var i=0;i<bs.length;i++) bs[i].onclick = function(){ school = this.getAttribute("data-sc"); on(); }; })();
   function w1(){ var bs = $("setupWho").querySelectorAll("button"); for(var i=0;i<bs.length;i++) bs[i].classList.toggle("on", bs[i].getAttribute("data-w")===who);
     var ps = $("setupPGs").querySelectorAll("button"); for(var j=0;j<ps.length;j++) ps[j].classList.toggle("on", ps[j].getAttribute("data-pg")===pg);
     $("setupPG").hidden = who!=="parent";
@@ -1831,7 +1839,7 @@ function showSetup(){
   function step4(){ $("setupContacts").innerHTML = contactRows(S.contacts||[]); show(3); }
   $("setupSkip4").onclick = function(){ finish(); };
   $("setupGo4").onclick = function(){ var cs = readContacts($("setupContacts")); if(cs===null) return; S.contacts = cs; finish(); };
-  function finish(){ stat("setup-"+stage+"-"+track, true, "اختيار السنة والشعبة"); stat("gender-"+gender, true, gender==="m"?"ولد":"بنت"); S.name = name; S.gender = gender; S.stage = stage; S.track = track; S.setup = true; S.who = who; S.pg = who==="parent" ? pg : ""; S.view = ""; stat("who-"+who, true, who==="parent" ? "ولي أمر" : "طالب"); curSubj = null; curPart = 0; save(); $("setup").classList.remove("on"); renderAll(); confetti(40); toast(V()==="parent" ? "يلا نتابع "+kidName()+" سوا 🚀" : (S.name ? "يلا بينا يا "+S.name+" 🚀" : "يلا بينا 🚀")); }
+  function finish(){ stat("setup-"+stage+"-"+track, true, "اختيار السنة والشعبة"); stat("gender-"+gender, true, gender==="m"?"ولد":"بنت"); S.name = name; S.gender = gender; S.stage = stage; S.track = track; S.setup = true; S.who = who; S.school = school; stat("school-"+school, true, school==="exp" ? "مدرسة لغات" : "مدرسة عربي"); S.pg = who==="parent" ? pg : ""; S.view = ""; stat("who-"+who, true, who==="parent" ? "ولي أمر" : "طالب"); curSubj = null; curPart = 0; save(); $("setup").classList.remove("on"); renderAll(); confetti(40); toast(V()==="parent" ? "يلا نتابع "+kidName()+" سوا 🚀" : (S.name ? "يلا بينا يا "+S.name+" 🚀" : "يلا بينا 🚀")); }
   show(0);
   $("setup").classList.add("on");
 }

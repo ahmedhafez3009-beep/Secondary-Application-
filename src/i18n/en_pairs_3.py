@@ -118,3 +118,7 @@ P += [("يوم فاضل","days left"),("خطوة فاضلة","steps left"),("م�
 ("لحد @ # @ (# يوم).","until @ @ # (# days)."),("يعني","That's"),
 ("عرفتيها #/#","got it #/#"),("📖 عرفتيها #/#","📖 got it #/#"),("# يوم","# days"),
 ("أهلًا 👋 بنتابع {N} سوا","Hi 👋 Let's follow {N}'s progress together")]
+P += [("نوع المدرسة","School type"),("🏫 مدرسة عربي","🏫 Arabic school"),("🌍 مدرسة لغات (تجريبي)","🌍 Language school (experimental)"),
+("في مدارس اللغات، الرياضيات والعلوم بالإنجليزي.","In language schools, Maths and Science are taught in English."),
+("الرياضيات والعلوم بقت بالإنجليزي ✔","Maths and Science are now in English ✔"),("الرياضيات والعلوم بقت بالعربي ✔","Maths and Science are now in Arabic ✔"),
+("Term 1 chapters","Term 1 chapters")]
