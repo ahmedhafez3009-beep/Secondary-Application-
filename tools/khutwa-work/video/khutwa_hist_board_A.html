@@ -1,5 +1,5 @@
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>خُطوة · تاريخ · السبورة A (v5)</title>
+<title>خُطوة · تاريخ · السبورة A (v6)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@500;700&display=swap">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0b1620;color:#e8eef0;font-family:Cairo,Tahoma,sans-serif}
@@ -25,7 +25,7 @@ body.rec #ctl,body.rec #note{display:none}body.rec #wrap{max-width:none;padding:
 <div id="stage">
  <svg id="world" viewBox="0 0 3200 1800" preserveAspectRatio="xMidYMin slice"><defs><pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="24" cy="24" r="2" fill="#d9dcd8"/></pattern></defs><rect y="-1800" width="3200" height="3600" fill="#FCFCFA"/><rect y="-1800" width="3200" height="3600" fill="url(#dots)"/><g id="L"></g></svg>
  <svg id="ov" viewBox="0 0 1280 720"><g id="pen" visibility="hidden"><g transform="rotate(28)"><path d="M0,0 L-7,-22 L7,-22 Z" fill="#e9d9b0" stroke="#0E2A47" stroke-width="1.5"/><rect x="-7" y="-112" width="14" height="90" fill="#0E2A47"/><rect x="-7" y="-40" width="14" height="9" fill="#1EA05F"/><rect x="-8" y="-128" width="16" height="18" rx="3" fill="#1EA05F"/></g></g></svg>
- <div id="badge"><i>أ</i><span><b>أحمد الألفي</b><span>خُطوة · من Add Value</span></span></div><div id="sl"></div>
+ <div id="badge"><i>أ</i><span><b>أحمد الألفي</b><span>خُطوة من Add Value</span></span></div><div id="sl"></div>
  <div id="cd" hidden></div><div id="bar"><span id="who">أحمد</span><span id="sub"></span><span id="src"></span></div>
 </div>
 <div id="ctl">
@@ -35,7 +35,7 @@ body.rec #ctl,body.rec #note{display:none}body.rec #wrap{max-width:none;padding:
  <button id="mode" aria-pressed="false">وضع الشرايح</button><button id="snd" aria-pressed="true">الصوت</button>
  <label>ارفع فويس الشريحة دي <input id="af" type="file" accept="audio/*" hidden></label><button id="sync">ظبط التوقيت على صوتي</button><button id="tap" style="background:#1EA05F;border-color:#1EA05F">جملة (Enter)</button><button id="cp">انسخ كود التوقيت</button><span id="msg"></span><button id="recm">وضع تسجيل الشاشة</button><button id="fs">ملء الشاشة</button>
 </div>
-<p id="note">نسخة v5 · الافتتاحية A0 + الشرايح A1–A3 (السكريبت v3 + تبسيط v4). <b>التسجيل:</b> دوس «سجّل الشريحة»، هيعدّ ٣ وبعدين الكلام يتعلّم كلمة كلمة تحت وإنت بتقرا، والرسم ماشي معاه (ظبّط السرعة على كلامك). <b>بعد التسجيل:</b> ارفع فويس الشريحة، دوس «ظبط التوقيت على صوتي»، ودوس Enter أول ما تسمع بداية كل جملة؛ الرسم هيتشدّ على صوتك. شغّل واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي أثبّته. في «وضع الشرايح»: دوسة على شمال الشاشة للشريحة الجاية وعلى اليمين للي قبلها، والمسافة للتشغيل، والعرض بيقف آخر كل شريحة. للخروج من وضع تسجيل الشاشة دوس Esc.</p>
+<p id="note">نسخة v6 · الافتتاحية A0 + الشرايح A1–A3 (السكريبت v3 + تبسيط v4). <b>التسجيل:</b> دوس «سجّل الشريحة»، هيعدّ ٣ وبعدين الكلام يتعلّم كلمة كلمة تحت وإنت بتقرا، والرسم ماشي معاه (ظبّط السرعة على كلامك). <b>بعد التسجيل:</b> ارفع فويس الشريحة، دوس «ظبط التوقيت على صوتي»، ودوس Enter أول ما تسمع بداية كل جملة؛ الرسم هيتشدّ على صوتك. شغّل واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي أثبّته. في «وضع الشرايح»: دوسة على شمال الشاشة للشريحة الجاية وعلى اليمين للي قبلها، والمسافة للتشغيل، والعرض بيقف آخر كل شريحة. للخروج من وضع تسجيل الشاشة دوس Esc.</p>
 </div>
 <script>
 const G='#1EA05F',GD='#106942',N='#0E2A47',R='#D7463C',Y='#F5BE32',YD='#C99A1B',SAND='#F3E3B5',GR='#666';
@@ -351,15 +351,16 @@ function frame(now){if(!playing)return;const dt=(now-last)/1000;last=now;const p
  else if(pa){T=amap(pi,pa.currentTime);if(pa.ended){stop();render();return}}
  else T+=dt*spd;
  for(const e of SFX)if(e.t>prev&&e.t<=T)sfx(e.k);
- if(slides&&!sync){const nx=SL.find(s=>s.t>prev+.01&&s.t<=T);if(nx){T=nx.t-.02;stop()}}
+ if(slides&&!sync){const nx=SL.find(s=>s.t>prev&&s.t<=T);if(nx){T=nx.t-.02;stop();atEnd=SL.indexOf(nx);msg('الشريحة خلصت ✓ دوس تشغيل أو «سجّل الشريحة» للشريحة اللي بعدها: '+nx.name)}}
  if(T>=END){T=END;stop()}render();if(playing)requestAnimationFrame(frame)}
-function play(noAu){if(T>=END-.01)T=0;const i=sIdx(T);pa=null;if(AU[i]&&!noAu){pa=AU[i].a;pi=i;pa.currentTime=0;T=SL[i].t;pa.play().catch(()=>{})}playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame)}
+let atEnd=null;
+function play(noAu){if(atEnd!=null){T=SL[atEnd].t;atEnd=null}if(T>=END-.01)T=0;const i=sIdx(T);pa=null;if(AU[i]&&!noAu){pa=AU[i].a;pi=i;pa.currentTime=0;T=SL[i].t;pa.play().catch(()=>{})}playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame)}
 function stop(){playing=false;pa&&pa.pause();if(sync){sync.a.pause();sync=null;msg('ظبط التوقيت اتلغى')}$('#play').textContent='▶ تشغيل'}
-function seek(t){T=Math.max(0,Math.min(END,t));render()}
-function startSync(){const i=sIdx(T);if(!AU[i]){msg('ارفع فويس الشريحة دي الأول');return}stop();sync={i,a:AU[i].a,tp:[]};sync.a.currentTime=0;T=SL[i].t;render();sync.a.play().catch(()=>{});playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame);msg('اسمع صوتك، ودوس Enter (أو زرار «جملة») أول ما تبدأ كل جملة. الجملة الأولى: '+sLines(i)[0].txt.slice(0,40)+'…')}
+function seek(t){atEnd=null;T=Math.max(0,Math.min(END,t));render()}
+function startSync(){atEnd=null;const i=sIdx(T);if(!AU[i]){msg('ارفع فويس الشريحة دي الأول');return}stop();sync={i,a:AU[i].a,tp:[]};sync.a.currentTime=0;T=SL[i].t;render();sync.a.play().catch(()=>{});playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame);msg('اسمع صوتك، ودوس Enter (أو زرار «جملة») أول ما تبدأ كل جملة. الجملة الأولى: '+sLines(i)[0].txt.slice(0,40)+'…')}
 function tap(){if(!sync)return;const L=sLines(sync.i),n=sync.tp.length;if(n<L.length){sync.tp.push(+sync.a.currentTime.toFixed(2));msg(n+1<L.length?`اتسجلت جملة ${n+1} من ${L.length}. الجاية: ${L[n+1].txt.slice(0,40)}…`:'آخر جملة اتسجلت. استنى الفويس يخلص أو دوس إيقاف… ');if(n+1==L.length){const sy=sync;sync=null;sy.a.onended=null;AU[sy.i].taps=sy.tp;code='#KHSYNC '+JSON.stringify({slide:SL[sy.i].name.split(' ')[0],spd,taps:sy.tp});pa=sy.a;pi=sy.i;msg('التوقيت اتظبط ✓ لما يخلص، شغّل الشريحة تاني واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي.')}}}
 function finishSync(){const L=sLines(sync.i);msg(`الفويس خلص وناقص ${L.length-sync.tp.length} جملة. دوس «ظبط التوقيت» وعيد.`);sync=null;playing=false;$('#play').textContent='▶ تشغيل'}
-function recSlide(){stop();const i=sIdx(T);slides=true;$('#mode').setAttribute('aria-pressed',true);seek(SL[i].t);let n=3;const cd=$('#cd');cd.hidden=false;cd.textContent=n;sfx('tick');msg('ابدأ تسجيل الفويس على موبايلك دلوقتي…');const iv=setInterval(()=>{n--;if(n>0){cd.textContent=n;sfx('tick')}else{clearInterval(iv);cd.hidden=true;msg('اتكلم مع الكلام اللي بيتعلّم تحت. العرض هيقف آخر الشريحة.');play(true)}},1000)}
+function recSlide(){stop();const i=atEnd!=null?atEnd:sIdx(T);slides=true;$('#mode').setAttribute('aria-pressed',true);seek(SL[i].t);let n=3;const cd=$('#cd');cd.hidden=false;cd.textContent=n;sfx('tick');msg('ابدأ تسجيل الفويس على موبايلك دلوقتي…');const iv=setInterval(()=>{n--;if(n>0){cd.textContent=n;sfx('tick')}else{clearInterval(iv);cd.hidden=true;msg('اتكلم مع الكلام اللي بيتعلّم تحت. العرض هيقف آخر الشريحة.');play(true)}},1000)}
 function jump(d){let i=0;SL.forEach((s,k)=>{if(T>=s.t-.05)i=k});if(d<0&&T-SL[i].t>1.5)d=0;i=Math.max(0,Math.min(SL.length-1,i+d));const was=playing;stop();seek(SL[i].t+.03);if(was&&!slides)play()}
 $('#play').onclick=()=>playing?stop():play();$('#re').onclick=()=>{stop();seek(0)};$('#seek').oninput=e=>seek(e.target.value/1000*END);
 $('#next').onclick=()=>jump(1);$('#prev').onclick=()=>jump(-1);
