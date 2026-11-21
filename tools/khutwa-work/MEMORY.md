@@ -84,5 +84,7 @@
 
 - **سبورة B ✓** (video/khutwa_hist_board_B.html: B1–B6 + RB؛ 68 سطر، 850 عنصر، 7:29؛ gaps=0، tb/tk نضاف) — اتبعتت لأحمد. C شغال (a9c55dcb02abadb1e)، D شغال (ac521ac70b53f2dee).
 
+- **11-21 أحمد طلب «ضم كل الدروس في html واحد»:** video/combine.py بيجمع السبورات في video/khutwa_hist_lesson1_all.html (تاب لكل سبورة، كل واحدة iframe srcdoc بكامل أدواتها؛ `python3 combine.py A A45 B [C D]`؛ اختبار tc.js). النسخة الحالية فيها A وA45 وB؛ تابات C وD مقفولة «لسه بتترسم». **لما C وD يخلصوا: شغّل combine.py تاني وابعت الملف المجمّع.** C وD اتكمّلوا بـ SendMessage بعد حد الـ 5 ساعات (a9c55dcb02abadb1e، ac521ac70b53f2dee).
+
 ## مؤجل
 - كتب الترم التاني، أسماء دروس إنجليزي الإعدادي، مواد X الإنجليزي بدون كويزات.
