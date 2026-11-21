@@ -1,5 +1,5 @@
 # ذاكرة مشروع «خُطوة» — اقرأ ده الأول بدل الشات كله
-آخر تحديث: 2026-11-21 ~08:45 UTC (جلسة session_01WsJEfSAo7hbjLUWMryTEGq)
+آخر تحديث: 2026-11-21 (آخر اليوم) (جلسة session_01WsJEfSAo7hbjLUWMryTEGq)
 
 ## المشروع
 - تطبيق مذاكرة PWA مجاني لطلاب مصر. الريبو: /home/claude/secondary-application- ، المصدر في src/ ، البناء `python3 build.py` → src/site/.
@@ -32,7 +32,7 @@
 - دوال: openDoc, render, ocrOne, processBook (OCR دايمًا), runAll(BOOKS), gzsave(k) → نص GZB64 بيتحفظ في /tmp/claude-tool-results/... ونفكه بـ `python3 /home/claude/khutwa/ocr/dec.py <file> <out>`. tlBook(k,file) = طبقة نص الـPDF (أرقامها سليمة، حروفها بايظة) → gzsave('tl_'+k).
 - مهم: OCR الحروف سليمة والأرقام بتبوظ؛ طبقة النص العكس. المواد الحسابية لازم الاتنين. صور الصفحات (toDataURL) أدق مصدر للتحقق.
 - لو المتصفح اتقفل الحالة بتضيع ولازم أبنيها من جديد (الكود فوق).
-- **النصوص محفوظة في الريبو** (عشان ما تضيعش تاني): tools/khutwa-work/ocr/texts/*.txt.gz → فكها بـ `gunzip -c` إلى /home/claude/khutwa/ocr/. ‏save.sh <اسم> = يفك آخر نتيجة gzsave.
+- **نصوص الكتب ما تتحفظش في الريبو** (الكتب ملك الوزارة والريبو عام). جلسة 11-21 رفعتها بالغلط في ocr/texts واتشالت من main (لسه في تاريخ git القديم — شيلها من التاريخ محتاج force push وقرار أحمد). النصوص تفضل في /home/claude/khutwa/ocr/ بس وتتقري تاني لو الجلسة اتقفلت. save.sh <اسم> = يفك آخر نتيجة gzsave.
 - جلسة 11-21: اتقرت طبقة النص لـ ch1 ch2 ma1 ma2 ac1 ac2 pr1 pr2، وOCR لـ ch1. الطابور (runTL ثم runAll) شغال في تاب seed: ch2 ma1 ma2 pr1 pr2 ac1 ac2 bz1 bz2 ps1 ps2 sar sen (3 workers، ~15 صفحة/دقيقة). اتحفظ في texts/ اللي خلص بس.
 - نصوص hi/ph القديمة ضاعت (موادهم مرفوعة خلاص، مش محتاجينها).
 - أدوات المتصفح المدمج: mcp__remote-devices__Claude_Browser__* (لو مش موجودة: أحمد يفتح الشات من تطبيق الديسكتوب). الموقع محتاج request_access.
