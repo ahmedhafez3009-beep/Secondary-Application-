@@ -1,5 +1,5 @@
 # ذاكرة مشروع «خُطوة» — اقرأ ده الأول بدل الشات كله
-آخر تحديث: 2026-11-21 ~07:40 UTC (جلسة session_01WsJEfSAo7hbjLUWMryTEGq)
+آخر تحديث: 2026-11-21 ~08:45 UTC (جلسة session_01WsJEfSAo7hbjLUWMryTEGq)
 
 ## المشروع
 - تطبيق مذاكرة PWA مجاني لطلاب مصر. الريبو: /home/claude/secondary-application- ، المصدر في src/ ، البناء `python3 build.py` → src/site/.
@@ -14,7 +14,8 @@
 - خطوات كل مادة: كاتب (BACC_TASK.md) → مراجع مستقل (CHECK.md) → مراجعة شكل الامتحان (EXAM_REVIEW.md، 2 حفظ/2 فهم/2 تطبيق) → مراجع مستقل على الأسئلة chg بس → integrate → build → اختبار → رفع. فرنساوي/ألماني + مراجع لغة (LANG_REVIEW.md).
 - الملفات في /home/claude/khutwa/quiz/: SPEC_GEN.md SPEC_MATH.md CHECK.md BACC_TASK.md EXAM_REVIEW.md LANG_REVIEW.md exam_style.md integrate.py (بيشيل chg).
 - الدمج: `cd /home/claude/khutwa/quiz && python3 integrate.py <sk> "<المصدر>" <file>.json`. أسماء الدروس من <sk>_curr.json تتحط في data.js بسكريبت يتأكد إن العدد والترتيب ثابت.
-- اختبار: سيرفر `cd src/site && python3 -m http.server 8765 &` ثم سكريبتات playwright في /tmp (b2l2t.js, b2en.js, b2hi.js, b2ph.js — بتفتح الشعبة وأول كويز وتطبع errs []). ممكن تكون اتمسحت بعد restart.
+- أدوات جديدة (11-21): quiz/apply_curr.py <sk> <curr.json> (بيغير الأسماء في data.js وبيرفض لو الشكل اتغير)، test/qtest.js <sk..> (اختبار playwright: NODE_PATH=$(npm root -g))، test/deploy.sh "رسالة" (نشر كامل). لو push لـ gh-pages اترفض في clone shallow: `git fetch --depth=6 origin main` وبعدين ادفع تاني.
+- اختبار قديم: سيرفر `cd src/site && python3 -m http.server 8765 &` ثم سكريبتات playwright في /tmp (b2l2t.js, b2en.js, b2hi.js, b2ph.js — بتفتح الشعبة وأول كويز وتطبع errs []). ممكن تكون اتمسحت بعد restart.
 
 ## قراية كتب البكالوريا (المتصفح المدمج على جهاز أحمد)
 - تاب "seed" على https://egyptianbaccalaureate.blob.core.windows.net/egyptianbaccalaureate/x404 (صفحة XML: السكربتات بتتحمل بـ fetch + eval، والـ canvas من HD=document.implementation.createHTMLDocument، وdisableFontFace:true، وintent:'print').
@@ -34,8 +35,10 @@
 | b2hi تاريخ 144 | مرفوع من النص النضيف |
 | b2phys فيزياء 270 | مرفوع |
 | b2fr فرنساوي 144 / b2de ألماني 76 | مرفوع (+لغة +امتحان)؛ شعب جديدة fr/de، والشعبة l2 = «إيطالي أو إسباني أو غيرهم» |
-| b2chem كيميا | الكويز كامل 312 سؤال/52 درس (quiz/b2chem_quiz.json، خطوة الكاتب خلصت). الباقي: مراجع ← امتحان ← تدقيق ← رفع |
-| b2math, b2prog, b2acc, b2biz, b2psy | الكتب لسه ما اتقريتش |
+| b2chem كيميا 312 | مرفوع 11-21 (commit bac5c25) بعد الخطوات الأربعة؛ أسماء دروس اتعدلت في نفس المكان |
+| b2acc محاسبة 80 (8/وحدة) | كاتب ✓ مراجع ✓ — عند مراجع الامتحان |
+| b2math رياضة 177 | كاتب جزء 1 (88 درس) شغال؛ جزء 2 لما OCR ma2 يخلص |
+| b2prog, b2biz, b2psy، القصتين | مستنيين OCR |
 
 ## فيديو شرح التاريخ (درس تجريبي)
 - الدرس: «بناء الدولة المصرية واستمرارها عبر التاريخ» (تانية بكالوريا، و1 د1، ص6–20 جزء 1).
