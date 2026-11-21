@@ -1,9 +1,9 @@
 # ذاكرة مشروع «خُطوة» — اقرأ ده الأول بدل الشات كله
-آخر تحديث: 2026-11-21 ~07:00 UTC
+آخر تحديث: 2026-11-21 ~07:40 UTC (جلسة session_01WsJEfSAo7hbjLUWMryTEGq)
 
 ## المشروع
 - تطبيق مذاكرة PWA مجاني لطلاب مصر. الريبو: /home/claude/secondary-application- ، المصدر في src/ ، البناء `python3 build.py` → src/site/.
-- النشر: انسخ src/site/app/{index.html,sw.js,curriculum.json,curriculum2.json,version.json} → app/ ، و src/site/app/quiz/*.json → app/quiz/ ، و src/site/{index,report,story}.html → الجذر. ثم `git add -A && git commit` (نهاية الرسالة: سطرين Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com> و Claude-Session: https://claude.ai/code/session_01WsJEfRvCHVV1FWo1tmrmyE) ثم `git push -q origin main main:gh-pages`. src/site في .gitignore.
+- النشر: انسخ src/site/app/{index.html,sw.js,curriculum.json,curriculum2.json,version.json} → app/ ، و src/site/app/quiz/*.json → app/quiz/ ، و src/site/{index,report,story}.html → الجذر. ثم `git add -A && git commit` (نهاية الرسالة: سطرين Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com> و Claude-Session: <رابط الجلسة الحالية من system-reminder>) ثم `git push -q origin main main:gh-pages`. src/site في .gitignore.
 - الموقع: https://ahmedhafez3009-beep.github.io/Secondary-Application-/
 - المستخدم: أحمد (Ahmed.Alalfy). الرد عليه بالعامية المصرية. إيميله خاص. قال «ارفع» = مسموح نرفع الجاهز من غير ما نسأل.
 
@@ -21,9 +21,10 @@
 - دوال: openDoc, render, ocrOne, processBook (OCR دايمًا), runAll(BOOKS), gzsave(k) → نص GZB64 بيتحفظ في /tmp/claude-tool-results/... ونفكه بـ `python3 /home/claude/khutwa/ocr/dec.py <file> <out>`. tlBook(k,file) = طبقة نص الـPDF (أرقامها سليمة، حروفها بايظة) → gzsave('tl_'+k).
 - مهم: OCR الحروف سليمة والأرقام بتبوظ؛ طبقة النص العكس. المواد الحسابية لازم الاتنين. صور الصفحات (toDataURL) أدق مصدر للتحقق.
 - لو المتصفح اتقفل الحالة بتضيع ولازم أبنيها من جديد (الكود فوق).
-- الحالة: اتقرا hi1 hi2 ph1 ph2 ch1 ch2 (+ textlayer لـ hi/ph/ch). كان شغال على ma1 (59/206). الطابور بعده: ma2 pr1 pr2 ac1 ac2 bz1 bz2 ps1 ps2 sar sen.
-- أسماء الملفات: /home/claude/khutwa/ocr/b2<sub><1|2>.txt (+ _textlayer.txt). ma→b2math, pr→b2prog, ac→b2acc, bz→b2biz, ps→b2psy, sar→b2arstory, sen→b2enstory.
-- أدوات جهاز أحمد (remote-devices) مش متاحة دلوقتي في الجلسة؛ لازم أحمد يفتح الشات من تطبيق الديسكتوب علشان ترجع.
+- **النصوص محفوظة في الريبو** (عشان ما تضيعش تاني): tools/khutwa-work/ocr/texts/*.txt.gz → فكها بـ `gunzip -c` إلى /home/claude/khutwa/ocr/. ‏save.sh <اسم> = يفك آخر نتيجة gzsave.
+- جلسة 11-21: اتقرت طبقة النص لـ ch1 ch2 ma1 ma2 ac1 ac2 pr1 pr2، وOCR لـ ch1. الطابور (runTL ثم runAll) شغال في تاب seed: ch2 ma1 ma2 pr1 pr2 ac1 ac2 bz1 bz2 ps1 ps2 sar sen (3 workers، ~15 صفحة/دقيقة). اتحفظ في texts/ اللي خلص بس.
+- نصوص hi/ph القديمة ضاعت (موادهم مرفوعة خلاص، مش محتاجينها).
+- أدوات المتصفح المدمج: mcp__remote-devices__Claude_Browser__* (لو مش موجودة: أحمد يفتح الشات من تطبيق الديسكتوب). الموقع محتاج request_access.
 
 ## حالة كويزات البكالوريا تانية (مرفوع آخر commit 78bb66d)
 | مادة | الحالة |
@@ -33,7 +34,7 @@
 | b2hi تاريخ 144 | مرفوع من النص النضيف |
 | b2phys فيزياء 270 | مرفوع |
 | b2fr فرنساوي 144 / b2de ألماني 76 | مرفوع (+لغة +امتحان)؛ شعب جديدة fr/de، والشعبة l2 = «إيطالي أو إسباني أو غيرهم» |
-| b2chem كيميا | الكاتب وقف بسبب حد الاستخدام (agent a9d83eeb1b44eb8e3) — فيه b2chem_curr.json وb2chem_quiz.json جزئيين؛ كمّله بـ SendMessage |
+| b2chem كيميا | الكويز كامل 312 سؤال/52 درس (quiz/b2chem_quiz.json، خطوة الكاتب خلصت). الباقي: مراجع ← امتحان ← تدقيق ← رفع |
 | b2math, b2prog, b2acc, b2biz, b2psy | الكتب لسه ما اتقريتش |
 
 ## فيديو شرح التاريخ (درس تجريبي)
