@@ -31,7 +31,7 @@ a=t.index('/*__CONTENT_START__');b=t.index('/*__CONTENT_END__*/')+len('/*__CONTE
 t=t[:a]+'/*__CONTENT_START__*/\nconst S='+json.dumps(S,ensure_ascii=False)+',SRC='+json.dumps(SRC,ensure_ascii=False)+';\n'+body+'\n/*__CONTENT_END__*/'+t[b:]
 t,n1=re.subn(r'<title>.*?</title>','<title>خُطوة · تاريخ · نسخة v1 · السبورة C (الفصل الثالث · الشرايح C1–C4)</title>',t)
 t,n2=re.subn(r'<p id="note">نسخة v7 · الافتتاحية A0 \+ الشرايح A1–A3 \(السكريبت v3 \+ تبسيط v4\)\.','<p id="note">نسخة v1 · السبورة C (الفصل الثالث · الشرايح C1–C4).',t)
-H=6400
+H=7300
 t,n3=re.subn(r'<rect y="-1800" width="3200" height="3600"','<rect y="-1800" width="3200" height="%d"'%H,t)
 assert (n1,n2,n3)==(1,1,2),(n1,n2,n3)
 open('/home/claude/out/khutwa_hist_board_C.html','w',encoding='utf-8').write(t)
