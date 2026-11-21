@@ -26,8 +26,10 @@ a=t.index('/*__CONTENT_START__');b=t.index('/*__CONTENT_END__*/')+len('/*__CONTE
 t=t[:a]+'/*__CONTENT_START__*/\nconst S='+json.dumps(S,ensure_ascii=False)+',SRC='+json.dumps(SRC,ensure_ascii=False)+';\n'+body+'\n/*__CONTENT_END__*/'+t[b:]
 t,n1=re.subn(r'<title>.*?</title>','<title>خُطوة · تاريخ · الدرس ٢ · السبورة L2A (الفصل الأول · ص٢١–٢٤)</title>',t)
 t,n2=re.subn(r'<p id="note">نسخة v7 · الافتتاحية A0 \+ الشرايح A1–A3 \(السكريبت v3 \+ تبسيط v4\)\.','<p id="note">نسخة v1 · السبورة L2A (الدرس ٢ · الفصل الأول · ص٢١–٢٤).',t)
-H=8400
+H=9800
 t,n3=re.subn(r'<rect y="-1800" width="3200" height="3600"','<rect y="-1800" width="3200" height="%d"'%H,t)
-assert (n1,n2,n3)==(1,1,2),(n1,n2,n3)
+t,n4=re.subn(r"if\(l!==curL\)\{curL=l;","if(l!==curL){curL=l;$('#sub').style.fontSize=l&&l.tk.length>27?'.74em':l&&l.tk.length>21?'.88em':'';",t)
+t,n5=re.subn(r'gp:gap==null\?p\.sz\*\.28:gap','gp:gap==null?p.sz*.28+12:gap',t)
+assert (n1,n2,n3,n4,n5)==(1,1,2,1,1),(n1,n2,n3,n4,n5)
 open('/home/claude/out/khutwa_hist_board_L2A.html','w',encoding='utf-8').write(t)
 print('built',len(S))

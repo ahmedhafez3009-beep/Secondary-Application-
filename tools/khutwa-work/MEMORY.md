@@ -106,5 +106,7 @@
 
 - **الدرس 2 (11-21):** أسئلة OCR اتحسمت من صور الصفحات (render→toDataURL في تاب seed؛ الصور محليًا video/pages2/) — قسم «حسم الأسئلة» آخر hist_l2_script_v1.md. **L2B ✓** (video/khutwa_hist_board_L2B.html: 50 سطر، 696 عنصر، 8:05؛ gaps=0، tb/tk نضاف؛ مصدر board_src/L2B_*). L2A (ad253c601bf00db57) وL2C (a7c14e0af59a2e267) شغالين → /home/claude/out/. بعدهم: combine في khutwa_hist_lesson2_all.html وابعته، ثم الدرس 3 (ص31–40 جزء 1).
 
+- **L2A ✓ (11-21):** video/khutwa_hist_board_L2A.html (66 سطر، 1032 عنصر، 12:42، 28 شريحة؛ gaps=0، tb/tk نضاف؛ إعادة البناء: board_src/L2A_make.sh) — اتبعتت لأحمد. ملاحظة: تسمية الكروت في L2A «L2-10» وفي L2B «احفظ دي ١٣» (توحيدها لو أحمد علّق). L2C لسه شغال.
+
 ## مؤجل
 - كتب الترم التاني، أسماء دروس إنجليزي الإعدادي، مواد X الإنجليزي بدون كويزات.
