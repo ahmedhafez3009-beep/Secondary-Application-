@@ -1,5 +1,5 @@
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>خُطوة · تاريخ · السبورة A (v6)</title>
+<title>خُطوة · تاريخ · السبورة A (v7)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@500;700&display=swap">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0b1620;color:#e8eef0;font-family:Cairo,Tahoma,sans-serif}
@@ -35,7 +35,7 @@ body.rec #ctl,body.rec #note{display:none}body.rec #wrap{max-width:none;padding:
  <button id="mode" aria-pressed="false">وضع الشرايح</button><button id="snd" aria-pressed="true">الصوت</button>
  <label>ارفع فويس الشريحة دي <input id="af" type="file" accept="audio/*" hidden></label><button id="sync">ظبط التوقيت على صوتي</button><button id="tap" style="background:#1EA05F;border-color:#1EA05F">جملة (Enter)</button><button id="cp">انسخ كود التوقيت</button><span id="msg"></span><button id="recm">وضع تسجيل الشاشة</button><button id="fs">ملء الشاشة</button>
 </div>
-<p id="note">نسخة v6 · الافتتاحية A0 + الشرايح A1–A3 (السكريبت v3 + تبسيط v4). <b>التسجيل:</b> دوس «سجّل الشريحة»، هيعدّ ٣ وبعدين الكلام يتعلّم كلمة كلمة تحت وإنت بتقرا، والرسم ماشي معاه (ظبّط السرعة على كلامك). <b>بعد التسجيل:</b> ارفع فويس الشريحة، دوس «ظبط التوقيت على صوتي»، ودوس Enter أول ما تسمع بداية كل جملة؛ الرسم هيتشدّ على صوتك. شغّل واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي أثبّته. في «وضع الشرايح»: دوسة على شمال الشاشة للشريحة الجاية وعلى اليمين للي قبلها، والمسافة للتشغيل، والعرض بيقف آخر كل شريحة. للخروج من وضع تسجيل الشاشة دوس Esc.</p>
+<p id="note">نسخة v7 · الافتتاحية A0 + الشرايح A1–A3 (السكريبت v3 + تبسيط v4). <b>التسجيل:</b> دوس «سجّل الشريحة»، هيعدّ ٣ وبعدين الكلام يتعلّم كلمة كلمة تحت وإنت بتقرا، والرسم ماشي معاه (ظبّط السرعة على كلامك). <b>بعد التسجيل:</b> ارفع فويس الشريحة، دوس «ظبط التوقيت على صوتي»، ودوس Enter أول ما تسمع بداية كل جملة؛ الرسم هيتشدّ على صوتك. شغّل واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي أثبّته. في «وضع الشرايح»: دوسة على شمال الشاشة للشريحة الجاية وعلى اليمين للي قبلها، والمسافة للتشغيل، والعرض بيقف آخر كل شريحة. للخروج من وضع تسجيل الشاشة دوس Esc.</p>
 </div>
 <script>
 const G='#1EA05F',GD='#106942',N='#0E2A47',R='#D7463C',Y='#F5BE32',YD='#C99A1B',SAND='#F3E3B5',GR='#666';
@@ -330,7 +330,7 @@ function amap(i,ta){const L=sLines(i),tp=AU[i].taps;if(!tp)return Math.min(sEnd(
 function camAt(t){let a=CAM[0];for(let i=1;i<CAM.length;i++){const b=CAM[i];if(t<b[0]){const p=sm((t-a[0])/Math.max(.001,b[0]-a[0]));return [1,2,3,4].map(j=>a[j]+(b[j]-a[j])*p)}a=b}return a.slice(1)}
 function render(){const c=camAt(T);$('#world').setAttribute('viewBox',c.join(' '));let pen=null;
  for(const it of IT){const p=(T-it.t)/it.d;
-  if(it.k=='w'){if(!it.bb){if(it.af){if(!it.af.bb)continue;it.e.setAttribute('x',it.x=it.af.bb.x-it.gp)}try{it.bb=it.e.getBBox()}catch(e){}}const b=it.bb;if(!b)continue;const q=Math.max(0,Math.min(1,p)),w=b.width*q;
+  if(it.k=='w'){it.e.setAttribute('visibility',p>0?'visible':'hidden');if(!it.bb){if(it.af){if(!it.af.bb)continue;it.e.setAttribute('x',it.x=it.af.bb.x-it.gp)}try{it.bb=it.e.getBBox()}catch(e){}}const b=it.bb;if(!b)continue;const q=Math.max(0,Math.min(1,p)),w=b.width*q;
    if(it.h)it.e.setAttribute('opacity',T>=it.h[0]&&T<it.h[1]?.05:1);if(it.off!=null)it.e.setAttribute('opacity',1-sm((T-it.off)/.4));it.r.setAttribute('y',b.y-6);it.r.setAttribute('height',b.height+12);it.r.setAttribute('width',w+(q>=1?12:0));it.r.setAttribute('x',it.ltr?b.x:b.x+b.width-w-(q>=1?6:0));
    if(p>0&&p<1)pen=[it.ltr?b.x+w:b.x+b.width-w,it.y-it.sz*.3+Math.sin(T*40)*it.sz*.18]}
   else if(it.k=='p'){const q=Math.max(0,Math.min(1,p));it.e.setAttribute('stroke-dashoffset',1-q);it.e.setAttribute('visibility',p>0?'visible':'hidden');if(it.off!=null)it.e.setAttribute('opacity',1-sm((T-it.off)/.4));if(it.fill)it.e.setAttribute('fill-opacity',sm((T-it.t-it.d)/.5));
