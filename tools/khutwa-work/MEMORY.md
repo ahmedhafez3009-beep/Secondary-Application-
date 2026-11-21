@@ -17,6 +17,16 @@
 - أدوات جديدة (11-21): quiz/apply_curr.py <sk> <curr.json> (بيغير الأسماء في data.js وبيرفض لو الشكل اتغير)، test/qtest.js <sk..> (اختبار playwright: NODE_PATH=$(npm root -g))، test/deploy.sh "رسالة" (نشر كامل). لو push لـ gh-pages اترفض في clone shallow: `git fetch --depth=6 origin main` وبعدين ادفع تاني.
 - اختبار قديم: سيرفر `cd src/site && python3 -m http.server 8765 &` ثم سكريبتات playwright في /tmp (b2l2t.js, b2en.js, b2hi.js, b2ph.js — بتفتح الشعبة وأول كويز وتطبع errs []). ممكن تكون اتمسحت بعد restart.
 
+## مصادر الكتب (رسمية من الوزارة — بتتقري في المتصفح، مش متنزلة)
+- ثانوي ترم 1: القايمة https://ellibrary.moe.gov.eg/Books/Books-sec/books.json — الملفات https://elearnningcontent.blob.core.windows.net/elearnningcontent/2026_2027/Secondry/
+  - Secondry1/Term1/StudentBook/{History_Sec1_Tr1, integratedscience_ARABIC_1_Secondary_TR1, Mathematics_AR_Tr1_Secondary, Philosophy_and_Logic_Tr1_1sec, arabic_1sec_t1, English_1sec_t1}.pdf
+  - Secondry2/Term1/StudentBook/{History_Sec2_Tr1, Geography_Sec2_Tr1, pure_Mathematics_ARABIC_Sec2_Tr1, General_Mathematics_ARABIC_Sec2_Tr1, Chemistry_Arabic_2_Secondary_TR1, Physics_Arabic_2_Secondary_TR1, Arabic_language_Sec2_Tr1, Arabic_language_Story_Sec2_Tr1, English_language_2sec_t1}.pdf
+  - Secondry3/Term1/StudentBook/{History_Sec3, Geography_Sec3, pure_Mathematics_ARABIC_Sec3, applied_Mathematics_ARABIC_Sec3, Statistics_Arabic_Sec3, Arabic_language_Sec3, Arabic_language_Story_Sec3, English_language_Sec3_tr1}.pdf
+- البكالوريا تانية: https://egyptianbaccalaureate.blob.core.windows.net/egyptianbaccalaureate/<file>
+  - Arabic-EB-part1/2.pdf, Story-Ar-EB.pdf · EgyptianHistory-Ar-EB-part1/2.pdf · Eng-L1-EB-Part1/2.pdf, Story-En-EB-L1.pdf · Mathematics-Ar-EB-Part1/2.pdf · Physics-Ar-EB-part1/2.pdf · Chemistry-Ar-EB-part1/2.pdf · Programming-ArtificialIntelligence-Ar-EB-part1/2.pdf · Accuonting-Ar-EB-Part1/2.pdf · Business-AR-EB-Part1/2.pdf · Psychology-EB-part1/2.pdf · Frensh-L2-EB-part1/2.pdf · german-L2-EB-Part1/2.pdf
+- هيكل المنهج: src/data.js (والموقع app/curriculum2.json). فهارس الكتب: src/books/. كل ملف كويز فيه خانة src = اسم الكتاب.
+- نصوص الكتب المقروءة (16MB) كانت في /home/claude/khutwa/ocr في الجلسة القديمة بس — مش في الريبو (الكتب ملك الوزارة والريبو عام).
+
 ## قراية كتب البكالوريا (المتصفح المدمج على جهاز أحمد)
 - تاب "seed" على https://egyptianbaccalaureate.blob.core.windows.net/egyptianbaccalaureate/x404 (صفحة XML: السكربتات بتتحمل بـ fetch + eval، والـ canvas من HD=document.implementation.createHTMLDocument، وdisableFontFace:true، وintent:'print').
 - دوال: openDoc, render, ocrOne, processBook (OCR دايمًا), runAll(BOOKS), gzsave(k) → نص GZB64 بيتحفظ في /tmp/claude-tool-results/... ونفكه بـ `python3 /home/claude/khutwa/ocr/dec.py <file> <out>`. tlBook(k,file) = طبقة نص الـPDF (أرقامها سليمة، حروفها بايظة) → gzsave('tl_'+k).
