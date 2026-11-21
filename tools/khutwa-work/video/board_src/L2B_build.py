@@ -28,5 +28,7 @@ t,n2=re.subn(r'<p id="note">نسخة v7 · الافتتاحية A0 \+ الشرا
 H=8300
 t,n3=re.subn(r'<rect y="-1800" width="3200" height="3600"','<rect y="-1800" width="3200" height="%d"'%H,t)
 assert (n1,n2,n3)==(1,1,2),(n1,n2,n3)
+t,n4=re.subn(r"if\(l!==curL\)\{curL=l;","if(l!==curL){curL=l;$('#sub').style.fontSize=l&&l.tk.length>27?'.74em':l&&l.tk.length>21?'.88em':'';",t)
+assert n4==1
 open('/home/claude/out/khutwa_hist_board_L2B.html','w',encoding='utf-8').write(t)
 print('built',len(S))
