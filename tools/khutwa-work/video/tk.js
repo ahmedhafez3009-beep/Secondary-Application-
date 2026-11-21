@@ -1,6 +1,6 @@
 const { chromium } = require('playwright');
 (async()=>{const b=await chromium.launch({args:['--autoplay-policy=no-user-gesture-required']});const p=await b.newPage({viewport:{width:1296,height:950}});const errs=[];p.on('pageerror',e=>errs.push(String(e)));
-await p.goto('file:///home/claude/out/khutwa_hist_board_A.html');await p.waitForTimeout(800);
+await p.goto('file://'+(process.env.BOARD||'/home/claude/out/khutwa_hist_board_A.html'));await p.waitForTimeout(800);
 // karaoke
 await p.click('#play');await p.waitForTimeout(2500);const k=await p.evaluate(()=>({on:document.querySelectorAll('#sub .on').length,cur:document.querySelectorAll('#sub .cur').length,n:document.querySelectorAll('#sub span').length}));await (await p.$('#stage')).screenshot({path:'k1.png'});await p.click('#play');
 // record countdown
