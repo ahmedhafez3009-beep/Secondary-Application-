@@ -1,5 +1,5 @@
 <!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>خُطوة · تاريخ · السبورة A (v1)</title>
+<title>خُطوة · تاريخ · السبورة A (v2)</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@500;700&display=swap">
 <style>
 *{box-sizing:border-box}body{margin:0;background:#0b1620;color:#e8eef0;font-family:Cairo,Tahoma,sans-serif}
@@ -9,7 +9,8 @@
 #world text{font-family:Lalezar,Cairo,Tahoma,sans-serif}
 #bar{position:absolute;inset:auto 0 0 0;height:12%;background:#0E2A47;display:flex;align-items:center;gap:1.2%;padding:0 2%;font-size:clamp(11px,2.1vw,26px);font-weight:700;color:#fff}
 #who{background:#1EA05F;border-radius:999px;padding:.1em .8em;font-size:.72em;white-space:nowrap}
-#sub{flex:1;min-width:0;line-height:1.35}#src{font-size:.6em;color:#F5BE32;white-space:nowrap;font-weight:500}
+#sub{flex:1;min-width:0;line-height:1.35}#sub .w{color:#7f93a8}#sub .w.on{color:#fff}#sub .w.cur{color:#F5BE32}#sub .pz{font-size:.6em;border:1px dashed #7f93a8;border-radius:4px;padding:0 .35em;color:#7f93a8;white-space:nowrap}#sub .pz.cur{color:#fff;background:#D7463C;border-color:#D7463C}
+#cd{position:absolute;inset:0 0 12% 0;display:grid;place-items:center;font:400 22vw Lalezar,sans-serif;color:#D7463C;background:rgba(252,252,250,.6)}#cd[hidden]{display:none}#msg{color:#F5BE32;font-size:13px;width:100%}#src{font-size:.6em;color:#F5BE32;white-space:nowrap;font-weight:500}
 #badge{position:absolute;top:2.2%;right:1.6%;display:flex;align-items:center;gap:.5em;font-size:clamp(9px,1.5vw,19px);color:#0E2A47;font-weight:700;line-height:1.15}
 #badge i{width:2.4em;height:2.4em;border-radius:50%;border:.22em solid #1EA05F;display:grid;place-items:center;font-style:normal;font-family:Lalezar;font-size:1.2em;background:#fff}
 #badge b{display:block}#badge span span{color:#C99A1B;font-size:.85em}
@@ -25,15 +26,16 @@ body.rec #ctl,body.rec #note{display:none}body.rec #wrap{max-width:none;padding:
  <svg id="world" viewBox="0 0 3200 1800" preserveAspectRatio="xMidYMin slice"><defs><pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="24" cy="24" r="2" fill="#d9dcd8"/></pattern></defs><rect width="3200" height="1800" fill="#FCFCFA"/><rect width="3200" height="1800" fill="url(#dots)"/><g id="L"></g></svg>
  <svg id="ov" viewBox="0 0 1280 720"><g id="pen" visibility="hidden"><g transform="rotate(28)"><path d="M0,0 L-7,-22 L7,-22 Z" fill="#e9d9b0" stroke="#0E2A47" stroke-width="1.5"/><rect x="-7" y="-112" width="14" height="90" fill="#0E2A47"/><rect x="-7" y="-40" width="14" height="9" fill="#1EA05F"/><rect x="-8" y="-128" width="16" height="18" rx="3" fill="#1EA05F"/></g></g></svg>
  <div id="badge"><i>أ</i><span><b>أحمد الألفي</b><span>خُطوة</span></span></div><div id="sl"></div>
- <div id="bar"><span id="who">أحمد</span><span id="sub"></span><span id="src"></span></div>
+ <div id="cd" hidden></div><div id="bar"><span id="who">أحمد</span><span id="sub"></span><span id="src"></span></div>
 </div>
 <div id="ctl">
  <button id="play">▶ تشغيل</button><button id="re">↺ إعادة</button><input id="seek" type="range" min="0" max="1000" value="0"><span id="tm">0:00</span>
+ <button id="rec" style="background:#D7463C;border-color:#D7463C">● سجّل الشريحة (عدّ ٣)</button><label style="cursor:default">السرعة <input id="spd" type="range" min="0.7" max="1.4" step="0.05" value="1" style="vertical-align:middle"> <span id="spdv">100%</span></label>
  <button id="prev">→ الشريحة اللي قبل</button><button id="next">الشريحة الجاية ←</button>
  <button id="mode" aria-pressed="false">وضع الشرايح</button><button id="snd" aria-pressed="true">الصوت</button>
- <label>ارفع صوتك <input id="af" type="file" accept="audio/*" hidden></label><button id="recm">وضع تسجيل الشاشة</button><button id="fs">ملء الشاشة</button>
+ <label>ارفع فويس الشريحة دي <input id="af" type="file" accept="audio/*" hidden></label><button id="sync">ظبط التوقيت على صوتي</button><button id="tap" style="background:#1EA05F;border-color:#1EA05F">جملة (Enter)</button><button id="cp">انسخ كود التوقيت</button><span id="msg"></span><button id="recm">وضع تسجيل الشاشة</button><button id="fs">ملء الشاشة</button>
 </div>
-<p id="note">نسخة v1 · السبورة A (الشرايح A1–A3 من السكريبت v3). التوقيت تجريبي ومحسوب بعدد الكلمات لحد ما ييجي صوت أحمد. في «وضع الشرايح»: دوسة على شمال الشاشة للشريحة الجاية وعلى اليمين للي قبلها، والمسافة للتشغيل، والعرض بيقف آخر كل شريحة. للخروج من وضع تسجيل الشاشة دوس Esc.</p>
+<p id="note">نسخة v2 · السبورة A (الشرايح A1–A3 من السكريبت v3). <b>التسجيل:</b> دوس «سجّل الشريحة»، هيعدّ ٣ وبعدين الكلام يتعلّم كلمة كلمة تحت وإنت بتقرا، والرسم ماشي معاه (ظبّط السرعة على كلامك). <b>بعد التسجيل:</b> ارفع فويس الشريحة، دوس «ظبط التوقيت على صوتي»، ودوس Enter أول ما تسمع بداية كل جملة؛ الرسم هيتشدّ على صوتك. شغّل واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي أثبّته. في «وضع الشرايح»: دوسة على شمال الشاشة للشريحة الجاية وعلى اليمين للي قبلها، والمسافة للتشغيل، والعرض بيقف آخر كل شريحة. للخروج من وضع تسجيل الشاشة دوس Esc.</p>
 </div>
 <script>
 const G='#1EA05F',GD='#106942',N='#0E2A47',R='#D7463C',Y='#F5BE32',YD='#C99A1B',SAND='#F3E3B5',GR='#666';
@@ -44,7 +46,8 @@ function cell(c,r){ox=(2-c)*CW;oy=r*CH}
 function camTo(o,x,y,w,h,d=1.2){const t=T0+o,l=CAM[CAM.length-1];CAM.push([t,l[1],l[2],l[3],l[4]],[t+d,x,y,w,h]);SFX.push({t,k:'whoosh'})}
 function go(c,r){cell(c,r);camTo(0,ox,oy,CW,CH)}
 function line(id,src,txt,fn){const words=txt.replace(/\[\[[\d.]+\]\]/g,'').trim().split(/\s+/).length;let pz=0;txt.replace(/\[\[([\d.]+)\]\]/g,(m,v)=>pz+=+v);
- LD=words*0.58+pz+0.45;LINES.push({id,src,t:T0,d:LD,txt:txt.replace(/\s*\[\[[\d.]+\]\]\s*/g,' ').trim()});fn&&fn();T0+=LD}
+ LD=words*0.58+pz+0.45;let cu=0;const tk=txt.trim().split(/\s+/).filter(Boolean).map(w=>{const m=w.match(/^\[\[([\d.]+)\]\]$/),d=m?+m[1]:.58,o={w,p:!!m,v:m&&m[1],s:cu,e:cu+d};cu+=d;return o});
+ LINES.push({id,src,tk,t:T0,d:LD,txt:txt.replace(/\s*\[\[[\d.]+\]\]\s*/g,' ').trim()});fn&&fn();T0+=LD}
 function slide(name){SL.push({t:T0,name})}
 function W(o,x,y,txt,sz,col,a){IT.push({k:'w',t:T0+o*OS,x:ox+x,y:oy+y,txt,sz,col,a:a||'end',d:Math.min(1.4,.06*txt.length+.3),cx:ox,cy:oy})}
 function P(o,d,col,w,dur,fill,cls){IT.push({k:'p',t:T0+o*OS,tx:ox,ty:oy,dd:d,col,w:w||3,d:dur||.8,fill,cls})}
@@ -160,7 +163,11 @@ IT.forEach((it,i)=>{
  else if(it.k=='s'){const c=it.ok?G:R;it.e=el('g',{});it.a1=el('circle',{r:20,fill:'#fff','fill-opacity':.85,stroke:c,'stroke-width':4,pathLength:1,'stroke-dasharray':1});
   it.a2=el('path',{d:it.ok?'M-10,0 L-3,8 L11,-8':'M-9,-9 L9,9 M9,-9 L-9,9',fill:'none',stroke:c,'stroke-width':5,'stroke-linecap':'round',pathLength:1,'stroke-dasharray':1});it.e.append(it.a1,it.a2);LG.appendChild(it.e)}
  else if(it.k=='q'){it.e=el('text',{'font-size':90,fill:Y,stroke:YD,'stroke-width':2,'text-anchor':'middle'});it.e.textContent='؟';LG.appendChild(it.e)}});
-let T=0,playing=false,last=0,slides=false,sound=true,AC=null,au=null;const $=s=>document.querySelector(s);
+let T=0,playing=false,last=0,slides=false,sound=true,AC=null,spd=1,AU={},sync=null,pa=null,pi=0,curL=null,code='';
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));const msg=t=>{document.getElementById('msg').textContent=t};
+const sIdx=t=>{let i=0;SL.forEach((s,k)=>{if(t>=s.t-.001)i=k});return i},sEnd=i=>i+1<SL.length?SL[i+1].t:END,sLines=i=>LINES.filter(l=>l.txt&&l.t>=SL[i].t-.001&&l.t<sEnd(i)-.001);
+function amap(i,ta){const L=sLines(i),tp=AU[i].taps;if(!tp)return Math.min(sEnd(i),SL[i].t+ta*spd);if(ta<tp[0])return Math.max(SL[i].t,L[0].t-(tp[0]-ta));
+ for(let k=0;k<L.length;k++){const a=tp[k],b=tp[k+1],te=k+1<L.length?L[k+1].t:sEnd(i);if(b==null)return Math.min(te,L[k].t+(ta-a));if(ta<b)return L[k].t+(ta-a)/Math.max(.05,b-a)*(te-L[k].t)}}const $=s=>document.querySelector(s);
 function camAt(t){let a=CAM[0];for(let i=1;i<CAM.length;i++){const b=CAM[i];if(t<b[0]){const p=sm((t-a[0])/Math.max(.001,b[0]-a[0]));return [1,2,3,4].map(j=>a[j]+(b[j]-a[j])*p)}a=b}return a.slice(1)}
 function render(){const c=camAt(T);$('#world').setAttribute('viewBox',c.join(' '));let pen=null;
  for(const it of IT){const p=(T-it.t)/it.d;
@@ -172,28 +179,38 @@ function render(){const c=camAt(T);$('#world').setAttribute('viewBox',c.join(' '
   else if(it.k=='s'){const q=sm(p),s=1.9-.9*q;it.e.setAttribute('transform',`translate(${it.x},${it.y}) scale(${s})`);it.e.setAttribute('opacity',p>0?1:0);it.a1.setAttribute('stroke-dashoffset',1-sm(p*1.6));it.a2.setAttribute('stroke-dashoffset',1-sm(p*1.6-.6))}
   else if(it.k=='q'){const on=p>0&&p<1,s=1+.16*Math.sin(T*6);it.e.setAttribute('transform',`translate(${it.x},${it.y}) scale(${s})`);it.e.setAttribute('opacity',on?Math.min(1,(T-it.t)*4,(it.t+it.d-T)*4):0)}}
  const pe=$('#pen');if(pen){pe.setAttribute('visibility','visible');pe.setAttribute('transform',`translate(${(pen[0]-c[0])/c[2]*1280},${(pen[1]-c[1])/c[3]*720})`)}else pe.setAttribute('visibility','hidden');
- let l=null;for(const x of LINES)if(T>=x.t)l=x;$('#sub').textContent=l?l.txt:'';$('#src').textContent=l&&l.src?l.src:'';$('#who').style.visibility=l&&l.txt?'visible':'hidden';
+ let l=null;for(const x of LINES)if(T>=x.t)l=x;if(l!==curL){curL=l;$('#sub').innerHTML=l&&l.txt?l.tk.map(k=>`<span class="${k.p?'pz':'w'}">${k.p?'سكتة '+k.v:esc(k.w)}</span>`).join(' '):''}
+ if(l&&l.txt){const tt=T-l.t,ch=$('#sub').children;l.tk.forEach((k,i)=>{ch[i].classList.toggle('on',tt>=k.e);ch[i].classList.toggle('cur',tt>=k.s&&tt<k.e)})}$('#src').textContent=l&&l.src?l.src:'';$('#who').style.visibility=l&&l.txt?'visible':'hidden';
  let s=SL[0];for(const x of SL)if(T>=x.t)s=x;$('#sl').textContent=s.name;
  $('#seek').value=T/END*1000;$('#tm').textContent=Math.floor(T/60)+':'+String(Math.floor(T%60)).padStart(2,'0')+' / '+Math.floor(END/60)+':'+String(Math.floor(END%60)).padStart(2,'0')}
 function sfx(k){if(!sound)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime,g=AC.createGain();g.connect(AC.destination);
  if(k=='whoosh'){const n=AC.createBufferSource(),b=AC.createBuffer(1,AC.sampleRate*.5,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;n.buffer=b;const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.setValueAtTime(300,t);f.frequency.exponentialRampToValueAtTime(2400,t+.45);n.connect(f);f.connect(g);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.12,t+.2);g.gain.linearRampToValueAtTime(.0001,t+.5);n.start(t);return}
  const tone=(f,d,v,f2)=>{const o=AC.createOscillator();o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);o.connect(g);o.start(t);o.stop(t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d)};
  if(k=='tick')tone(1200,.06,.06);else if(k=='chime'){tone(784,.5,.07);const o=AC.createOscillator();o.frequency.value=1047;o.connect(g);o.start(t+.08);o.stop(t+.5)}else if(k=='boom')tone(120,.7,.3,40)}catch(e){}}
-function frame(now){if(!playing)return;const dt=(now-last)/1000;last=now;const prev=T;T=au?au.currentTime:T+dt;
+function frame(now){if(!playing)return;const dt=(now-last)/1000;last=now;const prev=T;
+ if(sync){const L=sLines(sync.i),k=sync.tp.length-1;T=k<0?SL[sync.i].t:Math.min(L[k].t+(sync.a.currentTime-sync.tp[k]),(k+1<L.length?L[k+1].t:sEnd(sync.i))-.05);if(sync.a.ended){finishSync();render();return}}
+ else if(pa){T=amap(pi,pa.currentTime);if(pa.ended){stop();render();return}}
+ else T+=dt*spd;
  for(const e of SFX)if(e.t>prev&&e.t<=T)sfx(e.k);
- if(slides){const nx=SL.find(s=>s.t>prev+.01&&s.t<=T);if(nx){T=nx.t-.02;stop()}}
+ if(slides&&!sync){const nx=SL.find(s=>s.t>prev+.01&&s.t<=T);if(nx){T=nx.t-.02;stop()}}
  if(T>=END){T=END;stop()}render();if(playing)requestAnimationFrame(frame)}
-function play(){if(T>=END)T=0;playing=true;last=performance.now();if(au){au.currentTime=T;au.play().catch(()=>{})}$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame)}
-function stop(){playing=false;au&&au.pause();$('#play').textContent='▶ تشغيل'}
-function seek(t){T=Math.max(0,Math.min(END,t));if(au)au.currentTime=T;render()}
+function play(noAu){if(T>=END-.01)T=0;const i=sIdx(T);pa=null;if(AU[i]&&!noAu){pa=AU[i].a;pi=i;pa.currentTime=0;T=SL[i].t;pa.play().catch(()=>{})}playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame)}
+function stop(){playing=false;pa&&pa.pause();if(sync){sync.a.pause();sync=null;msg('ظبط التوقيت اتلغى')}$('#play').textContent='▶ تشغيل'}
+function seek(t){T=Math.max(0,Math.min(END,t));render()}
+function startSync(){const i=sIdx(T);if(!AU[i]){msg('ارفع فويس الشريحة دي الأول');return}stop();sync={i,a:AU[i].a,tp:[]};sync.a.currentTime=0;T=SL[i].t;render();sync.a.play().catch(()=>{});playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame);msg('اسمع صوتك، ودوس Enter (أو زرار «جملة») أول ما تبدأ كل جملة. الجملة الأولى: '+sLines(i)[0].txt.slice(0,40)+'…')}
+function tap(){if(!sync)return;const L=sLines(sync.i),n=sync.tp.length;if(n<L.length){sync.tp.push(+sync.a.currentTime.toFixed(2));msg(n+1<L.length?`اتسجلت جملة ${n+1} من ${L.length}. الجاية: ${L[n+1].txt.slice(0,40)}…`:'آخر جملة اتسجلت. استنى الفويس يخلص أو دوس إيقاف… ');if(n+1==L.length){const sy=sync;sync=null;sy.a.onended=null;AU[sy.i].taps=sy.tp;code='#KHSYNC '+JSON.stringify({slide:SL[sy.i].name.split(' ')[0],spd,taps:sy.tp});pa=sy.a;pi=sy.i;msg('التوقيت اتظبط ✓ لما يخلص، شغّل الشريحة تاني واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي.')}}}
+function finishSync(){const L=sLines(sync.i);msg(`الفويس خلص وناقص ${L.length-sync.tp.length} جملة. دوس «ظبط التوقيت» وعيد.`);sync=null;playing=false;$('#play').textContent='▶ تشغيل'}
+function recSlide(){stop();const i=sIdx(T);slides=true;$('#mode').setAttribute('aria-pressed',true);seek(SL[i].t);let n=3;const cd=$('#cd');cd.hidden=false;cd.textContent=n;sfx('tick');msg('ابدأ تسجيل الفويس على موبايلك دلوقتي…');const iv=setInterval(()=>{n--;if(n>0){cd.textContent=n;sfx('tick')}else{clearInterval(iv);cd.hidden=true;msg('اتكلم مع الكلام اللي بيتعلّم تحت. العرض هيقف آخر الشريحة.');play(true)}},1000)}
 function jump(d){let i=0;SL.forEach((s,k)=>{if(T>=s.t-.05)i=k});if(d<0&&T-SL[i].t>1.5)d=0;i=Math.max(0,Math.min(SL.length-1,i+d));const was=playing;stop();seek(SL[i].t+.03);if(was&&!slides)play()}
 $('#play').onclick=()=>playing?stop():play();$('#re').onclick=()=>{stop();seek(0)};$('#seek').oninput=e=>seek(e.target.value/1000*END);
 $('#next').onclick=()=>jump(1);$('#prev').onclick=()=>jump(-1);
 $('#mode').onclick=e=>{slides=!slides;e.target.setAttribute('aria-pressed',slides)};$('#snd').onclick=e=>{sound=!sound;e.target.setAttribute('aria-pressed',sound)};
-$('#af').onchange=e=>{const f=e.target.files[0];if(!f)return;stop();au=new Audio(URL.createObjectURL(f));e.target.parentNode.firstChild.textContent='الصوت اترفع ✓ '};
+$('#af').onchange=e=>{const f=e.target.files[0];if(!f)return;stop();const i=sIdx(T);AU[i]={a:new Audio(URL.createObjectURL(f)),taps:null};msg('اترفع فويس '+SL[i].name.split(' ')[0]+' ✓ دوس «ظبط التوقيت على صوتي».');e.target.value=''};
+$('#rec').onclick=recSlide;$('#sync').onclick=startSync;$('#tap').onclick=tap;$('#spd').oninput=e=>{spd=+e.target.value;$('#spdv').textContent=Math.round(spd*100)+'%'};
+$('#cp').onclick=async()=>{const all=Object.keys(AU).filter(i=>AU[i].taps).map(i=>'#KHSYNC '+JSON.stringify({slide:SL[i].name.split(' ')[0],spd,taps:AU[i].taps})).join('\n');if(!all){msg('مفيش توقيت متظبط لسه');return}try{await navigator.clipboard.writeText(all);msg('اتنسخ ✓ الزقه في الشات')}catch(e){prompt('انسخ الكود ده',all)}};
 $('#recm').onclick=()=>{document.body.classList.add('rec')};$('#fs').onclick=()=>$('#stage').requestFullscreen&&$('#stage').requestFullscreen();
-$('#stage').onclick=e=>{if(!slides){playing?stop():play();return}const r=e.currentTarget.getBoundingClientRect();jump(e.clientX-r.left<r.width/2?1:-1)};
-addEventListener('keydown',e=>{if(e.key==' '){e.preventDefault();playing?stop():play()}else if(e.key=='ArrowLeft')jump(1);else if(e.key=='ArrowRight')jump(-1);else if(e.key=='Escape')document.body.classList.remove('rec')});
+$('#stage').onclick=e=>{if(sync){tap();return}if(!slides){playing?stop():play();return}const r=e.currentTarget.getBoundingClientRect();jump(e.clientX-r.left<r.width/2?1:-1)};
+addEventListener('keydown',e=>{if(e.key=='Enter'){e.preventDefault();tap()}else if(e.key==' '){e.preventDefault();if(sync)tap();else playing?stop():play()}else if(e.key=='ArrowLeft')jump(1);else if(e.key=='ArrowRight')jump(-1);else if(e.key=='Escape')document.body.classList.remove('rec')});
 render();document.fonts&&document.fonts.ready.then(()=>{IT.forEach(it=>it.bb=null);render()});
-window.__K={IT,LINES,SL,END,seek,CW,CH};
+window.__K={IT,LINES,SL,END,seek,CW,CH,AU,sLines,play,stop,startSync,tap,get T(){return T},get code(){return code}};
 </script></body></html>
