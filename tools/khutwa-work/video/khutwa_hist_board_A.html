@@ -346,7 +346,7 @@ function sfx(k){if(!sound)return;try{AC=AC||new (window.AudioContext||window.web
  if(k=='whoosh'){const n=AC.createBufferSource(),b=AC.createBuffer(1,AC.sampleRate*.5,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;n.buffer=b;const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.setValueAtTime(300,t);f.frequency.exponentialRampToValueAtTime(2400,t+.45);n.connect(f);f.connect(g);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.12,t+.2);g.gain.linearRampToValueAtTime(.0001,t+.5);n.start(t);return}
  const tone=(f,d,v,f2)=>{const o=AC.createOscillator();o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);o.connect(g);o.start(t);o.stop(t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d)};
  if(k=='tick')tone(1200,.06,.06);else if(k=='chime'){tone(784,.5,.07);const o=AC.createOscillator();o.frequency.value=1047;o.connect(g);o.start(t+.08);o.stop(t+.5)}else if(k=='boom')tone(120,.7,.3,40)}catch(e){}}
-function frame(now){if(!playing)return;const dt=(now-last)/1000;last=now;const prev=T;
+function frame(now){if(!playing)return;const dt=Math.max(0,(now-last)/1000);last=now;const prev=T;
  if(sync){const L=sLines(sync.i),k=sync.tp.length-1;T=k<0?SL[sync.i].t:Math.min(L[k].t+(sync.a.currentTime-sync.tp[k]),(k+1<L.length?L[k+1].t:sEnd(sync.i))-.05);if(sync.a.ended){finishSync();render();return}}
  else if(pa){T=amap(pi,pa.currentTime);if(pa.ended){stop();render();return}}
  else T+=dt*spd;
