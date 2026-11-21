@@ -1,0 +1,6 @@
+# Baccalaureate grade 2 subject — verify lessons + write quiz
+You get: the subject key, the app's current lesson list (units per part), and book dumps (OCR or text layer, "=== pN").
+Step 1 — Verify the lesson list against the book's contents/headings. Write /home/claude/khutwa/quiz/<OUT>_curr.json with the corrected structure {"parts":[["الجزء الأول",[["<unit>","l1|l2|..."],...]],["الجزء الثاني",[...]]]} using the book's own names. Keep the SAME number and order of units/lessons wherever the book allows (positions matter for students' saved progress); only rename. If the book's structure really differs (lessons missing/extra/reordered), write the book's structure and list every change explicitly in your reply as "old position -> new position" so a migration can be made.
+Step 2 — Quiz per /home/claude/khutwa/quiz/SPEC_GEN.md (+ /home/claude/khutwa/quiz/SPEC_MATH.md for math/science calculations with a verification script), 6 questions per lesson, keys = lesson names from step 1. Correct option never the longest.
+Step 3 — Full independent check pass per /home/claude/khutwa/quiz/CHECK.md (re-solve every calculation with a separate script).
+Output: /home/claude/khutwa/quiz/<OUT>_quiz.json ({"by":{...}}). Reply with: lesson-list changes (exact), per-lesson counts, check fixes, unreadable pages.
