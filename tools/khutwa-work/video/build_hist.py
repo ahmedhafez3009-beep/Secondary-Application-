@@ -23,7 +23,7 @@ for l in md[282:end]:
         if t.startswith('«'): tones.append('مصطلح')
         board=board.replace('**','')
         scr=board+('' if summ in ('—','') else ' ｜ ملخص الشريحة: '+summ.lstrip('• '))
-        seg['lines'].append({'t':t,'style':rid+' · '+srcp+' · EN: '+en,'screen':scr,'arrow':'','tones':tones,'vt':None})
+        seg['lines'].append({'t':t,'style':rid+' · '+srcp,'screen':scr,'arrow':'','tones':tones,'vt':None})
 D={'EP':EP,'SERIES':{'1':'تاريخ تانية بكالوريا · و1 د1: بناء الدولة المصرية'}}
 print([(e['k'],e['title'],[(s['slide'],len(s['lines'])) for s in e['segs']]) for e in EP]); print('lines',sum(len(s['lines']) for e in EP for s in e['segs']))
 left=[l for e in EP for s in e['segs'] for x in s['lines'] for l in re.findall(r'\[[^\[\]]*\]',re.sub(r'\[\[[\d.]+\]\]','',x['t']))]; print('leftover brackets',set(left))
