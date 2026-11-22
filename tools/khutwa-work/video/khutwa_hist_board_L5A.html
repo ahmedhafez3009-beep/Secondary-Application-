@@ -1,0 +1,1262 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>خُطوة · تاريخ · الدرس ٥ · السبورة L5A (الفصل ١ · افتتاح الوحدة الثانية والقناع الفرنسي)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lalezar&family=Cairo:wght@500;700&display=swap">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b1620;color:#e8eef0;font-family:Cairo,Tahoma,sans-serif}
+#wrap{max-width:1280px;margin:0 auto;padding:8px}
+#stage{position:relative;width:100%;aspect-ratio:16/9;background:#FCFCFA;border-radius:10px;overflow:hidden;user-select:none}
+#stage svg{position:absolute;inset:0;width:100%;height:100%}
+#world text{font-family:Lalezar,Cairo,Tahoma,sans-serif;text-rendering:geometricPrecision}
+#bar{position:absolute;inset:auto 0 0 0;height:12%;background:#0E2A47;display:flex;align-items:center;gap:1.2%;padding:0 2%;font-size:clamp(11px,2.1vw,26px);font-weight:700;color:#fff}
+#who{background:#1EA05F;border-radius:999px;padding:.1em .8em;font-size:.72em;white-space:nowrap}
+#sub{flex:1;min-width:0;line-height:1.35}#sub .w{color:#7f93a8}#sub .w.on{color:#fff}#sub .w.cur{color:#F5BE32}#sub .pz{font-size:.6em;border:1px dashed #7f93a8;border-radius:4px;padding:0 .35em;color:#7f93a8;white-space:nowrap}#sub .pz.cur{color:#fff;background:#D7463C;border-color:#D7463C}
+#cd{position:absolute;inset:0 0 12% 0;display:grid;place-items:center;font:400 22vw Lalezar,sans-serif;color:#D7463C;background:rgba(252,252,250,.6)}#cd[hidden]{display:none}#msg{color:#F5BE32;font-size:13px;width:100%}#src{font-size:.6em;color:#F5BE32;white-space:nowrap;font-weight:500}
+#badge{position:absolute;top:2.2%;right:1.6%;display:flex;align-items:center;gap:.5em;font-size:clamp(9px,1.5vw,19px);color:#0E2A47;font-weight:700;line-height:1.15}
+#badge i{width:2.4em;height:2.4em;border-radius:50%;border:.22em solid #1EA05F;display:grid;place-items:center;font-style:normal;font-family:Lalezar;font-size:1.2em;background:#fff}
+#badge b{display:block}#badge span span{color:#C99A1B;font-size:.85em}
+#sl{position:absolute;top:2.2%;left:1.6%;background:#0E2A47;color:#fff;border-radius:8px;padding:.15em .7em;font-size:clamp(9px,1.4vw,18px);font-weight:700}
+#ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;font-size:14px}
+#ctl button,#ctl label{background:#16212c;color:#e8eef0;border:1px solid #2a3945;border-radius:8px;padding:6px 12px;font:inherit;cursor:pointer}
+#ctl button[aria-pressed=true]{background:#1EA05F;border-color:#1EA05F}#seek{flex:1;min-width:140px}#tm{font-variant-numeric:tabular-nums}
+#note{color:#9aa9ad;font-size:13px;margin:8px 2px;line-height:1.7}
+body.rec #ctl,body.rec #note{display:none}body.rec #wrap{max-width:none;padding:0}body.rec #stage{border-radius:0}
+@keyframes blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}.blink{transform-box:fill-box;transform-origin:center;animation:blink 3.4s infinite}
+</style></head><body><div id="wrap">
+<div id="stage">
+ <svg id="world" viewBox="0 0 3200 1800" preserveAspectRatio="xMidYMin slice"><defs><pattern id="dots" width="48" height="48" patternUnits="userSpaceOnUse"><circle cx="24" cy="24" r="2" fill="#d9dcd8"/></pattern></defs><rect y="-1800" width="3200" height="10200" fill="#FCFCFA"/><rect y="-1800" width="3200" height="10200" fill="url(#dots)"/><g id="L"></g></svg>
+ <svg id="ov" viewBox="0 0 1280 720"><g id="pen" visibility="hidden"><g transform="rotate(28)"><path d="M0,0 L-7,-22 L7,-22 Z" fill="#e9d9b0" stroke="#0E2A47" stroke-width="1.5"/><rect x="-7" y="-112" width="14" height="90" fill="#0E2A47"/><rect x="-7" y="-40" width="14" height="9" fill="#1EA05F"/><rect x="-8" y="-128" width="16" height="18" rx="3" fill="#1EA05F"/></g></g></svg>
+ <div id="badge"><i>أ</i><span><b>أحمد الألفي</b><span>خُطوة من Add Value</span></span></div><div id="sl"></div>
+ <div id="cd" hidden></div><div id="bar"><span id="who">أحمد</span><span id="sub"></span><span id="src"></span></div>
+</div>
+<div id="ctl">
+ <button id="play">▶ تشغيل</button><button id="re">↺ إعادة</button><input id="seek" type="range" min="0" max="1000" value="0"><span id="tm">0:00</span>
+ <button id="rec" style="background:#D7463C;border-color:#D7463C">● سجّل الشريحة (عدّ ٣)</button><label style="cursor:default">السرعة <input id="spd" type="range" min="0.7" max="1.4" step="0.05" value="1" style="vertical-align:middle"> <span id="spdv">100%</span></label>
+ <button id="prev">→ الشريحة اللي قبل</button><button id="next">الشريحة الجاية ←</button>
+ <button id="mode" aria-pressed="false">وضع الشرايح</button><button id="snd" aria-pressed="true">الصوت</button>
+ <label>ارفع فويس الشريحة دي <input id="af" type="file" accept="audio/*" hidden></label><button id="sync">ظبط التوقيت على صوتي</button><button id="tap" style="background:#1EA05F;border-color:#1EA05F">جملة (Enter)</button><button id="cp">انسخ كود التوقيت</button><span id="msg"></span><button id="recm">وضع تسجيل الشاشة</button><button id="fs">ملء الشاشة</button>
+</div>
+<p id="note">نسخة v1 · السبورة L5A (الدرس ٥ · الفصل ١ · افتتاح الوحدة الثانية، والقناع الفرنسي، ودقيقة المراجعة RA). <b>التسجيل:</b> دوس «سجّل الشريحة»، هيعدّ ٣ وبعدين الكلام يتعلّم كلمة كلمة تحت وإنت بتقرا، والرسم ماشي معاه (ظبّط السرعة على كلامك). <b>بعد التسجيل:</b> ارفع فويس الشريحة، دوس «ظبط التوقيت على صوتي»، ودوس Enter أول ما تسمع بداية كل جملة؛ الرسم هيتشدّ على صوتك. شغّل واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي أثبّته. في «وضع الشرايح»: دوسة على شمال الشاشة للشريحة الجاية وعلى اليمين للي قبلها، والمسافة للتشغيل، والعرض بيقف آخر كل شريحة. للخروج من وضع تسجيل الشاشة دوس Esc.</p>
+</div>
+<script>
+const G='#1EA05F',GD='#106942',N='#0E2A47',R='#D7463C',Y='#F5BE32',YD='#C99A1B',SAND='#F3E3B5',GR='#666';
+const CW=1066,CH=600,NS='http://www.w3.org/2000/svg';
+const OS=1.35;let CUR=[],LASTW=null,IT=[],LINES=[],CAM=[[0,2133,0,CW,CH]],SL=[],SFX=[],T0=0,ox=0,oy=0,LD=0;
+const sm=p=>{p=Math.max(0,Math.min(1,p));return p*p*(3-2*p)};
+function cell(c,r){ox=(2-c)*CW;oy=r*CH}
+function camTo(o,x,y,w,h,d=1.2){const t=T0+o,l=CAM[CAM.length-1];CAM.push([t,l[1],l[2],l[3],l[4]],[t+d,x,y,w,h]);SFX.push({t,k:'whoosh'})}
+function go(c,r){cell(c,r);camTo(0,ox,oy,CW,CH)}
+function line(id,src,txt,fn){const words=txt.replace(/\[\[[\d.]+\]\]/g,'').trim().split(/\s+/).length;let pz=0;txt.replace(/\[\[([\d.]+)\]\]/g,(m,v)=>pz+=+v);
+ LD=words*0.58+pz+0.45;let cu=0;const tk=txt.trim().split(/\s+/).filter(Boolean).map(w=>{const m=w.match(/^\[\[([\d.]+)\]\]$/),d=m?+m[1]:.58,o={w,p:!!m,v:m&&m[1],s:cu,e:cu+d};cu+=d;return o});
+ CUR=tk;LINES.push({id,src,tk,t:T0,d:LD,txt:txt.replace(/\s*\[\[[\d.]+\]\]\s*/g,' ').trim()});fn&&fn();T0+=LD}
+/* at('كلمة'[,n]) = وقت بداية أول (أو رقم n) كلمة فيها النص ده في السطر الحالي؛ استخدمها كـ offset لأي عنصر */
+function at(sub,n){let c=0;for(const k of CUR){if(!k.p&&k.w.includes(sub)){if(c==(n||0))return k.s/OS;c++}}throw new Error('at: «'+sub+'» مش في السطر: '+CUR.map(k=>k.w).join(' '))}
+function slide(name){SL.push({t:T0,name})}
+function W(o,x,y,txt,sz,col,a){IT.push(LASTW={k:'w',t:T0+o*OS,x:ox+x,y:oy+y,txt,sz,col,a:a||'end',d:Math.min(1.4,.06*txt.length+.3),cx:ox,cy:oy})}
+function P(o,d,col,w,dur,fill,cls){IT.push({k:'p',t:T0+o*OS,tx:ox,ty:oy,dd:d,col,w:w||3,d:dur||.8,fill,cls})}
+function ST(o,x,y,ok){IT.push({k:'s',t:T0+o*OS,x:ox+x,y:oy+y,ok,d:.5});SFX.push({t:T0+o*OS,k:ok?'chime':'tick'})}
+function Q(o,x,y,dur){o*=OS;IT.push({k:'q',t:T0+o,x:ox+x,y:oy+y,d:dur<3?dur:LD-o});SFX.push({t:T0+o,k:'tick'},{t:T0+o+1,k:'tick'},{t:T0+o+2,k:'tick'})}
+function AR(o,x1,y,x2){P(o,`M${x1},${y} H${x2} M${x2},${y} l14,-9 M${x2},${y} l14,9`,N,3,.4)}
+function CARD(o,x,y,w,h,col,fill){P(o,`M${x},${y} h${w} v${h} h${-w} Z`,col,3,.7,fill||'#fff');SFX.push({t:T0+o*OS,k:'chime'})}
+function BOOM(o){SFX.push({t:T0+o,k:'boom'})}
+
+
+/* ---- إضافات v5: تكملة نص على نفس السطر، إخفاء عنصر مؤقت، عدّاد وقفة، أشكال متكررة ---- */
+function WC(o,txt,col,gap){const p=LASTW;IT.push(LASTW={k:'w',t:T0+o*OS,x:p.x,y:p.y,txt,sz:p.sz,col:col||p.col,a:'end',d:Math.min(1.4,.06*txt.length+.3),cx:p.cx,cy:p.cy,af:p,gp:gap==null?p.sz*.28:gap})}
+function FADE(o,n){for(let i=1;i<=(n||1);i++)IT[IT.length-i].off=T0+o*OS}
+const atp=n=>CUR.filter(k=>k.p)[n||0].s/OS,EOL=()=>LD/OS;
+const CI=(x,y,r)=>`M${x-r},${y} a${r},${r} 0 1,0 ${2*r},0 a${r},${r} 0 1,0 ${-2*r},0 `;
+const EL=(x,y,a,b)=>`M${x-a},${y} a${a},${b} 0 1,0 ${2*a},0 a${a},${b} 0 1,0 ${-2*a},0 `;
+const MAN=(x,y,h)=>{const r=h*.15,f=v=>(v).toFixed(1);return CI(x,+f(y+r),+f(r))+`M${x},${f(y+2*r)} V${f(y+h*.66)} M${f(x-h*.2)},${f(y+h*.46)} L${x},${f(y+h*.38)} L${f(x+h*.2)},${f(y+h*.46)} M${x},${f(y+h*.66)} l${f(-h*.14)},${f(h*.34)} M${x},${f(y+h*.66)} l${f(h*.14)},${f(h*.34)} `};
+const KEY=(x,y,s)=>CI(x,y,13*s)+`M${x+13*s},${y} h${48*s} M${x+47*s},${y} v${12*s} M${x+58*s},${y} v${9*s} `;
+const CHAIR=(x,y)=>`M${x},${y} V${y-78} M${x},${y-38} H${x+46} V${y} `;
+const BOOK=(x,y)=>`M${x},${y} q-18,-10 -34,0 v30 q16,-10 34,0 q18,-10 34,0 v-30 q-16,-10 -34,0 v30 `;
+function CDR(o,x,y,r,n){for(let k=0;k<n;k++){const a0=-Math.PI/2+k*2*Math.PI/n,a1=a0+2*Math.PI/n*.93,p=a=>`${(x+r*Math.cos(a)).toFixed(1)},${(y+r*Math.sin(a)).toFixed(1)}`;P(o+k/OS,`M${p(a0)} A${r},${r} 0 0,1 ${p(a1)}`,R,6,.92);IT[IT.length-1].off=T0+LD-.05;SFX.push({t:T0+(o+k/OS)*OS,k:'tick'})}}
+
+/*__CONTENT_START__*/
+const S={"5A.1": "إنت هنا: الوحدة الأولى خلصت، أربع دروس. [[0.5]] البيت، والأختام، والسلّم، والمفتاح. النهارده بنفتح وحدة جديدة خالص.", "5A.2": "الوحدة التانية اسمها: «تحولات القوة وبناء الوعي بمصر في العصر الحديث والمعاصر». [[0.5]] ودرسها الأول، وهو الدرس الخامس عندنا في خُطوة: «سياسات الاحتلال بمصر في العصر الحديث».", "5A.3": "فاكر آخر مشهد في الدرس الرابع؟ [[0.5]] ختم ألف وتمنمية اتنين وتمانين نزل على الخريطة، والمفتاح، يعني السيادة، راح لإيد بريطانيا. وسبنا سؤال: الاحتلال مسك البلد إزاي؟", "5A.4": "الدرس ده هو الإجابة. [[0.5]] هنشوف الإيد دي اتمدّت إزاي، صباع صباع، من أول ما نزلت أول مركب فرنساوي، لحد ما مسكت البلد كلها.", "5A.5": "والوحدة كلها عايزة منك حاجات. [[0.5]] توضّح العلاقة بين تطور الوعي القومي والتحولات السياسية. وتقارن بين نماذج التدخل الأجنبي في فترات مختلفة. وتحلّل أنماط التدخل الأجنبي في مصر وسياساته.", "5A.6": "وتعدّد أشكال المقاومة الوطنية وأثرها في إضعاف الاحتلال. وتقيّم دور الشخصيات الوطنية في بناء الدولة وإيقاظ الوعي القومي. [[0.5]] وتشرح الآثار المترتبة على الاحتلال بأشكاله المختلفة.", "5A.7": "وتعبّر عن رفضك لأشكال الاحتلال. وتقترح آليات لمواجهة أشكال الاحتلال الحديث في الوقت الحاضر. [[0.5]] وتعبّر عن اعتزازك بهويتك المصرية والعربية.", "5A.8": "بالبلدي: الوحدة دي هتعلّمك تشوف الإيد الغريبة وهي جاية، وتعرف إزاي الناس وقفت قدامها. [[0.5]] الدرس ده عن الإيد. والجاي عن الناس.", "5A.9": "بص على صورة أول الدرس في الكتاب: شارع مترب فيه سوق، ورجالة بطرابيش وعمم. [[0.5]] وفي النص عسكري ببدلة كاكي وخوذة، مادد إيده ومشاور عليهم. حتى في الصورة، الحكاية إيد ممدودة.", "5A.10": "والفكرة الرئيسة بتقول: «كانت مصر ساحة للتنافس الاستعماري بعد الثورة الصناعية؛ حيث طمعت الدول الأوروبية في المواد الخام والأسواق».", "5A.11": "الثورة الصناعية؟ بالبلدي: المصانع في أوروبا بقت تشتغل بالمكن، وتطلّع إنتاج كتير. [[0.5]] والمكنة دي جعانة: عايزة خام تاكله، وعايزة ناس تشتري اللي طلّعته. زي كشك بيعمل عصير: عايز برتقان، وعايز زباين.", "5A.12": "«وسرعان ما انتقل هذا التنافس إلى مصر، وكانت الحملة الفرنسية بداية للهجمة الاستعمارية الأوروبية على مصر». [[0.5]] احتلال، بالبلدي: حد غريب يدخل بيتك بالقوة، ويقعد، ويقرر بدالك.", "5A.13": "احفظ دي واحد: مصر ساحة تنافس بعد الثورة الصناعية. أوروبا عايزة خام وأسواق، والحملة الفرنسية أول الهجمة.", "5A.14": "وأهداف الدرس أربعة: تلخّص سياسات الحملة الفرنسية للتدخل في شئون مصر. وتستنتج أثر التدخل الأوروبي على المشروع التنموي لمحمد علي. [[0.5]] وتقدّم تفسيرات مدعومة بالأدلة لبعض سياسات الاحتلال الإنجليزي. وتعبّر عن أهمية وجود جيش وطني في تحقيق الاستقلال.", "5A.15": "والكتاب بيبدأ بسؤال: «هل اتبعت دولتا فرنسا وبريطانيا سياسة موحَّدة للسيطرة على مصر ومواردها؟» [[2.0]] سيب السؤال ده في دماغك. هنجاوبه في آخر الدرس.", "5A.16": "أولًا: سياسات فرنسا في مصر. [[0.5]] الحملة نزلت في الإسكندرية سنة ألف وسبعمية تمانية وتسعين. وسياستها مشيت على أسس وقواعد حطّها نابليون.", "5A.17": "ونابليون كان ماسك قناع بوشّين. [[0.5]] الوش الأول: سياسة التقرب. حاول يقرّب من المصريين علشان يكسب تأييدهم.", "5A.18": "إزاي؟ أربع حاجات: إصدار منشورات تحترم الإسلام، والتقرب من العلماء والمشايخ. [[0.5]] وإنشاء المجمع العلمي المصري، وإنشاء دواوين محلية لإشراك الأعيان في الإدارة. والأعيان يعني كبار البلد.", "5A.19": "والهدف، بنص الكتاب: «إقناع المصريين أن الوجود الفرنسي ليس احتلالًا، بل محاولة لإصلاح أوضاع البلاد».", "5A.20": "احفظ دي اتنين: التقرب: منشورات، ومشايخ، ومجمع، ودواوين. والهدف: مش احتلال، إصلاح.", "5A.21": "وفي صندوق «أقرأ وأحلل»، جزء من منشور نابليون: «يا أهل مصر، قد يُشاع بينكم أنني جئت لأهدم دينكم، وهذا كذب وافتراء؛ جئت لأنتزع حقوقكم من أيدي الظالمين». [[0.5]] وفي آخره: «الفرنسيين أصدقاء مخلصون للإسلام».", "5A.22": "ودي أسئلة الصندوق. الهدف السياسي من المنشور؟ [[2.0]] من نص الكتاب: يكسب تأييد المصريين، ويقنعهم إن وجوده مش احتلال. [[0.5]] وليه ركّز على الدين؟ رأيي: علشان يدخل لقلوب الناس من أقرب باب. [[0.5]] ونجحت لحد فين؟ وهل صدّق المصريين؟ الكتاب بيرد في الصفحة اللي بعدها.", "5A.23": "الوش التاني للقناع: سياسة القمع. [[0.5]] الحملة واجهت مقاومة شعبية، فنابليون وقادة الحملة اعتمدوا على سياسة أشد.", "5A.24": "قمع؟ بالبلدي: القمع يعني تكتم الناس بالقوة. [[0.5]] زي ما الطلبة يعترضوا على حاجة، فبدل ما يسمعوهم، يقفلوا عليهم الفصل.", "5A.25": "والقمع كان في حاجتين: قمع ثورتي القاهرة الأولى والتانية. [[0.5]] وفرض الضرايب، ومصادرة الأموال من المصريين. ومصادرة، بالبلدي: ياخدوا منك حاجتك غصب عنك.", "5A.26": "والنتيجة، بنص الكتاب: ده «كشف التناقض بين منشور نابليون وممارساته الفعلية». [[0.5]] يعني الكلام في وادي، والفعل في وادي تاني. وده رد على سؤال: هل صدّقوه؟", "5A.27": "احفظ دي تلاتة: القمع: ثورتين القاهرة، وضرايب ومصادرة. والمنشور اتكشف.", "5A.28": "وصندوق «مهارة أتعلمها» بيعلّمك تقرا أي منشور تاريخي بأربع أسئلة: مَن قائل المنشور؟ ومتى قاله؟ وما مضمونه؟ وما السياق الذي قيل فيه؟ [[0.5]] السياق يعني الظروف اللي حوالين الكلام.", "5A.29": "جرّبها على منشور نابليون: القايل نابليون. إمتى؟ وقت الحملة. المضمون؟ صداقة واحترام للإسلام. [[0.5]] السياق؟ حملة جاية بالسلاح لبلد مش بتاعها. ولو ركّبتهم، تفهم القناع.", "5A.30": "احفظ دي أربعة: أي منشور تاريخي: مين، وإمتى، وإيه، وفي أنهي ظروف.", "5A.31": "وقادة الحملة كانوا بيفكروا يثبّتوا أقدامهم في مصر، فعملوا كذا إجراء. [[0.5]] الأول: دراسة مصر دراسة علمية شاملة. نابليون اصطحب معاه عدد كبير من العلماء في مجالات مختلفة.", "5A.32": "عملوا مسح دقيق لموارد مصر الطبيعية، ورسموا الخرايط، وسجّلوا آثار الحضارة المصرية القديمة. [[0.5]] والجهود دي اتتوّجت بموسوعة «وصف مصر»، اللي أسهمت في تعريف أوروبا بمكانة مصر الحضارية.", "5A.33": "موسوعة؟ بالبلدي: كتاب كبير، أو مجموعة كتب، فيها كل حاجة عن موضوع واحد. [[0.5]] زي ما تعمل ملف كامل عن مدينتك: خرايطها، وأكلها، وناسها، وآثارها.", "5A.34": "التاني: الاهتمام بشئون الطباعة. الفرنساويين استخدموها في حاجتين: إصدار المنشورات والأوامر الحكومية. [[0.5]] وإصدار الصحف اللي تبرّر وجود الحملة.", "5A.35": "والكتاب بيسأل: «كيف يمكن للإعلام أن يغير الرأي العام أثناء الصراعات السياسية؟» [[2.0]] الرأي العام، بالبلدي: اللي أغلب الناس شايفينه. والجرنال لو كل يوم بيقولك نفس الكلمة، تبتدي تصدّقها. زي البوست اللي بيتشير في كل الجروبات.", "5A.36": "التالت: اكتشاف حجر رشيد. [[0.5]] الجنود الفرنساويين اكتشفوه سنة ألف وسبعمية تسعة وتسعين. وفيه نص واحد بتلات كتابات: الهيروغليفية، والديموطيقية، واليونانية.", "5A.37": "وبعدين ساعد العالم الفرنساوي شامبليون إنه يفك رموز الكتابة الهيروغليفية سنة ألف وتمنمية اتنين وعشرين. [[0.5]] وده أسهم في نشأة علم المصريات، وإعادة اكتشاف الحضارة المصرية القديمة. والكتاب بيقولك: ناقش مع معلمك المقصود بالعلم ده.", "5A.38": "فك الرموز؟ زي ما تلاقي رسالة بلغة مش فاهمها، ومعاها نفس الرسالة بالإنجليزي. [[0.5]] تقارن كلمة بكلمة، لحد ما تفهم اللغة الغريبة. بالبلدي: الحجر كان قاموس مكتوب على صخرة.", "5A.39": "احفظ دي خمسة: تثبيت الأقدام: وصف مصر، والطباعة، وحجر رشيد.", "5A.40": "احفظ دي ستة: حجر رشيد ألف وسبعمية تسعة وتسعين، تلات كتابات. شامبليون فكّه ألف وتمنمية اتنين وعشرين. علم المصريات اتولد.", "5A.41": "وصندوق «أفكر وأناقش» بيقول: «رغم قصر مدة الحملة الفرنسية، فإن آثارها كانت عميقة وطويلة المدى». وضّح رأيك. [[3.0]] رأيي، بأدلة من الكتاب: وصف مصر عرّف أوروبا بمصر، وحجر رشيد ولّد علم المصريات. [[0.5]] وكمان بقت بداية الهجمة الاستعمارية.", "5A.42": "تعال نحلّ أول سؤال من «تدريبات الدرس». اختر: الهدف الرئيسي من استخدام المطابع في مصر أثناء الحملة الفرنسية: أ: نشر الثقافة الفرنسية. ب: توجيه الرأي العام. ج: تعليم المصريين القراءة. د: طباعة الكتب العلمية. [[3.0]]", "5A.43": "الكتاب مالوش مفتاح إجابات، فده اجتهاد بالاستبعاد. الكتاب قال الطباعة اتستخدمت في منشورات وأوامر، وصحف تبرّر وجود الحملة. [[0.5]] أ وج ود مش من اللي ذكره. يفضل ب: توجيه الرأي العام. [[0.5]] احفظ دي سبعة: المطابع: منشورات وصحف، علشان توجّه الرأي العام.", "RA1": "دقيقة مراجعة. غمّض، وجاوب قبلي.", "RA2": "الفكرة الرئيسة؟ [[2.0]] مصر ساحة تنافس بعد الثورة الصناعية. أوروبا عايزة خام وأسواق، والحملة الفرنسية أول الهجمة.", "RA3": "الحملة نزلت فين وسنة كام؟ [[2.0]] الإسكندرية، ألف وسبعمية تمانية وتسعين.", "RA4": "الوش المبتسم ماسك إيه؟ [[2.0]] منشورات، ومشايخ، ومجمع، ودواوين.", "RA5": "والوش العابس؟ [[2.0]] ثورتين القاهرة، وضرايب ومصادرة. والمنشور اتكشف.", "RA6": "تقرا منشور تاريخي إزاي؟ [[2.0]] مين، وإمتى، وإيه، وفي أنهي ظروف.", "RA7": "ثبّتوا أقدامهم بإيه؟ [[2.0]] وصف مصر، والطباعة، وحجر رشيد.", "RA8": "حجر رشيد؟ [[2.0]] ألف وسبعمية تسعة وتسعين، تلات كتابات، وشامبليون فكّه ألف وتمنمية اتنين وعشرين.", "RA9": "سمّعهم تاني بكرة. والفصل الجاي: الإيد اللي جات بعد فرنسا، وكانت أطول نَفَس."},SRC={"5A.1": "المنهج + الدرس ١–٤", "5A.2": "الكتاب ص٥٥ + المنهج", "5A.3": "الدرس ٤ الكتاب ص٤٤", "5A.4": "الكتاب ص٥٥ + تشبيه", "5A.5": "الكتاب ص٥٤", "5A.6": "الكتاب ص٥٤", "5A.7": "الكتاب ص٥٤", "5A.8": "الكتاب ص٥٤ + شرح كلمة", "5A.9": "الكتاب ص٥٥", "5A.10": "الكتاب ص٥٥", "5A.11": "الكتاب ص٥٥ + شرح كلمة + تشبيه", "5A.12": "الكتاب ص٥٥ + شرح كلمة + تشبيه", "5A.13": "الكتاب ص٥٥", "5A.14": "الكتاب ص٥٥ + الدرس ٤", "5A.15": "الكتاب ص٥٦", "5A.16": "الكتاب ص٥٦", "5A.17": "الكتاب ص٥٦ + تشبيه", "5A.18": "الكتاب ص٥٦ + شرح كلمة", "5A.19": "الكتاب ص٥٦", "5A.20": "الكتاب ص٥٦", "5A.21": "الكتاب ص٥٦", "5A.22": "الكتاب ص٥٦–٥٧ + رأي", "5A.23": "الكتاب ص٥٧", "5A.24": "الكتاب ص٥٧ + شرح كلمة + تشبيه", "5A.25": "الكتاب ص٥٧ + شرح كلمة", "5A.26": "الكتاب ص٥٧", "5A.27": "الكتاب ص٥٧", "5A.28": "الكتاب ص٥٧ + شرح كلمة", "5A.29": "الكتاب ص٥٦–٥٧ + رأي", "5A.30": "الكتاب ص٥٧", "5A.31": "الكتاب ص٥٦–٥٧", "5A.32": "الكتاب ص٥٧", "5A.33": "الكتاب ص٥٧ + شرح كلمة + تشبيه", "5A.34": "الكتاب ص٥٧", "5A.35": "الكتاب ص٥٧ + شرح كلمة + تشبيه", "5A.36": "الكتاب ص٥٧", "5A.37": "الكتاب ص٥٧", "5A.38": "الكتاب ص٥٧ + شرح كلمة + تشبيه", "5A.39": "الكتاب ص٥٧", "5A.40": "الكتاب ص٥٧", "5A.41": "الكتاب ص٥٥ + ص٥٧ + رأي", "5A.42": "الكتاب ص٦٢", "5A.43": "الكتاب ص٥٧ + ص٦٢ + اجتهاد", "RA1": "مراجعة", "RA2": "مراجعة", "RA3": "مراجعة", "RA4": "مراجعة", "RA5": "مراجعة", "RA6": "مراجعة", "RA7": "مراجعة", "RA8": "مراجعة", "RA9": "مراجعة"};
+/* ============ السبورة L5A: الدرس ٥ · الفصل ١ · افتتاح الوحدة والقناع الفرنسي ============ */
+const BLU='#3E8FCF',BRN='#B8860B',SKY='#DCEEFB',PUR='#8E44AD',CREAM='#FBF3DC',PAP='#F3D9B8',SKIN='#D9A877',LGN='#d9f0e3',BUB='#EEF8F1';
+/* خريطة مصر (نفس موتيف السبورة A45): وحدة 400×300 */
+const EGU={W:[[0,300],[0,6]],N:[[0,6],[40,12],[74,8],[131,25],[165,12],[181,5],[205,0],[228,3],[245,10],[280,16],[309,9]],E:[[309,9],[333,66]],AQ:[[333,66],[311,122]],SG:[[311,122],[290,95],[252,52]],RS:[[252,52],[262,80],[296,136],[345,215],[400,300]],
+ NL:[[212,300],[240,262],[265,234],[262,200],[259,169],[242,173],[225,150],[208,137],[203,100],[210,48]]};
+const mp=(pts,x,y,s,dx,dy)=>pts.map((p,i)=>(i?'L':'M')+(x+p[0]*s+(dx||0)).toFixed(0)+','+(y+p[1]*s+(dy||0)).toFixed(0)).join(' ')+' ';
+const EGO=(x,y,s)=>mp([].concat(EGU.W,EGU.N.slice(1),EGU.E.slice(1),EGU.AQ.slice(1),EGU.SG.slice(1),EGU.RS.slice(1)),x,y,s)+'Z';
+const NILE=(x,y,s)=>{const q=EGU.NL.map(p=>[Math.round(x+p[0]*s),Math.round(y+p[1]*s)]);let d=`M${q[0]}`;for(let i=1;i<q.length-1;i++)d+=` Q${q[i]} ${[(q[i][0]+q[i+1][0])/2,(q[i][1]+q[i+1][1])/2]}`;
+ const c=q[q.length-1],f=(u,v)=>`${Math.round(x+u*s)},${Math.round(y+v*s)}`;return d+` L${c} M${c} L${f(181,5)} M${c} L${f(228,3)} `};
+const DELTA=(x,y,s)=>mp([[210,48],[181,5],[205,0],[228,3]],x,y,s)+'Z ';
+const WV=(x,y,n,w)=>`M${x},${y} q${w/2},${-w*.4} ${w},0 `+Array(n-1).fill(`t${w},0`).join(' ')+' ';
+const HOUSE=(x,y,s=1)=>`M${x},${y} v${-12*s} l${9*s},${-8*s} l${9*s},${8*s} v${12*s} Z `;
+const COLS=(xs,y1,y2)=>xs.map(x=>`M${x-20},${y1} V${y2} M${x+20},${y1} V${y2} M${x-27},${y1+12} Q${x},${y1+30} ${x+27},${y1+12} `);
+const FEN=(x,y)=>`M${x-30},${y} h60 M${x-24},${y} v-24 M${x-10},${y} v-20 M${x+4},${y} v-20 M${x+18},${y} v-20 M${x-24},${y-12} h48 `;
+const HAND=(x,y,s)=>`M${x-9*s},${y} v${-15*s} M${x-3*s},${y} v${-20*s} M${x+3*s},${y} v${-20*s} M${x+9*s},${y} v${-15*s} M${x-12*s},${y} v${10*s} q${12*s},${10*s} ${24*s},0 v${-10*s} M${x+12*s},${y+4*s} l${8*s},${-9*s} `;
+const F=n=>(+n).toFixed(1);
+const ARW=(x1,y1,x2,y2,h=11)=>{const a=Math.atan2(y2-y1,x2-x1);return `M${x1},${y1} L${x2},${y2} M${x2},${y2} L${F(x2-h*Math.cos(a-.5))},${F(y2-h*Math.sin(a-.5))} M${x2},${y2} L${F(x2-h*Math.cos(a+.5))},${F(y2-h*Math.sin(a+.5))} `};
+const RC=(x,y,w,h)=>`M${x},${y} h${w} v${h} h${-w} Z `;
+const TICK=(x,y,s=1)=>`M${x-7*s},${y} l${5*s},${5*s} l${9*s},${-10*s} `;
+const XX=(x,y,s=1)=>`M${x-7*s},${y-7*s} l${14*s},${14*s} M${x+7*s},${y-7*s} l${-14*s},${14*s} `;
+/* معبد صغير: x المنتصف، y القاعدة */
+const TEMPLE=(x,y,s=1)=>`M${x-50*s},${y-54*s} h${100*s} v${10*s} h${-100*s} Z M${x-34*s},${y-44*s} V${y} M${x-11*s},${y-44*s} V${y} M${x+11*s},${y-44*s} V${y} M${x+34*s},${y-44*s} V${y} M${x-54*s},${y} h${108*s} `;
+const WHEAT=(x,y,s=1)=>`M${x},${y} V${y-56*s} `+[0,1,2,3].map(i=>`M${x},${F(y-(22+i*10)*s)} q${-9*s},${-3*s} ${-8*s},${-13*s} M${x},${F(y-(22+i*10)*s)} q${9*s},${-3*s} ${8*s},${-13*s} `).join('');
+/* التاج المزدوج الصغير (نفس رسمة «مركزية» في A1.1): x المنتصف، y القاعدة */
+const PSCH=(x,y,s=1)=>`M${F(x-22*s)},${y} V${F(y-30*s)} Q${F(x-7*s)},${F(y-52*s)} ${F(x+8*s)},${F(y-30*s)} V${y} Z M${F(x+8*s)},${y} H${F(x+30*s)} L${F(x+36*s)},${F(y-40*s)} L${F(x+20*s)},${F(y-14*s)} `;
+const SHD=(x,y,s=1)=>`M${F(x-12*s)},${F(y-16*s)} h${24*s} v${12*s} q0,${14*s} ${-12*s},${20*s} q${-12*s},${-6*s} ${-12*s},${-20*s} Z `;
+const DROP=(x,y,s=1)=>`M${x},${F(y-13*s)} q${9*s},${11*s} ${9*s},${17*s} a${9*s},${9*s} 0 1,1 ${-18*s},0 q0,${-6*s} ${9*s},${-17*s} Z `;
+const PIN=(x,y,s=1)=>`M${x},${y} q${-13*s},${-18*s} ${-13*s},${-28*s} a${13*s},${13*s} 0 1,1 ${26*s},0 q0,${10*s} ${-13*s},${28*s} Z `;
+const SAIL=(x,y,s=1)=>`M${F(x-24*s)},${y} h${48*s} l${-9*s},${11*s} h${-30*s} Z M${x},${y} V${F(y-38*s)} l${20*s},${30*s} h${-20*s} `;
+const PLANT=(x,y,s=1)=>`M${x},${y} V${F(y-60*s)} `+[[-16,-14],[-9,-21],[0,-24],[9,-21],[16,-14]].map(([a,b])=>`M${x},${F(y-60*s)} l${a*s},${b*s} `).join('');
+const SCROLL=(x,y,w,h)=>`M${x},${y} H${x+w} V${y+h} H${x} Z M${x-7},${y-5} H${x+w+7} M${x-7},${y+h+5} H${x+w+7} `;
+const FPR=(x,y,s=1)=>[6,13,20,27].map((r,i)=>`M${F(x-r*s)},${F(y+(6+i*5)*s)} V${y} a${r*s},${r*s} 0 0,1 ${2*r*s},0 V${F(y+(14-i*2)*s)} `).join('');
+const GEAR=(x,y,r)=>CI(x,y,r)+CI(x,y,r*.35)+[0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4;return `M${F(x+r*Math.cos(a))},${F(y+r*Math.sin(a))} L${F(x+r*1.4*Math.cos(a))},${F(y+r*1.4*Math.sin(a))} `}).join('');
+const STAR=(x,y,r)=>[0,1,2,3,4,5,6,7,8,9].map(i=>{const a=-Math.PI/2+i*Math.PI/5,q=i%2?r*.42:r;return (i?'L':'M')+F(x+q*Math.cos(a))+','+F(y+q*Math.sin(a))}).join(' ')+' Z ';
+const DUNE=(x,y,n,w)=>`M${x},${y} `+Array(n).fill(`q${w*.5},${-w*.45} ${w},0`).join(' ')+' ';
+const TREE=(x,y,s=1)=>`M${x},${y} V${F(y-34*s)} `+EL(x,F(y-52*s),22*s,20*s);
+const BUBBLE=(o,x,y,w,h)=>P(o,RC(x,y,w,h),GD,2,.6,BUB);
+const chime=o=>SFX.push({t:T0+o*OS,k:'chime'});
+/* التاج المزدوج (أحمر + أبيض) بقطعتين: x المنتصف، y القاعدة */
+function CRW(o,x,y,s=1,d=.5){P(o,`M${F(x-23*s)},${y} L${F(x-25*s)},${F(y-24*s)} H${F(x+13*s)} L${F(x+21*s)},${F(y-62*s)} L${F(x+27*s)},${F(y-62*s)} L${F(x+25*s)},${y} Z`,'#B3261E',3,d,'#E58A7F');
+ P(o+d*.6,`M${F(x-17*s)},${F(y-24*s)} Q${F(x-20*s)},${F(y-52*s)} ${F(x-6*s)},${F(y-72*s)} Q${F(x+7*s)},${F(y-52*s)} ${F(x+5*s)},${F(y-24*s)} Z`,N,3,d,'#fff');
+ P(o+d*1.1,`M${F(x+9*s)},${F(y-26*s)} Q${F(x-6*s)},${F(y-46*s)} ${F(x-24*s)},${F(y-38*s)} q${F(-5*s)},${F(4*s)} ${F(-1*s)},${F(8*s)}`,'#B3261E',2.5,d*.6)}
+const BLOB=(x,y,w,h)=>`M${x},${F(y+h*.5)} Q${x},${y} ${F(x+w*.4)},${F(y+h*.08)} Q${F(x+w*.8)},${F(y-h*.05)} ${F(x+w)},${F(y+h*.35)} Q${F(x+w*1.02)},${F(y+h*.8)} ${F(x+w*.6)},${F(y+h)} Q${F(x+w*.15)},${F(y+h*1.02)} ${x},${F(y+h*.5)} Z `;
+const CAMEL=(x,y,s=1)=>`M${x},${y} q${6*s},${-14*s} ${13*s},${-2*s} q${5*s},${-9*s} ${11*s},0 l${7*s},${-13*s} l${6*s},${2*s} M${x},${y} v${13*s} M${F(x+22*s)},${y} v${13*s} `;
+const TAB=(o,x,y,w,t,pg)=>{P(o,RC(x,y,w,40),BRN,3,.5,CREAM);W(o+.2,x+w-12,y+28,t,19,N);if(pg)WC(o+.45,pg,GR)};
+/* عيون بترمش: الإزاحة جوّه المسار نفسه (أنيميشن الرمش بيلغي translate) */
+const EYES=(o,x1,x2,y,l)=>{P(o,`M${ox+x1},${oy+y} h${l} M${ox+x2},${oy+y} h${l}`,N,5,.2,null,'blink');const it=IT[IT.length-1];it.tx=0;it.ty=0};
+const BADGE=(o,x,y,n)=>{P(o,CI(x,y,17),R,3,.3,'#fff');W(o+.1,x,y+9,n,24,R,'middle')};
+const GHO='#c9cfd2',PNK='#F8D7D3';
+const L=(id,fn)=>line(id,SRC[id]||'',S[id],fn);
+/* ألوان القوى: الفرس بنفسجي، الإغريق أزرق، البطالمة بني */
+const PT=n=>[...Array(n).keys()];
+/* بيت الدرس ١ بأعمدته الأربعة: x,y الركن الأيمن-العلوي للسقف، w العرض، h الارتفاع */
+const HB=(x,y,w,h)=>({roof:`M${x-10},${y+60} L${F(x+w/2)},${y} L${x+w+10},${y+60} Z M${x},${y+60} h${w}`,cols:[.1,.37,.63,.9].map(k=>`M${F(x+w*k)},${y+60} V${y+h}`),base:`M${x-10},${y+h} h${w+20}`,cx:[.1,.37,.63,.9].map(k=>x+w*k)});
+/* رأس لابس: kind c تاج، h خوذة، d إكليل */
+const HG=(x,y,h,kind)=>{const r=h*.15;if(kind=='c')return `M${F(x-r)},${F(y+.2*r)} L${F(x-r)},${F(y-.9*r)} L${F(x-.5*r)},${F(y-.2*r)} L${x},${F(y-1.1*r)} L${F(x+.5*r)},${F(y-.2*r)} L${F(x+r)},${F(y-.9*r)} L${F(x+r)},${F(y+.2*r)} Z`;
+ if(kind=='h')return `M${F(x-1.15*r)},${F(y+1.1*r)} a${F(1.15*r)},${F(1.2*r)} 0 0,1 ${F(2.3*r)},0 M${x},${F(y-.1*r)} q${F(.5*r)},${F(-.7*r)} ${F(1.1*r)},${F(-.1*r)}`;
+ return `M${F(x-1.05*r)},${F(y+.5*r)} q${F(1.05*r)},${F(-.5*r)} ${F(2.1*r)},0 M${F(x-.6*r)},${F(y+.2*r)} l${F(-.4*r)},${F(-.5*r)} M${F(x+.6*r)},${F(y+.2*r)} l${F(.4*r)},${F(-.5*r)}`};
+/* شخص حقيقي: رسم تخيّلي + اسم */
+function FIG(o,x,y,h,kind,col,name,sz){P(o,MAN(x,y,h),col,3,.6);P(o+.25,HG(x,y,h,kind),col,3,.4,kind=='c'?'#fff':null);
+ W(o+.3,x+h*.34,y+h+22,'رسم تخيّلي',15,GR,'middle');if(name)W(o+.3,x+h*.4,y+h+46,name,sz||20,col,'middle')}
+/* ميزان: x مركز، y الرافعة، w نص الطول، t ميل (موجب = الشمال أخفض). يرجع المسارات */
+const BAL=(x,y,w,t)=>{const lx=x-w,ly=y+t,rx=x+w,ry=y-t,pan=(ex,ey)=>`M${ex},${ey} L${ex-55},${ey+70} M${ex},${ey} L${ex+55},${ey+70} M${ex-62},${ey+70} q62,46 124,0 Z`;
+ return {post:`M${x},${y} V${y+210} M${x-56},${y+210} h112 M${x-14},${y-14} L${x},${y} L${x+14},${y-14}`,beam:`M${lx},${ly} L${rx},${ry}`,pl:pan(lx,ly),pr:pan(rx,ry),L:[lx,ly+70],R:[rx,ry+70]}};
+/* دلتا: ذروة (x,y) والنهر تحتها، s مقياس */
+const DEL=(x,y,s)=>({coast:`M${F(x-95*s)},${F(y-92*s)} Q${F(x-60*s)},${F(y-126*s)} ${F(x-20*s)},${F(y-120*s)} Q${F(x+20*s)},${F(y-114*s)} ${F(x+50*s)},${F(y-124*s)} Q${F(x+80*s)},${F(y-122*s)} ${F(x+100*s)},${F(y-96*s)}`,
+ riv:`M${x},${F(y+120*s)} V${y} M${x},${y} L${F(x-90*s)},${F(y-94*s)} M${x},${y} L${F(x-38*s)},${F(y-118*s)} M${x},${y} L${F(x+28*s)},${F(y-118*s)} M${x},${y} L${F(x+98*s)},${F(y-98*s)}`,east:[x+100*s,y-96*s]});
+const EYE=(x,y,s=1)=>EL(x,y,22*s,11*s)+CI(x,y,5*s);
+const SACK=(x,y,s=1)=>`M${F(x-34*s)},${y} q${F(-24*s)},${F(-36*s)} ${F(8*s)},${F(-60*s)} h${F(52*s)} q${F(32*s)},${F(24*s)} ${F(8*s)},${F(60*s)} Z M${F(x-12*s)},${F(y-60*s)} l${F(-6*s)},${F(-14*s)} h${F(48*s)} l${F(-6*s)},${F(14*s)}`;
+const STAIR=(x,y,w,h,n)=>`M${x},${y} `+PT(n).map(i=>`h${-w} v${h} `).join('');
+const LIGHT=(x,y,s=1)=>`M${F(x-12*s)},${y} l${F(4*s)},${F(-60*s)} h${F(16*s)} l${F(4*s)},${F(60*s)} Z M${F(x-10*s)},${F(y-60*s)} h${F(20*s)} v${F(-14*s)} h${F(-20*s)} Z M${F(x+14*s)},${F(y-68*s)} l${F(28*s)},${F(-6*s)} M${F(x-14*s)},${F(y-68*s)} l${F(-28*s)},${F(-6*s)}`;
+const DOOR=(x,y,w,h)=>`M${x},${y+h} V${y} H${x+w} V${y+h}`;
+const PIE=(x,y,r)=>CI(x,y,r)+`M${x},${y} L${x+r},${y} M${x},${y} L${F(x-r*.5)},${F(y-r*.87)} M${x},${y} L${F(x-r*.5)},${F(y+r*.87)}`;
+const FIST=(x,y,s=1)=>HAND(x,y,s);
+const LINK=(x,y,r)=>EL(x,y,r*1.5,r)+EL(x+r*2.2,y,r*1.5,r);
+const crop=(o,t)=>t;
+/* WC بفجوة أوسع شوية علشان ما يتلامسوش */
+WC=function(o,txt,col,gap){const p=LASTW;IT.push(LASTW={k:'w',t:T0+o*OS,x:p.x,y:p.y,txt,sz:p.sz,col:col||p.col,a:'end',d:Math.min(1.4,.06*txt.length+.3),cx:p.cx,cy:p.cy,af:p,gp:gap==null?p.sz*.5:gap})};
+TAB2=(o,x,y,w,t,pg)=>{P(o,RC(x,y,w,40),BRN,3,.5,CREAM);W(o+.2,x+w-12,y+28,t,19,N);if(pg)WC(o+.45,pg,GR,16)};
+
+/* ---------- إضافات L2C ---------- */
+const ROM='#B3261E',LRD='#FBE3E0',LYL='#FFF4CC';
+const mark=()=>IT.length,OFFS=(a,b,o)=>{for(let i=a;i<b;i++)IT[i].off=T0+o*OS};
+function WR(x,y,sz,col,parts){parts.forEach((p,i)=>{const k=p[0],t=typeof k=='number'?k:Array.isArray(k)?at(k[0],k[1]):at(k),c=p[2]||col;if(i==0)W(t,x,y,p[1],sz,c);else WC(t,p[1],c)})}
+const RR=(x,y,w,h,r=10)=>`M${x+r},${y} h${w-2*r} q${r},0 ${r},${r} v${h-2*r} q0,${r} ${-r},${r} h${-(w-2*r)} q${-r},0 ${-r},${-r} v${-(h-2*r)} q0,${-r} ${r},${-r} Z `;
+const RTEMP=(x,y,s=1)=>TEMPLE(x,y,s)+`M${F(x-56*s)},${F(y-54*s)} L${x},${F(y-84*s)} L${F(x+56*s)},${F(y-54*s)} `;
+const CHURCH=(x,y,s=1)=>`M${F(x-28*s)},${y} V${F(y-46*s)} L${x},${F(y-72*s)} L${F(x+28*s)},${F(y-46*s)} V${y} Z M${x},${F(y-72*s)} V${F(y-102*s)} M${F(x-9*s)},${F(y-92*s)} h${F(18*s)} M${F(x-8*s)},${y} v${F(-22*s)} a${F(8*s)},${F(8*s)} 0 0,1 ${F(16*s)},0 v${F(22*s)} `;
+const CROSS=(x,y,s=1)=>`M${x},${y} v${F(44*s)} M${F(x-13*s)},${F(y+13*s)} h${F(26*s)} `;
+const HEART=(x,y,s=1)=>`M${x},${F(y+12*s)} C${F(x-34*s)},${F(y-16*s)} ${F(x-20*s)},${F(y-40*s)} ${x},${F(y-18*s)} C${F(x+20*s)},${F(y-40*s)} ${F(x+34*s)},${F(y-16*s)} ${x},${F(y+12*s)} Z `;
+/* غصن زيتون: يبدأ من x,y ويطلع يمين */
+const OLIVE=(x,y,s=1)=>`M${x},${y} Q${F(x+34*s)},${F(y-8*s)} ${F(x+70*s)},${F(y-36*s)} `+[[14,-3],[30,-9],[46,-19],[60,-30]].map(([a,b],i)=>EL(+F(x+a*s),+F(y+(b+(i%2?9:-9))*s),+F(8*s),+F(4.5*s))).join('');
+const FLAG=(x,y,s=1)=>`M${x},${y} V${F(y-70*s)} h${F(-46*s)} v${F(28*s)} h${F(46*s)} `;
+const BRIDGE=(x,y,w,n)=>{const a=w/n,r=a*.33;return `M${x},${y} h${w} M${x},${y+16} h${w} `+PT(n).map(i=>`M${F(x+i*a+a/2-r)},${y+90} V${F(y+24+r)} a${F(r)},${F(r)} 0 0,1 ${F(2*r)},0 V${y+90} `).join('')};
+const STELE=(x,y,w,h)=>`M${x},${y+h} V${y+44} Q${F(x+w/2)},${y-30} ${x+w},${y+44} V${y+h} Z `;
+const SILO=(x,y,s=1)=>`M${F(x-24*s)},${y} v${F(-58*s)} q${F(24*s)},${F(-28*s)} ${F(48*s)},0 v${F(58*s)} Z M${F(x-24*s)},${F(y-30*s)} h${F(48*s)} `;
+const CRK=(x,y1,y2)=>`M${x},${y1} l7,${F((y2-y1)*.25)} l-12,${F((y2-y1)*.25)} l12,${F((y2-y1)*.25)} l-7,${F((y2-y1)*.25)} `;
+const GATE=(x,y,s=1)=>`M${x},${y} v${F(-70*s)} h${F(54*s)} v${F(70*s)} M${F(x+54*s)},${F(y-70*s)} l${F(26*s)},${F(8*s)} v${F(70*s)} l${F(-26*s)},${F(-8*s)} `;
+const LOCK=(x,y,s=1)=>RC(+F(x-14*s),y,28*s,22*s)+`M${F(x-9*s)},${y} v${F(-10*s)} a${F(9*s)},${F(9*s)} 0 0,1 ${F(18*s)},0 v${F(10*s)} `;
+const FLAME=(x,y,s=1)=>`M${x},${y} q${F(-17*s)},${F(-16*s)} 0,${F(-38*s)} q${F(17*s)},${F(22*s)} 0,${F(38*s)} Z `;
+const TORCH=(x,y,s=1)=>`M${x},${y} v${F(-48*s)} M${F(x-10*s)},${F(y-48*s)} l${F(-4*s)},${F(-14*s)} h${F(28*s)} l${F(-4*s)},${F(14*s)} Z `;
+const WHEEL=(x,y,r)=>CI(x,y,r)+CI(x,y,+F(r*.2))+[0,1,2,3,4,5].map(i=>{const a=i*Math.PI/3;return `M${F(x+r*.2*Math.cos(a))},${F(y+r*.2*Math.sin(a))} L${F(x+r*Math.cos(a))},${F(y+r*Math.sin(a))} `}).join('');
+const SCIS=(x,y,s=1)=>`M${F(x-26*s)},${F(y-26*s)} L${F(x+28*s)},${F(y+28*s)} M${F(x-26*s)},${F(y+26*s)} L${F(x+28*s)},${F(y-28*s)} `+CI(+F(x-32*s),+F(y-32*s),7*s)+CI(+F(x-32*s),+F(y+32*s),7*s);
+const PENCIL=(x,y,s=1)=>`M${x},${y} l${F(6*s)},${F(-18*s)} l${F(36*s)},${F(-36*s)} l${F(12*s)},${F(12*s)} l${F(-36*s)},${F(36*s)} Z `;
+const GLOBE=(x,y,r)=>CI(x,y,r)+`M${x-r},${y} h${2*r} M${x},${y-r} q${-r*.7},${r} 0,${2*r} M${x},${y-r} q${r*.7},${r} 0,${2*r} `;
+const CLASH=(x,y)=>`M${x-18},${y+4} l12,-10 l12,20 l12,-20 `;
+const RT=(x,y,a)=>(px,py)=>[Math.round(x+px*Math.cos(a)-py*Math.sin(a)),Math.round(y+px*Math.sin(a)+py*Math.cos(a))].join(',');
+/* سيف (نفس موتيف كارت ١ في L2A) */
+const SWB=(x,y,len,deg,side)=>{const r=RT(x,y,deg*Math.PI/180);const e=side>0?[[0,14],[len*.86,16],[len,0]]:[[0,-14],[len*.86,-16],[len,0]];return 'M'+r(...e[0])+' L'+r(...e[1])+' L'+r(...e[2])+' '};
+const SWH=(x,y,len,deg)=>{const r=RT(x,y,deg*Math.PI/180);return 'M'+r(0,0)+' L'+r(len,0)+' M'+r(0,-24)+' L'+r(0,24)+' M'+r(0,0)+' L'+r(-34,0)+' '+CI(...r(-42,0).split(',').map(Number),8)};
+const CARDT=(o,t)=>{CARD(o,16,78,1034,450,G);W(o+.15,1030,110,t,22,G)};
+const Z=(t,x,y,w,d)=>camTo(t,ox+x,oy+y,w,w*9/16,d||.9);
+const DIG=(o,xs,y,t,sz,col)=>t.split('').forEach((c,i)=>W(o[i]!=null?o[i]:o[o.length-1],xs[i],y,c,sz,col,'middle'));
+
+/* ---------- إضافات L3B ---------- */
+const LBL='#E3F0FA',LPU='#F1E6F7';
+const Zm=(o,x,y,w,d)=>camTo(o*OS,ox+x,oy+y,w,w*9/16,d||.9);
+/* فقاعة «بالبلدي»: ترسم الإطار وتكتب «بالبلدي:» وبعدها كمّل بـ WC */
+const BB=(o,x,y,w,h,sz)=>{BUBBLE(o,x,y,w,h);W(o+.05,x+w-10,y+(sz||18)+11,'بالبلدي:',sz||18,GD)};
+const TICKP=(o,x,y,s)=>P(o,TICK(x,y,s||1.6),G,6,.3);
+/* عمامة فوق راس MAN(x,y,h) */
+const TURB=(x,y,h)=>{const r=h*.15;return `M${F(x-1.3*r)},${F(y+.55*r)} Q${x},${F(y-1.5*r)} ${F(x+1.3*r)},${F(y+.55*r)} Q${x},${F(y-.1*r)} ${F(x-1.3*r)},${F(y+.55*r)} Z `};
+/* شخص بعمامة (عام أو باسم) + «رسم تخيّلي» */
+function TMAN(o,x,y,h,col,lab,name,sz){P(o,MAN(x,y,h),col,3,.5);P(o+.15,TURB(x,y,h),col,3,.3,'#fff');if(lab)W(o+.25,x,y+h+20,'رسم تخيّلي',14,GR,'middle');if(name)W(o+.3,x,y+h+44,name,sz||20,col,'middle')}
+/* شخص قاعد: x المنتصف، y أعلى الراس */
+const SIT=(x,y,h)=>{const r=h*.15;return CI(x,+F(y+r),+F(r))+`M${x},${F(y+2*r)} V${F(y+h*.6)} M${F(x-h*.2)},${F(y+h*.5)} L${x},${F(y+h*.38)} L${F(x+h*.2)},${F(y+h*.5)} M${F(x-h*.3)},${F(y+h*.76)} Q${x},${F(y+h*.5)} ${F(x+h*.3)},${F(y+h*.76)} Z `};
+const BALS=(x,y,s=1)=>`M${x},${y} V${F(y+44*s)} M${F(x-16*s)},${F(y+44*s)} h${F(32*s)} M${F(x-30*s)},${F(y+6*s)} H${F(x+30*s)} M${F(x-30*s)},${F(y+6*s)} l${F(-11*s)},${F(22*s)} h${F(22*s)} Z M${F(x+30*s)},${F(y+6*s)} l${F(-11*s)},${F(22*s)} h${F(22*s)} Z `;
+const TABLET=(x,y,s=1)=>RC(+F(x-17*s),y,+F(34*s),+F(44*s))+`M${F(x-6*s)},${y} v${F(-9*s)} h${F(12*s)} v${F(9*s)} M${F(x-10*s)},${F(y+13*s)} h${F(20*s)} M${F(x-10*s)},${F(y+23*s)} h${F(20*s)} M${F(x-10*s)},${F(y+33*s)} h${F(12*s)} `;
+/* منبر: x الطرف اليمين للسلم، y الأرض */
+const MINBAR=(x,y,s=1)=>`M${x},${y} h${F(-18*s)} v${F(-13*s)} h${F(-18*s)} v${F(-13*s)} h${F(-18*s)} v${F(-13*s)} h${F(-22*s)} V${y} Z M${F(x-76*s)},${F(y-39*s)} v${F(-34*s)} l${F(11*s)},${F(-12*s)} l${F(11*s)},${F(12*s)} v${F(34*s)} `;
+const IDC=(x,y,w,h)=>RR(x,y,w,h,8)+CI(+F(x+w*.78),+F(y+h*.38),+F(h*.17))+`M${F(x+w*.66)},${F(y+h*.8)} q${F(w*.12)},${F(-h*.3)} ${F(w*.24)},0 M${F(x+w*.1)},${F(y+h*.3)} h${F(w*.4)} M${F(x+w*.1)},${F(y+h*.52)} h${F(w*.4)} M${F(x+w*.1)},${F(y+h*.74)} h${F(w*.25)} `;
+const NAIL=(x,y,s=1)=>`M${F(x-9*s)},${y} h${F(18*s)} M${x},${y} v${F(22*s)} `;
+/* قاعدة حجر: x,y الركن العلوي الشمال، w العرض العلوي */
+const STONE=(x,y,w,h)=>`M${x},${y} h${w} l16,${h} h${-(w+32)} Z `;
+/* مبنى بقبة ومدنة: x المنتصف، y القاعدة */
+const MOSQ=(x,y,s=1)=>`M${F(x-46*s)},${y} V${F(y-36*s)} H${F(x+34*s)} V${y} Z M${F(x-28*s)},${F(y-36*s)} a${F(22*s)},${F(22*s)} 0 0,1 ${F(44*s)},0 M${F(x-6*s)},${F(y-58*s)} v${F(-10*s)} M${F(x-12*s)},${y} v${F(-16*s)} a${F(6*s)},${F(6*s)} 0 0,1 ${F(12*s)},0 v${F(16*s)} M${F(x+40*s)},${y} V${F(y-74*s)} l${F(7*s)},${F(-12*s)} l${F(7*s)},${F(12*s)} V${y} M${F(x+36*s)},${F(y-52*s)} h${F(22*s)} `;
+/* مدنة طويلة: x المنتصف، y القاعدة */
+const MINA=(x,y,s=1)=>`M${F(x-11*s)},${y} V${F(y-104*s)} h${F(22*s)} V${y} M${F(x-17*s)},${F(y-104*s)} h${F(34*s)} M${F(x-17*s)},${F(y-62*s)} h${F(34*s)} M${F(x-7*s)},${F(y-104*s)} V${F(y-128*s)} q${F(7*s)},${F(-18*s)} ${F(14*s)},0 V${F(y-104*s)} M${x},${F(y-142*s)} v${F(-12*s)} `;
+/* صف بواكي: x الطرف الشمال، y القاعدة، w عرض الباكية، h الارتفاع، n العدد */
+const ARCS=(x,y,w,h,n)=>PT(n).map(i=>`M${x+i*w},${y} V${F(y-h+w*.5)} a${F(w*.5)},${F(w*.5)} 0 0,1 ${w},0 `).join('')+`M${x+n*w},${y-h+w*.5} V${y} `;
+/* مسجد عمرو (تخيّلي): ساحة وبواكي بسيطة. x الطرف الشمال، y القاعدة، w العرض */
+const AMR=(x,y,w,h)=>`M${x},${y} h${w} M${x-8},${y-h} h${w+16} M${x-8},${F(y-h-12)} h${w+16} M${x-8},${F(y-h-12)} v12 M${x+w+8},${F(y-h-12)} v12 `+ARCS(x,y,w/4,h,4);
+/* الأزهر (تخيّلي): صحن ببواكي + مدنة + قبة */
+const AZH=(x,y,w,h)=>`M${x},${y} h${w} M${x-6},${y-h} h${w+12} `+ARCS(x,y,w/3,h,3)+`M${F(x+w*.3)},${y-h} a${F(w*.14)},${F(w*.14)} 0 0,1 ${F(w*.28)},0 `;
+const SPROUT=(x,y,s=1)=>EL(x,y,+F(9*s),+F(6*s))+`M${x},${F(y-6*s)} q${F(-3*s)},${F(-18*s)} 0,${F(-34*s)} M${x},${F(y-26*s)} q${F(-16*s)},${F(-2*s)} ${F(-18*s)},${F(-16*s)} q${F(14*s)},0 ${F(18*s)},${F(16*s)} M${x},${F(y-34*s)} q${F(16*s)},${F(-2*s)} ${F(18*s)},${F(-16*s)} q${F(-14*s)},0 ${F(-18*s)},${F(16*s)} `;
+const RAYS=(x,y,r1,r2,n,a0=0,a1=Math.PI*2)=>PT(n).map(i=>{const a=a0+(a1-a0)*i/(a1-a0>6?n:n-1);return `M${F(x+r1*Math.cos(a))},${F(y+r1*Math.sin(a))} L${F(x+r2*Math.cos(a))},${F(y+r2*Math.sin(a))} `}).join('');
+const ARC=(x,y,r,a0,a1)=>`M${F(x+r*Math.cos(a0))},${F(y+r*Math.sin(a0))} A${r},${r} 0 0,1 ${F(x+r*Math.cos(a1))},${F(y+r*Math.sin(a1))} `;
+const FUNNEL=(x,y,s=1)=>`M${F(x-80*s)},${y} H${F(x+80*s)} L${F(x+16*s)},${F(y+70*s)} V${F(y+112*s)} H${F(x-16*s)} V${F(y+70*s)} Z `;
+const MAGNET=(x,y,s=1)=>`M${F(x-34*s)},${y} V${F(y-34*s)} a${F(34*s)},${F(34*s)} 0 0,1 ${F(68*s)},0 V${y} h${F(-22*s)} V${F(y-34*s)} a${F(12*s)},${F(12*s)} 0 0,0 ${F(-24*s)},0 V${y} Z M${F(x-34*s)},${F(y-14*s)} h${F(22*s)} M${F(x+12*s)},${F(y-14*s)} h${F(22*s)} `;
+/* مدينة بسور: x المنتصف، y القاعدة، w نص العرض، n بيوت */
+const WALL=(x,y,w,h=30)=>{let d=`M${x-w},${y} V${y-h} `;const n=Math.round(w/11);for(let i=0;i<n;i++)d+=`v-8 h${F(w/n)} v8 h${F(w/n)} `;return d+`V${y} Z M${x-10},${y} v-14 a10,10 0 0,1 20,0 v14 `};
+const ROOFS=(x,y,w,k)=>PT(k).map(i=>{const hx=x-w+ (i+.5)*2*w/k;return i%2?`M${F(hx-13)},${y} v-16 a13,13 0 0,1 26,0 v16 `:`M${F(hx-13)},${y} v-14 l13,-11 l13,11 v14 `}).join('');
+const TOWER=(x,y,s=1)=>`M${F(x-14*s)},${y} V${F(y-50*s)} h${F(-5*s)} v${F(-13*s)} h${F(8*s)} v${F(6*s)} h${F(7*s)} v${F(-6*s)} h${F(8*s)} v${F(6*s)} h${F(7*s)} v${F(-6*s)} h${F(8*s)} v${F(13*s)} h${F(-5*s)} V${y} Z `;
+const SHOP=(x,y,s=1)=>`M${F(x-22*s)},${y} V${F(y-30*s)} h${F(44*s)} V${y} Z M${F(x-28*s)},${F(y-30*s)} l${F(8*s)},${F(-12*s)} h${F(40*s)} l${F(8*s)},${F(12*s)} Z `;
+/* علم بشريط (تبعية) أو من غيره */
+const STRIPE=(x,y,s=1)=>`M${x},${F(y-56*s)} h${F(-46*s)} `;
+const LENS=(x,y,r)=>CI(x,y,r)+`M${F(x+r*.7)},${F(y+r*.7)} l${F(r*.9)},${F(r*.9)} `;
+const NOTEB=(x,y,s=1)=>RC(+F(x-17*s),+F(y-22*s),+F(34*s),+F(44*s))+`M${F(x-9*s)},${F(y-10*s)} h${F(18*s)} M${F(x-9*s)},${y} h${F(18*s)} M${F(x-9*s)},${F(y+10*s)} h${F(12*s)} M${F(x+11*s)},${F(y-22*s)} v${F(44*s)} `;
+const STAMP=(x,y,s=1)=>`M${F(x-13*s)},${y} h${F(26*s)} v${F(-8*s)} h${F(-26*s)} Z M${F(x-5*s)},${F(y-8*s)} v${F(-12*s)} h${F(10*s)} v${F(12*s)} `+CI(x,+F(y-27*s),+F(7*s));
+const OBOOK=(x,y,s=1)=>`M${x},${y} q${F(-18*s)},${F(-10*s)} ${F(-34*s)},0 v${F(30*s)} q${F(16*s)},${F(-10*s)} ${F(34*s)},0 q${F(18*s)},${F(-10*s)} ${F(34*s)},0 v${F(-30*s)} q${F(-16*s)},${F(-10*s)} ${F(-34*s)},0 v${F(30*s)} `;
+/* كتاب واقف على رف: x الطرف الشمال، y الرف */
+const SPINE=(x,y,w,h)=>RC(x,y-h,w,h)+`M${x},${F(y-h*.82)} h${w} M${x},${F(y-h*.16)} h${w} `;
+const SCHOOL=(x,y,s=1)=>`M${F(x-60*s)},${y} V${F(y-70*s)} H${F(x+60*s)} V${y} Z M${F(x-68*s)},${F(y-70*s)} L${x},${F(y-104*s)} L${F(x+68*s)},${F(y-70*s)} M${F(x-12*s)},${y} v${F(-30*s)} h${F(24*s)} v${F(30*s)} M${F(x-44*s)},${F(y-54*s)} h${F(20*s)} v${F(18*s)} h${F(-20*s)} Z M${F(x+24*s)},${F(y-54*s)} h${F(20*s)} v${F(18*s)} h${F(-20*s)} Z M${x},${F(y-104*s)} v${F(-26*s)} h${F(-20*s)} v${F(12*s)} h${F(20*s)} `;
+const DSH=(x1,y1,x2,y2,n)=>PT(n).map(i=>`M${F(x1+(x2-x1)*i/n)},${F(y1+(y2-y1)*i/n)} L${F(x1+(x2-x1)*(i+.55)/n)},${F(y1+(y2-y1)*(i+.55)/n)} `).join('');
+const PLUS=(x,y,s)=>`M${x-s},${y} h${2*s} M${x},${y-s} v${2*s} `;
+const BOLT=(x,y,s=1)=>`M${x},${y} l${F(-12*s)},${F(22*s)} h${F(12*s)} l${F(-8*s)},${F(22*s)} `;
+const PALMF=(x,t,b)=>RR(x-28,t,56,b-t+16,24);
+const TABLE=(x,y,w)=>`M${x},${y} h${w} M${x+14},${y} v46 M${x+w-14},${y} v46 `;
+const CAL=(x,y,s=1)=>RC(x,y,+F(70*s),+F(64*s))+`M${x},${F(y+16*s)} h${F(70*s)} M${F(x+16*s)},${F(y-7*s)} v${F(14*s)} M${F(x+54*s)},${F(y-7*s)} v${F(14*s)} `;
+const CARDN=(o,n)=>{CARD(o,16,78,1034,450,G);W(o+.1,1030,112,'احفظ دي '+n,24,G)};
+const QK=(o,x,y,d)=>Q(o,x,y,d);
+/* عدّاد الوقفة بيختفي أول ما الوقفة تخلص */
+function CDR2(o,x,y,r,n){const a=IT.length;CDR(o,x,y,r,n);for(let i=a;i<IT.length;i++)IT[i].off=T0+o*OS+n+.15}
+const QM=(x,y,s=1)=>`M${F(x-10*s)},${F(y-14*s)} q${F(2*s)},${F(-16*s)} ${F(14*s)},${F(-14*s)} q${F(14*s)},${F(4*s)} ${F(4*s)},${F(20*s)} q${F(-6*s)},${F(6*s)} ${F(-6*s)},${F(14*s)} M${F(x+2*s)},${F(y+18*s)} v${F(3*s)} `;
+const POLYD=(pts,n)=>pts.slice(1).map((p,i)=>DSH(pts[i][0],pts[i][1],p[0],p[1],n)).join('');
+
+/* ---------- من L3A ---------- */
+/* سلّم طالع لليمين: يبدأ من تحت الشمال (x,y) */
+const STUP=(x,y,w,h,n)=>`M${x},${y} `+PT(n).map(()=>`h${w} v${-h} `).join('');
+const TENT=(x,y,s=1)=>`M${F(x-28*s)},${y} L${x},${F(y-42*s)} L${F(x+28*s)},${y} Z M${x},${F(y-42*s)} v${F(-10*s)} M${x},${y} L${F(x-5*s)},${F(y-20*s)} `;
+/* بوابة بعقد: x المنتصف، y القاعدة */
+const ARCH=(x,y,w,h)=>`M${x-w/2-16},${y} V${y-h-18} H${x+w/2+16} V${y} M${x-w/2},${y} V${F(y-h*.55)} Q${x-w/2},${y-h} ${x},${y-h} Q${x+w/2},${y-h} ${x+w/2},${F(y-h*.55)} V${y} `;
+const CROWN=(x,y,s=1)=>`M${F(x-60*s)},${y} L${F(x-72*s)},${F(y-62*s)} L${F(x-36*s)},${F(y-30*s)} L${x},${F(y-80*s)} L${F(x+36*s)},${F(y-30*s)} L${F(x+72*s)},${F(y-62*s)} L${F(x+60*s)},${y} Z `;
+const CHR=(x,y,s=1)=>`M${x},${y} V${F(y-78*s)} M${x},${F(y-38*s)} H${F(x+46*s)} V${y} `;
+const BULB=(x,y,s=1)=>CI(x,y,+F(14*s))+`M${F(x-6*s)},${F(y+15*s)} h${F(12*s)} M${F(x-4*s)},${F(y+21*s)} h${F(8*s)} `;
+const NOTE=(x,y,w,h)=>RC(x,y,w,h)+`M${x+8},${F(y+h*.3)} h${w-16} M${x+8},${F(y+h*.55)} h${w-16} M${x+8},${F(y+h*.8)} h${F((w-16)*.6)} `;
+const DESK=(x,y,w)=>`M${x},${y} h${w} M${x+12},${y} v40 M${x+w-12},${y} v40 `;
+const WAVY=(x1,y,x2,a=8)=>{const n=Math.max(2,Math.round(Math.abs(x2-x1)/40)),w=(x2-x1)/n;return `M${x1},${y} q${F(w/2)},${-a} ${F(w)},0 `+PT(n-1).map(()=>`t${F(w)},0 `).join('')};
+const COMP=(x,y,r)=>CI(x,y,r)+`M${x},${F(y-r*.7)} L${F(x+r*.25)},${y} L${x},${F(y+r*.7)} L${F(x-r*.25)},${y} Z `;
+const DOME=(x,y,s=1)=>`M${F(x-34*s)},${y} V${F(y-34*s)} H${F(x+34*s)} V${y} Z M${F(x-22*s)},${F(y-34*s)} a${F(22*s)},${F(22*s)} 0 0,1 ${F(44*s)},0 M${x},${F(y-56*s)} v${F(-10*s)} M${F(x+34*s)},${y} V${F(y-70*s)} l${F(8*s)},${F(-12*s)} l${F(8*s)},${F(12*s)} V${y} `;
+const DASH=(x1,y,x2,n)=>{const w=(x2-x1)/(2*n-1);return PT(n).map(i=>`M${F(x1+2*i*w)},${y} h${F(w)} `).join('')};
+const PEARL=(x,y,r)=>CI(x,y,r)+`M${F(x-r*.45)},${F(y-r*.25)} q${F(r*.2)},${F(-r*.35)} ${F(r*.5)},${F(-r*.3)} `;
+const CARDX=(o,x,y,w,h,n)=>{CARD(o,x,y,w,h,G);W(o+.15,x+w-16,y+34,'احفظ دي '+n,22,G)};
+const BUBB=(o,x,y,w,h)=>{BUBBLE(o,x,y,w,h||46);W(o+.1,x+w-12,y+(h||46)-15,'بالبلدي:',18,GD)};
+/* راية بشريط: السارية عند x، القاعدة y */
+const RIB=(x,y,s,x2,y2)=>`M${x},${F(y-70*s)} Q${F((x+x2)/2)},${F(Math.min(y-70*s,y2)-26)} ${x2},${y2} `;
+/* إيدين بيسلّموا: x,y المنتصف — يرجع [يمين، شمال، القبضة] */
+const SHK=(x,y,s=1)=>[`M${F(x+70*s)},${F(y+14*s)} L${F(x+10*s)},${y}`,`M${F(x-70*s)},${F(y+14*s)} L${F(x-10*s)},${y}`,EL(x,y,+F(15*s),+F(11*s))];
+/* عالِم بعمامة: رسم تخيّلي + اسم (x المنتصف) */
+const DAD=(o,x,y,sz,col)=>W(o,x,y,'ض',sz,col||G,'middle');
+/* شخبطة حروف غريبة عامّة */
+const SCR=(x,y,n,a=9)=>`M${x},${y} `+PT(n).map(i=>`l6,${i%2?a:-a} `).join('');
+
+/* ---------- إضافات L3C ---------- */
+const ORG='#D9822B',LOR='#FDEBD3',GLS='#7FB8D6';
+/* مقياس النيل: عمود مدرّج واقف في الميّه. x المنتصف، y القاعدة، h الطول */
+const NILOM=(x,y,h)=>RC(x-14,y-h,28,h)+PT(Math.floor(h/22)).map(i=>`M${x-14},${y-14-i*22} h${i%2?9:16} `).join('')+`M${x-22},${y-h} h44 `;
+/* مؤشر بنزين: x,y المركز (نص دايرة فوق) */
+const GAUGE=(x,y,r)=>ARC(x,y,r,Math.PI,2*Math.PI)+`M${x-r},${y} H${x+r} `+RAYS(x,y,r*.78,r,5,Math.PI,2*Math.PI);
+const NEEDLE=(x,y,r,a)=>`M${x},${y} L${F(x+r*.8*Math.cos(a))},${F(y+r*.8*Math.sin(a))} `+CI(x,y,5);
+const CAR=(x,y,s=1)=>`M${F(x-50*s)},${y} v${F(-18*s)} l${F(16*s)},${F(-20*s)} h${F(58*s)} l${F(16*s)},${F(20*s)} h${F(10*s)} v${F(18*s)} Z `+CI(+F(x-28*s),y,+F(10*s))+CI(+F(x+30*s),y,+F(10*s));
+/* ساقية: عجلة وعليها قواديس */
+const SAQ=(x,y,r)=>WHEEL(x,y,r)+PT(8).map(i=>{const a=i*Math.PI/4;return RC(+F(x+r*Math.cos(a)-6),+F(y+r*Math.sin(a)-6),12,12)}).join('');
+/* نول: x,y الركن الشمال فوق */
+const LOOM=(x,y,w,h)=>`M${x},${y+h} V${y} M${x+w},${y+h} V${y} M${x-10},${y} h${w+20} M${x-10},${F(y+h*.72)} h${w+20} `+PT(6).map(i=>`M${F(x+w*(i+.5)/6)},${y} V${F(y+h*.72)} `).join('');
+const CLOTH=(x,y,w,h)=>RC(x+6,F(y+h*.42),w-12,F(h*.3))+`M${x+6},${F(y+h*.57)} h${w-12} `;
+/* حزمة كتان: سيقان رفيعة مربوطة. x المنتصف، y القاعدة */
+const FLAX=(x,y,s=1)=>[-10,-4,3,10].map(d=>`M${F(x+d*.4*s)},${y} Q${F(x+d*.2*s)},${F(y-30*s)} ${F(x+d*1.3*s)},${F(y-62*s)} `).join('')+`M${F(x-9*s)},${F(y-16*s)} h${F(18*s)} `;
+const FLXF=(x,y,s=1)=>[-10,-4,3,10].map(d=>CI(+F(x+d*1.3*s),+F(y-66*s),+F(4*s))).join('');
+const CANE=(x,y,h)=>`M${x},${y} V${y-h} `+PT(4).map(i=>`M${x-6},${F(y-h*(i+1)/5)} h12 `).join('')+`M${x},${y-h} q16,-10 24,-2 M${x},${y-h} q-16,-12 -22,-4 `;
+const PRESS=(x,y,s=1)=>CI(+F(x-17*s),y,+F(16*s))+CI(+F(x+17*s),y,+F(16*s))+`M${F(x-42*s)},${F(y+26*s)} h${F(84*s)} M${F(x-36*s)},${F(y+26*s)} v${F(-24*s)} M${F(x+36*s)},${F(y+26*s)} v${F(-24*s)} `;
+const CONE=(x,y,s=1)=>`M${F(x-18*s)},${y} L${x},${F(y-46*s)} L${F(x+18*s)},${y} Z `;
+const VASE=(x,y,s=1)=>`M${F(x-6*s)},${F(y-44*s)} h${F(12*s)} M${F(x-6*s)},${F(y-44*s)} q${F(-18*s)},${F(20*s)} ${F(-10*s)},${F(36*s)} q${F(4*s)},${F(8*s)} ${F(16*s)},${F(8*s)} q${F(12*s)},0 ${F(16*s)},${F(-8*s)} q${F(8*s)},${F(-16*s)} ${F(-10*s)},${F(-36*s)} `;
+const FLASK=(x,y,r)=>CI(x,y,r)+`M${x+r*.4},${y-r*.9} l${r*.9},${-r*.5} M${x-r*.1},${y-r} l${r*.9},${-r*.5} `;
+const SHIRT=(x,y,s=1)=>`M${F(x-14*s)},${F(y-30*s)} l${F(-16*s)},${F(10*s)} l${F(6*s)},${F(12*s)} l${F(8*s)},${F(-4*s)} V${y} h${F(32*s)} V${F(y-12*s)} l${F(8*s)},${F(4*s)} l${F(6*s)},${F(-12*s)} l${F(-16*s)},${F(-10*s)} q${F(-14*s)},${F(10*s)} ${F(-28*s)},0 Z `;
+/* ميناء: رصيف بخوازيق. x الطرف الشمال، y سطح الرصيف */
+const PIER=(x,y,w)=>RC(x,y,w,12)+PT(Math.max(2,Math.round(w/30))).map(i=>`M${x+10+i*30},${y+12} v22 `).join('');
+const COIN=(x,y,r)=>CI(x,y,r)+CI(x,y,+F(r*.62));
+const SAFE=(x,y,s=1)=>RC(+F(x-30*s),+F(y-56*s),+F(60*s),+F(50*s))+CI(x,+F(y-31*s),+F(10*s))+`M${F(x+10*s)},${F(y-31*s)} h${F(8*s)} M${F(x-24*s)},${F(y-6*s)} v${F(6*s)} M${F(x+24*s)},${F(y-6*s)} v${F(6*s)} `;
+const FOLDER=(x,y,w,h)=>`M${x},${y} h${w} v${h} h${-w} Z M${x},${y} l14,-16 h70 l12,16 `;
+const MUSC=(x,y,s=1)=>`M${x},${y} v${F(-22*s)} q${F(2*s)},${F(-20*s)} ${F(22*s)},${F(-30*s)} l${F(4*s)},${F(-18*s)} q${F(12*s)},${F(-4*s)} ${F(16*s)},${F(6*s)} l${F(-6*s)},${F(16*s)} q${F(26*s)},${F(2*s)} ${F(28*s)},${F(26*s)} q${F(2*s)},${F(20*s)} ${F(-20*s)},${F(22*s)} Z `;
+const BREAD=(x,y,s=1)=>EL(x,y,+F(26*s),+F(13*s))+`M${F(x-10*s)},${F(y-8*s)} l${F(6*s)},${F(10*s)} M${F(x+2*s)},${F(y-10*s)} l${F(6*s)},${F(10*s)} `;
+/* ميدان بتلات شوارع: يرجع {d, e:[نهايات]} */
+const PLAZA=(x,y,r,ends)=>{let d=CI(x,y,r);ends.forEach(([ex,ey])=>{const a=Math.atan2(ey-y,ex-x),nx=-Math.sin(a)*14,ny=Math.cos(a)*14,sx=x+r*Math.cos(a),sy=y+r*Math.sin(a);d+=`M${F(sx+nx)},${F(sy+ny)} L${F(ex+nx)},${F(ey+ny)} M${F(sx-nx)},${F(sy-ny)} L${F(ex-nx)},${F(ey-ny)} `});return d};
+/* سطر اختيار فاضي: شارة حرف + خط رمادي */
+const OPT=(o,x,y,l,w)=>{BADGE(o,x,y,l);P(o+.05,`M${x-28},${y+6} H${x-28-w}`,GHO,3,.3)};
+const RING=(x,y,a,b)=>EL(x,y,a,b);
+/* كارت صغير مقلوب/مرجع: إطار + شارة رقم */
+const MINI=(o,x,y,w,h,n)=>{P(o,RC(x,y,w,h),G,3,.4,'#fff');BADGE(o+.1,x+w-6,y+6,n)};
+const SCH=(x,y,s=1)=>`M${F(x-40*s)},${y} V${F(y-50*s)} H${F(x+40*s)} V${y} Z M${F(x-8*s)},${y} v${F(-20*s)} h${F(16*s)} v${F(20*s)} M${F(x-28*s)},${F(y-38*s)} h${F(14*s)} v${F(12*s)} h${F(-14*s)} Z M${F(x+14*s)},${F(y-38*s)} h${F(14*s)} v${F(12*s)} h${F(-14*s)} Z M${x},${F(y-50*s)} v${F(-22*s)} h${F(-16*s)} v${F(10*s)} h${F(16*s)} `;
+
+/* ---------- إضافات L4B ---------- */
+const FRN='#3E5BA9',LFR='#E4E9F7',GOLD='#E0A800',CTN='#FFFFFF';
+/* كتابة نص منطوق كلمة بكلمة: كل كلمة بتظهر لحظة نطقها (بيدوّر على العبارة في السطر الحالي) */
+const NRM=s=>s.replace(/[«»،.:؛؟!()"]/g,'');
+function FIND(text,n){const ws=text.split(/\s+/).map(NRM).filter(Boolean);const tk=CUR.filter(k=>!k.p);let c=0;
+ for(let i=0;i+ws.length<=tk.length;i++){let ok=true;for(let j=0;j<ws.length;j++)if(NRM(tk[i+j].w)!==ws[j]){ok=false;break}
+  if(ok){if(c==(n||0))return tk.slice(i,i+ws.length).map(k=>k.s/OS);c++}}
+ throw new Error('FIND: «'+text+'» مش في السطر: '+CUR.map(k=>k.w).join(' '))}
+/* SAYW(x,y,sz,col,text,{w,lh,n,hl,cont,dt}) يرجع y بتاع آخر سطر */
+function SAYW(x,y,sz,col,text,o={}){const ts=FIND(text,o.n),ws=text.split(/\s+/).filter(w=>NRM(w));const mw=o.w||960,lh=o.lh||Math.round(sz*1.45),hl=o.hl||{};
+ let cw=o.cont?(o.cw||0):0,first=!o.cont,yy=y;
+ ws.forEach((w,i)=>{const ew=(NRM(w).length+(w.length-NRM(w).length)*.6)*sz*.48+sz*.5;const c=hl[NRM(w)]||col;const t=ts[i]+(o.dt||0);
+  if(!first&&cw+ew>mw){yy+=lh;cw=0;first=true}
+  if(first){W(t,x,yy,w,sz,c);first=false}else WC(t,w,c);cw+=ew});return yy}
+/* فقاعة «بالبلدي» بنصها المنطوق كامل: الفقاعة بتترسم على «بالبلدي» رقم n */
+function BBS(x,y,w,sz,text,n,o={}){const t0=at('بالبلدي',n||0);const lh=Math.round(sz*1.42);
+ const lines=EST(text,sz,w-24,sz*.45*8+sz*.5);const h=lines*lh+16;BUBBLE(t0-.05,x,y,w,h);W(t0,x+w-12,y+sz+6,'بالبلدي:',sz,GD);
+ SAYW(x+w-12,y+sz+6,sz,N,text,Object.assign({w:w-24,lh,cont:true,cw:sz*.45*8+sz*.5},o));return y+h}
+/* فقاعة من غير «بالبلدي» */
+function BBN(o0,x,y,w,sz,text,o={}){const lh=Math.round(sz*1.42),lines=EST(text,sz,w-24,0),h=lines*lh+16;BUBBLE(o0,x,y,w,h);SAYW(x+w-12,y+sz+6,sz,N,text,Object.assign({w:w-24,lh},o));return y+h}
+function EST(text,sz,mw,c0){let n=1,cw=c0||0;text.split(/\s+/).filter(w=>NRM(w)).forEach(w=>{const ew=(NRM(w).length+(w.length-NRM(w).length)*.6)*sz*.48+sz*.5;if(cw>0&&cw+ew>mw){n++;cw=0}cw+=ew});return n}
+const WALLET=(x,y,s=1)=>RR(+F(x-44*s),+F(y-58*s),+F(88*s),+F(58*s),+F(9*s))+`M${F(x-44*s)},${F(y-40*s)} h${F(88*s)} M${F(x+20*s)},${F(y-40*s)} v${F(14*s)} h${F(24*s)} `;
+const FURN=(x,y,s=1)=>`M${F(x-46*s)},${y} A${F(46*s)},${F(42*s)} 0 0,1 ${F(x+46*s)},${y} Z M${F(x-16*s)},${y} v${F(-12*s)} a${F(16*s)},${F(14*s)} 0 0,1 ${F(32*s)},0 v${F(12*s)} `;
+const BUFF=(x,y,s=1)=>EL(x,+F(y-34*s),+F(40*s),+F(20*s))+EL(+F(x+46*s),+F(y-44*s),+F(13*s),+F(10*s))+`M${F(x+40*s)},${F(y-52*s)} q${F(-4*s)},${F(-14*s)} ${F(-16*s)},${F(-12*s)} M${F(x+54*s)},${F(y-52*s)} q${F(6*s)},${F(-14*s)} ${F(18*s)},${F(-10*s)} M${F(x-26*s)},${F(y-18*s)} v${F(18*s)} M${F(x-10*s)},${F(y-16*s)} v${F(16*s)} M${F(x+14*s)},${F(y-16*s)} v${F(16*s)} M${F(x+28*s)},${F(y-18*s)} v${F(18*s)} M${F(x-40*s)},${F(y-36*s)} q${F(-10*s)},${F(6*s)} ${F(-8*s)},${F(20*s)} `;
+const SHIP=(x,y,s=1)=>`M${F(x-70*s)},${y} h${F(140*s)} l${F(-18*s)},${F(26*s)} h${F(-104*s)} Z M${F(x-40*s)},${y} v${F(-24*s)} h${F(60*s)} v${F(24*s)} M${F(x-4*s)},${F(y-24*s)} v${F(-30*s)} h${F(16*s)} v${F(30*s)} M${F(x-30*s)},${F(y-12*s)} h${F(10*s)} M${F(x-12*s)},${F(y-12*s)} h${F(10*s)} `;
+const FACT=(x,y,s=1)=>`M${F(x-54*s)},${y} V${F(y-40*s)} l${F(24*s)},${F(-18*s)} v${F(18*s)} l${F(24*s)},${F(-18*s)} v${F(18*s)} l${F(24*s)},${F(-18*s)} v${F(18*s)} H${F(x+36*s)} V${F(y-96*s)} h${F(16*s)} V${y} Z M${F(x-40*s)},${F(y-24*s)} h${F(14*s)} v${F(12*s)} h${F(-14*s)} Z M${F(x-12*s)},${F(y-24*s)} h${F(14*s)} v${F(12*s)} h${F(-14*s)} Z `;
+const SMOKE=(x,y,s=1)=>`M${x},${y} q${F(-14*s)},${F(-10*s)} 0,${F(-20*s)} q${F(16*s)},${F(-10*s)} ${F(4*s)},${F(-24*s)} q${F(-12*s)},${F(-12*s)} ${F(6*s)},${F(-26*s)} `;
+const SWD=(x,y,s=1)=>`M${x},${F(y-74*s)} l${F(-7*s)},${F(12*s)} V${F(y-18*s)} h${F(14*s)} V${F(y-62*s)} Z M${F(x-16*s)},${F(y-18*s)} h${F(32*s)} M${x},${F(y-18*s)} v${F(18*s)} `;
+const HELM=(x,y,s=1)=>`M${F(x-26*s)},${y} a${F(26*s)},${F(26*s)} 0 0,1 ${F(52*s)},0 Z M${F(x-34*s)},${y} h${F(68*s)} M${x},${F(y-26*s)} v${F(-12*s)} `;
+const BRICKS=(x,y,w,h,n)=>{const rh=h/n;let d=RC(x,y,w,h);for(let i=1;i<n;i++)d+=`M${x},${F(y+i*rh)} h${w} `;for(let i=0;i<n;i++){const off=i%2?0:20;for(let k=x+off+20;k<x+w-6;k+=40)d+=`M${F(k)},${F(y+i*rh)} v${F(rh)} `}return d};
+const CHIPS=(x,y,s=1)=>`M${F(x-20*s)},${y} V${F(y-54*s)} l${F(5*s)},${F(-6*s)} l${F(5*s)},${F(6*s)} l${F(5*s)},${F(-6*s)} l${F(5*s)},${F(6*s)} l${F(5*s)},${F(-6*s)} l${F(5*s)},${F(6*s)} l${F(5*s)},${F(-6*s)} l${F(5*s)},${F(6*s)} V${y} Z `;
+const SANDW=(x,y,s=1)=>`M${F(x-30*s)},${y} h${F(60*s)} L${x},${F(y-40*s)} Z M${F(x-24*s)},${F(y-6*s)} h${F(48*s)} `;
+const PTAG=(x,y,w,h)=>`M${x},${y} l${F(h/2)},${F(-h/2)} h${w} v${h} h${-w} Z `+CI(+F(x+h/2+4),y,3);
+const TREATY=(x,y,w,h)=>RC(x,y,w,h)+`M${x+14},${y+20} h${w-28} M${x+14},${y+36} h${w-28} M${x+14},${y+52} h${F((w-28)*.7)} `;
+const HAT=(x,y,s=1)=>`M${F(x-26*s)},${y} h${F(52*s)} M${F(x-15*s)},${y} v${F(-26*s)} h${F(30*s)} v${F(26*s)} `;
+const TARB=(x,y,s=1)=>`M${F(x-12*s)},${y} l${F(3*s)},${F(-18*s)} h${F(18*s)} l${F(3*s)},${F(18*s)} Z M${F(x+6*s)},${F(y-18*s)} q${F(8*s)},${F(2*s)} ${F(8*s)},${F(12*s)} `;
+const PASS=(x,y,w,h)=>RR(x,y,w,h,6)+`M${x},${F(y+h*.35)} h${w} `;
+const BHAND=(x,y,s=1)=>`M${F(x-60*s)},${y} q${F(-10*s)},${F(-30*s)} ${F(10*s)},${F(-34*s)} h${F(100*s)} q${F(24*s)},0 ${F(24*s)},${F(16*s)} q0,${F(14*s)} ${F(-20*s)},${F(18*s)} Z M${F(x+50*s)},${F(y-34*s)} q${F(22*s)},${F(-22*s)} ${F(36*s)},${F(-8*s)} M${F(x-60*s)},${y} l${F(-30*s)},${F(30*s)} M${F(x+64*s)},${F(y-16*s)} l${F(10*s)},${F(36*s)} `;
+const PIGGY=(x,y,s=1)=>EL(x,+F(y-30*s),+F(40*s),+F(28*s))+`M${F(x+38*s)},${F(y-38*s)} h${F(12*s)} v${F(14*s)} h${F(-12*s)} M${F(x+10*s)},${F(y-56*s)} l${F(8*s)},${F(-12*s)} l${F(6*s)},${F(14*s)} M${F(x-22*s)},${F(y-6*s)} v${F(10*s)} M${F(x+20*s)},${F(y-6*s)} v${F(10*s)} M${F(x-10*s)},${F(y-58*s)} h${F(18*s)} M${F(x-40*s)},${F(y-34*s)} q${F(-12*s)},${F(-4*s)} ${F(-8*s)},${F(-14*s)} `;
+const GLAS=(x,y,s=1)=>CI(+F(x-14*s),y,+F(11*s))+CI(+F(x+14*s),y,+F(11*s))+`M${F(x-3*s)},${y} h${F(6*s)} `;
+const SCAF=(x,y,w,h)=>`M${x},${y} v${-h} M${x+w},${y} v${-h} M${F(x+w/2)},${y} v${-h} `+PT(3).map(i=>`M${x},${F(y-h*(i+1)/3)} h${w} `).join('')+`M${x},${y} L${F(x+w/2)},${F(y-h/3)} M${F(x+w/2)},${y} L${x+w},${F(y-h/3)} M${x},${F(y-h/3)} L${F(x+w/2)},${F(y-2*h/3)} `;
+const BALE=(x,y,s=1)=>RR(+F(x-30*s),+F(y-40*s),+F(60*s),+F(40*s),+F(8*s))+`M${F(x-12*s)},${F(y-40*s)} v${F(40*s)} M${F(x+12*s)},${F(y-40*s)} v${F(40*s)} `;
+const BOX3=(x,y,s=1)=>`M${F(x-26*s)},${y} V${F(y-40*s)} H${F(x+26*s)} V${y} Z M${F(x-26*s)},${F(y-40*s)} l${F(12*s)},${F(-12*s)} H${F(x+38*s)} l${F(-12*s)},${F(12*s)} M${F(x+38*s)},${F(y-52*s)} V${F(y-12*s)} L${F(x+26*s)},${y} M${x},${F(y-40*s)} v${F(40*s)} `;
+const BOLL=(x,y,s=1)=>CI(+F(x-12*s),y,+F(13*s))+CI(+F(x+12*s),y,+F(13*s))+CI(x,+F(y-14*s),+F(13*s))+`M${F(x-14*s)},${F(y+12*s)} l${F(14*s)},${F(8*s)} l${F(14*s)},${F(-8*s)} M${x},${F(y+20*s)} v${F(22*s)} `;
+const DOMI=(x,y,w,h,deg)=>{const r=RT(x,y,deg*Math.PI/180);return 'M'+r(-w/2,0)+' L'+r(-w/2,-h)+' L'+r(w/2,-h)+' L'+r(w/2,0)+' Z M'+r(-w/2,-h/2)+' L'+r(w/2,-h/2)+' '};
+const CHART=(x,y,w,h)=>`M${x},${y-h} V${y} H${x+w} `;
+const RISE=(x,y,w,h)=>`M${x+8},${y-10} L${F(x+w*.3)},${F(y-h*.2)} L${F(x+w*.55)},${F(y-h*.35)} L${F(x+w*.8)},${F(y-h*.7)} L${x+w-4},${y-h+4} `;
+const DOVE=(x,y,s=1)=>`M${F(x-30*s)},${y} q${F(20*s)},${F(-4*s)} ${F(34*s)},${F(-16*s)} q${F(6*s)},${F(-8*s)} ${F(14*s)},${F(-4*s)} l${F(6*s)},${F(4*s)} l${F(-6*s)},${F(2*s)} q${F(-4*s)},${F(16*s)} ${F(-24*s)},${F(22*s)} Z M${F(x-4*s)},${F(y-10*s)} q${F(-6*s)},${F(-26*s)} ${F(-24*s)},${F(-30*s)} q${F(10*s)},${F(18*s)} ${F(10*s)},${F(30*s)} `;
+const QUILL=(x,y,s=1)=>`M${x},${y} Q${F(x+10*s)},${F(y-40*s)} ${F(x+40*s)},${F(y-70*s)} Q${F(x+26*s)},${F(y-30*s)} ${x},${y} Z M${x},${y} l${F(-6*s)},${F(10*s)} `;
+const HUT=(x,y,s=1)=>`M${F(x-16*s)},${y} V${F(y-16*s)} L${x},${F(y-30*s)} L${F(x+16*s)},${F(y-16*s)} V${y} Z `;
+const BLDG=(x,y,ws,fh)=>{let d='',yy=y;ws.forEach((w,i)=>{d+=`M${F(x-w/2)},${yy} V${yy-fh} H${F(x+w/2)} V${yy} `;yy-=fh});return d+`M${F(x-ws[0]/2-14)},${y} H${F(x+ws[0]/2+14)} `};
+const BAG=(x,y,s=1)=>RC(+F(x-16*s),+F(y-24*s),+F(32*s),+F(24*s))+`M${F(x-7*s)},${F(y-24*s)} v${F(-7*s)} h${F(14*s)} v${F(7*s)} `;
+const HOE=(x,y,s=1)=>`M${x},${y} l${F(26*s)},${F(-46*s)} M${F(x+20*s)},${F(y-52*s)} l${F(14*s)},${F(8*s)} `;
+const STETH=(x,y,s=1)=>`M${F(x-14*s)},${F(y-40*s)} q0,${F(26*s)} ${F(14*s)},${F(26*s)} q${F(14*s)},0 ${F(14*s)},${F(-26*s)} M${x},${F(y-14*s)} q0,${F(14*s)} ${F(12*s)},${F(14*s)} `+CI(+F(x+16*s),y,+F(6*s));
+const NEWS=(x,y,w,h)=>RC(x,y,w,h)+`M${x+6},${y+10} h${w-12} M${x+6},${y+22} h${F((w-12)*.45)} M${x+6},${y+32} h${F((w-12)*.45)} M${F(x+w*.55)},${y+22} h${F(w*.38)} v${F(h-30)} h${F(-w*.38)} Z `;
+const HAMM=(x,y,s=1)=>`M${x},${y} l${F(28*s)},${F(-28*s)} M${F(x+18*s)},${F(y-38*s)} l${F(20*s)},${F(20*s)} l${F(6*s)},${F(-6*s)} l${F(-20*s)},${F(-20*s)} Z `;
+const SAW=(x,y,s=1)=>`M${x},${y} h${F(50*s)} l${F(-6*s)},${F(-16*s)} h${F(-44*s)} Z M${F(x+50*s)},${F(y-8*s)} h${F(14*s)} `;
+const ROBE=(x,y,s=1)=>`M${F(x-12*s)},${F(y-44*s)} h${F(24*s)} l${F(12*s)},${F(44*s)} h${F(-48*s)} Z M${x},${F(y-44*s)} v${F(44*s)} `;
+const SEAL=(x,y,r)=>CI(x,y,r)+CI(x,y,+F(r*.8));
+const CHAIN=(x,y,n,r=10)=>PT(n).map(i=>i%2?`M${x+i*r*1.6-r*.4},${y} h${F(r*.8+r)} `:EL(+F(x+i*r*1.6+r*.4),y,+F(r*1.1),+F(r*.7))).join('');
+const BOOKS=(x,y)=>SPINE(x,y,18,60)+SPINE(x+20,y,18,52)+SPINE(x+40,y,18,64);
+const OFFICE=(x,y,s=1)=>RC(+F(x-50*s),+F(y-60*s),+F(100*s),+F(60*s))+`M${F(x-58*s)},${F(y-60*s)} L${x},${F(y-82*s)} L${F(x+58*s)},${F(y-60*s)} Z `;
+const PSCR=(x,y,w,h)=>RC(x,y,w,h)+`M${x+w-12},${y+14} H${x+12} M${x+w-12},${y+28} H${x+12} M${x+w-12},${y+42} H${F(x+w*.4)} `;
+/* إيد غريبة: كم أزرق + إيد */
+const FHAND=(x,y,s=1)=>`M${F(x+60*s)},${F(y-12*s)} h${F(-34*s)} v${F(24*s)} h${F(34*s)} M${F(x+26*s)},${F(y-10*s)} h${F(-30*s)} q${F(-8*s)},${F(4*s)} 0,${F(8*s)} h${F(12*s)} M${F(x+26*s)},${F(y+10*s)} h${F(-24*s)} `;
+const MOUTH=(x,y)=>`M${x-8},${y} q8,6 16,0 `;
+/* ختم دايري ومكتوب جوّاه */
+function SEALW(o,x,y,r,txt,col){P(o,SEAL(x,y,r),col||R,4,.4,'#fff');W(o+.1,x,y+Math.round(r*.22),txt,Math.round(r*.55),col||R,'middle')}
+/* شخص بطربوش / ببرنيطة: x المنتصف، y أعلى الراس */
+const TMANP=(x,y,h)=>MAN(x,y,h);
+function PERS(o,x,y,h,col,hat,lab){P(o,MAN(x,y,h),col,3,.5);if(hat=='t')P(o+.15,TARB(x,y+2,h/90),R,3,.3,'#E58A7F');else if(hat=='h')P(o+.15,HAT(x,y+3,h/110),N,3,.3,N);else if(hat=='u')P(o+.15,TURB(x,y,h),col,3,.3,'#fff');if(lab)W(o+.25,x,y+h+20,'رسم تخيّلي',14,GR,'middle')}
+/* لحية (محمد علي): تحت راس MAN(x,y,h) */
+const BEARD=(x,y,h)=>{const r=h*.15;return `M${F(x-r*.8)},${F(y+r*1.5)} Q${F(x-r*.9)},${F(y+r*3.6)} ${x},${F(y+r*4)} Q${F(x+r*.9)},${F(y+r*3.6)} ${F(x+r*.8)},${F(y+r*1.5)} `};
+function MALI(o,x,y,h,lab){P(o,MAN(x,y,h),N,4,.5);P(o+.15,TURB(x,y,h),N,3,.3,'#fff');P(o+.25,BEARD(x,y,h),GR,3,.3,'#eee');if(lab!==0)W(o+.3,x,y+h+20,'رسم تخيّلي',14,GR,'middle')}
+
+/* ---------- من L4A (نفس رسم إسماعيل والمراية وموتيفات الدرس) ---------- */
+const RED2='#C0392B',GRY='#7a8285',SHADE='#3a3f41';
+const FEZH=(x,y,h)=>{const r=h*.15;return `M${F(x-r*.95)},${F(y+r*.45)} L${F(x-r*.72)},${F(y-r*.9)} H${F(x+r*.72)} L${F(x+r*.95)},${F(y+r*.45)} Z `};
+const TASS=(x,y,h)=>{const r=h*.15;return `M${x},${F(y-r*.9)} q${F(r*.9)},${F(r*.1)} ${F(r*1.05)},${F(r*1.2)} `};
+const TURBA=(x,y,h,k=1.6)=>{const r=h*.15;return EL(x,+F(y-r*.15),+F(r*k),+F(r*.95))+`M${F(x-r*k*.8)},${F(y-r*.35)} q${F(r*k*.8)},${F(r*.5)} ${F(r*k*1.6)},0 `};
+const BEARDA=(x,y,h,L=1.6)=>{const r=h*.15;return `M${F(x-r*.9)},${F(y+r*1.25)} Q${F(x-r*.8)},${F(y+r*(2+L))} ${x},${F(y+r*(2.3+L))} Q${F(x+r*.8)},${F(y+r*(2+L))} ${F(x+r*.9)},${F(y+r*1.25)} `};
+/* الخديو إسماعيل (نفس رسمة L4A: طربوش وشُرّابة ودقن قصيرة ونيشان) */
+function ISMA(o,x,y,h,lab){const r=h*.15;P(o,MAN(x,y,h),N,3,.6);P(o+.2,FEZH(x,y,h),RED2,3,.35,RED2);P(o+.3,TASS(x,y,h),N,2.5,.2);P(o+.35,BEARDA(x,y,h,.5),N,2.5,.3,'#6b5a4a');
+ P(o+.45,`M${F(x-h*.12)},${F(y+h*.4)} L${F(x+h*.1)},${F(y+h*.62)} `+CI(+F(x+h*.08),+F(y+h*.46),+F(h*.035))+CI(+F(x-h*.07),+F(y+h*.52),+F(h*.035)),YD,3,.3,Y);
+ if(lab!==false)W(o+.3,x,y+h+20,'رسم تخيّلي',14,GR,'middle')}
+const MIRR=(x,y,s=1)=>EL(x,y,+F(34*s),+F(46*s))+`M${x},${F(y+46*s)} v${F(18*s)} M${F(x-20*s)},${F(y+64*s)} h${F(40*s)} `;
+const BOATS=(x,y,s=1)=>SAIL(x,y,s)+CI(+F(x-12*s),+F(y-6*s),+F(4*s))+CI(+F(x+12*s),+F(y-6*s),+F(4*s));
+const TGT=(x,y,r)=>CI(x,y,r)+CI(x,y,+F(r*.66))+CI(x,y,+F(r*.33));
+const DART=(x1,y1,x2,y2)=>{const a=Math.atan2(y2-y1,x2-x1),p=(d,k)=>F(x1+d*Math.cos(a+k))+','+F(y1+d*Math.sin(a+k));return `M${x1},${y1} L${x2},${y2} M${x1},${y1} L${p(18,.5)} M${x1},${y1} L${p(18,-.5)} M${p(10,0)} L${p(26,.45)} M${p(10,0)} L${p(26,-.45)} `};
+const XSW=(x,y,s=1)=>`M${F(x-40*s)},${F(y+40*s)} L${F(x+36*s)},${F(y-36*s)} M${F(x+40*s)},${F(y+40*s)} L${F(x-36*s)},${F(y-36*s)} M${F(x-36*s)},${F(y+22*s)} l${F(16*s)},${F(16*s)} M${F(x+36*s)},${F(y+22*s)} l${F(-16*s)},${F(16*s)} `;
+const MIC=(x,y,s=1)=>RR(+F(x-12*s),+F(y-40*s),+F(24*s),+F(40*s),+F(12*s))+`M${F(x-20*s)},${F(y-14*s)} q0,${F(26*s)} ${F(20*s)},${F(26*s)} q${F(20*s)},0 ${F(20*s)},${F(-26*s)} M${x},${F(y+12*s)} v${F(30*s)} M${F(x-16*s)},${F(y+42*s)} h${F(32*s)} `;
+const THRONE=(x,y,s=1)=>`M${F(x-40*s)},${y} V${F(y-120*s)} q${F(40*s)},${F(-30*s)} ${F(80*s)},0 V${y} M${F(x-52*s)},${F(y-50*s)} h${F(104*s)} M${F(x-52*s)},${F(y-50*s)} v${F(-30*s)} M${F(x+52*s)},${F(y-50*s)} v${F(-30*s)} `;
+const GRAB=(x,y,s=1)=>RR(+F(x-14*s),+F(y-12*s),+F(28*s),+F(24*s),+F(8*s))+`M${F(x-6*s)},${F(y-12*s)} v${F(24*s)} M${F(x+3*s)},${F(y-12*s)} v${F(24*s)} `;
+
+/* ---------- إضافات L4C ---------- */
+const LMP='#FFF6D6';
+/* شخص حقيقي برسم تخيّلي: afg الأفغاني (عمامة كبيرة ودقن طويلة)، abd محمد عبده (عمامة أصغر ودقن قصيرة)، lut لطفي السيد (طربوش ونضارة)،
+   tah الطهطاوي (نفس رسمة L4B: عمامة)، kam مصطفى كامل (طربوش وشنب)، far محمد فريد (طربوش ودقن) */
+function FIGX(o,x,y,h,kind,col,lab){const r=h*.15;P(o,MAN(x,y,h),col,3,.5);
+ if(kind=='afg'){P(o+.15,TURBA(x,y,h,1.75),col,3,.3,'#fff');P(o+.25,BEARDA(x,y,h,1.6),GRY,2.5,.3,'#eef0f0')}
+ else if(kind=='abd'){P(o+.15,TURBA(x,y,h,1.3),col,3,.3,'#fff');P(o+.25,BEARDA(x,y,h,.8),N,2.5,.3,'#8a7a6a')}
+ else if(kind=='tah'){P(o+.15,TURB(x,y,h),col,3,.3,'#fff')}
+ else if(kind=='lut'){P(o+.15,TARB(x,y+2,h/90),R,3,.3,'#E58A7F');P(o+.25,GLAS(x,+F(y+r*.95),+F(r/16)),N,2,.3)}
+ else if(kind=='kam'){P(o+.15,TARB(x,y+2,h/90),R,3,.3,'#E58A7F');P(o+.25,`M${F(x-r*.6)},${F(y+r*1.45)} q${F(r*.3)},${F(-r*.25)} ${F(r*.6)},0 q${F(r*.3)},${F(-r*.25)} ${F(r*.6)},0`,N,3,.2)}
+ else if(kind=='far'){P(o+.15,TARB(x,y+2,h/90),R,3,.3,'#E58A7F');P(o+.25,BEARDA(x,y,h,.9),N,2.5,.3,'#6b5a4a')}
+ if(lab!==false)W(o+.2,x,y+h+20,'رسم تخيّلي',14,GR,'middle')}
+/* كارت عنوان */
+function TITLE(o,text,hl,sz){P(o,RC(16,84,1034,70),BRN,4,.6,CREAM);SAYW(1030,134,sz||34,N,text,{hl:hl||{}})}
+/* مركب البعثة (موتيف L4A) */
+const BOATB=(o,x,y,s)=>{P(o,BOATS(x,y,s),BLU,3,.4,'#fff');P(o+.2,WAVY(x-60*s,y+14*s,x+60*s,5),BLU,3,.3)};
+/* لمبة الأفكار */
+const LAMP=(o,x,y,s)=>{P(o,BULB(x,y,s),YD,4,.4,LYL);P(o+.2,RAYS(x,y,18*s,26*s,8),YD,3,.3)};
+/* ميكروسكوب: x,y القاعدة */
+const MICRO=(x,y,s=1)=>`M${F(x-30*s)},${y} h${F(60*s)} M${F(x+16*s)},${y} V${F(y-34*s)} q0,${F(-26*s)} ${F(-24*s)},${F(-40*s)} M${F(x-20*s)},${F(y-58*s)} l${F(14*s)},${F(-20*s)} l${F(12*s)},${F(8*s)} l${F(-14*s)},${F(20*s)} Z M${F(x-16*s)},${F(y-20*s)} h${F(32*s)} `;
+/* راس فيه ترس */
+const HEADG=(x,y,s=1)=>`M${F(x+30*s)},${F(y+50*s)} V${F(y+20*s)} Q${F(x+50*s)},${F(y-10*s)} ${F(x+40*s)},${F(y-40*s)} Q${F(x+20*s)},${F(y-80*s)} ${F(x-20*s)},${F(y-70*s)} Q${F(x-56*s)},${F(y-60*s)} ${F(x-52*s)},${F(y-20*s)} l${F(-10*s)},${F(16*s)} l${F(12*s)},${F(4*s)} v${F(14*s)} q${F(6*s)},${F(10*s)} ${F(26*s)},${F(6*s)} V${F(y+50*s)} `;
+/* صندوق انتخاب بورقة */
+const BALLOT=(x,y,s=1)=>RC(+F(x-36*s),+F(y-56*s),+F(72*s),+F(56*s))+`M${F(x-16*s)},${F(y-56*s)} h${F(32*s)} `;
+const VOTE=(x,y,s=1)=>RC(+F(x-12*s),+F(y-86*s),+F(24*s),+F(32*s))+`M${F(x-6*s)},${F(y-72*s)} l${F(4*s)},${F(5*s)} l${F(8*s)},${F(-9*s)} `;
+/* يافطة على عصاية */
+const SIGN=(x,y,w,h)=>RC(x,y,w,h)+`M${F(x+w/2)},${y+h} v${F(Math.min(50,h*.6))} `;
+/* ورقة نتيجة (تقويم) */
+const CALP=(x,y,w,h)=>RC(x,y,w,h)+`M${x},${F(y+h*.26)} h${w} M${F(x+w*.25)},${y-8} v16 M${F(x+w*.75)},${y-8} v16 `;
+/* غربال */
+const SIEVE=(x,y,s=1)=>`M${F(x-60*s)},${y} h${F(120*s)} l${F(-14*s)},${F(30*s)} h${F(-92*s)} Z `+PT(5).map(i=>`M${F(x-40*s+i*20*s)},${F(y+6*s)} v${F(18*s)} `).join('');
+/* قطر بعربيتين */
+const TRAIN=(x,y,s=1)=>RC(+F(x-60*s),+F(y-40*s),+F(50*s),+F(40*s))+RC(+F(x-4*s),+F(y-40*s),+F(60*s),+F(40*s))+`M${F(x+56*s)},${F(y-40*s)} v${F(-14*s)} h${F(10*s)} v${F(14*s)} `+CI(+F(x-44*s),+F(y+4*s),+F(7*s))+CI(+F(x-24*s),+F(y+4*s),+F(7*s))+CI(+F(x+12*s),+F(y+4*s),+F(7*s))+CI(+F(x+40*s),+F(y+4*s),+F(7*s));
+/* سحابة */
+const CLOUD=(x,y,s=1)=>`M${F(x-60*s)},${y} q${F(-24*s)},${F(-30*s)} ${F(10*s)},${F(-40*s)} q${F(14*s)},${F(-36*s)} ${F(50*s)},${F(-20*s)} q${F(30*s)},${F(-24*s)} ${F(52*s)},${F(8*s)} q${F(36*s)},${F(10*s)} ${F(10*s)},${F(52*s)} Z `;
+/* موبايل */
+const MOB=(x,y,w,h)=>RR(x,y,w,h,12)+`M${F(x+w/2-10)},${y+h-10} h20 `+RC(x+10,y+16,w-20,F(h*.6));
+/* طير صغير */
+const BIRD=(x,y,s=1)=>`M${F(x-14*s)},${y} q${F(7*s)},${F(-10*s)} ${F(14*s)},0 q${F(7*s)},${F(-10*s)} ${F(14*s)},0 `;
+/* كوبري بين شطين */
+const KOBRI=(x,y,w)=>`M${x},${y} h${w} M${x},${y+12} h${w} M${x},${y+12} Q${F(x+w/2)},${y+80} ${x+w},${y+12} `+PT(5).map(i=>`M${F(x+w*(i+1)/6)},${y+12} v${F(14+Math.sin(Math.PI*(i+1)/6)*50)} `).join('');
+const SHORE=(x,y,w,h)=>`M${x},${y} h${w} v${h} h${-w} `;
+/* حلقة سلسلة (الدرس ٣) */
+const CHLINK=(x,y,s=1)=>EL(x,y,+F(26*s),+F(14*s))+EL(+F(x+40*s),y,+F(26*s),+F(14*s));
+/* عملة بوشّين */
+const DISC=(x,y,r)=>CI(x,y,r)+CI(x,y,+F(r*.86));
+/* شط بحر */
+const SEA=(x1,y,x2)=>WAVY(x1,y,x2,6)+WAVY(x1,y+16,x2,6);
+/* تاج مايل (واقع): نفس CROWN متلفّ بزاوية */
+const CROWNR=(x,y,s,deg)=>{const r=RT(x,y,deg*Math.PI/180);return 'M'+[[-60,0],[-72,-62],[-36,-30],[0,-80],[36,-30],[72,-62],[60,0]].map(([a,b])=>r(a*s,b*s)).join(' L')+' Z '};
+/* كاس دوري */
+const CUP=(x,y,s=1)=>`M${F(x-34*s)},${y} q0,${F(56*s)} ${F(34*s)},${F(56*s)} q${F(34*s)},0 ${F(34*s)},${F(-56*s)} Z M${x},${F(y+56*s)} v${F(20*s)} M${F(x-22*s)},${F(y+80*s)} h${F(44*s)} M${F(x-34*s)},${F(y+10*s)} q${F(-20*s)},0 ${F(-14*s)},${F(22*s)} l${F(16*s)},${F(8*s)} M${F(x+34*s)},${F(y+10*s)} q${F(20*s)},0 ${F(14*s)},${F(22*s)} l${F(-16*s)},${F(8*s)} `;
+/* طريق داخل لبعيد */
+const ROAD=(x,y,w,h)=>`M${x},${y} L${F(x+w*.42)},${y-h} M${x+w},${y} L${F(x+w*.58)},${y-h} `+PT(4).map(i=>{const t=i/4,t2=(i+.5)/4;return `M${F(x+w/2)},${F(y-h*t)} L${F(x+w/2)},${F(y-h*t2)} `}).join('');
+/* ورقة امتحان */
+const EXAM=(x,y,w,h)=>RC(x,y,w,h)+`M${x+10},${y+18} h${w-20} M${x+10},${y+34} h${w-20} M${x+10},${y+50} h${F((w-20)*.6)} `;
+/* خريطة مصر بقناة: يرجع نقطة بداية/نهاية القناة على EGO(x,y,s) */
+const CANP=(x,y,s)=>({a:[+F(x+290*s),+F(y+10*s)],b:[+F(x+300*s),+F(y+100*s)]});
+const SPK=(x,y,s=1)=>`M${x},${F(y-8*s)} h${F(10*s)} l${F(12*s)},${F(-10*s)} v${F(36*s)} l${F(-12*s)},${F(-10*s)} h${F(-10*s)} Z M${F(x+30*s)},${F(y-4*s)} q${F(8*s)},${F(9*s)} 0,${F(18*s)} `;
+/* سؤال مراجعة: ؟ + عدّاد الوقفة على أول وقفة */
+const RQ=(y,qx,qy)=>{Q(atp(),qx,qy,2);CDR2(atp(),qx-80,qy-10,14,2)};
+
+/* ---------- إضافات L5A ---------- */
+const MSK='#6C3483',LMS='#F4ECF7',ORN='#E67E22',KHK='#8A7A3A';
+/* من L4A: كف بخمس صوابع، وعين مقفولة، وملعب */
+const FING=(x,y,s=1)=>[[-.95,-.35],[-.55,-1.25],[0,-1.45],[.55,-1.3],[1.0,-.75]].map(([a,b])=>[+F(x-a*100*s),+F(y+b*100*s)]);
+function PALM(o,x,y,s,col,d){const t=FING(x,y,s);P(o,EL(x,y,+F(62*s),+F(48*s)),N,4,.5,SKIN);P(o+(d||.3),t.map((q,i)=>`M${F(x+(q[0]-x)*.35)},${F(y+(q[1]-y)*.3)} L${q[0]},${q[1]}`).join(' '),N,+F(14*s),.7);return t}
+const EYEC=(x,y,s=1)=>`M${F(x-22*s)},${y} q${F(22*s)},${F(12*s)} ${F(44*s)},0 M${F(x-12*s)},${F(y+8*s)} l-4,8 M${x},${F(y+10*s)} v9 M${F(x+12*s)},${F(y+8*s)} l4,8 `;
+const FIELD=(x,y,w,h)=>RC(x,y,w,h)+`M${F(x+w/2)},${y} v${h} `+CI(+F(x+w/2),+F(y+h/2),+F(h*.18))+RC(x,+F(y+h*.3),+F(w*.1),+F(h*.4))+RC(+F(x+w*.9),+F(y+h*.3),+F(w*.1),+F(h*.4));
+/* الإيد الغريبة (موتيف الدرس ٥): كم أزرق داخل من الشمال (برّه) + قبضة بخمس صوابع مقفولة. x,y مركز القبضة. يرجع مكان الصوابع */
+const GHF=(x,y,s=1)=>PT(4).map(i=>[+F(x+34*s),+F(y-27*s+i*18*s)]).concat([[+F(x-4*s),+F(y-44*s)]]);
+function GHAND(o,x,y,s,L){s=s||1;L=L||200;P(o,`M${F(x-34*s)},${F(y-30*s)} H${F(x-34*s-L*s)} M${F(x-34*s)},${F(y+30*s)} H${F(x-34*s-L*s)} M${F(x-34*s)},${F(y-34*s)} v${F(68*s)} M${F(x-50*s)},${F(y-32*s)} v${F(64*s)}`,FRN,5,.4,null);
+ P(o+.25,RR(+F(x-32*s),+F(y-36*s),+F(66*s),+F(72*s),+F(18*s)),N,4,.4,SKIN);
+ P(o+.45,PT(4).map(i=>`M${F(x+26*s)},${F(y-36*s+i*18*s)} q${F(16*s)},${F(9*s)} 0,${F(18*s)} `).join('')+`M${F(x-24*s)},${F(y-36*s)} q${F(24*s)},${F(-18*s)} ${F(40*s)},${F(2*s)} `,N,3,.4);return GHF(x,y,s)}
+/* قناع مسرح: وش مبتسم (k=1) أو عابس (k=-1). x,y المركز */
+const MFACE=(x,y,s=1)=>`M${F(x-40*s)},${F(y-40*s)} Q${x},${F(y-62*s)} ${F(x+40*s)},${F(y-40*s)} Q${F(x+48*s)},${F(y+22*s)} ${x},${F(y+58*s)} Q${F(x-48*s)},${F(y+22*s)} ${F(x-40*s)},${F(y-40*s)} Z `;
+const MFEAT=(x,y,s,k)=>(k>0?`M${F(x-26*s)},${F(y-8*s)} q${F(9*s)},${F(-12*s)} ${F(18*s)},0 M${F(x+8*s)},${F(y-8*s)} q${F(9*s)},${F(-12*s)} ${F(18*s)},0 M${F(x-22*s)},${F(y+16*s)} q${F(22*s)},${F(24*s)} ${F(44*s)},0 `
+ :`M${F(x-26*s)},${F(y-16*s)} l${F(18*s)},${F(8*s)} M${F(x+26*s)},${F(y-16*s)} l${F(-18*s)},${F(8*s)} M${F(x-22*s)},${F(y+34*s)} q${F(22*s)},${F(-22*s)} ${F(44*s)},0 `);
+function MASK(o,x,y,s,k){P(o,MFACE(x,y,s),MSK,4,.5,k>0?'#FFF6D6':'#E3DCEA');P(o+.3,MFEAT(x,y,s,k),N,4,.4)}
+/* قناع بوشّين على عصاية: المبتسم قدام يمين، والعابس ورا شمال */
+function MASK2(o,x,y,s,front){P(o,`M${F(x-10*s)},${F(y+56*s)} v${F(90*s)}`,BRN,6,.3);
+ if(front==-1){MASK(o+.1,Math.round(x+34*s),Math.round(y-6*s),s*.9,1);MASK(o+.3,Math.round(x-24*s),y,s,-1)}else{MASK(o+.1,Math.round(x-44*s),Math.round(y-6*s),s*.9,-1);MASK(o+.3,x,y,s,1)}}
+/* نابليون: بدلة وقبعة بقرنين */
+const BICORN=(x,y,h)=>{const r=h*.15;return `M${F(x-r*2)},${F(y+r*.5)} Q${x},${F(y-r*1.9)} ${F(x+r*2)},${F(y+r*.5)} Q${x},${F(y-r*.2)} ${F(x-r*2)},${F(y+r*.5)} Z `};
+function NAPO(o,x,y,h,lab){const r=h*.15;P(o,MAN(x,y,h),FRN,4,.5);P(o+.2,BICORN(x,y,h),N,3,.3,N);P(o+.3,`M${F(x-h*.12)},${F(y+h*.34)} h${F(h*.24)} M${F(x-h*.1)},${F(y+h*.42)} l${F(h*.1)},${F(h*.06)} l${F(h*.1)},${F(-h*.06)}`,YD,3,.3);if(lab!==false)W(o+.3,x,y+h+20,'رسم تخيّلي',14,GR,'middle')}
+/* شامبليون: بكراسة وقلم */
+function CHAMP(o,x,y,h,lab){P(o,MAN(x,y,h),BLU,4,.5);P(o+.2,`M${F(x-h*.35)},${F(y+h*.3)} h${F(h*.18)} v${F(h*.24)} h${F(-h*.18)} Z`,N,3,.3,'#fff');P(o+.3,PENCIL(+F(x+h*.2),+F(y+h*.5),h/200),N,2,.3,Y);if(lab!==false)W(o+.3,x,y+h+20,'رسم تخيّلي',14,GR,'middle')}
+/* عسكري ببدلة كاكي وخوذة، دراعه ممدود لليمين */
+function SOLD(o,x,y,h){const r=h*.15;P(o,MAN(x,y,h),KHK,4,.5);P(o+.2,`M${F(x-r*1.4)},${F(y+r*.6)} a${F(r*1.4)},${F(r*1.3)} 0 0,1 ${F(r*2.8)},0 Z M${F(x-r*1.9)},${F(y+r*.6)} h${F(r*3.8)}`,KHK,3,.3,'#D8CFA0')}
+/* حجر رشيد: لوح غامق بتلات طبقات. x,y الركن الشمال فوق */
+const ROSE=(x,y,w,h)=>`M${x},${y+h} V${y+22} Q${x+4},${y} ${x+26},${y-2} L${F(x+w*.6)},${y+8} L${x+w-18},${y+2} Q${x+w},${y+6} ${x+w},${y+26} V${y+h} Z `;
+const ROSEL=(x,y,w,h)=>`M${x},${F(y+h*.36)} H${x+w} M${x},${F(y+h*.68)} H${x+w} `;
+/* مكنة جعانة: صندوق ببقّ مفتوح على الشمال ومدخنة. x,y المركز */
+const MACH=(x,y,s=1)=>RR(+F(x-70*s),+F(y-60*s),+F(140*s),+F(120*s),+F(14*s))+`M${F(x+30*s)},${F(y-60*s)} v${F(-50*s)} h${F(22*s)} v${F(50*s)} `+GEAR(+F(x+22*s),+F(y+14*s),+F(18*s));
+const JAW=(x,y,s=1)=>`M${F(x-70*s)},${F(y-34*s)} L${F(x-22*s)},${F(y-6*s)} L${F(x-70*s)},${F(y+28*s)} M${F(x-62*s)},${F(y-29*s)} l${F(4*s)},${F(9*s)} l${F(8*s)},${F(-4*s)} l${F(4*s)},${F(9*s)} l${F(8*s)},${F(-4*s)} M${F(x-62*s)},${F(y+23*s)} l${F(4*s)},${F(-9*s)} l${F(8*s)},${F(4*s)} l${F(4*s)},${F(-9*s)} l${F(8*s)},${F(4*s)} `;
+/* كشك عصير */
+const KIOSK=(x,y,s=1)=>RC(+F(x-60*s),+F(y-60*s),+F(120*s),+F(60*s))+`M${F(x-70*s)},${F(y-60*s)} l${F(12*s)},${F(-30*s)} h${F(116*s)} l${F(12*s)},${F(30*s)} Z M${F(x-34*s)},${F(y-90*s)} l${F(-6*s)},${F(30*s)} M${x},${F(y-90*s)} v${F(30*s)} M${F(x+34*s)},${F(y-90*s)} l${F(6*s)},${F(30*s)} M${F(x+44*s)},${F(y-60*s)} v${F(-56*s)} `;
+const CRATE=(x,y,s=1)=>RC(+F(x-30*s),+F(y-28*s),+F(60*s),+F(28*s))+`M${F(x-30*s)},${F(y-14*s)} h${F(60*s)} `;
+const ORNG=(x,y,s=1)=>CI(+F(x-16*s),+F(y-36*s),+F(9*s))+CI(x,+F(y-38*s),+F(9*s))+CI(+F(x+16*s),+F(y-36*s),+F(9*s));
+/* ماسورة شافطة: من (x1,y1) لـ (x2,y2) بخطين متوازيين */
+const PIPE=(x1,y1,x2,y2,w=10)=>`M${x1},${y1-w} L${x2},${y2-w} M${x1},${y1+w} L${x2},${y2+w} M${x2},${y2-w-6} v${2*w+12} `;
+/* جزمة عسكري مغروسة: x الطرف الشمال، y الأرض */
+const BOOT=(x,y,s=1)=>`M${x},${F(y-90*s)} V${F(y-10*s)} H${F(x+50*s)} q${F(10*s)},0 ${F(10*s)},${F(10*s)} V${y} H${F(x-4*s)} V${F(y-90*s)} Z M${F(x-6*s)},${F(y-90*s)} h${F(32*s)} `;
+/* ساعة رملية */
+const HGL=(x,y,s=1)=>`M${F(x-24*s)},${F(y-40*s)} h${F(48*s)} M${F(x-24*s)},${F(y+40*s)} h${F(48*s)} M${F(x-18*s)},${F(y-40*s)} L${F(x+18*s)},${F(y+40*s)} M${F(x+18*s)},${F(y-40*s)} L${F(x-18*s)},${F(y+40*s)} `;
+/* جدر شجرة طويل نازل */
+const ROOT=(x,y,s=1)=>`M${x},${y} V${F(y+90*s)} M${x},${F(y+30*s)} q${F(-30*s)},${F(20*s)} ${F(-40*s)},${F(70*s)} M${x},${F(y+40*s)} q${F(30*s)},${F(20*s)} ${F(36*s)},${F(66*s)} M${x},${F(y+70*s)} q${F(-14*s)},${F(14*s)} ${F(-16*s)},${F(40*s)} `;
+const CLK=(x,y,r)=>CI(x,y,r)+`M${x},${y} V${F(y-r*.65)} M${x},${y} L${F(x+r*.45)},${F(y+r*.2)} `;
+const FRAME=(x,y,w,h)=>RC(x,y,w,h)+RC(x+12,y+12,w-24,h-24);
+/* مكنة طباعة قديمة (مكبس): x المنتصف، y الأرض */
+const PRSS=(x,y,s=1)=>`M${F(x-50*s)},${y} V${F(y-110*s)} H${F(x+50*s)} V${y} M${F(x-60*s)},${y} h${F(120*s)} M${x},${F(y-110*s)} v${F(40*s)} M${F(x-26*s)},${F(y-90*s)} h${F(52*s)} M${F(x-34*s)},${F(y-70*s)} h${F(68*s)} v${F(12*s)} h${F(-68*s)} Z M${F(x-40*s)},${F(y-30*s)} h${F(80*s)} `;
+/* ورقة طالعة من المكنة */
+const SHEET=(x,y,w,h)=>RC(x,y,w,h)+`M${x+8},${y+12} h${w-16} M${x+8},${y+24} h${w-16} M${x+8},${y+36} h${F((w-16)*.6)} `;
+/* شعلة مطفية: لهب + دخان صغير */
+const OUTF=(x,y,s=1)=>`M${x},${y} q${F(-12*s)},${F(-12*s)} 0,${F(-26*s)} q${F(12*s)},${F(14*s)} 0,${F(26*s)} Z M${F(x-14*s)},${F(y+2*s)} h${F(28*s)} `;
+/* منشور ملفوف */
+const ROLL=(x,y,s=1)=>RC(+F(x-30*s),+F(y-12*s),+F(60*s),+F(24*s))+EL(+F(x-30*s),y,+F(6*s),+F(12*s))+EL(+F(x+30*s),y,+F(6*s),+F(12*s));
+/* هدية متغلّفة: x المنتصف، y الأرض */
+const GIFT=(x,y,s=1)=>RC(+F(x-22*s),+F(y-36*s),+F(44*s),+F(36*s))+`M${x},${F(y-36*s)} v${F(36*s)} M${F(x-22*s)},${F(y-20*s)} h${F(44*s)} M${x},${F(y-36*s)} q${F(-14*s)},${F(-14*s)} ${F(-16*s)},0 M${x},${F(y-36*s)} q${F(14*s)},${F(-14*s)} ${F(16*s)},0 `;
+/* شق كبير بين حاجتين */
+const SPLIT=(x,y1,y2)=>`M${x},${y1} l-14,${F((y2-y1)*.2)} l20,${F((y2-y1)*.2)} l-20,${F((y2-y1)*.2)} l20,${F((y2-y1)*.2)} l-6,${F((y2-y1)*.2)} `;
+/* ورقة مقطوعة نصين */
+const TORN=(x,y,w,h)=>`M${x},${y} h${F(w*.45)} l-8,${F(h*.3)} l10,${F(h*.3)} l-6,${F(h*.4)} H${x} Z M${F(x+w*.55)},${y} H${x+w} V${y+h} H${F(x+w*.55-4)} l6,${F(-h*.4)} l-10,${F(-h*.3)} Z `;
+/* بوست صغير */
+const POST=(x,y,w)=>RR(x,y,w,30,6)+CI(x+w-14,y+15,7)+`M${x+w-28},${y+12} h${F(-(w-44))} M${x+w-28},${y+21} h${F(-(w-60))} `;
+/* سهم بيلف (دوامة) */
+const SWIRL=(x,y,r)=>`M${F(x+r)},${y} A${r},${r} 0 1,1 ${x},${F(y-r)} M${x},${F(y-r)} l10,-8 M${x},${F(y-r)} l10,8 `;
+/* طفل صغير بتاج فرعوني */
+function KID(o,x,y,h){P(o,MAN(x,y,h),G,3,.4);P(o+.2,PSCH(x,+F(y+h*.1),h/220),R,3,.3,'#fff')}
+/* سقالة على مبنى صغير */
+const BADGE2=(o,x,y,n,c)=>{P(o,CI(x,y,15),c||R,3,.25,'#fff');W(o+.08,x,y+8,n,20,c||R,'middle')};
+const EXC=(x,y,s=1)=>`M${x},${F(y-60*s)} v${F(42*s)} `+CI(x,+F(y-4*s),+F(4*s));
+const WIND=(x,y,s=1)=>`M${x},${y} h${F(-60*s)} q${F(-20*s)},0 ${F(-20*s)},${F(-14*s)} q0,${F(-12*s)} ${F(12*s)},${F(-12*s)} M${x},${F(y+18*s)} h${F(-80*s)} M${x},${F(y+36*s)} h${F(-50*s)} q${F(-16*s)},0 ${F(-16*s)},${F(12*s)} `;
+
+/* ============ الشريحة L5A1: إنت هنا، والوحدة التانية، والإيد، وأهداف الوحدة، وصورة الدرس (5A.1–5A.9) ============ */
+slide('L5A1 · إنت هنا: وحدة جديدة');cell(0,0);
+L('5A.1',()=>{
+ Zm(.02,0,0,CW,.6);
+ const ux=[990,870,750,630],nx=[470,350,230,110];
+ ux.forEach((x,i)=>P(at('الوحدة')+i*.06,RC(x-50,96,100,80),G,3,.3,LGN));
+ P(at('خلصت'),ux.map(x=>TICK(x+34,96,1.2)).join(''),G,5,.4);
+ ux.forEach((x,i)=>W(at('أربع')+i*.08,x-38,120,'١٢٣٤'[i],18,GD,'middle'));
+ P(at('البيت'),HOUSE(ux[0]-18,166,2),BRN,3,.4,SAND);
+ P(at('والأختام'),SEAL(ux[1]+6,142,18)+SEAL(ux[1]-16,154,12),R,3,.4,LRD);
+ P(at('والسلّم'),STUP(ux[2]-30,166,15,13,4),N,4,.4);
+ P(at('والمفتاح'),KEY(ux[3]-24,140,.8),YD,5,.4);
+ [['البيت','البيت،',BRN],['والأختام','والأختام،',R],['والسلّم','والسلّم،',N],['والمفتاح','والمفتاح.',YD]].forEach(([k,w,c],i)=>W(at(k)+.05,ux[i],206,w,20,c,'middle'));
+ SAYW(1040,262,24,N,'إنت هنا: الوحدة الأولى خلصت، أربع دروس.',{w:500,hl:{'الأولى':G}});
+ nx.forEach((x,i)=>P(at('بنفتح')+i*.06,RC(x-50,96,100,80),GR,3,.3,'#fff'));
+ P(at('جديدة'),RC(nx[0]-50,96,100,80),G,5,.3,LGN);P(at('جديدة')+.1,PIN(nx[0],100,1.1),R,3,.4,R);chime(at('جديدة'));
+ SAYW(530,262,24,N,'النهارده بنفتح وحدة جديدة خالص.',{w:480,hl:{'جديدة':R}})});
+L('5A.2',()=>{
+ SAYW(1040,312,24,N,'الوحدة التانية اسمها:',{w:400});
+ P(at('اسمها'),'M520,190 H60',G,4,.4);
+ SAYW(1040,356,26,G,'«تحولات القوة وبناء الوعي بمصر في العصر الحديث والمعاصر».',{w:1010});
+ TAB2(at('ودرسها'),40,384,250,'الدرس الأول','ص٥٥');
+ SAYW(1040,418,22,N,'ودرسها الأول، وهو الدرس الخامس عندنا في خُطوة:',{w:700,hl:{'الخامس':R,'خُطوة':G}});
+ P(at('«سياسات'),RR(300,442,744,56,12),R,4,.4,'#fff');P(at('«سياسات')+.2,RC(414,90,112,92),R,4,.3);
+ SAYW(1026,480,26,R,'«سياسات الاحتلال بمصر في العصر الحديث».',{w:700})});
+
+go(1,0);
+L('5A.3',()=>{
+ SAYW(1040,120,26,N,'فاكر آخر مشهد في الدرس الرابع؟',{w:520});
+ P(at('مشهد'),RC(560,146,470,220),GR,3,.5,'#fff');P(at('مشهد')+.2,EGO(650,166,.6),N,3,.5,SAND);P(at('مشهد')+.4,NILE(650,166,.6),BLU,2.5,.3);
+ BADGE(at('الرابع'),1000,180,'٤');
+ P(at('ختم'),SEAL(860,290,40),R,4,.4,'#fff');
+ DIG([at('ألف'),at('وتمنمية'),at('اتنين'),at('وتمانين')],[836,852,868,884],298,'١٨٨٢',22,R);W(at('وتمانين')+.15,826,298,'م',18,R,'middle');
+ BOOM(at('نزل')*OS);P(at('نزل'),RAYS(860,290,46,60,10),R,3,.3);
+ P(at('الخريطة'),EGO(650,166,.6),R,2,.4,'rgba(192,57,43,.14)');
+ P(at('والمفتاح'),KEY(356,236,1.2),YD,6,.4);P(at('والمفتاح')+.1,CI(390,236,56),Y,3,.3);
+ W(at('السيادة'),400,330,'السيادة',24,YD,'middle');
+ P(at('راح'),ARW(640,236,470,236,12),R,4,.3);
+ GHAND(at('لإيد'),340,236,.85,170);
+ W(at('بريطانيا'),200,300,'بريطانيا',24,FRN,'middle');
+ SAYW(1040,410,26,N,'وسبنا سؤال: الاحتلال مسك البلد إزاي؟',{w:520,hl:{'إزاي':R}});Q(at('إزاي'),470,390,1.4)});
+L('5A.4',()=>{
+ SAYW(1040,458,24,N,'الدرس ده هو الإجابة.',{w:500,hl:{'الإجابة':G}});P(at('الإجابة'),TICK(760,452,1.6),G,6,.3);
+ const t=GHAND(at('الإيد'),310,440,.95,130);
+ P(at('اتمدّت'),ARW(300,282,300,392,10),FRN,4,.3);
+ SAYW(1040,502,22,N,'هنشوف الإيد دي اتمدّت إزاي، صباع صباع،',{w:500});
+ P(at('صباع'),CI(t[0][0],t[0][1],9),R,4,.2,R);P(at('صباع',1),CI(t[1][0],t[1][1],9),R,4,.2,R);
+ P(at('نزلت'),WAVY(690,160,800,5),BLU,3,.3);
+ P(at('مركب'),BOATS(750,162,.5),FRN,3,.4,'#fff');W(at('فرنساوي'),602,358,'فرنساوي',18,FRN,'middle');
+ P(at('مسكت'),EL(770,256,150,104),FRN,5,.5);P(at('كلها'),EGO(650,166,.6),FRN,3,.4,'rgba(62,91,169,.2)')});
+
+go(2,0);
+const GX=[700,365,30],GYr=[136,264,392],GY=[136,136,136,264,264,264,392,392,392];
+const GC=(o,c,r,n)=>{P(o,RC(GX[c],GYr[r],330,118),G,3,.4,'#fff');BADGE2(o+.1,GX[c]+4,GYr[r]+4,n,G)};
+const SCALE=(x,y)=>`M${x},${y} v64 M${x-20},${y+64} h40 M${x-44},${y} h88 M${x-44},${y} l-14,26 h28 Z M${x+44},${y} l-14,26 h28 Z `;
+L('5A.5',()=>{
+ P(at('والوحدة'),BOOK(660,104),G,3,.4);TAB2(at('والوحدة')+.1,700,84,330,'أهداف الوحدة','ص٥٤');
+ P(at('حاجات'),'M20,128 H1046',GHO,2.5,.4);
+ GC(at('توضّح'),0,0,'١');
+ P(at('الوعي'),EYE(GX[0]+70,GY[0]+60,1.4),N,4,.4,'#fff');P(at('الوعي')+.15,RAYS(GX[0]+70,GY[0]+60,36,48,8,Math.PI,Math.PI*2),Y,3,.3);
+ W(at('الوعي'),GX[0]+316,GY[0]+46,'الوعي',20,N);WC(at('القومي'),'القومي',N);
+ W(at('والتحولات'),GX[0]+316,GY[0]+86,'والتحولات',18,R);WC(at('السياسية'),'السياسية',R);
+ GC(at('وتقارن'),1,0,'٢');
+ P(at('نماذج'),SCALE(GX[1]+70,GY[1]+34),N,3,.4,'#fff');
+ W(at('نماذج'),GX[1]+316,GY[1]+46,'نماذج',20,N);WC(at('التدخل'),'التدخل',FRN);W(at('الأجنبي'),GX[1]+316,GY[1]+86,'الأجنبي',18,FRN);
+ P(at('فترات'),CAL(GX[1]+150,GY[1]+66,.5),GR,3,.3,'#fff');
+ GC(at('وتحلّل'),2,0,'٣');
+ P(at('أنماط'),GRAB(GX[2]+60,GY[2]+64,1.2),N,3,.3,SKIN);P(at('أنماط')+.15,LENS(GX[2]+64,GY[2]+56,30),FRN,4,.3);
+ W(at('أنماط'),GX[2]+316,GY[2]+46,'أنماط',20,N);WC(at('التدخل',1),'التدخل',FRN);
+ W(at('وسياساته'),GX[2]+316,GY[2]+86,'وسياساته',18,FRN)});
+L('5A.6',()=>{
+ GC(at('وتعدّد'),0,1,'٤');
+ P(at('المقاومة'),SHD(GX[0]+66,GY[3]+66,2.2),G,4,.4,LGN);
+ W(at('أشكال'),GX[0]+316,GY[3]+46,'أشكال',20,N);WC(at('المقاومة'),'المقاومة',G);
+ P(at('إضعاف'),ARW(GX[0]+118,GY[3]+40,GX[0]+118,GY[3]+96,10),R,4,.3);
+ W(at('إضعاف'),GX[0]+316,GY[3]+86,'إضعاف',18,R);WC(at('الاحتلال'),'الاحتلال',R);
+ GC(at('وتقيّم'),1,1,'٥');
+ P(at('الشخصيات'),[0,1,2].map(i=>CI(GX[1]+36+i*36,GY[3]+50,15)+`M${GX[1]+22+i*36},${GY[3]+92} q14,-24 28,0 `).join(''),G,3,.5,'#fff');
+ W(at('الشخصيات'),GX[1]+316,GY[3]+46,'الشخصيات',20,N);WC(at('الوطنية',1),'الوطنية',G);
+ P(at('بناء'),HOUSE(GX[1]+92,GY[3]+112,1.3),BRN,3,.3,SAND);
+ P(at('وإيقاظ'),EYE(GX[1]+42,GY[3]+104,.6),N,3,.3,'#fff');
+ W(at('بناء'),GX[1]+316,GY[3]+86,'بناء',18,BRN);WC(at('الدولة'),'الدولة',BRN);
+ GC(at('وتشرح'),2,1,'٦');
+ P(at('الآثار'),RC(GX[2]+20,GY[3]+30,110,74),BRN,3,.4,PAP);P(at('الآثار')+.2,CRK(GX[2]+76,GY[3]+30,GY[3]+104),N,3,.4);
+ W(at('الآثار'),GX[2]+316,GY[3]+46,'الآثار',20,N);
+ W(at('الاحتلال',1),GX[2]+316,GY[3]+86,'الاحتلال',18,R);WC(at('بأشكاله'),'بأشكاله',R)});
+L('5A.7',()=>{
+ GC(at('وتعبّر'),0,2,'٧');
+ PALM(at('رفضك'),GX[0]+70,GY[6]+84,.4,N,.2);P(at('رفضك')+.4,XX(GX[0]+120,GY[6]+30,1.2),R,5,.3);
+ W(at('رفضك'),GX[0]+316,GY[6]+46,'رفضك',20,R);
+ W(at('لأشكال'),GX[0]+316,GY[6]+86,'لأشكال',18,N);WC(at('الاحتلال'),'الاحتلال',R);
+ GC(at('وتقترح'),1,2,'٨');
+ P(at('آليات'),GEAR(GX[1]+64,GY[6]+60,26),BLU,4,.4,'#fff');
+ W(at('آليات'),GX[1]+316,GY[6]+46,'آليات',20,BLU);WC(at('لمواجهة'),'لمواجهة',N);
+ P(at('الوقت'),CLK(GX[1]+120,GY[6]+92,16),N,3,.3,'#fff');
+ W(at('الحديث'),GX[1]+316,GY[6]+86,'الاحتلال',18,R);WC(at('الحديث'),'الحديث',R);
+ GC(at('وتعبّر',1),2,2,'٩');
+ P(at('بهويتك'),IDC(GX[2]+14,GY[6]+24,112,76),GD,3,.5,LGN);P(at('المصرية'),FLAG(GX[2]+40,GY[6]+112,.4),R,3,.3,R);
+ W(at('بهويتك'),GX[2]+316,GY[6]+46,'بهويتك',20,GD);
+ W(at('المصرية'),GX[2]+316,GY[6]+86,'المصرية',18,GD);WC(at('والعربية'),'والعربية',G)});
+
+go(2,1);
+L('5A.8',()=>{
+ BBS(20,84,1030,26,'الوحدة دي هتعلّمك تشوف الإيد الغريبة وهي جاية، وتعرف إزاي الناس وقفت قدامها.');
+ const m=[0,1,2,3,4].map(i=>RC(990,206+i*26,50,20)).join(''),m2=[0,1,2,3].map(i=>RC(990,382+i*26,50,20)).join('');
+ P(at('تشوف'),m,GR,2.5,.4,'#fff');P(at('تشوف')+.2,m2,GR,2.5,.4,'#fff');
+ GHAND(at('الإيد'),420,276,1.1,200);
+ P(at('الغريبة'),EL(370,276,70,52),FRN,3,.3);
+ P(at('جاية'),ARW(480,276,600,276,12),FRN,5,.3);
+ P(at('الناس'),[160,230,300,370,440,510].map((x,i)=>MAN(x,388+(i%2)*8,110)).join(''),G,3,.6);
+ P(at('وقفت'),'M120,512 H560',G,4,.4);
+ P(at('قدامها'),ARW(340,384,340,340,10)+ARW(200,384,200,340,10)+ARW(480,384,480,340,10),G,4,.3);
+ SAYW(960,290,30,N,'الدرس ده عن الإيد.',{w:330,hl:{'الإيد':FRN}});P(at('الإيد',1),RR(150,206,800,140,20),FRN,3,.4);
+ SAYW(960,452,30,N,'والجاي عن الناس.',{w:330,hl:{'الناس':G}});P(at('الناس',1),RR(90,366,860,154,20),G,3,.4)});
+
+go(1,1);
+L('5A.9',()=>{
+ P(at('صورة'),BOOK(660,106),G,3,.4);TAB2(at('الدرس'),700,86,330,'الدرس الأول','ص٥٥');
+ P(at('الكتاب'),RC(30,140,1010,330),GR,3,.5,'#fff');
+ P(at('شارع'),BLDG(120,330,[110,90],70)+BLDG(900,330,[120,100,70],60)+'M40,330 H1030',BRN,3,.5,PAP);
+ P(at('مترب'),PT(16).map(i=>`M${60+i*60},${450-(i%3)*14} h10 `).join(''),BRN,3,.4);
+ P(at('سوق'),`M60,400 h150 M70,400 v-40 M200,400 v-40 M50,360 l20,-26 h130 l20,26 Z `+CRATE(110,400,.8)+ORNG(110,400,.8),BRN,3,.5,'#FBE5C8');
+ const mx=[960,880,800,720,650];
+ P(at('ورجالة'),mx.map((x,i)=>MAN(x,300+(i%2)*10,130)).join(''),N,3,.6);
+ P(at('بطرابيش'),[0,2,4].map(i=>TARB(mx[i],302+(i%2)*10,1.3)).join(''),R,3,.4,'#E58A7F');
+ P(at('وعمم'),[1,3].map(i=>TURB(mx[i],300+(i%2)*10,130)).join(''),N,3,.4,'#fff');
+ P(at('النص'),'M520,150 V460',GHO,2,.3);
+ P(at('عسكري'),MAN(470,280,160),KHK,5,.5);
+ P(at('كاكي'),`M444,${F(280+160*.4)} h52 l6,${F(160*.28)} h-64 Z`,KHK,3,.3,'#D8CFA0');
+ P(at('وخوذة'),`M440,${F(280+24*.6)} a30,28 0 0,1 60,0 Z M430,${F(280+24*.6)} h80`,KHK,3,.3,'#D8CFA0');
+ P(at('مادد'),`M470,${F(280+160*.38)} L600,${328}`,KHK,6,.3);P(at('إيده'),GRAB(610,328,1),N,3,.2,SKIN);
+ P(at('ومشاور'),DASH(630,326,700,3),R,4,.3);P(at('عليهم'),EL(810,370,190,110),R,3,.4);
+ SAYW(1040,506,30,N,'حتى في الصورة، الحكاية إيد ممدودة.',{w:900,hl:{'إيد':FRN,'ممدودة':FRN}});
+ P(at('ممدودة'),CI(610,328,30),Y,5,.4);P(at('ممدودة')+.15,RAYS(610,328,36,52,10),Y,3,.3)});
+
+/* ============ الشريحة L5A2: الفكرة الرئيسة، والمكنة الجعانة، والاحتلال، وأهداف الدرس، وسؤال البداية (5A.10–5A.15) ============ */
+slide('L5A2 · الفكرة الرئيسة: ساحة تنافس');go(0,1);
+L('5A.10',()=>{
+ P(at('والفكرة'),BOOK(580,106),G,3,.4);TAB2(at('الرئيسة'),620,86,410,'الفكرة الرئيسة للدرس','ص٥٥');
+ SAYW(1040,172,26,N,'«كانت مصر ساحة للتنافس الاستعماري بعد الثورة الصناعية؛ حيث طمعت الدول الأوروبية في المواد الخام والأسواق».',{w:1010,lh:40,hl:{'ساحة':R,'الصناعية':BRN,'الخام':G,'والأسواق':FRN}});
+ P(at('ساحة'),EGO(700,256,.72),G,4,.5,LGN);P(at('ساحة')+.3,'M808,262 V470 '+CI(808,370,30),G,3,.4);
+ P(at('للتنافس'),CLASH(880,320)+CLASH(740,420),R,4,.3);
+ P(at('الصناعية'),FACT(200,480,1.4),BRN,4,.5,PAP);P(at('الصناعية')+.3,SMOKE(270,340,1.2)+SMOKE(300,330,1),GR,3,.5);
+ P(at('طمعت'),EYE(150,400,.8)+EYE(210,400,.8),N,3,.3,'#fff');
+ P(at('الخام'),PIPE(700,410,330,410,10),G,4,.4);P(at('الخام')+.2,BOLL(660,400,.7)+WHEAT(630,430,.6),G,3,.3,'#fff');
+ P(at('والأسواق'),ARW(330,290,600,290,12),FRN,4,.3);P(at('والأسواق')+.15,FUNNEL(620,250,.32),FRN,3,.3,LFR);
+ P(at('والأسواق')+.3,RC(608,300,12,12)+RC(624,310,12,12)+RC(612,326,12,12),FRN,3,.3,'#fff')});
+
+go(0,2);
+L('5A.11',()=>{
+ W(at('الثورة'),1040,124,'الثورة',32,BRN);WC(at('الصناعية'),'الصناعية؟',BRN);
+ BBS(20,148,1030,24,'المصانع في أوروبا بقت تشتغل بالمكن، وتطلّع إنتاج كتير.');
+ P(at('بالمكن'),GEAR(80,120,20),BRN,3,.4);P(at('كتير'),RC(130,110,20,20)+RC(156,110,20,20)+RC(182,110,20,20),BRN,3,.3,PAP);
+ P(at('والمكنة'),MACH(270,330,1.1),N,4,.5,'#eef0f0');P(at('والمكنة')+.3,SMOKE(311,200,1),GR,3,.4);
+ P(at('جعانة'),JAW(270,330,1.1),R,4,.4);
+ SAYW(1040,262,26,N,'والمكنة دي جعانة: عايزة خام تاكله، وعايزة ناس تشتري اللي طلّعته.',{w:560,lh:40,hl:{'جعانة':R,'خام':G,'ناس':FRN}});
+ P(at('خام'),BOLL(80,300,.6),G,3,.3,'#fff');P(at('تاكله'),ARW(96,322,180,326,10),G,4,.3);
+ P(at('تشتري'),RC(300,420,18,18)+RC(322,420,18,18),N,3,.3,PAP);P(at('تشتري')+.1,ARW(350,430,420,430,8),FRN,4,.3);
+ P(at('ناس',0)+.1,MAN(440,394,70)+MAN(470,404,64),FRN,3,.3);
+ P(at('كشك'),KIOSK(780,500,1.1),YD,4,.5,LYL);
+ P(at('عصير'),`M774,422 l4,22 h14 l4,-22 Z`,ORN,3,.3,'#F8C471');
+ P(at('برتقان'),CRATE(960,500,1)+ORNG(960,500,1),ORN,3,.4,'#F8C471');P(at('برتقان')+.15,ARW(920,460,860,460,8),ORN,4,.3);
+ P(at('زباين'),MAN(620,420,78)+MAN(580,424,74)+MAN(540,420,78),N,3,.5)});
+
+go(1,2);
+L('5A.12',()=>{
+ SAYW(1040,124,26,N,'«وسرعان ما انتقل هذا التنافس إلى مصر، وكانت الحملة الفرنسية بداية للهجمة الاستعمارية الأوروبية على مصر».',{w:1010,lh:40,hl:{'الحملة':FRN,'الفرنسية':FRN,'للهجمة':R}});
+ P(at('انتقل'),ARW(60,250,240,250,12),N,4,.4);
+ P(at('مصر')+.05,'M330,190 q-20,60 0,120 q20,40 -10,80',BRN,5,.4);P(at('مصر')+.2,SEA(60,300,300),BLU,3,.4);
+ P(at('الحملة'),BOATS(270,290,1.1),FRN,4,.4,'#fff');
+ P(at('للهجمة'),BOATS(170,300,.7)+BOATS(90,306,.6),GHO,3,.4,'#fff');
+ const h=HB(560,200,360,190);
+ W(at('احتلال'),1040,250,'احتلال،',30,R);
+ P(at('احتلال'),h.roof,BRN,4,.5,SAND);P(at('احتلال')+.2,h.cols.join('')+h.base,BRN,4,.4);
+ P(at('يدخل'),RC(714,300,52,90),BRN,3,.3,'#fff');P(at('يدخل')+.1,MAN(740,304,84),FRN,4,.4);P(at('بيتك'),ARW(620,350,700,350,10),FRN,4,.3);
+ P(at('بالقوة'),XX(880,300,1.2)+'M930,290 l-14,20',R,4,.3);
+ P(at('ويقعد'),THRONE(640,384,.5),YD,4,.4,LYL);P(at('ويقعد')+.15,MAN(640,300,60),FRN,3,.3);
+ P(at('ويقرر'),RC(840,330,50,40),N,3,.3,'#fff');P(at('ويقرر')+.1,STAMP(865,326,.8),R,3,.3);
+ BBS(20,420,1030,26,'حد غريب يدخل بيتك بالقوة، ويقعد، ويقرر بدالك.')});
+
+go(2,2);
+L('5A.13',()=>{
+ CARDN(at('احفظ'),'١');
+ SAYW(1020,170,30,N,'مصر ساحة تنافس بعد الثورة الصناعية.',{w:980,hl:{'ساحة':R,'الصناعية':BRN}});
+ SAYW(1020,218,30,N,'أوروبا عايزة خام وأسواق، والحملة الفرنسية أول الهجمة.',{w:980,hl:{'خام':G,'وأسواق':FRN,'الحملة':FRN,'الهجمة':R}});
+ P(at('مصر'),EGO(660,262,.72),G,4,.5,LGN);P(at('ساحة'),'M768,268 V476 '+CI(768,376,28),G,3,.4);P(at('تنافس'),CLASH(840,330),R,4,.3);
+ P(at('الصناعية'),MACH(200,400,1),N,4,.5,'#eef0f0');P(at('الصناعية')+.2,JAW(200,400,1),R,4,.3);P(at('الصناعية')+.35,SMOKE(240,280,1),GR,3,.4);
+ P(at('أوروبا'),RR(90,330,220,140,16),BRN,3,.3);
+ P(at('خام'),PIPE(670,360,290,360,9),G,4,.4);P(at('خام')+.15,BOLL(700,350,.6)+WHEAT(730,390,.5),G,3,.3,'#fff');
+ P(at('وأسواق'),ARW(300,450,580,450,12),FRN,5,.4);P(at('وأسواق')+.15,FUNNEL(640,400,.3),FRN,3,.3,LFR);
+ P(at('الحملة'),BOATS(780,256,.9),FRN,5,.4,'#fff');P(at('الفرنسية'),CI(780,240,40),Y,4,.3);
+ P(at('الهجمة'),BOATS(880,258,.6)+BOATS(960,262,.5),GHO,3,.4,'#fff')});
+
+go(2,3);
+const GB4=(o,i,n)=>{const x=[540,20][i%2],y=i<2?140:334;P(o,RC(x,y,490,176),G,3,.4,'#fff');BADGE(o+.1,x+462,y+26,n);return [x,y]};
+L('5A.14',()=>{
+ P(at('وأهداف'),BOOK(620,106),G,3,.4);TAB2(at('الدرس'),660,86,300,'أهداف الدرس','ص٥٥');
+ W(at('أربعة'),360,118,'٤',36,R,'middle');
+ let [x,y]=GB4(at('تلخّص'),0,'١');
+ P(at('الحملة'),BOATS(x+80,y+110,1.2),FRN,4,.4,'#fff');P(at('الحملة')+.2,WAVY(x+20,y+128,x+140,5),BLU,3,.3);
+ W(at('الحملة'),x+430,y+62,'الحملة',24,FRN);WC(at('الفرنسية'),'الفرنسية',FRN);
+ W(at('للتدخل'),x+430,y+110,'للتدخل',20,N);WC(at('شئون'),'في شئون',N);WC(at('مصر'),'مصر',N);
+ [x,y]=GB4(at('وتستنتج'),1,'٢');
+ P(at('المشروع'),BRICKS(x+30,y+60,100,100,5),BRN,3,.5,PAP);
+ P(at('التدخل'),ARW(x+170,y+40,x+120,y+80,10),FRN,4,.3);
+ W(at('المشروع'),x+430,y+62,'المشروع',24,BRN);WC(at('التنموي'),'التنموي',BRN);
+ W(at('لمحمد'),x+430,y+110,'لمحمد',22,N);WC(at('علي'),'علي',N);
+ [x,y]=GB4(at('وتقدّم'),2,'٣');
+ P(at('بالأدلة'),LENS(x+150,y+130,22),N,3,.3);
+ W(at('سياسات'),x+430,y+62,'سياسات',24,N);WC(at('الاحتلال'),'الاحتلال',R);
+ W(at('الإنجليزي'),x+430,y+110,'الإنجليزي',24,R);GHAND(at('الإنجليزي'),x+130,y+86,.7,60);
+ [x,y]=GB4(at('وتعبّر'),3,'٤');
+ P(at('جيش'),HELM(x+90,y+110,1.4),G,4,.4,LGN);
+ W(at('جيش'),x+430,y+62,'جيش',24,G);WC(at('وطني'),'وطني',G);
+ W(at('تحقيق'),x+430,y+110,'تحقيق',22,N);WC(at('الاستقلال'),'الاستقلال',YD);P(at('الاستقلال'),KEY(x+150,y+140,.6),YD,4,.3)});
+
+go(1,3);
+L('5A.15',()=>{
+ P(at('والكتاب'),BOOK(560,106),G,3,.4);TAB2(at('بسؤال'),600,86,430,'سؤال يدفعنا للتعلم','ص٥٦');
+ SAYW(1040,180,28,N,'«هل اتبعت دولتا فرنسا وبريطانيا سياسة موحَّدة للسيطرة على مصر ومواردها؟»',{w:1010,lh:42,hl:{'«هل':R,'فرنسا':BLU,'وبريطانيا':R,'موحَّدة':GD}});
+ GHAND(at('دولتا'),560,300,.8,260);GHAND(at('دولتا')+.3,560,400,.8,260);
+ W(at('فرنسا'),300,310,'فرنسا',26,BLU);W(at('وبريطانيا'),300,410,'وبريطانيا',26,R);
+ P(at('موحَّدة'),'M660,340 h60 M660,360 h60',N,6,.3);Q(at('موحَّدة')+.1,690,320,1.4);
+ Q(atp(),900,330,2.0);CDR2(atp(),800,330,16,2);
+ P(at('سيب'),PIN(60,150,1.1),R,3,.4,R);
+ P(at('دماغك'),HEADG(930,380,.9),N,4,.4,'#fff');P(at('دماغك')+.15,QM(918,350,1),R,4,.3);
+ SAYW(1040,496,26,N,'سيب السؤال ده في دماغك. هنجاوبه في آخر الدرس.',{w:1010,hl:{'هنجاوبه':G}});
+ P(at('آخر'),FLAG(140,520,.6),G,4,.3,G)});
+
+/* ============ الشريحة L5A3: أولًا سياسات فرنسا: القناع بوشّين، والوش المبتسم، والمنشور (5A.16–5A.22) ============ */
+slide('L5A3 · أولًا: القناع الفرنسي');go(0,3);
+L('5A.16',()=>{
+ TITLE(at('أولًا'),'أولًا: سياسات فرنسا في مصر.',{'أولًا':R,'فرنسا':BLU});
+ P(at('الحملة'),EGO(760,196,.5),N,3,.5,SAND);P(at('الحملة')+.2,SEA(760,176,960),BLU,2.5,.3);
+ P(at('نزلت'),BOATS(880,184,.5),FRN,3,.4,'#fff');
+ P(at('الإسكندرية'),CI(836,200,8),R,4,.2,R);W(at('الإسكندرية')+.1,836,232,'الإسكندرية',18,R,'middle');
+ DIG([at('ألف'),at('وسبعمية'),at('تمانية'),at('وتسعين')],[640,660,680,700],300,'١٧٩٨',30,R);W(at('وتسعين')+.15,622,300,'م',24,R,'middle');
+ NAPO(at('نابليون'),150,176,140);
+ P(at('أسس'),RC(70,362,160,14),BRN,3,.3,PAP);P(at('وقواعد'),RC(84,346,132,14)+'M100,362 v14 M150,362 v14 M200,362 v14',BRN,3,.3,PAP)});
+L('5A.17',()=>{
+ MASK2(at('قناع'),330,250,.75);P(at('ماسك'),'M178,247 L300,300',FRN,5,.3);
+ BADGE2(at('بوشّين'),390,180,'٢',MSK);
+ P(at('الأول'),CI(330,250,52),Y,5,.4);BADGE2(at('الأول')+.1,276,200,'١',MSK);
+ SAYW(1040,410,28,N,'الوش الأول: سياسة التقرب.',{w:600,hl:{'التقرب':G}});
+ P(at('التقرب'),RAYS(330,250,58,74,12),Y,3,.4);
+ SAYW(1040,466,24,N,'حاول يقرّب من المصريين علشان يكسب تأييدهم.',{w:600});
+ P(at('يقرّب'),ARW(390,330,420,410,10),G,4,.3);
+ P(at('المصريين'),[110,160,210,260,310,360].map((x,i)=>MAN(x,410+(i%2)*6,90)).join(''),N,3,.5);
+ P(at('تأييدهم'),[110,210,310].map(x=>`M${x},${410+90*.42} l-22,-34 M${x},${410+90*.42} l22,-34 `).join(''),G,4,.3);
+ P(at('تأييدهم')+.15,HEART(380,380,.8),R,3,.3,PNK)});
+
+go(0,4);
+L('5A.18',()=>{
+ W(at('إزاي'),1040,124,'إزاي؟',32,R);
+ MASK(at('أربع')-.2,110,200,.9,1);
+ const gx=[880,690,500,310],gy=300;
+ W(at('أربع'),860,124,'أربع',26,N);WC(at('حاجات'),'حاجات:',N);
+ gx.forEach((x,i)=>{P(at('حاجات')+i*.08,GIFT(x,gy,1.4),G,3,.3,LGN);BADGE2(at('حاجات')+i*.08+.05,x+42,gy-46,'١٢٣٤'[i],G)});
+ P(at('منشورات'),ROLL(gx[0],gy-80,1.1),BRN,3,.4,PAP);W(at('منشورات'),gx[0],gy+36,'منشورات',22,BRN,'middle');
+ P(at('الإسلام'),'M'+(gx[0]-24)+','+(gy-80)+' h48',G,4,.3);
+ P(at('العلماء'),TURBA(gx[1],gy-74,110,1.6),N,3,.4,'#fff');W(at('والمشايخ'),gx[1],gy+36,'والمشايخ',22,N,'middle');
+ P(at('المجمع'),DOME(gx[2],gy-60,1),BLU,3,.4,SKY);W(at('المجمع'),gx[2]+80,gy+36,'المجمع',20,BLU);WC(at('العلمي'),'العلمي',BLU);WC(at('المصري'),'المصري',BLU);
+ P(at('دواوين'),TABLE(gx[3]-50,gy-50,100)+CI(gx[3]-30,gy-66,9)+CI(gx[3],gy-70,9)+CI(gx[3]+30,gy-66,9),PUR,3,.4,'#fff');W(at('دواوين'),gx[3],gy+36,'دواوين',22,PUR,'middle');
+ P(at('الأعيان'),TARB(gx[3]-30,gy-74,.8)+TARB(gx[3],gy-78,.8)+TARB(gx[3]+30,gy-74,.8),R,2.5,.3,'#E58A7F');
+ W(at('كبار'),gx[3],gy+64,'كبار',18,GR,'middle');WC(at('البلد'),'البلد',GR);
+ P(at('البلد')+.1,'M20,384 H1046',GHO,2.5,.4)});
+L('5A.19',()=>{
+ W(at('والهدف'),1040,420,'والهدف،',26,R);
+ SAYW(924,420,24,N,'بنص الكتاب: «إقناع المصريين أن الوجود الفرنسي ليس احتلالًا، بل محاولة لإصلاح أوضاع البلاد».',{w:520,lh:36,hl:{'ليس':R,'احتلالًا':R,'لإصلاح':G}});
+ NAPO(at('والهدف'),70,400,96);
+ P(at('ليس'),SIGN(124,396,260,52),R,3,.4,'#fff');W(at('ليس')+.05,370,432,'ليس',24,R);WC(at('احتلالًا'),'احتلالًا',R);
+ P(at('لإصلاح'),SCAF(300,516,70,50),G,3,.4)});
+
+go(1,4);
+L('5A.20',()=>{
+ CARDN(at('احفظ'),'٢');
+ SAYW(1020,170,30,N,'التقرب: منشورات، ومشايخ، ومجمع، ودواوين.',{w:980,hl:{'التقرب':G}});
+ SAYW(1020,218,30,N,'والهدف: مش احتلال، إصلاح.',{w:980,hl:{'مش':R,'احتلال':R,'إصلاح':G}});
+ MASK(at('التقرب'),170,380,1.3,1);
+ P(at('التقرب')+.3,'M240,420 H900',SKIN,10,.5);
+ const gx=[860,690,520,350];
+ gx.forEach((x,i)=>{P(at('التقرب')+.4+i*.06,GIFT(x,480,1.2),G,3,.3,LGN);BADGE2(at('التقرب')+.45+i*.06,x+36,490,'١٢٣٤'[i],G)});
+ P(at('منشورات'),ROLL(gx[0],400,1),BRN,3,.3,PAP);
+ P(at('ومشايخ'),TURBA(gx[1],398,100,1.5),N,3,.3,'#fff');
+ P(at('ومجمع'),DOME(gx[2],420,.8),BLU,3,.3,SKY);
+ P(at('ودواوين'),TABLE(gx[3]-40,410,80)+CI(gx[3]-20,396,8)+CI(gx[3]+20,396,8),PUR,3,.3,'#fff');
+ P(at('مش'),RR(80,262,190,40,10),R,3,.3,'#fff');W(at('مش')+.05,256,291,'مش',22,R);WC(at('احتلال'),'احتلال',R);
+ P(at('إصلاح'),SCAF(300,318,56,50),G,3,.4)});
+
+go(2,4);
+L('5A.21',()=>{
+ P(at('صندوق'),BOOK(600,106),G,3,.4);TAB2(at('«أقرأ'),640,86,300,'أقرأ وأحلل','ص٥٦');
+ P(at('منشور'),SCROLL(240,146,800,250),BRN,3,.6,'#FBF0DA');
+ SAYW(1010,196,24,N,'«يا أهل مصر، قد يُشاع بينكم أنني جئت لأهدم دينكم، وهذا كذب وافتراء؛ جئت لأنتزع حقوقكم من أيدي الظالمين».',{w:740,lh:38,hl:{'كذب':R,'وافتراء':R,'لأنتزع':G}});
+ P(at('لأنتزع'),MFACE(130,260,.9),GHO,3,.5,'#f6f2f8');P(at('لأنتزع')+.2,MFEAT(130,260,.9,1),GHO,3,.4);
+ P(at('نابليون'),'M90,370 h80',FRN,3,.3);W(at('نابليون'),130,400,'نابليون',20,FRN,'middle');
+ SAYW(1040,450,24,N,'وفي آخره:',{w:200});
+ SAYW(880,450,28,FRN,'«الفرنسيين أصدقاء مخلصون للإسلام».',{w:640});
+ const s=SHK(160,470,.8);P(at('أصدقاء'),s[0],N,6,.3);P(at('أصدقاء')+.1,s[1],FRN,6,.3);P(at('أصدقاء')+.2,s[2],N,3,.2,SKIN)});
+
+go(2,5);
+L('5A.22',()=>{
+ W(at('أسئلة'),1040,118,'أسئلة',26,N);WC(at('الصندوق'),'الصندوق:',N);
+ P(at('السياسي'),RC(540,136,500,200),YD,3,.4,LYL);
+ SAYW(1024,174,24,N,'الهدف السياسي من المنشور؟',{w:470,hl:{'السياسي':R}});
+ Q(atp(),590,200,2.0);CDR2(atp(),590,262,14,2);
+ SAYW(1024,214,20,N,'من نص الكتاب: يكسب تأييد المصريين، ويقنعهم إن وجوده مش احتلال.',{w:380,lh:30,hl:{'تأييد':G,'مش':R,'احتلال':R}});
+ const s=SHK(590,290,.45);P(at('تأييد'),s[0]+s[1],N,5,.3);P(at('تأييد')+.1,s[2],N,3,.2,SKIN);
+ P(at('الدين'),RC(20,136,500,200),BLU,3,.4,LBL);
+ SAYW(504,174,24,N,'وليه ركّز على الدين؟',{w:470});
+ SAYW(504,214,20,N,'رأيي: علشان يدخل لقلوب الناس من أقرب باب.',{w:340,lh:30,hl:{'رأيي':GD}});
+ P(at('يدخل'),DOOR(40,230,50,90),BRN,4,.4);P(at('لقلوب'),HEART(108,272,.7),R,3,.3,PNK);
+ P(at('نجحت'),RC(540,348,500,120),G,3,.4,LGN);SAYW(1024,390,24,N,'ونجحت لحد فين؟',{w:470});
+ P(at('صدّق'),RC(20,348,500,120),PUR,3,.4,LPU);SAYW(504,390,24,N,'وهل صدّق المصريين؟',{w:470});
+ P(at('صدّق')+.1,QM(80,420,1.6),PUR,4,.3);
+ SAYW(1040,506,24,N,'الكتاب بيرد في الصفحة اللي بعدها.',{w:700});
+ P(at('بعدها'),'M360,500 q60,-40 120,0 M480,500 l-14,-4 M480,500 l-4,-14',G,4,.4)});
+
+/* ============ الشريحة L5A4: الوش العابس: القمع، والتناقض، ومهارة قراية المنشور (5A.23–5A.30) ============ */
+slide('L5A4 · الوش التاني: القمع');go(1,5);
+L('5A.23',()=>{
+ SAYW(1040,124,30,N,'الوش التاني للقناع: سياسة القمع.',{w:700,hl:{'القمع':R}});
+ MASK2(at('التاني'),200,220,.85,-1);P(at('القمع'),CI(180,220,60),R,4,.4);
+ P(at('مقاومة'),[620,680,740,800,860,920].map((x,i)=>MAN(x,190+(i%2)*8,100)).join(''),G,3,.6);
+ P(at('شعبية'),[620,740,860].map(x=>`M${x},${190+42} l18,-40 `+CI(x+20,186,6)).join(''),G,4,.3);
+ P(at('فنابليون'),BICORN(200,140,110),N,3,.3,N);
+ P(at('وقادة'),ARW(290,240,560,240,12),R,5,.4);
+ P(at('أشد'),ARW(290,270,560,270,14)+ARW(290,210,560,210,14),R,7,.4);
+ P(at('أشد')+.2,'M20,326 H1046',GHO,2.5,.4)});
+L('5A.24',()=>{
+ W(at('قمع'),1040,382,'قمع؟',32,R);
+ BBS(380,350,560,24,'القمع يعني تكتم الناس بالقوة.');
+ P(at('تكتم'),RR(40,350,300,40,10),R,3,.3,LRD);P(at('تكتم')+.1,MOUTH(190,370)+'M150,370 h80',R,5,.3);
+ P(at('الطلبة'),RC(420,420,600,100),N,3,.4,'#fff');P(at('الطلبة')+.2,[600,680,760,840,920].map(x=>MAN(x,436,70)).join(''),BLU,3,.5);
+ P(at('يعترضوا'),[600,760,920].map(x=>`M${x},${F(436+70*.42)} l16,-40 `).join(''),BLU,4,.3);P(at('حاجة'),QM(980,440,.8)+EXC(540,500,.8),R,3,.3);
+ P(at('يسمعوهم'),EL(500,460,14,20),N,3,.2,SKIN);P(at('يسمعوهم')+.1,XX(500,460,1.6),R,5,.3);
+ P(at('يقفلوا'),DOOR(430,424,60,96),BRN,5,.4);P(at('يقفلوا')+.15,RC(430,424,60,96),BRN,3,.3,PAP);
+ P(at('الفصل'),LOCK(460,462,1.4),YD,4,.3,LYL);chime(at('الفصل'))});
+
+go(0,5);
+L('5A.25',()=>{
+ W(at('والقمع'),1040,124,'والقمع',30,R);WC(at('كان'),'كان',N);WC(at('في'),'في',N);WC(at('حاجتين'),'حاجتين:',N);
+ BADGE(at('ثورتي'),1020,190,'١');W(at('ثورتي'),990,200,'ثورتي',28,R);WC(at('القاهرة'),'القاهرة',R);
+ P(at('القاهرة'),EGO(40,110,.5),N,3,.4,SAND);P(at('القاهرة')+.2,CI(145,136,8),R,4,.2,R);W(at('القاهرة')+.25,145,168,'القاهرة',18,R,'middle');
+ P(at('ثورتي')+.1,FLAME(380,280,1.4)+FLAME(520,280,1.4),R,4,.4,'#F5B7B1');
+ P(at('الأولى'),OUTF(380,300,1.4),GR,3,.3,'#ddd');P(at('الأولى')+.1,XX(380,250,1.4),N,4,.3);W(at('الأولى')+.1,380,340,'الأولى',22,R,'middle');
+ P(at('والتانية'),OUTF(520,300,1.4),GR,3,.3,'#ddd');P(at('والتانية')+.1,XX(520,250,1.4),N,4,.3);W(at('والتانية')+.1,520,340,'والتانية',22,R,'middle');
+ BADGE(at('وفرض'),1020,250,'٢');W(at('الضرايب'),990,260,'الضرايب،',28,YD);WC(at('ومصادرة'),'ومصادرة',R);WC(at('الأموال'),'الأموال',R);
+ P(at('الضرايب'),COIN(700,320,14)+COIN(730,330,14)+COIN(760,318,14),YD,3,.3,Y);
+ P(at('ومصادرة'),SACK(900,370,.5),YD,3,.4,LYL);P(at('المصريين'),GRAB(950,360,1.2),N,3,.3,SKIN);
+ P(at('ومصادرة',1),GRAB(840,352,1.2),FRN,3,.3,LFR);P(at('ومصادرة',1)+.1,ARW(820,352,760,352,12)+'M840,340 H700',FRN,5,.3);
+ BBS(20,410,1030,26,'ياخدوا منك حاجتك غصب عنك.');
+ P(at('غصب'),'M880,355 l20,-18 M880,370 l26,0',R,4,.3)});
+
+go(0,6);
+L('5A.26',()=>{
+ W(at('والنتيجة'),1040,124,'والنتيجة،',28,R);WC(at('بنص'),'بنص',GR);WC(at('الكتاب'),'الكتاب:',GR);
+ SAYW(1040,172,28,N,'«كشف التناقض بين منشور نابليون وممارساته الفعلية».',{w:1010,hl:{'التناقض':R,'منشور':G,'وممارساته':R}});
+ P(at('منشور'),SCROLL(700,220,300,150),BRN,3,.5,'#FBF0DA');P(at('نابليون'),PSCR(724,236,252,100),GR,2,.3);P(at('نابليون')+.1,MFACE(850,292,.45)+MFEAT(850,292,.45,1),GHO,2,.3);
+ P(at('وممارساته'),LOCK(210,300,2.2),YD,4,.4,LYL);P(at('الفعلية'),SACK(360,330,.6),YD,3,.3,LYL);P(at('الفعلية')+.1,GRAB(420,300,1.1),FRN,3,.3,LFR);
+ P(at('التناقض'),SPLIT(560,206,390),R,6,.5);
+ W(at('الكلام'),1040,430,'الكلام',28,G);WC(at('وادي'),'في وادي،',N);
+ W(at('والفعل'),470,430,'والفعل',28,R);WC(at('تاني'),'في وادي تاني.',N);
+ P(at('وادي'),'M760,450 q90,40 180,0',G,4,.3);P(at('تاني'),'M140,450 q90,40 180,0',R,4,.3);
+ P(at('رد'),RC(40,470,280,50),PUR,3,.3,LPU);W(at('هل'),300,504,'هل',22,N);WC(at('صدّقوه'),'صدّقوه؟',N);
+ P(at('صدّقوه'),QM(80,494,.8),PUR,3,.3);P(at('صدّقوه')+.2,'M60,470 l50,46',R,6,.3)});
+
+go(1,6);
+L('5A.27',()=>{
+ CARDN(at('احفظ'),'٣');
+ SAYW(1020,170,30,N,'القمع: ثورتين القاهرة، وضرايب ومصادرة.',{w:980,hl:{'القمع':R,'ثورتين':R}});
+ SAYW(1020,218,30,N,'والمنشور اتكشف.',{w:980,hl:{'اتكشف':R}});
+ MASK(at('القمع'),170,330,1.2,-1);
+ P(at('ثورتين'),OUTF(420,430,1.6)+OUTF(520,430,1.6),GR,3,.4,'#ddd');W(at('ثورتين')+.1,420,470,'١',22,R,'middle');W(at('ثورتين')+.2,520,470,'٢',22,R,'middle');
+ P(at('القاهرة'),XX(420,400,1.4)+XX(520,400,1.4),N,4,.3);
+ P(at('وضرايب'),SACK(700,470,.6),YD,3,.4,LYL);P(at('ومصادرة'),GRAB(640,450,1.3),FRN,3,.3,LFR);P(at('ومصادرة')+.1,ARW(620,450,580,450,10),FRN,5,.3);P(at('ومصادرة')+.15,GRAB(770,462,1.2),N,3,.3,SKIN);
+ P(at('والمنشور'),TORN(820,270,180,130),BRN,3,.5,'#FBF0DA');P(at('اتكشف'),SPLIT(910,256,412),R,5,.3)});
+
+go(2,6);
+const FX=[900,680,460,240];
+L('5A.28',()=>{
+ P(at('وصندوق'),BOOK(580,106),G,3,.4);TAB2(at('«مهارة'),620,86,310,'مهارة أتعلمها','ص٥٧');
+ SAYW(1040,160,22,N,'بيعلّمك تقرا أي منشور تاريخي بأربع أسئلة:',{w:600});
+ P(at('بأربع'),FX.map(x=>RR(x-84,180,168,190,34)).join(''),SKIN,3,.6,'#FDF2E6');
+ P(at('مَن'),CI(FX[0],230,24)+MOUTH(FX[0],238),N,3,.3,'#fff');W(at('مَن')+.1,FX[0],290,'مَن',26,R,'middle');
+ P(at('ومتى'),CLK(FX[1],230,26),N,3,.3,'#fff');W(at('ومتى')+.1,FX[1],290,'ومتى',26,R,'middle');
+ P(at('مضمونه'),PSCR(FX[2]-26,204,52,56),N,3,.3,'#fff');W(at('مضمونه')+.1,FX[2],290,'مضمونه',26,R,'middle');
+ P(at('السياق'),FRAME(FX[3]-40,200,80,62),BRN,3,.3);W(at('السياق')+.1,FX[3],290,'السياق',26,R,'middle');
+ SAYW(1040,410,24,N,'السياق يعني الظروف اللي حوالين الكلام.',{w:1000,hl:{'السياق':R,'الظروف':BRN}});
+ P(at('حوالين'),RC(FX[3]-56,192,112,80),BRN,4,.3)});
+L('5A.29',()=>{
+ P(at('جرّبها'),ROLL(560,112,.8),BRN,3,.3,PAP);
+ P(at('القايل'),BICORN(FX[0],206,110),N,3,.3,N);W(at('نابليون',1),FX[0],336,'نابليون',22,FRN,'middle');
+ P(at('وقت'),BOATS(FX[1],270,.5),FRN,3,.3,'#fff');W(at('وقت'),FX[1]+60,336,'وقت',22,FRN);WC(at('الحملة'),'الحملة',FRN);
+ const s=SHK(FX[2],254,.45);P(at('صداقة'),s[0]+s[1],N,4,.3);W(at('صداقة'),FX[2],336,'صداقة',22,G,'middle');
+ P(at('واحترام'),HEART(FX[2]+50,226,.4),R,2,.2,PNK);
+ P(at('السياق'),RR(FX[3]-84,180,168,190,34),Y,5,.4);
+ P(at('بالسلاح'),XSW(FX[3],230,.35),R,3,.3);W(at('بالسلاح'),FX[3],336,'بالسلاح',22,R,'middle');P(at('بتاعها'),BOATS(FX[3]-20,258,.3),FRN,2,.2);
+ SAYW(1040,480,28,N,'ولو ركّبتهم، تفهم القناع.',{w:600,hl:{'القناع':MSK}});
+ P(at('ركّبتهم'),'M160,380 H980',GHO,3,.4);MASK2(at('القناع'),280,428,.55)});
+
+go(2,7);
+L('5A.30',()=>{
+ CARDN(at('احفظ'),'٤');
+ SAYW(1020,170,30,N,'أي منشور تاريخي: مين، وإمتى، وإيه، وفي أنهي ظروف.',{w:980,hl:{'مين':R,'وإمتى':R,'وإيه':R,'ظروف':BRN}});
+ P(at('منشور'),SCROLL(420,270,220,150),BRN,3,.5,'#FBF0DA');P(at('تاريخي'),PSCR(434,290,192,100),GR,2,.3);
+ P(at('مين'),CI(820,300,34)+MOUTH(820,312),N,4,.3,'#fff');P(at('مين')+.1,'M700,300 H780',GR,3,.3);
+ P(at('وإمتى'),CLK(820,450,34),N,4,.3,'#fff');P(at('وإمتى')+.1,'M700,430 H780',GR,3,.3);
+ P(at('وإيه'),LENS(240,300,32),N,4,.3);P(at('وإيه')+.1,'M290,330 H400',GR,3,.3);
+ P(at('ظروف'),FRAME(390,240,280,210),BRN,5,.5);P(at('ظروف')+.2,RAYS(530,345,134,150,14),Y,3,.4)});
+
+/* ============ الشريحة L5A5: تثبيت الأقدام: وصف مصر، والطباعة، وحجر رشيد، وأفكر وأناقش، وتدريبات (5A.31–5A.43) ============ */
+slide('L5A5 · تثبيت الأقدام');go(1,7);
+L('5A.31',()=>{
+ SAYW(1040,124,28,N,'وقادة الحملة كانوا بيفكروا يثبّتوا أقدامهم في مصر،',{w:700,hl:{'يثبّتوا':R,'أقدامهم':R}});
+ P(at('يثبّتوا'),BOOT(70,250,1.1)+BOOT(170,250,1.1),N,4,.5,'#6b5a4a');
+ P(at('مصر'),RC(30,250,280,30),BRN,3,.4,SAND);P(at('مصر')+.2,ROOT(100,262,.5)+ROOT(200,262,.5),BRN,2,.3);
+ P(at('إجراء'),RC(962,146,12,12)+RC(962,166,12,12)+RC(962,186,12,12),N,3,.3,'#fff');W(at('إجراء'),940,180,'كذا',22,GR);WC(at('إجراء'),'إجراء',GR);
+ BADGE(at('الأول'),1020,226,'١');SAYW(990,236,26,N,'دراسة مصر دراسة علمية شاملة.',{w:600,hl:{'علمية':BLU}});
+ NAPO(at('نابليون'),170,320,130);
+ P(at('اصطحب'),ARW(260,400,440,400,12),FRN,4,.3);
+ TAB2(at('العلماء'),480,270,560,'تصوّر للمجمع العلمي بمصر زمن الحملة الفرنسية','ص٥٦');
+ P(at('العلماء'),[600,690,880,970].map(x=>MAN(x,330,120)).join(''),BLU,3,.5);
+ P(at('عدد'),TABLE(560,450,460),BRN,4,.4);P(at('كبير'),GLOBE(790,412,34),BLU,3,.4,SKY);P(at('كبير')+.1,RC(640,428,60,22)+RC(900,428,60,22),N,2,.3,'#fff');
+ P(at('مجالات'),GEAR(510,430,14),N,3,.3);P(at('مختلفة'),OBOOK(540,500,.7)+SPROUT(1010,500,.8),G,3,.3)});
+
+go(0,7);
+L('5A.32',()=>{
+ const ix=[880,620,360];
+ P(at('مسح'),'M'+(ix[0]-70)+',280 h140 M'+(ix[0]-60)+',280 v-14 M'+(ix[0]-30)+',280 v-9 M'+ix[0]+',280 v-14 M'+(ix[0]+30)+',280 v-9 M'+(ix[0]+60)+',280 v-14',N,4,.4);
+ P(at('دقيق'),'M'+(ix[0]-50)+',250 L'+(ix[0]+10)+',200 L'+(ix[0]+50)+',250',BRN,3,.3);W(at('مسح'),ix[0],320,'مسح',24,N,'middle');
+ P(at('الطبيعية'),WHEAT(ix[0]+80,270,.5)+DROP(ix[0]-90,262,.9),G,3,.3,'#fff');
+ P(at('ورسموا'),RC(ix[1]-70,200,140,84),BRN,3,.4,PAP);P(at('الخرايط'),EGO(ix[1]-50,210,.2),N,2.5,.4);W(at('الخرايط'),ix[1],320,'الخرايط',24,N,'middle');
+ P(at('آثار'),RC(ix[2]-76,196,152,92),N,3,.4,'#fff');P(at('آثار')+.15,TEMPLE(ix[2],276,.6),BRN,3,.4);W(at('آثار'),ix[2],320,'آثار',24,N,'middle');
+ P(at('القديمة'),DUNE(ix[2]-70,284,3,46),BRN,3,.3);
+ P(at('بموسوعة'),RC(500,110,240,64)+'M512,110 v64',BRN,5,.5,PAP);P(at('اتتوّجت'),CROWN(620,106,.35),YD,3,.3,Y);
+ W(at('«وصف'),700,154,'وصف',28,BRN);WC(at('مصر»'),'مصر',BRN);
+ P(at('أوروبا'),ARW(490,142,260,142,12),BLU,4,.3);W(at('أوروبا'),230,152,'أوروبا',24,BLU);
+ P(at('بمكانة'),STAR(110,140,18),YD,3,.3,Y);P(at('الحضارية'),'M20,346 H1046',GHO,2.5,.4)});
+L('5A.33',()=>{
+ W(at('موسوعة'),1040,390,'موسوعة؟',28,BRN);
+ BBS(330,360,590,22,'كتاب كبير، أو مجموعة كتب، فيها كل حاجة عن موضوع واحد.');
+ P(at('مجموعة'),BOOKS(220,440),BRN,3,.4,PAP);
+ P(at('ملف'),FOLDER(40,400,160,110),YD,4,.4,LYL);P(at('كامل'),'M60,430 h120 M60,450 h120',YD,3,.3);
+ P(at('مدينتك'),BLDG(120,500,[50,36],20),N,3,.3,'#fff');
+ const ix=[880,720,560,400];
+ [['خرايطها','خرايطها،'],['وأكلها','وأكلها،'],['وناسها','وناسها،'],['وآثارها','وآثارها.']].forEach(([k,w],i)=>W(at(k)+.05,ix[i],514,w,22,N,'middle'));
+ P(at('خرايطها'),EGO(ix[0]-26,450,.13),N,2.5,.3,SAND);P(at('وأكلها'),EL(ix[1],474,26,12)+'M'+(ix[1]-26)+',474 q26,24 52,0',BRN,3,.3,PAP);
+ P(at('وناسها'),MAN(ix[2]-14,442,46)+MAN(ix[2]+14,442,46),G,3,.3);P(at('وآثارها'),TEMPLE(ix[3],486,.45),BRN,3,.3)});
+
+go(0,8);
+L('5A.34',()=>{
+ BADGE(at('التاني'),1020,120,'٢');SAYW(990,130,30,N,'التاني: الاهتمام بشئون الطباعة.',{w:700,hl:{'الطباعة':BRN}});
+ P(at('الطباعة'),PRSS(180,420,1.6),N,4,.6,'#eef0f0');P(at('الطباعة')+.3,SHEET(270,330,70,60),N,3,.3,'#fff');
+ SAYW(1040,200,26,N,'الفرنساويين استخدموها في حاجتين:',{w:700});
+ P(at('الفرنساويين'),MAN(420,236,90)+MAN(480,244,84),FRN,3,.4);P(at('الفرنساويين')+.2,BICORN(420,236,90)+BICORN(480,244,84),N,2,.3,N);
+ BADGE(at('حاجتين'),980,250,'١');BADGE(at('حاجتين')+.1,620,250,'٢');
+ P(at('المنشورات'),SHEET(880,280,120,90),N,3,.4,'#fff');P(at('والأوامر'),STAMP(960,400,1),R,3,.3);P(at('الحكومية'),SEAL(980,330,16),R,3,.3,LRD);
+ W(at('المنشورات'),1010,440,'المنشورات',24,N);WC(at('والأوامر'),'والأوامر',R);
+ P(at('الصحف'),NEWS(540,280,140,100),N,3,.4,'#fff');W(at('الصحف'),610,440,'الصحف',24,N,'middle');
+ P(at('تبرّر'),MFACE(640,346,.28)+MFEAT(640,346,.28,1),MSK,2,.3,'#FFF6D6');
+ P(at('الحملة'),ARW(400,330,520,330,10),N,4,.3);P(at('الحملة')+.1,BOATS(590,490,.6),FRN,3,.3,'#fff')});
+
+go(1,8);
+L('5A.35',()=>{
+ P(at('والكتاب'),BOOK(1010,106),G,3,.4);
+ SAYW(970,124,26,N,'«كيف يمكن للإعلام أن يغير الرأي العام أثناء الصراعات السياسية؟»',{w:940,lh:40,hl:{'«كيف':R,'الرأي':BLU,'العام':BLU}});
+ Q(atp(),180,240,2.0);CDR2(atp(),280,230,16,2);
+ BBS(380,214,660,24,'اللي أغلب الناس شايفينه.');
+ P(at('أغلب'),[0,1,2,3,4,5].map(i=>MAN(560+i*70,300,70)).join(''),G,3,.5);P(at('شايفينه'),[0,1,2,3,4,5].map(i=>EYE(560+i*70,311,.3)).join(''),N,2,.3,'#fff');
+ P(at('والجرنال'),NEWS(60,330,150,110),N,3,.4,'#fff');
+ P(at('يوم'),CAL(230,340,.6)+CAL(240,350,.6)+CAL(250,360,.6),N,3,.3,'#fff');
+ P(at('الكلمة'),RR(80,454,110,30,8)+RR(80,488,110,30,8),R,3,.3,LRD);
+ P(at('تصدّقها'),TICK(320,480,2),G,6,.3);
+ P(at('البوست'),MOB(420,390,130,136),N,4,.4,'#fff');
+ P(at('بيتشير'),POST(436,410,98)+POST(436,446,98)+POST(436,482,98),BLU,2.5,.4,LBL);
+ P(at('الجروبات'),[0,1,2].map(i=>RR(600+i*150,420,130,80,12)+POST(610+i*150,434,110)).join(''),BLU,3,.5,'#fff')});
+
+go(2,8);
+L('5A.36',()=>{
+ BADGE(at('التالت'),1020,120,'٣');SAYW(990,130,30,N,'التالت: اكتشاف حجر رشيد.',{w:600,hl:{'حجر':N,'رشيد':N}});
+ TAB2(at('رشيد'),40,90,250,'حجر رشيد','ص٥٧');
+ P(at('حجر'),ROSE(380,160,200,240),SHADE,4,.6,'#8d9599');
+ P(at('الجنود'),EGO(840,190,.45),N,3,.4,SAND);P(at('الجنود')+.2,HELM(800,260,.6),N,3,.3,'#D8CFA0');
+ P(at('اكتشفوه'),CI(924,192,8),R,4,.2,R);W(at('اكتشفوه')+.1,924,230,'رشيد',18,R,'middle');P(at('اكتشفوه')+.2,ARW(840,240,600,260,12),R,3,.3);
+ DIG([at('ألف'),at('وسبعمية'),at('تسعة'),at('وتسعين')],[876,900,924,948],340,'١٧٩٩',30,R);W(at('وتسعين')+.15,856,340,'م',24,R,'middle');
+ P(at('بتلات'),ROSEL(380,160,200,240),'#fff',4,.4);
+ P(at('الهيروغليفية'),EYE(440,200,.6)+SCR(500,210,6,6),'#fff',3,.3);W(at('الهيروغليفية'),780,216,'الهيروغليفية',22,N);
+ P(at('والديموطيقية'),SCR(400,290,26,5),'#fff',3,.3);W(at('والديموطيقية'),780,296,'والديموطيقية',22,N);
+ P(at('واليونانية'),'M410,360 h120 M410,374 h150',  '#fff',3,.3);W(at('واليونانية'),780,376,'واليونانية',22,N)});
+L('5A.37',()=>{
+ CHAMP(at('شامبليون'),170,170,140);W(at('شامبليون')+.1,170,354,'شامبليون',18,BLU,'middle');
+ P(at('يفك'),LOCK(560,192,1),YD,3,.3,LYL);P(at('رموز'),KEY(520,150,.7),YD,4,.3);
+ DIG([at('ألف'),at('وتمنمية'),at('اتنين'),at('وعشرين')],[400,420,440,460],150,'١٨٢٢',24,R);W(at('وعشرين')+.15,382,150,'م',20,R,'middle');
+ SAYW(1040,450,24,N,'وده أسهم في نشأة علم المصريات، وإعادة اكتشاف الحضارة المصرية القديمة.',{w:640,hl:{'علم':G,'المصريات':G}});
+ P(at('اكتشاف'),DUNE(200,516,4,50),BRN,3,.3);P(at('الحضارة'),TEMPLE(300,500,.7),BRN,3,.4,PAP);P(at('القديمة'),RAYS(300,470,46,60,9,Math.PI,Math.PI*2),Y,3,.3);
+ P(at('ناقش'),MAN(40,420,70)+MAN(110,412,80),N,3,.3);P(at('معلمك'),RR(20,380,90,28,10),N,2,.3,'#fff');P(at('ده',1),QM(65,396,.6),R,3,.3)});
+
+go(2,9);
+L('5A.38',()=>{
+ W(at('فك'),1040,124,'فك',32,R);WC(at('الرموز'),'الرموز؟',R);
+ P(at('رسالة'),RC(560,170,420,220),N,3,.4,'#fff');P(at('بلغة'),PT(5).map(i=>SCR(600,200+i*38,40,7)).join(''),PUR,3,.5);
+ Q(at('فاهمها'),560,160,1.4);
+ P(at('ومعاها'),RC(60,170,420,220),N,3,.4,'#fff');P(at('بالإنجليزي'),PT(5).map(i=>`M100,${200+i*38} h${300-(i%2)*60} `).join(''),BLU,4,.5);
+ P(at('تقارن'),`M560,200 L480,200 M560,238 L480,238`,G,3,.3);
+ P(at('بكلمة'),`M560,276 L480,276 M560,314 L480,314 M560,352 L480,352`,G,3,.3);
+ P(at('تفهم'),TICK(770,420,2.4),G,7,.4);
+ BBS(20,450,1030,26,'الحجر كان قاموس مكتوب على صخرة.');
+ P(at('قاموس'),ROSE(80,330,60,70)+ROSEL(80,330,60,70),SHADE,3,.3,'#8d9599')});
+
+go(1,9);
+L('5A.39',()=>{
+ CARDN(at('احفظ'),'٥');
+ SAYW(1020,170,30,N,'تثبيت الأقدام: وصف مصر، والطباعة، وحجر رشيد.',{w:980,hl:{'تثبيت':R,'الأقدام':R}});
+ P(at('تثبيت'),RC(60,440,940,40),BRN,3,.4,SAND);
+ P(at('الأقدام'),BOOT(200,450,1.6)+BOOT(700,450,1.6),N,5,.5,'#6b5a4a');
+ P(at('وصف'),RC(40,232,240,64)+'M54,232 v64',BRN,4,.4,PAP);W(at('مصر'),250,274,'وصف مصر',26,BRN);
+ P(at('والطباعة'),PRSS(860,420,.9),N,4,.4,'#eef0f0');P(at('والطباعة')+.2,SHEET(920,330,50,50),N,3,.3,'#fff');
+ P(at('وحجر'),ROSE(470,280,110,150),SHADE,4,.4,'#8d9599');P(at('رشيد'),ROSEL(470,280,110,150),'#fff',3,.3)});
+
+go(0,9);
+const SIGMA=(x,y,s=1)=>`M${F(x+10*s)},${F(y-12*s)} h${F(-20*s)} l${F(12*s)},${F(12*s)} l${F(-12*s)},${F(12*s)} h${F(20*s)} `;
+L('5A.40',()=>{
+ CARDN(at('احفظ'),'٦');
+ SAYW(1020,170,28,N,'حجر رشيد ألف وسبعمية تسعة وتسعين، تلات كتابات.',{w:980});
+ SAYW(1020,214,28,N,'شامبليون فكّه ألف وتمنمية اتنين وعشرين.',{w:980,hl:{'شامبليون':BLU}});
+ SAYW(1020,258,28,N,'علم المصريات اتولد.',{w:980,hl:{'علم':G,'المصريات':G,'اتولد':G}});
+ P(at('حجر'),ROSE(400,290,220,200),SHADE,4,.5,'#8d9599');
+ DIG([at('ألف'),at('وسبعمية'),at('تسعة'),at('وتسعين')],[470,490,510,530],518,'١٧٩٩',24,R);W(at('وتسعين')+.12,452,518,'م',20,R,'middle');
+ P(at('تلات'),ROSEL(400,290,220,200),'#fff',4,.3);
+ P(at('كتابات'),EYE(510,326,.5)+SCR(450,390,24,5)+SIGMA(510,450,1),'#fff',3,.4);
+ P(at('فكّه'),LOCK(660,318,1),YD,3,.3,LYL);P(at('فكّه')+.1,KEY(690,326,.6),YD,4,.3);P(at('فكّه')+.2,'M720,326 l20,30',N,2,.2);
+ P(at('ألف',1),RC(700,356,96,34),YD,3,.3,LYL);DIG([at('ألف',1),at('وتمنمية'),at('اتنين'),at('وعشرين')],[720,740,760,780],382,'١٨٢٢',22,R);W(at('وعشرين')+.12,708,382,'م',18,R,'middle');
+ KID(at('علم'),300,330,120);P(at('اتولد'),ARW(390,380,330,380,10)+RAYS(300,360,70,84,10),G,3,.4)});
+
+go(0,10);
+L('5A.41',()=>{
+ P(at('وصندوق'),BOOK(600,106),G,3,.4);TAB2(at('«أفكر'),640,86,300,'أفكر وأناقش','ص٥٧');
+ SAYW(1040,170,24,N,'«رغم قصر مدة الحملة الفرنسية، فإن آثارها كانت عميقة وطويلة المدى». وضّح رأيك.',{w:1010,lh:36,hl:{'قصر':R,'عميقة':G,'وطويلة':G}});
+ P(at('قصر'),HGL(140,280,1.1),BRN,4,.4,'#FBF0DA');
+ P(at('عميقة'),'M400,470 h300',BRN,4,.3);P(at('عميقة')+.1,ROOT(550,470,.6),BRN,4,.5);
+ Q(atp(),900,260,3.0);CDR2(atp(),800,260,18,3);
+ P(at('رأيي'),'M550,470 V300 M550,380 L440,320 M550,350 L660,290 M550,300 L560,250',BRN,6,.5);
+ P(at('وصف'),RC(380,290,100,40)+'M392,290 v40',BRN,3,.3,PAP);W(at('بمصر'),466,318,'وصف مصر',16,BRN);
+ P(at('وحجر'),ROSE(640,250,50,60),SHADE,3,.3,'#8d9599');
+ P(at('الهجمة'),BOATS(560,240,.6),FRN,3,.3,'#fff');
+ SAYW(1040,420,22,N,'رأيي، بأدلة من الكتاب: وصف مصر عرّف أوروبا بمصر، وحجر رشيد ولّد علم المصريات.',{w:330,lh:32,hl:{'رأيي':GD}});
+ SAYW(320,450,22,N,'وكمان بقت بداية الهجمة الاستعمارية.',{w:300,hl:{'الهجمة':R}})});
+
+go(1,10);
+L('5A.42',()=>{
+ P(at('تعال'),BOOK(600,106),G,3,.4);TAB2(at('«تدريبات'),640,86,330,'تدريبات الدرس','ص٦٢');
+ SAYW(1040,170,24,N,'اختر: الهدف الرئيسي من استخدام المطابع في مصر أثناء الحملة الفرنسية:',{w:1010,hl:{'المطابع':BRN}});
+ const oy=[230,290,350,410],ol=[['أ','أ: نشر الثقافة الفرنسية.'],['ب','ب: توجيه الرأي العام.'],['ج','ج: تعليم المصريين القراءة.'],['د','د: طباعة الكتب العلمية.']];
+ ol.forEach(([l,t],i)=>{SAYW(1000,oy[i]+10,26,N,t,{w:700})});
+ Q(atp(),300,330,3.0);CDR2(atp(),200,330,18,3)});
+L('5A.43',()=>{
+ P(at('مفتاح'),KEY(140,460,.9),YD,4,.3);P(at('إجابات'),XX(170,460,1.6),R,5,.3);
+ W(at('اجتهاد'),300,520,'اجتهاد',22,GD,'middle');
+ P(at('الطباعة'),PRSS(420,500,.6),N,3,.3,'#eef0f0');P(at('منشورات'),SHEET(470,440,40,40),N,2,.3,'#fff');P(at('وصحف'),NEWS(520,450,60,50),N,2,.3,'#fff');
+ const [ta,tc,td]=FIND('أ وج ود');const yx=[[230,ta],[350,tc],[410,td]];
+ yx.forEach(([y,t])=>P(t,`M1010,${y} H700`,R,5,.3));
+ const tb=FIND('يفضل ب')[0];P(tb,EL(860,290,170,28),G,5,.4);ST(tb+.3,1030,282,1);
+ cell(2,10);camTo(at('احفظ')*OS-.3,ox,oy,CW,CH,.8);
+ CARDN(at('احفظ'),'٧');
+ SAYW(1020,170,30,N,'المطابع: منشورات وصحف، علشان توجّه الرأي العام.',{w:980,hl:{'المطابع':BRN,'توجّه':R}});
+ P(at('المطابع'),PRSS(180,440,1.3),N,4,.5,'#eef0f0');
+ P(at('منشورات',1),SHEET(260,330,60,50),N,3,.3,'#fff');P(at('وصحف',1),NEWS(330,300,110,80),N,3,.4,'#fff');P(at('وصحف',1)+.2,MFACE(400,345,.22)+MFEAT(400,345,.22,1),MSK,2,.3,'#FFF6D6');
+ P(at('علشان'),ARW(450,330,560,330,12),R,6,.4);
+ const hx=[620,720,820,920];
+ P(at('توجّه'),hx.map(x=>CI(x,380,26)+`M${x},406 v80 `).join(''),N,3,.5,'#fff');
+ P(at('الرأي',1),hx.map(x=>`M${x-14},378 h28 M${x+14},378 l-6,-5 M${x+14},378 l-6,5`).join(''),R,3,.3);
+ P(at('العام',1),SWIRL(770,300,30),R,4,.4)});
+
+/* ============ دقيقة المراجعة RA + الزووم الأخير على الورقة كلها ============ */
+slide('RA · دقيقة المراجعة');go(2,11);
+const SEP=(o,y)=>P(o,`M20,${y} H1046`,GHO,2.5,.4);
+L('RA1',()=>{
+ W(at('دقيقة'),1040,124,'دقيقة',32,R);WC(at('مراجعة'),'مراجعة',R);
+ const ic=[x=>MACH(x,172,.22),x=>MFACE(x,172,.28)+MFEAT(x,172,.28,1),x=>MFACE(x,172,.28)+MFEAT(x,172,.28,-1),x=>FRAME(x-24,152,48,40),x=>BOOT(x-20,194,.4)+BOOT(x+4,194,.4),x=>ROSE(x-18,150,36,44),x=>PRSS(x,196,.38)];
+ ic.forEach((f,i)=>{const x=990-i*84,o=at('مراجعة')+i*.06;P(o,RC(x-36,144,72,58),G,3,.25,LGN);BADGE2(o+.05,x+34,146,'١٢٣٤٥٦٧'[i],G);P(o+.1,f(x),N,2,.3)});
+ P(at('غمّض'),EYEC(220,150,1.6),N,5,.4);
+ P(at('وجاوب'),RR(60,110,90,50,14)+'M90,160 l-10,16 l24,-16',BLU,3,.3,'#fff');W(at('وجاوب')+.1,105,146,'؟',28,BLU,'middle');
+ P(at('قبلي'),ARW(160,190,120,210,8),GR,4,.3);SEP(at('قبلي')+.1,222)});
+L('RA2',()=>{
+ W(at('الفكرة'),1040,268,'الفكرة',28,R);WC(at('الرئيسة'),'الرئيسة؟',R);
+ P(at('الفكرة'),MACH(90,316,.45),N,3,.4,'#eef0f0');P(at('الرئيسة'),JAW(90,316,.45),R,3,.3);
+ RQ(0,600,270);
+ SAYW(1040,310,22,N,'مصر ساحة تنافس بعد الثورة الصناعية. أوروبا عايزة خام وأسواق، والحملة الفرنسية أول الهجمة.',{w:620,lh:32,hl:{'ساحة':R,'خام':G,'وأسواق':FRN,'الحملة':FRN}});
+ P(at('مصر'),EGO(200,270,.22),G,2.5,.3,LGN);
+ P(at('خام'),PIPE(200,322,122,322,5),G,3,.3);P(at('وأسواق'),ARW(124,296,198,296,8),FRN,3,.3);
+ P(at('الحملة'),BOATS(250,268,.35),FRN,2.5,.3,'#fff');SEP(at('الهجمة')+.1,370)});
+L('RA3',()=>{
+ W(at('الحملة'),1040,416,'الحملة',28,R);WC(at('نزلت'),'نزلت',R);WC(at('فين'),'فين',R);WC(at('وسنة'),'وسنة',R);WC(at('كام'),'كام؟',R);
+ P(at('الحملة'),EGO(80,416,.3),N,2.5,.4,SAND);P(at('نزلت'),CI(127,420,7),R,3,.2,R);
+ RQ(0,560,420);
+ W(at('الإسكندرية'),1040,480,'الإسكندرية،',30,R);P(at('الإسكندرية'),CI(127,420,16),Y,4,.3);
+ DIG([at('ألف'),at('وسبعمية'),at('تمانية'),at('وتسعين')],[770,792,814,836],480,'١٧٩٨',30,R);W(at('وتسعين')+.12,750,480,'م',24,R,'middle')});
+
+go(1,11);
+L('RA4',()=>{
+ W(at('الوش'),1040,124,'الوش',28,R);WC(at('المبتسم'),'المبتسم',R);WC(at('ماسك'),'ماسك',R);WC(at('إيه'),'إيه؟',R);
+ MASK(at('المبتسم'),80,150,.5,1);
+ const gx=[180,260,340,420];P(at('ماسك'),gx.map(x=>GIFT(x,206,.8)).join(''),G,3,.4,LGN);
+ RQ(0,600,140);
+ SAYW(1040,190,24,N,'منشورات، ومشايخ، ومجمع، ودواوين.',{w:560});
+ P(at('منشورات'),ROLL(gx[0],160,.6),BRN,3,.3,PAP);P(at('ومشايخ'),TURBA(gx[1],160,60,1.4),N,3,.3,'#fff');
+ P(at('ومجمع'),DOME(gx[2],172,.45),BLU,3,.3,SKY);P(at('ودواوين'),TABLE(gx[3]-22,168,44)+CI(gx[3]-10,158,6)+CI(gx[3]+10,158,6),PUR,3,.3,'#fff');
+ SEP(at('ودواوين')+.1,222)});
+L('RA5',()=>{
+ W(at('والوش'),1040,268,'والوش',28,R);WC(at('العابس'),'العابس؟',R);
+ MASK(at('العابس'),80,300,.5,-1);
+ RQ(0,600,272);
+ SAYW(1040,320,24,N,'ثورتين القاهرة، وضرايب ومصادرة. والمنشور اتكشف.',{w:560});
+ P(at('ثورتين'),OUTF(180,340,1)+OUTF(220,340,1),GR,3,.3,'#ddd');
+ P(at('ومصادرة'),SACK(300,350,.35),YD,3,.3,LYL);P(at('ومصادرة')+.1,GRAB(340,330,.8),FRN,3,.2,LFR);
+ P(at('والمنشور'),TORN(380,290,70,54),BRN,3,.3,'#FBF0DA');SEP(at('اتكشف')+.1,370)});
+L('RA6',()=>{
+ W(at('تقرا'),1040,416,'تقرا',28,R);WC(at('منشور'),'منشور',R);WC(at('تاريخي'),'تاريخي',R);WC(at('إزاي'),'إزاي؟',R);
+ P(at('منشور'),FRAME(170,400,110,90),BRN,3,.4);P(at('تاريخي'),PSCR(188,418,74,54),GR,2,.3);
+ RQ(0,600,420);
+ SAYW(1040,476,26,N,'مين، وإمتى، وإيه، وفي أنهي ظروف.',{w:600,hl:{'ظروف':BRN}});
+ P(at('مين'),CI(100,420,18)+MOUTH(100,426),N,3,.3,'#fff');P(at('وإمتى'),CLK(100,480,18),N,3,.3,'#fff');
+ P(at('وإيه'),LENS(330,430,16),N,3,.3);P(at('ظروف'),RAYS(225,445,66,78,10),Y,3,.3)});
+
+go(0,11);
+L('RA7',()=>{
+ W(at('ثبّتوا'),1040,124,'ثبّتوا',28,R);WC(at('أقدامهم'),'أقدامهم',R);WC(at('بإيه'),'بإيه؟',R);
+ P(at('ثبّتوا'),BOOT(80,200,.7)+BOOT(150,200,.7),N,3,.4,'#6b5a4a');P(at('أقدامهم'),RC(60,200,160,14),BRN,3,.3,SAND);
+ RQ(0,600,140);
+ SAYW(1040,184,26,N,'وصف مصر، والطباعة، وحجر رشيد.',{w:560});
+ P(at('وصف'),RC(250,130,70,30)+'M258,130 v30',BRN,3,.3,PAP);P(at('والطباعة'),PRSS(380,208,.5),N,3,.3,'#eef0f0');P(at('وحجر'),ROSE(440,150,36,50),SHADE,3,.3,'#8d9599');
+ SEP(at('رشيد')+.1,222)});
+L('RA8',()=>{
+ W(at('حجر'),1040,268,'حجر',28,R);WC(at('رشيد'),'رشيد؟',R);
+ P(at('حجر'),ROSE(70,250,70,100)+ROSEL(70,250,70,100),SHADE,3,.4,'#8d9599');
+ RQ(0,600,272);
+ SAYW(1040,306,22,N,'ألف وسبعمية تسعة وتسعين، تلات كتابات، وشامبليون فكّه ألف وتمنمية اتنين وعشرين.',{w:620,lh:32});
+ DIG([at('ألف'),at('وسبعمية'),at('تسعة'),at('وتسعين')],[180,200,220,240],300,'١٧٩٩',24,R);
+ P(at('فكّه'),KEY(176,340,.5),YD,3,.3);DIG([at('ألف',1),at('وتمنمية'),at('اتنين'),at('وعشرين')],[220,240,260,280],348,'١٨٢٢',24,R);
+ SEP(at('وعشرين')+.1,370)});
+L('RA9',()=>{
+ W(at('سمّعهم'),1040,420,'سمّعهم',28,G);WC(at('تاني'),'تاني',G);WC(at('بكرة'),'بكرة.',R);
+ P(at('تاني'),'M760,410 a16,16 0 1,1 -16,-16 M744,394 l9,-4 M744,394 l5,9',GD,4,.4);
+ P(at('بكرة'),CAL(660,386,.6),N,3,.3,'#fff');P(at('بكرة')+.1,TICK(681,408,1.3),G,5,.3);chime(at('بكرة'));
+ P(at('والفصل'),RR(560,446,480,64,14),G,4,.4,LGN);W(at('والفصل')+.05,1010,490,'والفصل',30,G);WC(at('الجاي'),'الجاي',G);
+ GHAND(at('الإيد'),330,460,.8,150);
+ P(at('فرنسا'),MFACE(80,450,.35)+MFEAT(80,450,.35,1),GHO,2,.3);P(at('بعد'),ARW(110,420,180,420,8),GR,3,.3);
+ P(at('أطول'),DASH(140,512,420,6),FRN,4,.4);P(at('نَفَس'),WIND(500,500,.5),FRN,3,.3);
+ camTo(LD-.35,-6100,-80,15400,8663,2.6)});
+/* ---- النهاية: الكاميرا تبعد وتبيّن الورقة كلها (١٢ صف) — من غير توقيع ---- */
+line('—','','',()=>{});T0+=4.5;
+
+
+/*__CONTENT_END__*/
+const END=T0;
+
+/* ============ بناء العناصر ============ */
+const LG=document.getElementById('L');const el=(n,a)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e};
+IT.forEach((it,i)=>{
+ if(it.k=='w'){const cp=el('clipPath',{id:'c'+i,clipPathUnits:'userSpaceOnUse'});it.r=el('rect',{x:0,y:0,width:0,height:0});cp.appendChild(it.r);LG.appendChild(cp);
+  it.ltr=/^[\x00-\x7f]+$/.test(it.txt);it.e=el('text',{x:it.x,y:it.y,'font-size':it.sz,fill:it.col,'text-anchor':it.a=='end'?'start':it.a,direction:'rtl','clip-path':`url(#c${i})`});it.e.textContent=it.txt;LG.appendChild(it.e)}
+ else if(it.k=='p'){it.e=el('path',{d:it.dd,transform:`translate(${it.tx},${it.ty})`,stroke:it.col,'stroke-width':it.w,'stroke-linecap':'round','stroke-linejoin':'round',fill:it.fill||'none','fill-opacity':0,pathLength:1,'stroke-dasharray':1,'stroke-dashoffset':1});if(it.cls)it.e.setAttribute('class',it.cls);LG.appendChild(it.e);it.len=it.e.getTotalLength()}
+ else if(it.k=='s'){const c=it.ok?G:R;it.e=el('g',{});it.a1=el('circle',{r:20,fill:'#fff','fill-opacity':.85,stroke:c,'stroke-width':4,pathLength:1,'stroke-dasharray':1});
+  it.a2=el('path',{d:it.ok?'M-10,0 L-3,8 L11,-8':'M-9,-9 L9,9 M9,-9 L-9,9',fill:'none',stroke:c,'stroke-width':5,'stroke-linecap':'round',pathLength:1,'stroke-dasharray':1});it.e.append(it.a1,it.a2);LG.appendChild(it.e)}
+ else if(it.k=='q'){it.e=el('text',{'font-size':90,fill:Y,stroke:YD,'stroke-width':2,'text-anchor':'middle'});it.e.textContent='؟';LG.appendChild(it.e)}});
+let T=0,playing=false,last=0,slides=false,sound=true,AC=null,spd=1,AU={},sync=null,pa=null,pi=0,curL=null,code='';
+const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));const msg=t=>{document.getElementById('msg').textContent=t};
+const sIdx=t=>{let i=0;SL.forEach((s,k)=>{if(t>=s.t-.001)i=k});return i},sEnd=i=>i+1<SL.length?SL[i+1].t:END,sLines=i=>LINES.filter(l=>l.txt&&l.t>=SL[i].t-.001&&l.t<sEnd(i)-.001);
+function amap(i,ta){const L=sLines(i),tp=AU[i].taps;if(!tp)return Math.min(sEnd(i),SL[i].t+ta*spd);if(ta<tp[0])return Math.max(SL[i].t,L[0].t-(tp[0]-ta));
+ for(let k=0;k<L.length;k++){const a=tp[k],b=tp[k+1],te=k+1<L.length?L[k+1].t:sEnd(i);if(b==null)return Math.min(te,L[k].t+(ta-a));if(ta<b)return L[k].t+(ta-a)/Math.max(.05,b-a)*(te-L[k].t)}}const $=s=>document.querySelector(s);
+function camAt(t){let a=CAM[0];for(let i=1;i<CAM.length;i++){const b=CAM[i];if(t<b[0]){const p=sm((t-a[0])/Math.max(.001,b[0]-a[0]));return [1,2,3,4].map(j=>a[j]+(b[j]-a[j])*p)}a=b}return a.slice(1)}
+function render(){const c=camAt(T);$('#world').setAttribute('viewBox',c.join(' '));let pen=null;
+ for(const it of IT){const p=(T-it.t)/it.d;
+  if(it.k=='w'){it.e.setAttribute('visibility',p>0?'visible':'hidden');if(!it.bb){if(it.af){if(!it.af.bb)continue;it.e.setAttribute('x',it.x=it.af.bb.x-it.gp)}try{it.bb=it.e.getBBox()}catch(e){}}const b=it.bb;if(!b)continue;const q=Math.max(0,Math.min(1,p)),w=b.width*q;
+   if(it.h)it.e.setAttribute('opacity',T>=it.h[0]&&T<it.h[1]?.05:1);if(it.off!=null)it.e.setAttribute('opacity',1-sm((T-it.off)/.4));it.r.setAttribute('y',b.y-6);it.r.setAttribute('height',b.height+12);it.r.setAttribute('width',w+(q>=1?12:0));it.r.setAttribute('x',it.ltr?b.x:b.x+b.width-w-(q>=1?6:0));
+   if(p>0&&p<1)pen=[it.ltr?b.x+w:b.x+b.width-w,it.y-it.sz*.3+Math.sin(T*40)*it.sz*.18]}
+  else if(it.k=='p'){const q=Math.max(0,Math.min(1,p));it.e.setAttribute('stroke-dashoffset',1-q);it.e.setAttribute('visibility',p>0?'visible':'hidden');if(it.off!=null)it.e.setAttribute('opacity',1-sm((T-it.off)/.4));if(it.fill)it.e.setAttribute('fill-opacity',sm((T-it.t-it.d)/.5));
+   if(p>0&&p<1){const pt=it.e.getPointAtLength(it.len*q);pen=[pt.x+it.tx,pt.y+it.ty]}}
+  else if(it.k=='s'){const q=sm(p),s=1.9-.9*q;it.e.setAttribute('transform',`translate(${it.x},${it.y}) scale(${s})`);it.e.setAttribute('opacity',p>0?1:0);it.a1.setAttribute('stroke-dashoffset',1-sm(p*1.6));it.a2.setAttribute('stroke-dashoffset',1-sm(p*1.6-.6));if(it.off!=null&&T>=it.off)it.e.setAttribute('opacity',1-sm((T-it.off)/.4))}
+  else if(it.k=='q'){const on=p>0&&p<1,s=1+.16*Math.sin(T*6);it.e.setAttribute('transform',`translate(${it.x},${it.y}) scale(${s})`);it.e.setAttribute('opacity',on?Math.min(1,(T-it.t)*4,(it.t+it.d-T)*4):0)}}
+ const pe=$('#pen');if(pen){pe.setAttribute('visibility','visible');pe.setAttribute('transform',`translate(${(pen[0]-c[0])/c[2]*1280},${(pen[1]-c[1])/c[3]*720})`)}else pe.setAttribute('visibility','hidden');
+ let l=null;for(const x of LINES)if(T>=x.t)l=x;if(l!==curL){curL=l;$('#sub').style.fontSize=l&&l.tk.length>27?'.74em':l&&l.tk.length>21?'.88em':'';$('#sub').innerHTML=l&&l.txt?l.tk.map(k=>`<span class="${k.p?'pz':'w'}">${k.p?'سكتة '+k.v:esc(k.w)}</span>`).join(' '):''}
+ if(l&&l.txt){const tt=T-l.t,ch=$('#sub').children;l.tk.forEach((k,i)=>{ch[i].classList.toggle('on',tt>=k.e);ch[i].classList.toggle('cur',tt>=k.s&&tt<k.e)})}$('#src').textContent=l&&l.src?l.src:'';$('#who').style.visibility=l&&l.txt?'visible':'hidden';
+ let s=SL[0];for(const x of SL)if(T>=x.t)s=x;$('#sl').textContent=s.name;
+ $('#seek').value=T/END*1000;$('#tm').textContent=Math.floor(T/60)+':'+String(Math.floor(T%60)).padStart(2,'0')+' / '+Math.floor(END/60)+':'+String(Math.floor(END%60)).padStart(2,'0')}
+function sfx(k){if(!sound)return;try{AC=AC||new (window.AudioContext||window.webkitAudioContext)();const t=AC.currentTime,g=AC.createGain();g.connect(AC.destination);
+ if(k=='whoosh'){const n=AC.createBufferSource(),b=AC.createBuffer(1,AC.sampleRate*.5,AC.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;n.buffer=b;const f=AC.createBiquadFilter();f.type='bandpass';f.frequency.setValueAtTime(300,t);f.frequency.exponentialRampToValueAtTime(2400,t+.45);n.connect(f);f.connect(g);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.12,t+.2);g.gain.linearRampToValueAtTime(.0001,t+.5);n.start(t);return}
+ const tone=(f,d,v,f2)=>{const o=AC.createOscillator();o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);o.connect(g);o.start(t);o.stop(t+d);g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d)};
+ if(k=='tick')tone(1200,.06,.06);else if(k=='chime'){tone(784,.5,.07);const o=AC.createOscillator();o.frequency.value=1047;o.connect(g);o.start(t+.08);o.stop(t+.5)}else if(k=='boom')tone(120,.7,.3,40)}catch(e){}}
+function frame(now){if(!playing)return;const dt=Math.max(0,(now-last)/1000);last=now;const prev=T;
+ if(sync){const L=sLines(sync.i),k=sync.tp.length-1;T=k<0?SL[sync.i].t:Math.min(L[k].t+(sync.a.currentTime-sync.tp[k]),(k+1<L.length?L[k+1].t:sEnd(sync.i))-.05);if(sync.a.ended){finishSync();render();return}}
+ else if(pa){T=amap(pi,pa.currentTime);if(pa.ended){stop();render();return}}
+ else T+=dt*spd;
+ for(const e of SFX)if(e.t>prev&&e.t<=T)sfx(e.k);
+ if(slides&&!sync){const nx=SL.find(s=>s.t>prev&&s.t<=T);if(nx){T=nx.t-.02;stop();atEnd=SL.indexOf(nx);msg('الشريحة خلصت ✓ دوس تشغيل أو «سجّل الشريحة» للشريحة اللي بعدها: '+nx.name)}}
+ if(T>=END){T=END;stop()}render();if(playing)requestAnimationFrame(frame)}
+let atEnd=null;
+function play(noAu){if(atEnd!=null){T=SL[atEnd].t;atEnd=null}if(T>=END-.01)T=0;const i=sIdx(T);pa=null;if(AU[i]&&!noAu){pa=AU[i].a;pi=i;pa.currentTime=0;T=SL[i].t;pa.play().catch(()=>{})}playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame)}
+function stop(){playing=false;pa&&pa.pause();if(sync){sync.a.pause();sync=null;msg('ظبط التوقيت اتلغى')}$('#play').textContent='▶ تشغيل'}
+function seek(t){atEnd=null;T=Math.max(0,Math.min(END,t));render()}
+function startSync(){atEnd=null;const i=sIdx(T);if(!AU[i]){msg('ارفع فويس الشريحة دي الأول');return}stop();sync={i,a:AU[i].a,tp:[]};sync.a.currentTime=0;T=SL[i].t;render();sync.a.play().catch(()=>{});playing=true;last=performance.now();$('#play').textContent='⏸ إيقاف';requestAnimationFrame(frame);msg('اسمع صوتك، ودوس Enter (أو زرار «جملة») أول ما تبدأ كل جملة. الجملة الأولى: '+sLines(i)[0].txt.slice(0,40)+'…')}
+function tap(){if(!sync)return;const L=sLines(sync.i),n=sync.tp.length;if(n<L.length){sync.tp.push(+sync.a.currentTime.toFixed(2));msg(n+1<L.length?`اتسجلت جملة ${n+1} من ${L.length}. الجاية: ${L[n+1].txt.slice(0,40)}…`:'آخر جملة اتسجلت. استنى الفويس يخلص أو دوس إيقاف… ');if(n+1==L.length){const sy=sync;sync=null;sy.a.onended=null;AU[sy.i].taps=sy.tp;code='#KHSYNC '+JSON.stringify({slide:SL[sy.i].name.split(' ')[0],spd,taps:sy.tp});pa=sy.a;pi=sy.i;msg('التوقيت اتظبط ✓ لما يخلص، شغّل الشريحة تاني واتأكد، وبعدين «انسخ كود التوقيت» وابعتهولي.')}}}
+function finishSync(){const L=sLines(sync.i);msg(`الفويس خلص وناقص ${L.length-sync.tp.length} جملة. دوس «ظبط التوقيت» وعيد.`);sync=null;playing=false;$('#play').textContent='▶ تشغيل'}
+function recSlide(){stop();const i=atEnd!=null?atEnd:sIdx(T);slides=true;$('#mode').setAttribute('aria-pressed',true);seek(SL[i].t);let n=3;const cd=$('#cd');cd.hidden=false;cd.textContent=n;sfx('tick');msg('ابدأ تسجيل الفويس على موبايلك دلوقتي…');const iv=setInterval(()=>{n--;if(n>0){cd.textContent=n;sfx('tick')}else{clearInterval(iv);cd.hidden=true;msg('اتكلم مع الكلام اللي بيتعلّم تحت. العرض هيقف آخر الشريحة.');play(true)}},1000)}
+function jump(d){let i=0;SL.forEach((s,k)=>{if(T>=s.t-.05)i=k});if(d<0&&T-SL[i].t>1.5)d=0;i=Math.max(0,Math.min(SL.length-1,i+d));const was=playing;stop();seek(SL[i].t+.03);if(was&&!slides)play()}
+$('#play').onclick=()=>playing?stop():play();$('#re').onclick=()=>{stop();seek(0)};$('#seek').oninput=e=>seek(e.target.value/1000*END);
+$('#next').onclick=()=>jump(1);$('#prev').onclick=()=>jump(-1);
+$('#mode').onclick=e=>{slides=!slides;e.target.setAttribute('aria-pressed',slides)};$('#snd').onclick=e=>{sound=!sound;e.target.setAttribute('aria-pressed',sound)};
+$('#af').onchange=e=>{const f=e.target.files[0];if(!f)return;stop();const i=sIdx(T);AU[i]={a:new Audio(URL.createObjectURL(f)),taps:null};msg('اترفع فويس '+SL[i].name.split(' ')[0]+' ✓ دوس «ظبط التوقيت على صوتي».');e.target.value=''};
+$('#rec').onclick=recSlide;$('#sync').onclick=startSync;$('#tap').onclick=tap;$('#spd').oninput=e=>{spd=+e.target.value;$('#spdv').textContent=Math.round(spd*100)+'%'};
+$('#cp').onclick=async()=>{const all=Object.keys(AU).filter(i=>AU[i].taps).map(i=>'#KHSYNC '+JSON.stringify({slide:SL[i].name.split(' ')[0],spd,taps:AU[i].taps})).join('\n');if(!all){msg('مفيش توقيت متظبط لسه');return}try{await navigator.clipboard.writeText(all);msg('اتنسخ ✓ الزقه في الشات')}catch(e){prompt('انسخ الكود ده',all)}};
+$('#recm').onclick=()=>{document.body.classList.add('rec')};$('#fs').onclick=()=>$('#stage').requestFullscreen&&$('#stage').requestFullscreen();
+$('#stage').onclick=e=>{if(sync){tap();return}if(!slides){playing?stop():play();return}const r=e.currentTarget.getBoundingClientRect();jump(e.clientX-r.left<r.width/2?1:-1)};
+addEventListener('keydown',e=>{if(e.key=='Enter'){e.preventDefault();tap()}else if(e.key==' '){e.preventDefault();if(sync)tap();else playing?stop():play()}else if(e.key=='ArrowLeft')jump(1);else if(e.key=='ArrowRight')jump(-1);else if(e.key=='Escape')document.body.classList.remove('rec')});
+render();document.fonts&&document.fonts.ready.then(()=>{IT.forEach(it=>it.bb=null);render()});
+window.__K={IT,LINES,SL,END,seek,CW,CH,CAM,AU,sLines,play,stop,startSync,tap,get T(){return T},get code(){return code}};
+</script></body></html>
