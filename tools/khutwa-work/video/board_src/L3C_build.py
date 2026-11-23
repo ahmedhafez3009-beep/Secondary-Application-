@@ -20,17 +20,17 @@ def src(x):
     return r.translate(AR)
 for l in sec.splitlines():
     c=[x.strip() for x in l.split('|')]
-    if len(c)>4 and re.match(r'^3C\.\d+$',c[1]): S[c[1]]=c[2];SRC[c[1]]=src(c[4])
+    if len(c)>4 and re.match(r'^(3C\.\d+|APP)$',c[1]): S[c[1]]=c[2];SRC[c[1]]=src(c[4])
 for l in rc.splitlines():
     c=[x.strip() for x in l.split('|')]
     if len(c)>3 and re.match(r'^RC\d+$',c[1]): S[c[1]]=c[2];SRC[c[1]]='مراجعة'
-assert len(S)==63,len(S)
+assert len(S)==64,len(S)  # +APP (تنويه تطبيق خُطوة)
 if len(sys.argv)>1:
     for k,t in S.items(): print(k,'|',SRC[k],'|',t)
     sys.exit()
 NP=7
 t=open(V+'board_template.html',encoding='utf-8').read()
-body=''.join(open('/home/claude/out/tools/L3C_p%d.js'%i,encoding='utf-8').read()+'\n' for i in range(NP))
+body=''.join(open('/home/claude/out/tools/L3C_p%d.js'%i,encoding='utf-8').read()+'\n' for i in range(NP))+open('/home/claude/out/tools/APP_card.js',encoding='utf-8').read()+'\n'
 a=t.index('/*__CONTENT_START__');b=t.index('/*__CONTENT_END__*/')+len('/*__CONTENT_END__*/')
 t=t[:a]+'/*__CONTENT_START__*/\nconst S='+json.dumps(S,ensure_ascii=False)+',SRC='+json.dumps(SRC,ensure_ascii=False)+';\n'+body+'\n/*__CONTENT_END__*/'+t[b:]
 t,n1=re.subn(r'<title>.*?</title>','<title>خُطوة · تاريخ · الدرس ٣ · السبورة L3C (الفصل ٣ · الاقتصاد ومكانة مصر وتدريبات الدرس والختام)</title>',t)

@@ -47,12 +47,16 @@ print('lines',len(S))
 if len(sys.argv)>1:
     for k,t in S.items(): print(k,'|',SRC.get(k),'|',t)
     sys.exit()
+# تنويه تطبيق خُطوة (نفس روح البرومو promo/script.md ص٥٠–٥١) — نص موحّد في آخر كل درس قبل التوقيع
+APP='وعشان تعرف إنت وصلت لفين في المنهج، وتراجع الدرس ده في وقته: حمّل تطبيق خُطوة. [[0.3]] مجاني، واللينك تحت الفيديو. [[0.3]] الثانوية مش قفزة. [[0.3]] الثانوية سلّم. [[0.3]] ابدأ النهارده بخُطوة واحدة.'
 tpl=open('/home/claude/out/board_template.html',encoding='utf-8').read()
-def build(out,parts,title,note,H):
+def build(out,parts,title,note,H,extra=None):
+    S2=dict(S);SRC2=dict(SRC)
+    for k,v in (extra or {}).items(): S2[k]=v;SRC2[k]=''
     body=''.join(open(T+f,encoding='utf-8').read()+'\n' for f in parts)
     t=tpl
     a=t.index('/*__CONTENT_START__');b=t.index('/*__CONTENT_END__*/')+len('/*__CONTENT_END__*/')
-    t=t[:a]+'/*__CONTENT_START__*/\nconst SP='+json.dumps(S,ensure_ascii=False)+',SRC='+json.dumps(SRC,ensure_ascii=False)+',PLAN='+json.dumps(PLAN,ensure_ascii=False)+';\n'+body+'\n/*__CONTENT_END__*/'+t[b:]
+    t=t[:a]+'/*__CONTENT_START__*/\nconst SP='+json.dumps(S2,ensure_ascii=False)+',SRC='+json.dumps(SRC2,ensure_ascii=False)+',PLAN='+json.dumps(PLAN,ensure_ascii=False)+';\n'+body+'\n/*__CONTENT_END__*/'+t[b:]
     t,n1=re.subn(r'<title>.*?</title>','<title>'+title+'</title>',t)
     t,n2=re.subn(r'<p id="note">نسخة v7 · الافتتاحية A0 \+ الشرايح A1–A3 \(السكريبت v3 \+ تبسيط v4\)\.','<p id="note">'+note,t)
     t,n3=re.subn(r'<rect y="-1800" width="3200" height="3600"','<rect y="-1800" width="3200" height="%d"'%H,t)
@@ -67,5 +71,7 @@ def build(out,parts,title,note,H):
 build('khutwa_hist_board_D.html',['D_v8_h.js','D_v8_d1.js'],'خُطوة · تاريخ · نسخة v8 · السبورة D (ركن الامتحان ١: D1 + أسئلة ص١٨–١٩)',
       'نسخة v8 · السبورة D (الفصل الرابع، الجزء ١): افتتاح الفصل D1 + أسئلة الدرس ص١٨–١٩ على «قالب ركن الامتحان»: السؤال بنصه ← طريقة الحل ← الإجابة النموذجية (مراجعة الحبكة v6). الجزء ٢ في khutwa_hist_board_D2.html.',5600)
 if os.path.exists(T+'D_v8_d2.js'):
-    build('khutwa_hist_board_D2.html',['D_v8_h.js','D_v8_d2.js'],'خُطوة · تاريخ · نسخة v8 · السبورة D2 (ركن الامتحان ٢: المقال ص٢٠ + لوحات الحفظ + الختام)',
-      'نسخة v8 · السبورة D2 (الفصل الرابع، الجزء ٢): الأسئلة المقالية ص٢٠ على «قالب ركن الامتحان» + لوحات «احفظ دي» التلاتة + إجابة سؤال الدرس + الدرس في دقيقة + الختام والتوقيع.',7600)
+    build('khutwa_hist_board_D2.html',['D_v8_h.js','D_v8_d2.js','APP_card.js'],'خُطوة · تاريخ · نسخة v8 · السبورة D2 (ركن الامتحان ٢: المقال ص٢٠ + لوحات الحفظ + الختام)',
+      'نسخة v8 · السبورة D2 (الفصل الرابع، الجزء ٢): الأسئلة المقالية ص٢٠ على «قالب ركن الامتحان» + لوحات «احفظ دي» التلاتة + إجابة سؤال الدرس + الدرس في دقيقة + الختام وتنويه تطبيق خُطوة والتوقيع.',7600,
+      {'D5.0':'إنت هنا: كمّلنا ركن الامتحان. [[0.3]] فاضل أسئلة صفحة عشرين، ولوحات الحفظ، والختام. [[0.3]] جهّز ورقة وقلم، ونبدأ.',
+       'APP':APP})
