@@ -55,9 +55,8 @@ function QPARTS(Q){const qt=toks(SP[Q.id+'-س']);
  const rng=(Q.qr||[[null,null,N]]).map(([f,e,c,gp])=>{const a=f==null?qt.findIndex(w=>w.startsWith('«')):TI(f,0,qt);let b;if(e)b=TI(e,0,qt);else{b=qt.length-1;if(Q.ch){b=qt.indexOf('(أ)')-1}}return [a,b,c||N,gp||0]});
  let chs=null;if(Q.ch){chs=['أ','ب','ج','د'].map((l,k,A)=>{const a=qt.indexOf('('+l+')'),b=k<3?qt.indexOf('('+A[k+1]+')')-1:qt.length-1;return {l,a,b}})}
  const at_=toks(SP[Q.id+'-ج']);let a0=Q.a0!=null?TI(Q.a0,0,at_):at_.findIndex(w=>w.startsWith('«')||/^\(.\)$/.test(w));
- const tl=at_.lastIndexOf('ودي');if(tl<0||!at_[tl+2].startsWith('اجتهادية'))throw new Error('QJ: مفيش «ودي إجابة اجتهادية» '+Q.id);
- const end=tl-1,nl=(Q.anl||[]).map(([s,n,bk])=>TI(s,n||0,at_)-(bk||0));
- const t0=tl+3<at_.length?tl+3:-1;   /* ذيل بعد «ودي إجابة اجتهادية» (زي «وأي … مقبول») بيتكتب سطر لوحده */
+ /* «ودي إجابة اجتهادية» بتتقال مرة واحدة في 6C.38؛ الإجابات بعدها من غيرها، والبادج «اجتهاد · ص…» بيظهر مع أول الإجابة */
+ const tl=at_.length,end=tl-1,nl=(Q.anl||[]).map(([s,n,bk])=>TI(s,n||0,at_)-(bk||0)),t0=-1;
  return {qt,rng,chs,at:at_,a0,tl,end,nl,t0}}
 /* محاكاة لفّ نص طريقة الحل: عدد السطور */
 function MLINES(Q,w,sz){let n=1,cw=0,first=true;Q.m.forEach(op=>{if(op[0]=='t'){const ws=op[1].split(/\s+/);ws.forEach(s=>{const tw=EW(s,sz)+sz*.56;if(!first&&cw+tw>w){n++;cw=0}first=false;cw+=tw})}else if(op[0]=='nl'){n++;cw=0;first=true}});return n}
@@ -114,7 +113,7 @@ function QJ(Q){const Lo=Q.L,b=Lo.ab,p=Lo.p,[qs,ql,cs,crow,as,al]=Lo.sz,t=TKS();i
  const f=FLOW(0,p.end,b.x1-24,b.y0+14+al*.72,aw,as,N,al,{w0:aw-Lo.bw-50-(Q.jr||0),nl:p.nl,cf:i=>i<p.a0?G:N});
  if(p.t0>0)FLOW(p.t0,t.length-1,b.x1-24,f.last+al,aw,as,GD,al);
  const m=/^\((.)\)$/.exec(t[p.a0].w);if(m&&Q.C){const c=Q.C[m[1]],o=t[p.a0].s/OS;P(o,CI(c.cx,c.cy-7,21),G,4,.4);HLR(c.f.ch,c.a,c.b,o,G,'underline')}
- const o=t[p.tl+2].s/OS,bw=Lo.bw;
+ const o=t[Math.min(1,t.length-1)].s/OS+.1,bw=Lo.bw;
  P(o,RR(b.x0+46,b.y0+9,bw,28,14),YD,2.5,.3,'#FFF4D6');W(o+.1,b.x0+46+bw-12,b.y0+29,Lo.bs,15,YD);chime(o);
  if(Q.jf)Q.jf(Lo)}
 /* سؤال كامل = ٣ سطور في خلية واحدة */
