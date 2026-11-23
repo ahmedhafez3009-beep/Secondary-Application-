@@ -24,6 +24,11 @@ data={}
 for u in units:
     for L in u['lessons']:
         for b in L['boards']: data[b['k']]=open(f"{D}/khutwa_hist_board_{b['k']}.html",encoding='utf8').read()
+# استوديو جملة جملة جوه كل سبورة
+import re as _re
+_js=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'lrec.js'),encoding='utf8').read()
+for k in data:
+    h=_re.sub(r'<script id="lrec">.*?</script>','',data[k],flags=_re.S);i=h.rindex('</body>');data[k]=h[:i]+'<script id="lrec">\n'+_js+'\n</script>'+h[i:]
 html='''<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>خُطوة · تاريخ تانية بكالوريا · المنهج كله</title>
 <style>
@@ -65,7 +70,7 @@ const ready=LES.filter(l=>l.boards.length);
 let curL=null,curB=null;
 function pauseAll(ex){for(const x in F)if(x!=ex){F[x].hidden=true;try{const p=F[x].contentWindow.document.getElementById('play');if(p&&p.textContent.startsWith('⏸'))p.click()}catch(e){}}}
 function showBoard(k){curB=k;pauseAll(k);$('home').hidden=true;
- if(!F[k]){const f=document.createElement('iframe');f.setAttribute('allow','fullscreen; clipboard-write; autoplay');f.setAttribute('allowfullscreen','');f.title=k;f.srcdoc=B[k];main.appendChild(f);F[k]=f}
+ if(!F[k]){const f=document.createElement('iframe');f.setAttribute('allow','fullscreen; clipboard-write; autoplay; microphone; display-capture');f.setAttribute('allowfullscreen','');f.title=k;f.srcdoc=B[k];main.appendChild(f);F[k]=f}
  F[k].hidden=false;document.querySelectorAll('#boards button').forEach(b=>b.setAttribute('aria-selected',b.dataset.k==k));
  try{localStorage.setItem('kh_all',JSON.stringify({l:curL.n,b:k}))}catch(e){}}
 function openLesson(l,k){curL=l;$('cur').textContent=l.unit.name+' · الدرس '+l.n+': '+l.title;
