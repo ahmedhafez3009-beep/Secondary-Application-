@@ -28,7 +28,10 @@ for u in units:
 import re as _re
 _js=open(os.path.join(os.path.dirname(os.path.abspath(__file__)),'lrec.js'),encoding='utf8').read()
 for k in data:
-    h=_re.sub(r'<script id="lrec">.*?</script>','',data[k],flags=_re.S);i=h.rindex('</body>');data[k]=h[:i]+'<script id="lrec">\n'+_js+'\n</script>'+h[i:]
+    h=_re.sub(r'<script id="lrec(Data)?"[^>]*>.*?</script>','',data[k],flags=_re.S);i=h.rindex('</body>')
+    _rp=os.path.join(os.path.dirname(os.path.abspath(__file__)),'rec',k+'.json')
+    _pre=('<script id="lrecData" type="application/json">'+open(_rp,encoding='utf8').read().replace('</','<\\/')+'</script>') if os.path.exists(_rp) else ''
+    data[k]=h[:i]+_pre+'<script id="lrec">\n'+_js+'\n</script>'+h[i:]
 html='''<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>خُطوة · تاريخ تانية بكالوريا · المنهج كله</title>
 <style>
