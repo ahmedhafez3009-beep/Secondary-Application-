@@ -6,7 +6,7 @@ recp=f'/home/claude/secondary-application-/tools/khutwa-work/video/rec/{board}.j
 out=json.load(open(recp)) if os.path.exists(recp) else {'key':board,'lines':{}}
 names=[s['name'].split(' ')[0] for s in SL]
 for tag in sys.argv[3:]:
-    i=names.index(tag);srcm=glob.glob(f'/mnt/user-data/uploads/*-{tag}.m4a')[0]
+    i=names.index(tag);srcm=max(glob.glob(f'/mnt/user-data/uploads/*-{tag}.m4a'),key=os.path.getmtime)
     segs,dur=vad(tag+'.wav');ls=slide_lines(i);sp,k=align(ls,segs)
     print(f'## {tag} lines {len(ls)} segs {len(segs)} audio {dur:.1f} k={k:.2f}')
     for l,(a,b) in zip(ls,sp):
