@@ -489,6 +489,7 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
   <div class="card" id="tutCard" hidden><h3>🎬 فيديو شرح التطبيق</h3><div class="muted" style="margin-bottom:8px">كل حاجة عن خُطوة في فيديو واحد على يوتيوب.</div><a class="btn" id="tutSet" href="#" target="_blank" rel="noopener noreferrer">▶ شوفي الفيديو</a></div>
   <div class="card"><h3>🪜 عن خُطوة</h3><div class="muted" style="margin-bottom:8px">إزاي اتعمل التطبيق، وليه اسمه خُطوة.</div><a class="btn ghost" id="openStory2" href="../story.html" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;text-decoration:none">اقرا الحكاية على موقع خُطوة</a></div>
   <div class="muted center" style="margin:6px 0 4px" id="footNote"></div>
+  <div class="center" style="margin:4px 0" id="admWrap" hidden><button type="button" class="btn ghost sm" id="admOpen" data-nog>🛠️ إدارة التطبيق</button></div>
   <div class="maker" style="margin-bottom:16px">Created by <b>Add Value</b></div>
 </section>
 
@@ -646,6 +647,12 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
   <div id="svyP" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px"><button type="button" class="btn ghost sm" data-p="time">⏰ مافيش وقت</button><button type="button" class="btn ghost sm" data-p="hard">📚 مادة صعبة</button><button type="button" class="btn ghost sm" data-p="focus">😴 مش قادرة أركّز</button><button type="button" class="btn ghost sm" data-p="lessons">🧭 أسماء الدروس مش زي الكتاب</button><button type="button" class="btn ghost sm" data-p="quiz">🧠 مشكلة في الكويز</button><button type="button" class="btn ghost sm" data-p="app">📱 مشكلة في التطبيق</button><button type="button" class="btn ghost sm" data-p="other">✏️ أخرى</button></div>
   <div id="svyOw" hidden><input type="text" id="svyO" maxlength="200" placeholder="اكتبي المشكلة باختصار" style="margin-bottom:4px"><div class="muted" style="font-size:12px;margin-bottom:8px">ما تكتبيش اسمك أو رقم تليفونك.</div></div>
   <button class="btn" id="svyGo" type="button" style="width:100%;margin-top:6px" disabled>ابعتي رأيك</button>
+</div></div>
+<div class="modal" id="adm"><div class="sheet" style="max-width:760px">
+  <div class="row" style="justify-content:space-between;margin-bottom:8px"><h3 style="margin:0">🛠️ لوحة إدارة خُطوة</h3><button class="btn ghost sm" type="button" id="admClose" data-nog>قفل</button></div>
+  <div id="admLogin"><p class="muted" style="margin:0 0 8px" data-nog>للمسؤول عن التطبيق بس. الباسوورد بيتراجع على سيرفر الردود، ومش بيتحفظ على الموبايل.</p>
+    <input type="password" id="admKey" autocomplete="off" placeholder="الباسوورد" style="margin-bottom:8px"><button class="btn" type="button" id="admGo" style="width:100%" data-nog>دخول</button><div class="muted" id="admMsg" style="margin-top:8px" data-nog></div></div>
+  <div id="admBody" hidden data-nog></div>
 </div></div>
 <div class="modal" id="dlg"><div class="sheet"><p id="dlgMsg" style="margin:0 0 10px;font-size:16px"></p><input type="text" id="dlgIn" style="margin-bottom:10px"><div class="row"><button class="btn" id="dlgOk" type="button" style="flex:1">تمام</button><button class="btn ghost" id="dlgNo" type="button" style="flex:1">إلغاء</button></div></div></div>
 <div id="timerBar" hidden>
@@ -3050,6 +3057,35 @@ $("svyGo").addEventListener("click", function(){ if(!svPick.r || !svPick.a) retu
   S.sv.q.push({w:today(), r:svPick.r, a:svPick.a, n:S.sv.nm, p:probs, o:svPick.p.other ? cleanStr($("svyO").value,200).trim() : "", m:svMetrics()});
   S.sv.q = S.sv.q.slice(-12); S.sv.last = today(); save(); $("svy").classList.remove("on"); toast("💚 شكرًا! رأيك وصل"); svFlush(); });
 window.addEventListener("online", svFlush);
+
+/* ---- owner dashboard: data lives in the survey sheet; the password is checked there, never stored here ---- */
+var admKeyMem = "";
+function admEsc(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+function admCall(key){ return fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({action:"stats", key:key})}).then(function(r){ return r.json(); }); }
+function admBar(label, n, max, color){ var w = max ? Math.round(100*n/max) : 0; return '<div style="margin:5px 0"><div class="row" style="justify-content:space-between;font-size:13px"><span>'+admEsc(label)+'</span><b>'+n+'</b></div><div style="height:8px;border-radius:6px;background:var(--line,#e6ecea)"><div style="height:8px;border-radius:6px;width:'+w+'%;background:'+(color||"var(--acc,#1f7a5a)")+'"></div></div></div>'; }
+function admTrend(weeks){ if(!weeks.length) return '<div class="muted">لسه مفيش أسابيع كفاية.</div>'; var W = 320, H = 120, n = weeks.length, pts = weeks.map(function(w,i){ var x = n===1 ? W/2 : 20 + i*(W-40)/(n-1), y = H-18 - (w.rating-1)/4*(H-36); return [x,y,w]; });
+  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:520px;direction:ltr"><line x1="20" x2="'+(W-20)+'" y1="'+(H-18)+'" y2="'+(H-18)+'" stroke="#ccd"/><polyline fill="none" stroke="#1f7a5a" stroke-width="3" points="'+pts.map(function(p){ return p[0]+","+p[1]; }).join(" ")+'"/>'+pts.map(function(p){ return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="#1f7a5a"/><text x="'+p[0]+'" y="'+(p[1]-8)+'" font-size="10" text-anchor="middle">'+p[2].rating.toFixed(1)+'</text><text x="'+p[0]+'" y="'+(H-4)+'" font-size="9" text-anchor="middle" fill="#667">'+admEsc(p[2].week.slice(5))+'</text>'; }).join("")+'</svg>'; }
+function admRender(d){ var k = d.kpi||{}, h = "", stL = function(c){ return (STAGES[c] && STAGES[c].label) || c; };
+  var card = function(t, v, s){ return '<div class="card" style="flex:1;min-width:130px;margin:0;padding:10px"><div class="muted" style="font-size:12px">'+t+'</div><div style="font-size:24px;font-weight:800">'+v+'</div><div class="muted" style="font-size:12px">'+(s||"")+'</div></div>'; };
+  var dr = (k.ratingThis!=null && k.ratingPrev!=null) ? (k.ratingThis - k.ratingPrev) : null;
+  h += '<div class="row" style="gap:8px;flex-wrap:wrap;margin-bottom:10px">'+card("ردود الأسبوع ده", k.thisWeek||0, "من "+(k.users||0)+" مستخدم إجمالًا")+card("متوسط التقييم", k.ratingThis!=null?k.ratingThis.toFixed(1)+" من 5":"—", dr==null?"":(dr>=0?"▲ ":"▼ ")+Math.abs(dr).toFixed(1)+" عن الأسبوع اللي فات")+card("بيتحسّنوا", (k.better||0)+" مستخدم", "تقييمهم طلع · "+(k.worse||0)+" نزل")+card("متوسط الحضور", k.att!=null?k.att+"%":"—", "خطوات مذاكرة/أسبوع: "+(k.steps!=null?k.steps:"—"))+'</div>';
+  h += '<div class="card"><h3 style="margin-top:0">🎯 نقط محتاج تشتغل عليها</h3>'+((d.focus||[]).length ? '<ol style="margin:0;padding-inline-start:20px">'+d.focus.map(function(f){ return '<li style="margin:4px 0">'+admEsc(String(f).replace(/«([a-z]\d)»/g, function(m,c){ return '«'+stL(c)+'»'; }))+'</li>'; }).join("")+'</ol>' : '<div class="muted">مفيش حاجة واضحة لسه.</div>')+'</div>';
+  h += '<div class="card"><h3 style="margin-top:0">📈 متوسط التقييم أسبوع بأسبوع</h3>'+admTrend(d.weeks||[])+'</div>';
+  var mx = function(arr){ return arr.reduce(function(m,x){ return Math.max(m,x.n); },0); };
+  h += '<div class="card"><h3 style="margin-top:0">⚠️ المشاكل (آخر 4 أسابيع)</h3>'+(d.problems||[]).map(function(p){ return admBar(p.label, p.n, mx(d.problems), "#c0622e"); }).join("")+'</div>';
+  h += '<div class="card"><h3 style="margin-top:0">🎓 حسب المرحلة</h3>'+(d.stages||[]).map(function(s){ return admBar(stL(s.label)+" · تقييم "+s.rating.toFixed(1), s.n, mx(d.stages)); }).join("")+'</div>';
+  h += '<div class="card"><h3 style="margin-top:0">👥 الأعمار</h3>'+(d.ages||[]).map(function(s){ return admBar(s.label, s.n, mx(d.ages), "#5b7bb5"); }).join("")+'</div>';
+  h += '<div class="card"><h3 style="margin-top:0">💬 آخر التعليقات</h3>'+((d.comments||[]).length ? d.comments.map(function(c){ return '<div style="border-top:1px solid var(--line,#e6ecea);padding:6px 0"><div>'+admEsc(c.text)+'</div><div class="muted" style="font-size:12px">'+admEsc([c.name, c.age, stL(c.stage), "تقييم "+c.rating, c.week].filter(String).join(" · "))+'</div></div>'; }).join("") : '<div class="muted">مفيش تعليقات لسه.</div>')+'</div>';
+  h += '<div class="muted center" style="font-size:12px">آخر تحديث: '+admEsc(d.at||"")+' · كل الردود في Google Sheet</div>';
+  $("admBody").innerHTML = h; $("admBody").hidden = false; $("admLogin").hidden = true; }
+function admLoad(){ var key = admKeyMem || $("admKey").value; if(!key) return; $("admMsg").textContent = "بيحمّل…"; $("admGo").disabled = true;
+  admCall(key).then(function(d){ $("admGo").disabled = false; if(!d || d.error){ admKeyMem = ""; $("admMsg").textContent = d && d.error==="locked" ? "محاولات كتير غلط. استنى ربع ساعة." : "الباسوورد غلط."; return; } admKeyMem = key; $("admKey").value = ""; admRender(d); })
+  .catch(function(){ $("admGo").disabled = false; $("admMsg").textContent = "مش قادر يوصل للسيرفر. اتأكد من النت."; }); }
+$("admOpen").addEventListener("click", function(){ $("admLogin").hidden = !!admKeyMem; $("admBody").hidden = !admKeyMem; $("admMsg").textContent = ""; $("adm").classList.add("on"); if(admKeyMem) admLoad(); });
+$("admGo").addEventListener("click", admLoad);
+$("admKey").addEventListener("keydown", function(e){ if(e.key==="Enter") admLoad(); });
+$("admClose").addEventListener("click", function(){ $("adm").classList.remove("on"); });
+$("admWrap").hidden = !CFG.sv;
 initialSync();
 (function(){ try{ var seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10); if(seen && seen < currV && S.setup) toast("📚 المناهج اتحدثت: دروس جديدة اتضافت، وتقدمك زي ما هو"); localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){} })();
 checkCurriculum();
