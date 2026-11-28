@@ -648,10 +648,37 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
   <div id="svyOw" hidden><input type="text" id="svyO" maxlength="200" placeholder="اكتبي المشكلة باختصار" style="margin-bottom:4px"><div class="muted" style="font-size:12px;margin-bottom:8px">ما تكتبيش اسمك أو رقم تليفونك.</div></div>
   <button class="btn" id="svyGo" type="button" style="width:100%;margin-top:6px" disabled>ابعتي رأيك</button>
 </div></div>
-<div class="modal" id="adm"><div class="sheet" style="max-width:760px">
-  <div class="row" style="justify-content:space-between;margin-bottom:8px"><h3 style="margin:0">🛠️ لوحة إدارة خُطوة</h3><button class="btn ghost sm" type="button" id="admClose" data-nog>قفل</button></div>
-  <div id="admLogin"><p class="muted" style="margin:0 0 8px" data-nog>للمسؤول عن التطبيق بس. الباسوورد بيتراجع على سيرفر الردود، ومش بيتحفظ على الموبايل.</p>
+<div class="modal" id="adm"><div class="sheet adm-sheet">
+<style>
+.adm-sheet{max-width:900px!important;height:94vh;max-height:94vh;display:flex;flex-direction:column;padding:0!important;overflow:hidden!important}
+.adm-top{padding:14px 16px 0;border-bottom:1px solid var(--line,#e3e9e7);background:var(--card)}
+.adm-tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-top:10px}
+.adm-tabs button{border:0;background:none;padding:9px 12px;font:inherit;font-size:14px;color:var(--mut,#6b7a78);border-bottom:3px solid transparent;white-space:nowrap;cursor:pointer}
+.adm-tabs button.on{color:var(--fg,#173634);border-color:#1f7a5a;font-weight:800}
+.adm-main{flex:1;overflow:auto;padding:14px 16px calc(18px + env(safe-area-inset-bottom))}
+.adm-filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.adm-filters select,.adm-set select{width:auto!important;flex:0 0 auto;padding:6px 10px;border-radius:10px;border:1px solid var(--line,#d5dfdc);font:inherit;font-size:13px;background:var(--card);color:inherit}
+.adm-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}
+.adm-kpi{border:1px solid var(--line,#e3e9e7);border-radius:16px;padding:12px;background:var(--card)}
+.adm-kpi .l{font-size:12px;color:var(--mut,#6b7a78)}.adm-kpi .v{font-size:26px;font-weight:800;line-height:1.3}.adm-kpi .s{font-size:12px}
+.adm-up{color:#1f7a5a}.adm-dn{color:#c0392b}
+.adm-two{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.adm-box{border:1px solid var(--line,#e3e9e7);border-radius:16px;padding:12px 14px;margin-bottom:12px;background:var(--card)}
+.adm-box h4{margin:0 0 8px;font-size:15px}
+.adm-tbl{width:100%;border-collapse:collapse;font-size:13px}.adm-tbl th,.adm-tbl td{padding:7px 6px;border-top:1px solid var(--line,#e3e9e7);text-align:right}.adm-tbl th{color:var(--mut,#6b7a78);font-weight:600}
+.adm-resp{border-top:1px solid var(--line,#e3e9e7);padding:9px 0}
+.adm-chip{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--line,#eef3f1);margin:2px 0 0 4px}
+.adm-set{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line,#e3e9e7)}
+.adm-set .t{font-weight:700}.adm-set .d{font-size:12px;color:var(--mut,#6b7a78)}
+</style>
+  <div class="adm-top"><div class="row" style="justify-content:space-between;gap:8px"><h3 style="margin:0">🛠️ لوحة إدارة خُطوة</h3><div class="row" style="gap:6px"><button class="btn ghost sm" type="button" id="admRef" data-nog hidden>⟳ تحديث</button><button class="btn ghost sm" type="button" id="admOut" data-nog hidden>خروج</button><button class="btn ghost sm" type="button" id="admClose" data-nog>قفل</button></div></div>
+    <div id="admBar" hidden><div class="adm-filters"><select id="admSpan" data-nog><option value="4">آخر 4 أسابيع</option><option value="12">آخر 12 أسبوع</option><option value="52">آخر سنة</option></select><select id="admStage" data-nog><option value="">كل المراحل</option></select><span class="muted" id="admAt" style="font-size:12px"></span></div>
+    <nav class="adm-tabs" id="admTabs"><button type="button" data-t="ov" class="on">📊 نظرة عامة</button><button type="button" data-t="tr">📈 التحسّن</button><button type="button" data-t="pr">⚠️ المشاكل</button><button type="button" data-t="rs">💬 الردود</button><button type="button" data-t="nw">📣 الإعلانات</button><button type="button" data-t="st">⚙️ الإعدادات</button></nav></div>
+  </div>
+  <div class="adm-main"><div id="admLogin" style="max-width:380px;margin:30px auto"><p class="muted" style="margin:0 0 8px" data-nog>للمسؤول عن التطبيق بس. الباسوورد بيتراجع على سيرفر الردود، ومش بيتحفظ على الموبايل.</p>
     <input type="password" id="admKey" autocomplete="off" placeholder="الباسوورد" style="margin-bottom:8px"><button class="btn" type="button" id="admGo" style="width:100%" data-nog>دخول</button><div class="muted" id="admMsg" style="margin-top:8px" data-nog></div></div>
+  <div id="admBody" hidden data-nog></div></div>
+</div></div>
   <div id="admBody" hidden data-nog></div>
 </div></div>
 <div class="modal" id="news"><div class="sheet"><h3 style="margin:0 0 10px">📣 جديد في خُطوة</h3><div id="newsBody" data-nog></div><button class="btn" id="newsOk" type="button" style="width:100%;margin-top:10px">تمام</button></div></div>
@@ -3038,22 +3065,23 @@ function svMetrics(){ var from = svDaysAgo(7), steps = 0, done = 0, qz = 0, p = 
   Object.keys(S.quiz||{}).forEach(function(k){ if((S.quiz[k].d||"") >= from) qz++; });
   Object.keys(S.att||{}).forEach(function(d){ if(d >= from){ if(S.att[d]==="p") p++; else if(S.att[d]==="a") ab++; } });
   return {stage:S.stage||"", track:S.track||"", who:S.who||"", steps7:steps, quiz7:qz, att7:(p+ab)?Math.round(100*p/(p+ab)):-1, lessonsDone:done}; }
-function svDue(){ if(!CFG.sv || !S.setup || !S.stage) return false; var t = today();
+function svCfg(){ var c = {}; try{ c = JSON.parse(localStorage.getItem("khutwa-svcfg")||"{}")||{}; }catch(e){} return {on: c.on!==false, every: [7,14,30].indexOf(+c.every)>=0 ? +c.every : 7, firstAfter: [1,3,7].indexOf(+c.firstAfter)>=0 ? +c.firstAfter : 3, askName: c.askName!==false}; }
+function svDue(){ var c = svCfg(); if(!CFG.sv || !c.on || !S.setup || !S.stage) return false; var t = today();
   if(!S.sv.first){ S.sv.first = t; save(); return false; }
-  if(S.sv.first > svDaysAgo(3)) return false;
-  return !S.sv.last || S.sv.last <= svDaysAgo(7); }
+  if(S.sv.first > svDaysAgo(c.firstAfter)) return false;
+  return !S.sv.last || S.sv.last <= svDaysAgo(c.every); }
 function svFlush(){ if(!CFG.sv || !S.sv.q.length || !navigator.onLine || svFlush.busy) return; svFlush.busy = true;
   var item = S.sv.q[0], body = JSON.stringify({v:1, id:S.sv.id, week:item.w, rating:item.r, age:item.a, name:item.n||"", problems:item.p, other:item.o, m:item.m, app:"c"+(typeof CURR_VERSION==="number"?CURR_VERSION:0)});
   fetch(CFG.sv, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:body}).then(function(){ S.sv.q.shift(); save(); svFlush.busy = false; svFlush(); }).catch(function(){ svFlush.busy = false; }); }
 function svPaint(){ var bs = $("svyR").querySelectorAll("button"); for(var i=0;i<bs.length;i++) bs[i].classList.toggle("on", +bs[i].getAttribute("data-r")===svPick.r);
   var ps = $("svyP").querySelectorAll("button"); for(var j=0;j<ps.length;j++){ var on = !!svPick.p[ps[j].getAttribute("data-p")]; ps[j].classList.toggle("ghost", !on); }
   var as = $("svyA").querySelectorAll("button"); for(var k=0;k<as.length;k++) as[k].classList.toggle("on", as[k].getAttribute("data-a")===svPick.a);
-  $("svyNw").hidden = !/^(13|16|18)$/.test(svPick.a); $("svyOw").hidden = !svPick.p.other; $("svyGo").disabled = !svPick.r || !svPick.a; }
+  $("svyNw").hidden = !svCfg().askName || !/^(13|16|18)$/.test(svPick.a); $("svyOw").hidden = !svPick.p.other; $("svyGo").disabled = !svPick.r || !svPick.a; }
 function svShow(){ svPick = {r:0, p:{}, a:S.sv.age||""}; $("svyO").value = ""; $("svyN").value = S.sv.nm||""; svPaint(); genderize($("svy")); $("svy").classList.add("on"); }
 $("svyR").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; svPick.r = +b.getAttribute("data-r"); svPaint(); });
 $("svyA").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; svPick.a = b.getAttribute("data-a"); svPaint(); });
 $("svyP").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; var k = b.getAttribute("data-p"); svPick.p[k] = !svPick.p[k]; svPaint(); });
-$("svyGo").addEventListener("click", function(){ if(!svPick.r || !svPick.a) return; S.sv.age = svPick.a; S.sv.nm = /^(13|16|18)$/.test(svPick.a) ? cleanStr($("svyN").value,20).trim().split(/\s+/)[0]||"" : "";
+$("svyGo").addEventListener("click", function(){ if(!svPick.r || !svPick.a) return; S.sv.age = svPick.a; S.sv.nm = svCfg().askName && /^(13|16|18)$/.test(svPick.a) ? cleanStr($("svyN").value,20).trim().split(/\s+/)[0]||"" : "";
   if(!S.sv.id){ var a = new Uint8Array(8); (window.crypto||{}).getRandomValues ? crypto.getRandomValues(a) : a.forEach(function(_,i){ a[i]=Math.random()*256; }); S.sv.id = Array.prototype.map.call(a, function(x){ return ("0"+x.toString(16)).slice(-2); }).join(""); }
   var probs = Object.keys(svPick.p).filter(function(k){ return svPick.p[k]; });
   S.sv.q.push({w:today(), r:svPick.r, a:svPick.a, n:S.sv.nm, p:probs, o:svPick.p.other ? cleanStr($("svyO").value,200).trim() : "", m:svMetrics()});
@@ -3062,7 +3090,8 @@ window.addEventListener("online", svFlush);
 
 /* ---- announcements: shown once, on the next open, to the stages they target ---- */
 function newsCheck(done){ if(!CFG.sv || !S.setup || !navigator.onLine) return done && done();
-  fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({action:"news"})}).then(function(r){ return r.json(); }).then(function(d){
+  fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({action:"boot"})}).then(function(r){ return r.json(); }).then(function(d){
+    if(d && d.cfg){ try{ localStorage.setItem("khutwa-svcfg", JSON.stringify(d.cfg)); }catch(e){} }
     var items = ((d && d.items)||[]).filter(function(n){ return n && n.id && n.t && S.newsSeen.indexOf(n.id)<0 && (!n.st || n.st===S.stage); });
     if(!items.length) return done && done();
     $("newsBody").innerHTML = items.slice().reverse().map(function(n){ var u = /^https:\/\//.test(n.u||"") ? n.u : ""; return '<div style="border-top:1px solid var(--line,#e6ecea);padding:8px 0"><div style="font-weight:800">'+admEsc(n.t)+'</div>'+(n.b?'<div style="white-space:pre-wrap;margin-top:4px">'+admEsc(n.b)+'</div>':'')+(u?'<a class="btn ghost sm" style="margin-top:6px;display:inline-block" href="'+admEsc(u)+'" target="_blank" rel="noopener noreferrer">افتح الرابط</a>':'')+'<div class="muted" style="font-size:12px;margin-top:4px">'+admEsc(n.at||"")+'</div></div>'; }).join("");
@@ -3070,42 +3099,92 @@ function newsCheck(done){ if(!CFG.sv || !S.setup || !navigator.onLine) return do
     $("news").classList.add("on"); }).catch(function(){ done && done(); }); }
 
 /* ---- owner dashboard: data lives in the survey sheet; the password is checked there, never stored here ---- */
-var admKeyMem = "";
+var admKeyMem = "", admData = null, admTab = "ov";
 function admEsc(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
-function admCall(key){ return fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({action:"stats", key:key})}).then(function(r){ return r.json(); }); }
-function admBar(label, n, max, color){ var w = max ? Math.round(100*n/max) : 0; return '<div style="margin:5px 0"><div class="row" style="justify-content:space-between;font-size:13px"><span>'+admEsc(label)+'</span><b>'+n+'</b></div><div style="height:8px;border-radius:6px;background:var(--line,#e6ecea)"><div style="height:8px;border-radius:6px;width:'+w+'%;background:'+(color||"var(--acc,#1f7a5a)")+'"></div></div></div>'; }
-function admTrend(weeks){ if(!weeks.length) return '<div class="muted">لسه مفيش أسابيع كفاية.</div>'; var W = 320, H = 120, n = weeks.length, pts = weeks.map(function(w,i){ var x = n===1 ? W/2 : 20 + i*(W-40)/(n-1), y = H-18 - (w.rating-1)/4*(H-36); return [x,y,w]; });
-  return '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;max-width:520px;direction:ltr"><line x1="20" x2="'+(W-20)+'" y1="'+(H-18)+'" y2="'+(H-18)+'" stroke="#ccd"/><polyline fill="none" stroke="#1f7a5a" stroke-width="3" points="'+pts.map(function(p){ return p[0]+","+p[1]; }).join(" ")+'"/>'+pts.map(function(p){ return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="#1f7a5a"/><text x="'+p[0]+'" y="'+(p[1]-8)+'" font-size="10" text-anchor="middle">'+p[2].rating.toFixed(1)+'</text><text x="'+p[0]+'" y="'+(H-4)+'" font-size="9" text-anchor="middle" fill="#667">'+admEsc(p[2].week.slice(5))+'</text>'; }).join("")+'</svg>'; }
-function admRender(d){ var k = d.kpi||{}, h = "", stL = function(c){ return (STAGES[c] && STAGES[c].label) || c; };
-  var card = function(t, v, s){ return '<div class="card" style="flex:1;min-width:130px;margin:0;padding:10px"><div class="muted" style="font-size:12px">'+t+'</div><div style="font-size:24px;font-weight:800">'+v+'</div><div class="muted" style="font-size:12px">'+(s||"")+'</div></div>'; };
-  var dr = (k.ratingThis!=null && k.ratingPrev!=null) ? (k.ratingThis - k.ratingPrev) : null;
-  h += '<div class="row" style="gap:8px;flex-wrap:wrap;margin-bottom:10px">'+card("ردود الأسبوع ده", k.thisWeek||0, "من "+(k.users||0)+" مستخدم إجمالًا")+card("متوسط التقييم", k.ratingThis!=null?k.ratingThis.toFixed(1)+" من 5":"—", dr==null?"":(dr>=0?"▲ ":"▼ ")+Math.abs(dr).toFixed(1)+" عن الأسبوع اللي فات")+card("بيتحسّنوا", (k.better||0)+" مستخدم", "تقييمهم طلع · "+(k.worse||0)+" نزل")+card("متوسط الحضور", k.att!=null?k.att+"%":"—", "خطوات مذاكرة/أسبوع: "+(k.steps!=null?k.steps:"—"))+'</div>';
-  h += '<div class="card"><h3 style="margin-top:0">🎯 نقط محتاج تشتغل عليها</h3>'+((d.focus||[]).length ? '<ol style="margin:0;padding-inline-start:20px">'+d.focus.map(function(f){ return '<li style="margin:4px 0">'+admEsc(String(f).replace(/«([a-z]\d)»/g, function(m,c){ return '«'+stL(c)+'»'; }))+'</li>'; }).join("")+'</ol>' : '<div class="muted">مفيش حاجة واضحة لسه.</div>')+'</div>';
-  h += '<div class="card"><h3 style="margin-top:0">📈 متوسط التقييم أسبوع بأسبوع</h3>'+admTrend(d.weeks||[])+'</div>';
-  var mx = function(arr){ return arr.reduce(function(m,x){ return Math.max(m,x.n); },0); };
-  h += '<div class="card"><h3 style="margin-top:0">⚠️ المشاكل (آخر 4 أسابيع)</h3>'+(d.problems||[]).map(function(p){ return admBar(p.label, p.n, mx(d.problems), "#c0622e"); }).join("")+'</div>';
-  h += '<div class="card"><h3 style="margin-top:0">🎓 حسب المرحلة</h3>'+(d.stages||[]).map(function(s){ return admBar(stL(s.label)+" · تقييم "+s.rating.toFixed(1), s.n, mx(d.stages)); }).join("")+'</div>';
-  h += '<div class="card"><h3 style="margin-top:0">👥 الأعمار</h3>'+(d.ages||[]).map(function(s){ return admBar(s.label, s.n, mx(d.ages), "#5b7bb5"); }).join("")+'</div>';
-  h += '<div class="card"><h3 style="margin-top:0">💬 آخر التعليقات</h3>'+((d.comments||[]).length ? d.comments.map(function(c){ return '<div style="border-top:1px solid var(--line,#e6ecea);padding:6px 0"><div>'+admEsc(c.text)+'</div><div class="muted" style="font-size:12px">'+admEsc([c.name, c.age, stL(c.stage), "تقييم "+c.rating, c.week].filter(String).join(" · "))+'</div></div>'; }).join("") : '<div class="muted">مفيش تعليقات لسه.</div>')+'</div>';
-  h += '<div class="card"><h3 style="margin-top:0">📣 إعلان للطلاب</h3><div class="muted" style="font-size:13px;margin-bottom:8px">بيظهر للطالب أول ما يفتح التطبيق، مرة واحدة.</div>'
-    + '<input type="text" id="anT" maxlength="60" placeholder="العنوان (مثلًا: نزلت أسئلة الكيميا)" style="margin-bottom:6px"><textarea id="anB" maxlength="400" rows="3" placeholder="التفاصيل (اختياري)" style="width:100%;margin-bottom:6px;font:inherit;border-radius:12px;padding:8px;border:1px solid var(--line,#dde)"></textarea>'
-    + '<input type="url" id="anU" placeholder="رابط اختياري يبدأ بـ https://" style="margin-bottom:6px"><select id="anS" style="width:100%;margin-bottom:8px;padding:8px;border-radius:12px"><option value="">لكل المراحل</option>'+Object.keys(STAGES).map(function(c){ return '<option value="'+c+'">'+admEsc(STAGES[c].label)+'</option>'; }).join("")+'</select>'
-    + '<button class="btn" type="button" id="anGo" style="width:100%">انشر الإعلان</button><div class="muted" id="anMsg" style="margin-top:6px"></div>'
-    + '<div id="anList" style="margin-top:8px">'+admNewsList(d.news||[])+'</div></div>';
-  h += '<div class="muted center" style="font-size:12px">آخر تحديث: '+admEsc(d.at||"")+' · كل الردود في Google Sheet</div>';
-  $("admBody").innerHTML = h; $("admBody").hidden = false; $("admLogin").hidden = true;
-  $("anGo").onclick = function(){ var t = $("anT").value.trim(); if(!t){ $("anMsg").textContent = "اكتب عنوان الإعلان."; return; } $("anGo").disabled = true; $("anMsg").textContent = "بينشر…";
-    admPost({action:"announce", key:admKeyMem, t:t, b:$("anB").value, u:$("anU").value.trim(), st:$("anS").value}).then(function(r){ $("anGo").disabled = false; if(!r || r.error){ $("anMsg").textContent = "ما اتنشرش ("+((r&&r.error)||"خطأ")+")."; return; } $("anT").value = $("anB").value = $("anU").value = ""; $("anMsg").textContent = "✅ اتنشر. هيظهر للطلاب أول ما يفتحوا التطبيق."; $("anList").innerHTML = admNewsList(r.news||[]); }).catch(function(){ $("anGo").disabled = false; $("anMsg").textContent = "مش قادر يوصل للسيرفر."; }); };
-  $("anList").onclick = function(e){ var b = e.target.closest("[data-del]"); if(!b) return; admPost({action:"unannounce", key:admKeyMem, id:b.getAttribute("data-del")}).then(function(r){ if(r && !r.error) $("anList").innerHTML = admNewsList(r.news||[]); }); }; }
 function admPost(o){ return fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(o)}).then(function(r){ return r.json(); }); }
-function admNewsList(list){ if(!list.length) return '<div class="muted" style="font-size:13px">مفيش إعلانات شغالة.</div>'; return '<div class="muted" style="font-size:12px;margin-bottom:4px">الإعلانات الشغالة (آخر 5):</div>'+list.slice().reverse().map(function(n){ return '<div class="row" style="justify-content:space-between;border-top:1px solid var(--line,#e6ecea);padding:6px 0;gap:8px"><div style="flex:1;min-width:0"><b>'+admEsc(n.t)+'</b><div class="muted" style="font-size:12px">'+admEsc(n.at)+' · '+admEsc(n.st ? ((STAGES[n.st]||{}).label||n.st) : "كل المراحل")+'</div></div><button type="button" class="btn ghost sm" data-del="'+admEsc(n.id)+'">شيل</button></div>'; }).join(""); }
-function admLoad(){ var key = admKeyMem || $("admKey").value; if(!key) return; $("admMsg").textContent = "بيحمّل…"; $("admGo").disabled = true;
-  admCall(key).then(function(d){ $("admGo").disabled = false; if(!d || d.error){ admKeyMem = ""; $("admMsg").textContent = d && d.error==="locked" ? "محاولات كتير غلط. استنى ربع ساعة." : "الباسوورد غلط."; return; } admKeyMem = key; $("admKey").value = ""; admRender(d); })
-  .catch(function(){ $("admGo").disabled = false; $("admMsg").textContent = "مش قادر يوصل للسيرفر. اتأكد من النت."; }); }
-$("admOpen").addEventListener("click", function(){ $("admLogin").hidden = !!admKeyMem; $("admBody").hidden = !admKeyMem; $("admMsg").textContent = ""; $("adm").classList.add("on"); if(admKeyMem) admLoad(); });
+function stL(c){ return (STAGES[c] && STAGES[c].label) || c || "—"; }
+function f1(v){ return v==null || isNaN(v) ? "—" : (+v).toFixed(1); }
+function admBar(label, n, max, color, extra){ var w = max ? Math.max(2, Math.round(100*n/max)) : 0; return '<div style="margin:7px 0"><div class="row" style="justify-content:space-between;font-size:13px;gap:8px"><span>'+admEsc(label)+(extra?' <span class="muted">'+extra+'</span>':'')+'</span><b>'+n+'</b></div><div style="height:9px;border-radius:6px;background:var(--line,#e6ecea)"><div style="height:9px;border-radius:6px;width:'+w+'%;background:'+(color||"#1f7a5a")+'"></div></div></div>'; }
+function admLine(weeks, series){ if(!weeks.length) return '<div class="muted">لسه مفيش أسابيع كفاية.</div>'; var W = 560, H = 170, n = weeks.length, L = 34, R = 14, T = 14, B = 26;
+  var x = function(i){ return n===1 ? (L+W-R)/2 : L + i*(W-L-R)/(n-1); };
+  var out = '<svg viewBox="0 0 '+W+' '+H+'" style="width:100%;direction:ltr">';
+  series.forEach(function(s){ var y = function(v){ return T + (1-(v-s.min)/(s.max-s.min))*(H-T-B); };
+    if(s.grid) [s.min, (s.min+s.max)/2, s.max].forEach(function(g){ out += '<line x1="'+L+'" x2="'+(W-R)+'" y1="'+y(g)+'" y2="'+y(g)+'" stroke="#e3e9e7"/><text x="'+(L-6)+'" y="'+(y(g)+4)+'" font-size="10" text-anchor="end" fill="#889">'+s.fmt(g)+'</text>'; });
+    var pts = weeks.map(function(w,i){ var v = w[s.k]; return v==null ? null : [x(i), y(v), v]; }).filter(Boolean);
+    if(pts.length) out += '<polyline fill="none" stroke="'+s.c+'" stroke-width="'+(s.w||3)+'" '+(s.dash?'stroke-dasharray="5 4"':'')+' points="'+pts.map(function(p){ return p[0]+","+p[1]; }).join(" ")+'"/>';
+    pts.forEach(function(p){ out += '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="3.5" fill="'+s.c+'"/>'; });
+    if(s.label && pts.length){ var p = pts[pts.length-1]; out += '<text x="'+p[0]+'" y="'+(p[1]-8)+'" font-size="11" text-anchor="end" fill="'+s.c+'" font-weight="700">'+s.fmt(p[2])+'</text>'; } });
+  weeks.forEach(function(w,i){ if(n<=12 || i%Math.ceil(n/12)===0) out += '<text x="'+x(i)+'" y="'+(H-8)+'" font-size="10" text-anchor="middle" fill="#889">'+admEsc(String(w.week).slice(5))+'</text>'; });
+  return out+'</svg>'; }
+function admKpi(l, v, s, cls){ return '<div class="adm-kpi"><div class="l">'+l+'</div><div class="v">'+v+'</div><div class="s '+(cls||"muted")+'">'+(s||"&nbsp;")+'</div></div>'; }
+var admTabsR = {
+ ov: function(d){ var k = d.kpi||{}, dr = (k.ratingThis!=null && k.ratingPrev!=null) ? k.ratingThis-k.ratingPrev : null, tot = (d.dist||[]).reduce(function(a,b){ return a+b; },0), h = '';
+  var imp = (k.better||0)+(k.worse||0) ? Math.round(100*(k.better||0)/((k.better||0)+(k.worse||0))) : null;
+  h += '<div class="adm-grid">'+admKpi("ردود الأسبوع ده", k.thisWeek||0, "من "+(k.users||0)+" مستخدم · "+(k.total||0)+" رد إجمالًا")
+    + admKpi("متوسط التقييم", f1(k.ratingThis)+'<span style="font-size:14px"> من 5</span>', dr==null?"الأسبوع ده":((dr>=0?"▲ ":"▼ ")+Math.abs(dr).toFixed(1)+" عن اللي فات"), dr==null?"":(dr>=0?"adm-up":"adm-dn"))
+    + admKpi("بيتحسّنوا", imp==null?"—":imp+"%", (k.better||0)+" طلع · "+(k.worse||0)+" نزل", imp==null?"":(imp>=50?"adm-up":"adm-dn"))
+    + admKpi("متوسط الحضور", k.att!=null?k.att+"%":"—", "في الفترة المختارة", k.att!=null&&k.att<70?"adm-dn":"")
+    + admKpi("خطوات المذاكرة", k.steps!=null?k.steps:"—", "متوسط في الأسبوع للطالب")+'</div>';
+  h += '<div class="adm-two"><div class="adm-box"><h4>🎯 نقط محتاج تشتغل عليها</h4>'+((d.focus||[]).length ? '<ol style="margin:0;padding-inline-start:20px">'+d.focus.map(function(f){ return '<li style="margin:5px 0">'+admEsc(String(f).replace(/«([a-z]\d)»|المرحلة ([a-z]\d)/g, function(m,c1,c2){ return c1 ? "«"+stL(c1)+"»" : "مرحلة «"+stL(c2)+"»"; }))+'</li>'; }).join("")+'</ol>' : '<div class="muted">مفيش حاجة واضحة لسه. بتظهر هنا لما الردود تكتر.</div>')+'</div>';
+  h += '<div class="adm-box"><h4>⭐ توزيع التقييمات</h4>'+[5,4,3,2,1].map(function(v){ var n = (d.dist||[])[v-1]||0; return admBar(["","😣 1","😕 2","😐 3","🙂 4","🤩 5"][v], n, Math.max.apply(null,(d.dist||[0]).concat([1])), v>=4?"#1f7a5a":(v===3?"#c9a227":"#c0392b"), tot?Math.round(100*n/tot)+"%":""); }).join("")+'</div></div>';
+  return h; },
+ tr: function(d){ var w = d.weeks||[], h = '';
+  h += '<div class="adm-box"><h4>📈 متوسط التقييم أسبوع بأسبوع</h4>'+admLine(w, [{k:"rating", min:1, max:5, c:"#1f7a5a", grid:true, label:true, fmt:function(v){ return (+v).toFixed(1); }}])+'</div>';
+  h += '<div class="adm-two"><div class="adm-box"><h4>📚 خطوات المذاكرة في الأسبوع (متوسط)</h4>'+admLine(w, [{k:"steps", min:0, max:Math.max(4, Math.ceil(Math.max.apply(null, w.map(function(x){ return x.steps||0; }).concat([1])))), c:"#5b7bb5", grid:true, label:true, fmt:function(v){ return (+v).toFixed(1); }}])+'</div>';
+  h += '<div class="adm-box"><h4>🏫 الحضور % (متوسط)</h4>'+admLine(w, [{k:"att", min:0, max:100, c:"#c0622e", grid:true, label:true, fmt:function(v){ return Math.round(v)+"%"; }}])+'</div></div>';
+  h += '<div class="adm-box"><h4>عدد الردود كل أسبوع</h4>'+w.map(function(x){ return admBar(x.week, x.n, Math.max.apply(null, w.map(function(y){ return y.n; }))); }).join("")+'</div>';
+  return h; },
+ pr: function(d){ var mx = function(a){ return a.reduce(function(m,x){ return Math.max(m,x.n); },1); }, h = '';
+  h += '<div class="adm-two"><div class="adm-box"><h4>⚠️ المشاكل الأكتر تكرارًا</h4>'+((d.problems||[]).length ? d.problems.map(function(p){ return admBar(p.label, p.n, mx(d.problems), "#c0622e"); }).join("") : '<div class="muted">مفيش مشاكل متسجلة في الفترة دي.</div>')+'</div>';
+  h += '<div class="adm-box"><h4>👥 الأعمار</h4>'+(d.ages||[]).map(function(s){ return admBar(s.label, s.n, mx(d.ages), "#5b7bb5"); }).join("")+'</div></div>';
+  h += '<div class="adm-box"><h4>🎓 المراحل</h4><div style="overflow-x:auto"><table class="adm-tbl"><tr><th>المرحلة</th><th>ردود</th><th>التقييم</th><th>خطوات/أسبوع</th><th>الحضور</th></tr>'+(d.stageMetrics||[]).sort(function(a,b){ return b.n-a.n; }).map(function(s){ return '<tr><td>'+admEsc(stL(s.label))+'</td><td>'+s.n+'</td><td class="'+(s.rating<3?"adm-dn":"")+'">'+f1(s.rating)+'</td><td>'+f1(s.steps)+'</td><td>'+(s.att==null?"—":Math.round(s.att)+"%")+'</td></tr>'; }).join("")+'</table></div></div>';
+  return h; },
+ rs: function(d){ var list = d.responses||[];
+  var h = '<div class="adm-box"><div class="row" style="justify-content:space-between;gap:8px;margin-bottom:6px"><h4 style="margin:0">💬 آخر '+list.length+' رد</h4><a class="btn ghost sm" href="'+admEsc(d.sheetUrl||"#")+'" target="_blank" rel="noopener noreferrer">افتح الشيت كامل</a></div><input type="search" id="admQ" placeholder="دوّر في الردود (اسم، مشكلة، تعليق…)" style="margin-bottom:6px"><div id="admRL"></div></div>';
+  setTimeout(function(){ var paint = function(){ var q = ($("admQ").value||"").trim(); $("admRL").innerHTML = list.filter(function(r){ return !q || [r.name,r.problems,r.other,stL(r.stage),r.age].join(" ").indexOf(q)>=0; }).map(function(r){ return '<div class="adm-resp"><div class="row" style="justify-content:space-between;gap:8px"><b>'+"★★★★★".slice(0,+r.rating||0)+'<span class="muted">'+"★★★★★".slice(0,5-(+r.rating||0))+'</span></b><span class="muted" style="font-size:12px">'+admEsc(r.at)+'</span></div><div style="font-size:13px;margin-top:2px">'+admEsc([r.name, r.age, stL(r.stage), r.who].filter(function(x){ return x && x!=="—"; }).join(" · "))+'</div>'+(r.problems?'<div>'+String(r.problems).split("، ").map(function(p){ return '<span class="adm-chip">'+admEsc(p)+'</span>'; }).join("")+'</div>':'')+(r.other?'<div style="margin-top:4px">«'+admEsc(r.other)+'»</div>':'')+'<div class="muted" style="font-size:12px;margin-top:2px">خطوات الأسبوع '+(r.steps||0)+' · كويزات '+(r.quiz||0)+(r.att!==""&&r.att!=null?' · حضور '+r.att+'%':'')+'</div></div>'; }).join("") || '<div class="muted">مفيش ردود.</div>'; };
+    $("admQ").oninput = paint; paint(); }, 0);
+  return h; },
+ nw: function(d){ var h = '<div class="adm-two"><div class="adm-box"><h4>📣 إعلان جديد</h4><div class="muted" style="font-size:13px;margin-bottom:8px">بيظهر للطالب أول ما يفتح التطبيق، مرة واحدة.</div>'
+    + '<input type="text" id="anT" maxlength="60" placeholder="العنوان (مثلًا: نزلت أسئلة الكيميا)" style="margin-bottom:6px"><textarea id="anB" maxlength="400" rows="4" placeholder="التفاصيل (اختياري)" style="width:100%;margin-bottom:6px;font:inherit;border-radius:12px;padding:8px;border:1px solid var(--line,#dde);background:var(--card);color:inherit"></textarea>'
+    + '<input type="url" id="anU" placeholder="رابط اختياري يبدأ بـ https://" style="margin-bottom:6px"><select id="anS" style="width:100%;margin-bottom:8px;padding:8px;border-radius:12px"><option value="">لكل المراحل</option>'+Object.keys(STAGES).map(function(c){ return '<option value="'+c+'">'+admEsc(STAGES[c].label)+'</option>'; }).join("")+'</select>'
+    + '<button class="btn" type="button" id="anGo" style="width:100%">انشر الإعلان</button><div class="muted" id="anMsg" style="margin-top:6px"></div></div>'
+    + '<div class="adm-box"><h4>الإعلانات الشغالة</h4><div id="anList">'+admNewsList(d.news||[])+'</div></div></div>';
+  setTimeout(function(){
+   $("anGo").onclick = function(){ var t = $("anT").value.trim(); if(!t){ $("anMsg").textContent = "اكتب عنوان الإعلان."; return; } $("anGo").disabled = true; $("anMsg").textContent = "بينشر…";
+    admPost({action:"announce", key:admKeyMem, t:t, b:$("anB").value, u:$("anU").value.trim(), st:$("anS").value}).then(function(r){ $("anGo").disabled = false; if(!r || r.error){ $("anMsg").textContent = "ما اتنشرش ("+((r&&r.error)||"خطأ")+")."; return; } $("anT").value = $("anB").value = $("anU").value = ""; $("anMsg").textContent = "✅ اتنشر. هيظهر للطلاب أول ما يفتحوا التطبيق."; admData.news = r.news||[]; $("anList").innerHTML = admNewsList(admData.news); }).catch(function(){ $("anGo").disabled = false; $("anMsg").textContent = "مش قادر يوصل للسيرفر."; }); };
+   $("anList").onclick = function(e){ var b = e.target.closest("[data-del]"); if(!b) return; b.disabled = true; admPost({action:"unannounce", key:admKeyMem, id:b.getAttribute("data-del")}).then(function(r){ if(r && !r.error){ admData.news = r.news||[]; $("anList").innerHTML = admNewsList(admData.news); } }); }; }, 0);
+  return h; },
+ st: function(d){ var c = d.cfg||{}, sw = function(id, on){ return '<label style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="'+id+'"'+(on?' checked':'')+' style="width:20px;height:20px"></label>'; },
+  sel = function(id, v, opts){ return '<select id="'+id+'" style="padding:6px 10px;border-radius:10px">'+opts.map(function(o){ return '<option value="'+o[0]+'"'+(+v===o[0]?' selected':'')+'>'+o[1]+'</option>'; }).join("")+'</select>'; };
+  var h = '<div class="adm-box"><h4>⚙️ إعدادات الاستبيان</h4>'
+   + '<div class="adm-set"><div><div class="t">الاستبيان شغال</div><div class="d">لو اتقفل، ما بيظهرش لأي حد. الردود القديمة بتفضل.</div></div>'+sw("cfOn", c.on!==false)+'</div>'
+   + '<div class="adm-set"><div><div class="t">بيظهر كل قد إيه</div><div class="d">مرة واحدة في الفترة دي لكل مستخدم.</div></div>'+sel("cfEvery", c.every||7, [[7,"كل أسبوع"],[14,"كل أسبوعين"],[30,"كل شهر"]])+'</div>'
+   + '<div class="adm-set"><div><div class="t">أول ظهور</div><div class="d">بعد أول استخدام للتطبيق بـ…</div></div>'+sel("cfFirst", c.firstAfter||3, [[1,"يوم"],[3,"3 أيام"],[7,"أسبوع"]])+'</div>'
+   + '<div class="adm-set"><div><div class="t">نسأل عن الاسم الأول</div><div class="d">لسن 13 فأكبر بس، واختياري.</div></div>'+sw("cfName", c.askName!==false)+'</div>'
+   + '<button class="btn" type="button" id="cfSave" style="width:100%;margin-top:10px">احفظ الإعدادات</button><div class="muted" id="cfMsg" style="margin-top:6px"></div><div class="muted" style="font-size:12px;margin-top:6px">التغيير بيوصل للطلاب في الفتحة الجاية.</div></div>'
+   + '<div class="adm-box"><h4>🔗 روابط</h4><a class="btn ghost sm" href="'+admEsc(d.sheetUrl||"#")+'" target="_blank" rel="noopener noreferrer">جدول الردود في Google Sheets</a></div>';
+  setTimeout(function(){ $("cfSave").onclick = function(){ $("cfSave").disabled = true; $("cfMsg").textContent = "بيحفظ…";
+   admPost({action:"setcfg", key:admKeyMem, cfg:{on:$("cfOn").checked, every:+$("cfEvery").value, firstAfter:+$("cfFirst").value, askName:$("cfName").checked}}).then(function(r){ $("cfSave").disabled = false; if(!r || r.error){ $("cfMsg").textContent = "ما اتحفظش."; return; } admData.cfg = r.cfg; $("cfMsg").textContent = "✅ اتحفظ."; }).catch(function(){ $("cfSave").disabled = false; $("cfMsg").textContent = "مش قادر يوصل للسيرفر."; }); }; }, 0);
+  return h; }
+};
+function admNewsList(list){ if(!list.length) return '<div class="muted" style="font-size:13px">مفيش إعلانات شغالة.</div>'; return list.slice().reverse().map(function(n){ return '<div class="row" style="justify-content:space-between;border-top:1px solid var(--line,#e6ecea);padding:8px 0;gap:8px"><div style="flex:1;min-width:0"><b>'+admEsc(n.t)+'</b>'+(n.b?'<div style="font-size:13px">'+admEsc(n.b)+'</div>':'')+'<div class="muted" style="font-size:12px">'+admEsc(n.at)+' · '+admEsc(n.st ? stL(n.st) : "كل المراحل")+'</div></div><button type="button" class="btn ghost sm" data-del="'+admEsc(n.id)+'">شيل</button></div>'; }).join(""); }
+function admShow(){ var tb = $("admTabs").querySelectorAll("button"); for(var i=0;i<tb.length;i++) tb[i].classList.toggle("on", tb[i].getAttribute("data-t")===admTab);
+  $("admBody").innerHTML = admData ? admTabsR[admTab](admData) : ""; }
+function admLoad(){ var key = admKeyMem || $("admKey").value; if(!key) return; $("admMsg").textContent = "بيحمّل…"; $("admGo").disabled = true; $("admAt").textContent = "بيحمّل…";
+  admPost({action:"stats", key:key, weeks:+$("admSpan").value, stage:$("admStage").value}).then(function(d){ $("admGo").disabled = false; if(!d || d.error){ admKeyMem = ""; admData = null; admUi(); $("admMsg").textContent = d && d.error==="locked" ? "محاولات كتير غلط. استنى ربع ساعة." : "الباسوورد غلط."; return; }
+    admKeyMem = key; $("admKey").value = ""; admData = d;
+    var cur = $("admStage").value; $("admStage").innerHTML = '<option value="">كل المراحل</option>'+(d.stageOpts||[]).map(function(c){ return '<option value="'+admEsc(c)+'">'+admEsc(stL(c))+'</option>'; }).join(""); $("admStage").value = cur;
+    $("admAt").textContent = "آخر تحديث "+(d.at||""); admUi(); admShow(); })
+  .catch(function(){ $("admGo").disabled = false; $("admMsg").textContent = "مش قادر يوصل للسيرفر. اتأكد من النت."; $("admAt").textContent = ""; }); }
+function admUi(){ var inn = !!admKeyMem; $("admLogin").hidden = inn; $("admBody").hidden = !inn; $("admBar").hidden = !inn; $("admRef").hidden = !inn; $("admOut").hidden = !inn; }
+$("admOpen").addEventListener("click", function(){ admUi(); $("admMsg").textContent = ""; $("adm").classList.add("on"); if(admKeyMem) admLoad(); else setTimeout(function(){ try{ $("admKey").focus(); }catch(e){} }, 60); });
 $("admGo").addEventListener("click", admLoad);
 $("admKey").addEventListener("keydown", function(e){ if(e.key==="Enter") admLoad(); });
 $("admClose").addEventListener("click", function(){ $("adm").classList.remove("on"); });
+$("admRef").addEventListener("click", admLoad);
+$("admOut").addEventListener("click", function(){ admKeyMem = ""; admData = null; $("admBody").innerHTML = ""; admUi(); });
+$("admSpan").addEventListener("change", admLoad); $("admStage").addEventListener("change", admLoad);
+$("admTabs").addEventListener("click", function(e){ var b = e.target.closest("button[data-t]"); if(!b) return; admTab = b.getAttribute("data-t"); admShow(); });
 $("admWrap").hidden = !CFG.sv;
 initialSync();
 (function(){ try{ var seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10); if(seen && seen < currV && S.setup) toast("📚 المناهج اتحدثت: دروس جديدة اتضافت، وتقدمك زي ما هو"); localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){} })();
