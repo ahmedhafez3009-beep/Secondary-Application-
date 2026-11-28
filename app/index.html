@@ -671,7 +671,7 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
 .adm-set{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 0;border-top:1px solid var(--line,#e3e9e7)}
 .adm-set .t{font-weight:700}.adm-set .d{font-size:12px;color:var(--mut,#6b7a78)}
 </style>
-  <div class="adm-top"><div class="row" style="justify-content:space-between;gap:8px"><h3 style="margin:0">🛠️ لوحة إدارة خُطوة</h3><div class="row" style="gap:6px"><button class="btn ghost sm" type="button" id="admRef" data-nog hidden>⟳ تحديث</button><button class="btn ghost sm" type="button" id="admOut" data-nog hidden>خروج</button><button class="btn ghost sm" type="button" id="admClose" data-nog>قفل</button></div></div>
+  <div class="adm-top"><div class="row" style="justify-content:space-between;gap:8px"><h3 style="margin:0">🛠️ لوحة إدارة خُطوة</h3><div class="row" style="gap:6px"><button class="btn sm" type="button" id="admNews" data-nog hidden>📣 إعلان جديد</button><button class="btn ghost sm" type="button" id="admRef" data-nog hidden>⟳ تحديث</button><button class="btn ghost sm" type="button" id="admOut" data-nog hidden>خروج</button><button class="btn ghost sm" type="button" id="admClose" data-nog>قفل</button></div></div>
     <div id="admBar" hidden><div class="adm-filters"><select id="admSpan" data-nog><option value="4">آخر 4 أسابيع</option><option value="12">آخر 12 أسبوع</option><option value="52">آخر سنة</option></select><select id="admStage" data-nog><option value="">كل المراحل</option></select><span class="muted" id="admAt" style="font-size:12px"></span></div>
     <nav class="adm-tabs" id="admTabs"><button type="button" data-t="ov" class="on">📊 نظرة عامة</button><button type="button" data-t="tr">📈 التحسّن</button><button type="button" data-t="pr">⚠️ المشاكل</button><button type="button" data-t="rs">💬 الردود</button><button type="button" data-t="nw">📣 الإعلانات</button><button type="button" data-t="st">⚙️ الإعدادات</button></nav></div>
   </div>
@@ -3176,12 +3176,13 @@ function admLoad(){ var key = admKeyMem || $("admKey").value; if(!key) return; $
     var cur = $("admStage").value; $("admStage").innerHTML = '<option value="">كل المراحل</option>'+(d.stageOpts||[]).map(function(c){ return '<option value="'+admEsc(c)+'">'+admEsc(stL(c))+'</option>'; }).join(""); $("admStage").value = cur;
     $("admAt").textContent = "آخر تحديث "+(d.at||""); admUi(); admShow(); })
   .catch(function(){ $("admGo").disabled = false; $("admMsg").textContent = "مش قادر يوصل للسيرفر. اتأكد من النت."; $("admAt").textContent = ""; }); }
-function admUi(){ var inn = !!admKeyMem; $("admLogin").hidden = inn; $("admBody").hidden = !inn; $("admBar").hidden = !inn; $("admRef").hidden = !inn; $("admOut").hidden = !inn; }
+function admUi(){ var inn = !!admKeyMem; $("admLogin").hidden = inn; $("admBody").hidden = !inn; $("admBar").hidden = !inn; $("admRef").hidden = !inn; $("admOut").hidden = !inn; $("admNews").hidden = !inn; }
 $("admOpen").addEventListener("click", function(){ admUi(); $("admMsg").textContent = ""; $("adm").classList.add("on"); if(admKeyMem) admLoad(); else setTimeout(function(){ try{ $("admKey").focus(); }catch(e){} }, 60); });
 $("admGo").addEventListener("click", admLoad);
 $("admKey").addEventListener("keydown", function(e){ if(e.key==="Enter") admLoad(); });
 $("admClose").addEventListener("click", function(){ $("adm").classList.remove("on"); });
 $("admRef").addEventListener("click", admLoad);
+$("admNews").addEventListener("click", function(){ admTab = "nw"; admShow(); setTimeout(function(){ try{ $("anT").focus(); }catch(e){} }, 50); });
 $("admOut").addEventListener("click", function(){ admKeyMem = ""; admData = null; $("admBody").innerHTML = ""; admUi(); });
 $("admSpan").addEventListener("change", admLoad); $("admStage").addEventListener("change", admLoad);
 $("admTabs").addEventListener("click", function(e){ var b = e.target.closest("button[data-t]"); if(!b) return; admTab = b.getAttribute("data-t"); admShow(); });
