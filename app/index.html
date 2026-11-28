@@ -3089,7 +3089,7 @@ $("svyGo").addEventListener("click", function(){ if(!svPick.r || !svPick.a) retu
 window.addEventListener("online", svFlush);
 
 /* ---- usage: one ping per device per day (first open), carrying the open count of its previous day ---- */
-function usePing(){ if(!CFG.sv || S.noStats || navigator.doNotTrack==="1" || !/^https?:$/.test(location.protocol)) return;
+function usePing(){ var adm = false; try{ adm = localStorage.getItem("khutwa-admin-dev")==="1"; }catch(e){} if(adm || !CFG.sv || S.noStats || navigator.doNotTrack==="1" || !/^https?:$/.test(location.protocol)) return;
   var t = today(), o = {}; try{ o = JSON.parse(localStorage.getItem("khutwa-opens")||"{}")||{}; }catch(e){}
   if(o.d===t){ o.n = (o.n||0)+1; try{ localStorage.setItem("khutwa-opens", JSON.stringify(o)); }catch(e){} return; }
   if(!S.sv.id){ var a = new Uint8Array(8); try{ crypto.getRandomValues(a); }catch(e){ for(var i=0;i<8;i++) a[i] = Math.random()*256; } S.sv.id = Array.prototype.map.call(a, function(x){ return ("0"+x.toString(16)).slice(-2); }).join(""); save(); }
@@ -3194,7 +3194,8 @@ function admNewsList(list){ if(!list.length) return '<div class="muted" style="f
 function admShow(){ var tb = $("admTabs").querySelectorAll("button"); for(var i=0;i<tb.length;i++) tb[i].classList.toggle("on", tb[i].getAttribute("data-t")===admTab);
   $("admBody").innerHTML = admData ? admTabsR[admTab](admData) : ""; }
 function admLoad(){ var key = admKeyMem || $("admKey").value; if(!key) return; $("admMsg").textContent = "بيحمّل…"; $("admGo").disabled = true; $("admAt").textContent = "بيحمّل…";
-  admPost({action:"stats", key:key, weeks:+$("admSpan").value, stage:$("admStage").value}).then(function(d){ $("admGo").disabled = false; if(!d || d.error){ admKeyMem = ""; admData = null; admUi(); $("admMsg").textContent = d && d.error==="locked" ? "محاولات كتير غلط. استنى ربع ساعة." : "الباسوورد غلط."; return; }
+  admPost({action:"stats", key:key, weeks:+$("admSpan").value, stage:$("admStage").value, me:S.sv.id||""}).then(function(d){ $("admGo").disabled = false; if(!d || d.error){ admKeyMem = ""; admData = null; admUi(); $("admMsg").textContent = d && d.error==="locked" ? "محاولات كتير غلط. استنى ربع ساعة." : "الباسوورد غلط."; return; }
+  try{ localStorage.setItem("khutwa-admin-dev","1"); }catch(e){}
     admKeyMem = key; $("admKey").value = ""; admData = d;
     var cur = $("admStage").value; $("admStage").innerHTML = '<option value="">كل المراحل</option>'+(d.stageOpts||[]).map(function(c){ return '<option value="'+admEsc(c)+'">'+admEsc(stL(c))+'</option>'; }).join(""); $("admStage").value = cur;
     $("admAt").textContent = "آخر تحديث "+(d.at||""); admUi(); admShow(); })

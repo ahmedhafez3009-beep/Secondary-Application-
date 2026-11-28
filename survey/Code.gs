@@ -53,6 +53,7 @@ function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).se
 function stats_(key, q) {
   const bad = auth_(key); if (bad) return bad;
   q = q || {};
+  try { if (q.me) markAdmin_(String(q.me)); } catch (e) {}
   const span = [4, 12, 52].indexOf(+q.weeks) >= 0 ? +q.weeks : 4;
   const stF = /^[a-z]\d$/.test(q.stage || '') ? q.stage : '';
   const all = sheet_().getDataRange().getValues().slice(1).filter(r => r[2]);
@@ -146,8 +147,21 @@ function dayRow_(sh, date) {
   if (f) return f.getRow();
   sh.appendRow([date, 0, 0, 0]); return sh.getLastRow();
 }
+function excl_() { try { return JSON.parse(PropertiesService.getScriptProperties().getProperty('EXCL') || '[]'); } catch (e) { return []; } }
+// جهاز الأدمن: بيتشال من الإحصائيات (ومن عدّ النهارده لو كان اتحسب)
+function markAdmin_(id) {
+  if (!/^[a-z0-9]{8,24}$/.test(id || '')) return;
+  const ex = excl_(); if (ex.indexOf(id) >= 0) return;
+  ex.push(id); PropertiesService.getScriptProperties().setProperty('EXCL', JSON.stringify(ex.slice(-20)));
+  const ss = SpreadsheetApp.openById(SHEET_ID), dev = ss.getSheetByName(DEV), days = ss.getSheetByName(DAY); if (!dev || !days) return;
+  const f = dev.getRange('A:A').createTextFinder(id).matchEntireCell(true).findNext(); if (!f) return;
+  const row = dev.getRange(f.getRow(), 1, 1, 3).getValues()[0], today = day_();
+  if (row[2] === today) { const r = dayRow_(days, today); const v = days.getRange(r, 2, 1, 2).getValues()[0]; days.getRange(r, 2, 1, 2).setValues([[Math.max(0, +v[0] - 1), Math.max(0, +v[1] - (row[1] === today ? 1 : 0))]]); }
+  dev.deleteRow(f.getRow());
+}
 function ping_(d) {
   if (!/^[a-z0-9]{8,24}$/.test(d.id || '')) return { ok: false };
+  if (excl_().indexOf(d.id) >= 0) return { ok: true, skip: true };
   const lock = LockService.getScriptLock(); lock.waitLock(8000);
   try {
     const today = day_(), dev = tab_(DEV, ['رقم الجهاز', 'أول يوم', 'آخر يوم', 'المرحلة']), days = tab_(DAY, ['اليوم', 'أجهزة فتحت', 'أجهزة جديدة', 'عدد الفتحات']);
