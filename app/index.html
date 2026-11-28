@@ -634,6 +634,19 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
     <div class="maker" style="margin-bottom:0">Created by <b>Add Value</b></div>
   </div>
 </div>
+<div class="modal" id="svy"><div class="sheet">
+  <h3 style="margin:0 0 4px">📝 أسبوعك كان عامل إيه؟</h3>
+  <p class="muted" style="margin:0 0 12px">دقيقة واحدة. رأيك بيخلّي خُطوة أحسن كل أسبوع.</p>
+  <div style="font-weight:700;margin-bottom:6px">سنّك <span style="color:#c0392b">*</span></div>
+  <div class="seg" id="svyA" style="margin-bottom:14px;flex-wrap:wrap"><button type="button" data-a="u10">أقل من 10</button><button type="button" data-a="10">10–12</button><button type="button" data-a="13">13–15</button><button type="button" data-a="16">16–18</button><button type="button" data-a="18">أكبر من 18</button></div>
+  <div id="svyNw" hidden style="margin-bottom:14px"><label for="svyN" style="font-weight:700;display:block;margin-bottom:6px">اسمك الأول <span class="muted" style="font-weight:400">(اختياري)</span></label><input type="text" id="svyN" maxlength="20" placeholder="الاسم الأول بس"></div>
+  <div style="font-weight:700;margin-bottom:6px">تقييمك لمذاكرتك الأسبوع ده <span style="color:#c0392b">*</span></div>
+  <div class="seg" id="svyR" style="margin-bottom:14px"><button type="button" data-r="1">😣 1</button><button type="button" data-r="2">😕 2</button><button type="button" data-r="3">😐 3</button><button type="button" data-r="4">🙂 4</button><button type="button" data-r="5">🤩 5</button></div>
+  <div style="font-weight:700;margin-bottom:6px">واجهتك مشكلة؟ <span class="muted" style="font-weight:400">(اختياري، ممكن أكتر من اختيار)</span></div>
+  <div id="svyP" style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px"><button type="button" class="btn ghost sm" data-p="time">⏰ مافيش وقت</button><button type="button" class="btn ghost sm" data-p="hard">📚 مادة صعبة</button><button type="button" class="btn ghost sm" data-p="focus">😴 مش قادرة أركّز</button><button type="button" class="btn ghost sm" data-p="lessons">🧭 أسماء الدروس مش زي الكتاب</button><button type="button" class="btn ghost sm" data-p="quiz">🧠 مشكلة في الكويز</button><button type="button" class="btn ghost sm" data-p="app">📱 مشكلة في التطبيق</button><button type="button" class="btn ghost sm" data-p="other">✏️ أخرى</button></div>
+  <div id="svyOw" hidden><input type="text" id="svyO" maxlength="200" placeholder="اكتبي المشكلة باختصار" style="margin-bottom:4px"><div class="muted" style="font-size:12px;margin-bottom:8px">ما تكتبيش اسمك أو رقم تليفونك.</div></div>
+  <button class="btn" id="svyGo" type="button" style="width:100%;margin-top:6px" disabled>ابعتي رأيك</button>
+</div></div>
 <div class="modal" id="dlg"><div class="sheet"><p id="dlgMsg" style="margin:0 0 10px;font-size:16px"></p><input type="text" id="dlgIn" style="margin-bottom:10px"><div class="row"><button class="btn" id="dlgOk" type="button" style="flex:1">تمام</button><button class="btn ghost" id="dlgNo" type="button" style="flex:1">إلغاء</button></div></div></div>
 <div id="timerBar" hidden>
   <div class="tm en" id="tmTime">25:00</div>
@@ -1625,7 +1638,7 @@ var STAGES = {
 }
 };
 var CFG = {
- key:"khutwa-v1", tutorial:"", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, gc:"khutwa", siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
+ key:"khutwa-v1", tutorial:"", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, gc:"khutwa", sv:"", siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
  evalDefault:[], evalLocked:false, monthlyDefault:false,
  setupText:"كل درس بيتذاكر على 4 خطوات: 🎧 تسمعي، 💡 تفهمي، ✍️ تحلي، 🔁 تراجعي. اختاري سنتك وشعبتك، والتطبيق هيجهزلك المنهج كله.",
  attInfo:["الحضور المنتظم بيخليكي ماشية مع الشرح أول بأول، ومش هتتراكم عليكي الدروس.","لو فيه أيام لازم تحضريها (تقييمات أو امتحانات أو حصص مهمة)، حدديها من الإعدادات كأيام تقييم ⭐ وهتظهر ليها نسبة لوحدها.","تأكدي من قواعد الحضور ونسب التقييمات المطلوبة من مدرستك، لأنها ممكن تتعدل."],
@@ -1754,7 +1767,7 @@ var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! 
 
 /* ---------- state ---------- */
 var memStore = null;
-function defState(){ return {cv:(typeof CURR_VERSION==="number"?CURR_VERSION:1),v:5,lang:"ar",school:"ar",quiz:{},who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""}}; }
+function defState(){ return {cv:(typeof CURR_VERSION==="number"?CURR_VERSION:1),v:5,lang:"ar",school:"ar",quiz:{},who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""},sv:{id:"",age:"",nm:"",first:"",last:"",q:[]}}; }
 function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
 var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
@@ -1806,6 +1819,8 @@ function sanitize(s){
   o.reportDay = s.reportDay===+s.reportDay && s.reportDay>=0 && s.reportDay<=6 ? s.reportDay : 5; o.lastReport = cleanDate(s.lastReport);
   /* progress saved before this app recorded its curriculum version was made on version 7 or older */
   o.cv = cleanNum(s.cv,0,1e5)|0 || baseVersion(o); migrateIds(o, typeof CURR_MIG==="object" ? CURR_MIG : {}, CURR_VERSION);
+  /* weekly survey: anonymous random id, dates, and answers waiting to be sent */
+  (function(){ var v = (s.sv && typeof s.sv==="object") ? s.sv : {}; o.sv = {id: /^[a-z0-9]{8,24}$/.test(v.id||"") ? v.id : "", age: /^(u10|10|13|16|18)$/.test(v.age||"") ? v.age : "", nm: cleanStr(v.nm,20), first: cleanDate(v.first)||"", last: cleanDate(v.last)||"", q: (Array.isArray(v.q)?v.q:[]).filter(function(x){ return x && typeof x==="object" && x.r>=1 && x.r<=5; }).slice(-12).map(function(x){ return {w:cleanDate(x.w)||"", r:x.r|0, a:/^(u10|10|13|16|18)$/.test(x.a||"") ? x.a : "", n:/^(13|16|18)$/.test(x.a||"") ? cleanStr(x.n,20) : "", p:(Array.isArray(x.p)?x.p:[]).filter(function(t){ return typeof t==="string" && /^[a-z]{2,12}$/.test(t); }).slice(0,8), o:cleanStr(x.o,200), m:(x.m && typeof x.m==="object") ? x.m : {}}; })}; })();
   return o;
 }
 /* progress saved without a version: tell the Sec 3 applied-maths layouts apart by the lesson ids they use (ids that exist in one layout only), otherwise go by the version this device last saw */
@@ -1873,6 +1888,7 @@ function mergeStates(a, b){
   var hw = {}; (out.watch||[]).forEach(function(x){ hw[x.k]=1; }); out.watch = (out.watch||[]).concat((other.watch||[]).filter(function(x){ return !hw[x.k]; }));
   if(!(out.contacts||[]).length && (other.contacts||[]).length) out.contacts = other.contacts;
   if((other.lastReport||"") > (out.lastReport||"")) out.lastReport = other.lastReport;
+  if(other.sv && ((other.sv.last||"") > ((out.sv&&out.sv.last)||""))) out.sv = other.sv;
   out.lastBackup = Math.max(a.lastBackup||0, b.lastBackup||0);
   out.savedAt = Math.max(a.savedAt||0, b.savedAt||0);
   return out;
@@ -3004,9 +3020,40 @@ if(!S.setup || !S.gender || !CFG.sections[S.track]) showSetup();
 go("home");
 try{ renderHeader(); genderize(document.querySelector("header.top")); }catch(e){}
 try{ if(navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function(){}); }catch(e){}
+
+/* ---- weekly survey (anonymous): rating required, problems optional; answers go to CFG.sv ---- */
+var svPick = {r:0, p:{}, a:""};
+function svDaysAgo(n){ var d = new Date(); d.setDate(d.getDate()-n); return d2s(d); }
+function svMetrics(){ var from = svDaysAgo(7), steps = 0, done = 0, qz = 0, p = 0, ab = 0;
+  Object.keys(S.prog||{}).forEach(function(id){ var v = S.prog[id], all = true; ["l","u","s","r"].forEach(function(k){ if(v[k] && String(v[k]) >= from) steps++; if(!v[k]) all = false; }); if(all) done++; });
+  Object.keys(S.quiz||{}).forEach(function(k){ if((S.quiz[k].d||"") >= from) qz++; });
+  Object.keys(S.att||{}).forEach(function(d){ if(d >= from){ if(S.att[d]==="p") p++; else if(S.att[d]==="a") ab++; } });
+  return {stage:S.stage||"", track:S.track||"", who:S.who||"", steps7:steps, quiz7:qz, att7:(p+ab)?Math.round(100*p/(p+ab)):-1, lessonsDone:done}; }
+function svDue(){ if(!CFG.sv || !S.setup || !S.stage) return false; var t = today();
+  if(!S.sv.first){ S.sv.first = t; save(); return false; }
+  if(S.sv.first > svDaysAgo(3)) return false;
+  return !S.sv.last || S.sv.last <= svDaysAgo(7); }
+function svFlush(){ if(!CFG.sv || !S.sv.q.length || !navigator.onLine || svFlush.busy) return; svFlush.busy = true;
+  var item = S.sv.q[0], body = JSON.stringify({v:1, id:S.sv.id, week:item.w, rating:item.r, age:item.a, name:item.n||"", problems:item.p, other:item.o, m:item.m, app:"c"+(typeof CURR_VERSION==="number"?CURR_VERSION:0)});
+  fetch(CFG.sv, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:body}).then(function(){ S.sv.q.shift(); save(); svFlush.busy = false; svFlush(); }).catch(function(){ svFlush.busy = false; }); }
+function svPaint(){ var bs = $("svyR").querySelectorAll("button"); for(var i=0;i<bs.length;i++) bs[i].classList.toggle("on", +bs[i].getAttribute("data-r")===svPick.r);
+  var ps = $("svyP").querySelectorAll("button"); for(var j=0;j<ps.length;j++){ var on = !!svPick.p[ps[j].getAttribute("data-p")]; ps[j].classList.toggle("ghost", !on); }
+  var as = $("svyA").querySelectorAll("button"); for(var k=0;k<as.length;k++) as[k].classList.toggle("on", as[k].getAttribute("data-a")===svPick.a);
+  $("svyNw").hidden = !/^(13|16|18)$/.test(svPick.a); $("svyOw").hidden = !svPick.p.other; $("svyGo").disabled = !svPick.r || !svPick.a; }
+function svShow(){ svPick = {r:0, p:{}, a:S.sv.age||""}; $("svyO").value = ""; $("svyN").value = S.sv.nm||""; svPaint(); genderize($("svy")); $("svy").classList.add("on"); }
+$("svyR").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; svPick.r = +b.getAttribute("data-r"); svPaint(); });
+$("svyA").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; svPick.a = b.getAttribute("data-a"); svPaint(); });
+$("svyP").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; var k = b.getAttribute("data-p"); svPick.p[k] = !svPick.p[k]; svPaint(); });
+$("svyGo").addEventListener("click", function(){ if(!svPick.r || !svPick.a) return; S.sv.age = svPick.a; S.sv.nm = /^(13|16|18)$/.test(svPick.a) ? cleanStr($("svyN").value,20).trim().split(/\s+/)[0]||"" : "";
+  if(!S.sv.id){ var a = new Uint8Array(8); (window.crypto||{}).getRandomValues ? crypto.getRandomValues(a) : a.forEach(function(_,i){ a[i]=Math.random()*256; }); S.sv.id = Array.prototype.map.call(a, function(x){ return ("0"+x.toString(16)).slice(-2); }).join(""); }
+  var probs = Object.keys(svPick.p).filter(function(k){ return svPick.p[k]; });
+  S.sv.q.push({w:today(), r:svPick.r, a:svPick.a, n:S.sv.nm, p:probs, o:svPick.p.other ? cleanStr($("svyO").value,200).trim() : "", m:svMetrics()});
+  S.sv.q = S.sv.q.slice(-12); S.sv.last = today(); save(); $("svy").classList.remove("on"); toast("💚 شكرًا! رأيك وصل"); svFlush(); });
+window.addEventListener("online", svFlush);
 initialSync();
 (function(){ try{ var seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10); if(seen && seen < currV && S.setup) toast("📚 المناهج اتحدثت: دروس جديدة اتضافت، وتقدمك زي ما هو"); localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){} })();
 checkCurriculum();
+setTimeout(function(){ svFlush(); if(svDue() && !$("setup").classList.contains("on")) svShow(); }, 1200);
 (function(){ var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone===true;
   stat("/app", false, "التطبيق"); stat(standalone ? "open-installed" : "open-browser", true, standalone ? "فتح من الأيقونة" : "فتح من المتصفح");
   if(S.setup && S.stage) stat("active-"+S.stage, true, "طالب نشط · "+(STAGES[S.stage]?STAGES[S.stage].label:""));

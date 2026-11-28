@@ -979,7 +979,7 @@ var STAGES = {
 }
 };
 var CFG = {
- key:"khutwa-v1", tutorial:"", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, gc:"__GC__", siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
+ key:"khutwa-v1", tutorial:"", name:"", title:"خُطوة", brand:"خُطوة", maker:"Add Value", cloud:false, gc:"__GC__", sv:"__SV__", siteUrl:"https://ahmedhafez3009-beep.github.io/Secondary-Application-/",
  evalDefault:[], evalLocked:false, monthlyDefault:false,
  setupText:"كل درس بيتذاكر على 4 خطوات: 🎧 تسمعي، 💡 تفهمي، ✍️ تحلي، 🔁 تراجعي. اختاري سنتك وشعبتك، والتطبيق هيجهزلك المنهج كله.",
  attInfo:["الحضور المنتظم بيخليكي ماشية مع الشرح أول بأول، ومش هتتراكم عليكي الدروس.","لو فيه أيام لازم تحضريها (تقييمات أو امتحانات أو حصص مهمة)، حدديها من الإعدادات كأيام تقييم ⭐ وهتظهر ليها نسبة لوحدها.","تأكدي من قواعد الحضور ونسب التقييمات المطلوبة من مدرستك، لأنها ممكن تتعدل."],

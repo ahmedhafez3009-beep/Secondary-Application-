@@ -2,12 +2,14 @@ import os, json, shutil, re, zipfile
 OUT='site';
 import pathlib
 GC=(pathlib.Path('gc.txt').read_text().strip() if pathlib.Path('gc.txt').exists() else '')
+SV=(pathlib.Path('sv.txt').read_text().strip() if pathlib.Path('sv.txt').exists() else '')
+assert SV=='' or __import__('re').fullmatch(r'https://script\.google\.com/macros/s/[A-Za-z0-9_-]{20,120}/exec',SV)
 assert GC=='' or __import__('re').fullmatch(r'[a-z0-9-]{2,40}',GC)
 shutil.rmtree(OUT,ignore_errors=True); os.makedirs(OUT+'/app')
 VER='kw-v8'
 t=open('app.html',encoding='utf-8').read()
 q=open('quotes.js',encoding='utf-8').read().replace('["كلمة","فخورين بيكي يا {N} 💜","أحمد"]','["كلمة","فخورين بيكي يا {N} 💜","خُطوة"]')
-html=t.replace('/*DATA*/',open('data.js',encoding='utf-8').read().replace('__GC__',GC)+'\n'+(open('i18n_en.js',encoding='utf-8').read() if os.path.exists('i18n_en.js') else '')).replace('/*QUOTES*/',q).replace('__TITLE__','خُطوة')
+html=t.replace('/*DATA*/',open('data.js',encoding='utf-8').read().replace('__GC__',GC).replace('__SV__',SV)+'\n'+(open('i18n_en.js',encoding='utf-8').read() if os.path.exists('i18n_en.js') else '')).replace('/*QUOTES*/',q).replace('__TITLE__','خُطوة')
 head_add='''<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self' data: blob:; manifest-src 'self'; connect-src 'self'__GCCSP__; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="description" content="خُطوة: نسبة المذاكرة من المنهج والحضور لطلاب الثانوي. Created by Add Value.">
@@ -19,7 +21,7 @@ head_add='''<meta http-equiv="Content-Security-Policy" content="default-src 'non
 <meta name="apple-mobile-web-app-title" content="خُطوة">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 '''
-head_add=head_add.replace('__GCCSP__',(' https://'+GC+'.goatcounter.com') if GC else '')
+head_add=head_add.replace('__GCCSP__',((' https://'+GC+'.goatcounter.com') if GC else '')+(' https://script.google.com https://script.googleusercontent.com' if SV else ''))
 html=html.replace('<meta name="theme-color" content="#103B3C">','<meta name="theme-color" content="#103B3C">\n'+head_add,1)
 inst='''<script>
 (function(){
