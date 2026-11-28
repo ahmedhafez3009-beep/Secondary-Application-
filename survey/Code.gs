@@ -1,19 +1,20 @@
 /**
  * «خُطوة» — استقبال الاستبيان الأسبوعي في Google Sheet
- * 1) افتح Google Sheet جديد ← Extensions ← Apps Script ← الصق الكود ده مكان أي كود.
+ * 1) مشروع Apps Script (script.google.com) مربوط بالجدول عن طريق SHEET_ID تحت.
  * 2) Deploy ← New deployment ← Web app: Execute as = Me، Who has access = Anyone.
  * 3) انسخ رابط الـ Web app (بينتهي بـ /exec) وحطه في src/sv.txt وابني التطبيق.
  * 4) باسوورد لوحة الإدارة: Project Settings ← Script properties ← Add: الاسم ADMIN_KEY والقيمة الباسوورد.
  *    (الباسوورد بيتحفظ هنا بس، مش في كود التطبيق ولا الريبو.) بعد أي تعديل في الكود: Deploy ← Manage deployments ← Edit ← New version.
  */
 const SHEET = 'الردود';
+const SHEET_ID = '1aBXhuyjYM6E54zqDslhnAxN5vvoobJvMewlhW9o5MLA'; // جدول «خُطوة · ردود الاستبيان»
 const HEAD = ['التاريخ','الأسبوع','رقم المستخدم','السن','الاسم','التقييم','المشاكل','مشكلة أخرى','المرحلة','الشعبة','المستخدم','خطوات الأسبوع','كويزات الأسبوع','حضور الأسبوع %','دروس خلصت','نسخة المناهج'];
 const AGE = {u10:'أقل من 10 سنين','10':'من 10 لـ 12','13':'من 13 لـ 15','16':'من 16 لـ 18','18':'أكبر من 18'};
 const PROB = {time:'مافيش وقت',hard:'مادة صعبة',focus:'تركيز',lessons:'أسماء الدروس',quiz:'الكويز',app:'التطبيق',other:'أخرى'};
 const WHO = {self:'طالب',parent:'ولي أمر'};
 
 function sheet_() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById(SHEET_ID);
   let sh = ss.getSheetByName(SHEET);
   if (!sh) { sh = ss.insertSheet(SHEET); sh.appendRow(HEAD); sh.setFrozenRows(1); sh.setRightToLeft(true); }
   return sh;
@@ -110,3 +111,6 @@ function unannounce_(d) {
   const bad = auth_(d.key); if (bad) return bad;
   saveNews_(news_(true).filter(x => x.id !== d.id)); return { ok: true, news: news_(true) };
 }
+
+/* شغّلها مرة واحدة من المحرر: بتسمّي الجدول وبتعمل صفحة الردود وبتطلب الصلاحيات */
+function setup() { const ss = SpreadsheetApp.openById(SHEET_ID); ss.rename('خُطوة · ردود الاستبيان'); sheet_(); }
