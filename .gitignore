@@ -2,3 +2,5 @@ src/site/
 
 # نصوص الكتب المقروءة ما تترفعش (الكتب ملك الوزارة والريبو عام)
 tools/khutwa-work/ocr/texts/
+*.keystore
+*.jks
