@@ -161,3 +161,9 @@
 - **11-28: الإعلانات**: من لوحة الإدارة «📣 إعلان للطلاب» (عنوان ≤60، تفاصيل ≤400، رابط https اختياري، مرحلة أو الكل) → Script property NEWS (آخر 5) → الطالب بيشوف اللي ما شافهوش أول ما يفتح (قبل الاستبيان)، وبيتسجل في S.newsSeen. actions في Code.gs: news (عام)، announce/unannounce (بالباسوورد). اختبار /tmp/news.js.
 - **11-28: اتشغّل**: Apps Script «خطوة - استقبال الاستبيان» (standalone، مربوط بالشيت 1aBXhuyjYM6E54zqDslhnAxN5vvoobJvMewlhW9o5MLA بـ SHEET_ID) على حساب أحمد؛ رابط الـ Web app في src/sv.txt (AKfycbxMd5Rg0D…/exec). أحمد لسه هيحط ADMIN_KEY في Script properties. أي تعديل في Code.gs: الصقه في المشروع ← Deploy ← Manage deployments ← Edit ← New version (الرابط ثابت).
 - **11-28 لوحة الإدارة v2**: تابات (نظرة عامة، التحسّن، المشاكل، الردود ببحث، الإعلانات، الإعدادات)، فلتر الفترة (4/12/52 أسبوع) والمرحلة، توزيع التقييمات، جدول المراحل، إعدادات الاستبيان (شغال، كل 7/14/30، أول ظهور 1/3/7، سؤال الاسم) محفوظة في Script property CFG وبتوصل للتطبيق عن طريق action boot (localStorage khutwa-svcfg). Code.gs اتنشر نسخة 2 على نفس الرابط. اختبار /tmp/adm2.js.
+
+## تتبع الاستخدام (2026-11-28)
+- usePing() في app.html: ping واحد/جهاز/يوم + فتحات اليوم السابق (localStorage khutwa-opens). يحترم noStats وDNT.
+- Code.gs: ping_ → شيت «الأجهزة» و«الاستخدام اليومي»؛ stats_ يرجّع usage. منشور كإصدار 3 (نفس /exec).
+- تاب الداشبورد «📱 الاستخدام»: أجهزة اليوم (لحظي)، فتحات أمس، 7 أيام مع ▲/▼، أجهزة جديدة، رسوم يومية. فتحات اليوم تتحسب بكرة.
+- commit 2c9d57b
