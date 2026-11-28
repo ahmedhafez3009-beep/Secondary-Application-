@@ -24,6 +24,9 @@ function doPost(e) {
   try {
     const d = JSON.parse(e.postData.contents);
     if (d.action === 'stats') return json_(stats_(d.key));
+    if (d.action === 'news') return json_({ items: news_() });
+    if (d.action === 'announce') return json_(announce_(d));
+    if (d.action === 'unannounce') return json_(unannounce_(d));
     const r = Number(d.rating);
     if (!(r >= 1 && r <= 5) || !/^[a-z0-9]{8,24}$/.test(d.id || '')) return out_('bad');
     const m = d.m || {};
@@ -44,12 +47,7 @@ function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).se
 
 /* لوحة الإدارة: بترجع ملخص بس لو الباسوورد صح؛ 8 محاولات غلط في 15 دقيقة = قفل 15 دقيقة */
 function stats_(key) {
-  const cache = CacheService.getScriptCache();
-  const fails = +(cache.get('fails') || 0);
-  if (fails >= 8) return { error: 'locked' };
-  const real = PropertiesService.getScriptProperties().getProperty('ADMIN_KEY') || '';
-  if (!real || String(key || '') !== real) { cache.put('fails', String(fails + 1), 900); Utilities.sleep(800); return { error: 'auth' }; }
-  cache.remove('fails');
+  const bad = auth_(key); if (bad) return bad;
 
   const rows = sheet_().getDataRange().getValues().slice(1).filter(r => r[2]);
   const wk = d => { const x = new Date(d); x.setHours(0,0,0,0); x.setDate(x.getDate() - ((x.getDay() + 1) % 7)); return Utilities.formatDate(x, 'Africa/Cairo', 'yyyy-MM-dd'); }; // الأسبوع بيبدأ السبت
@@ -80,6 +78,35 @@ function stats_(key) {
   return {
     at: Utilities.formatDate(now, 'Africa/Cairo', 'yyyy-MM-dd HH:mm'),
     kpi: { total: rows.length, users: Object.keys(byU).length, thisWeek: tw.length, ratingThis: avg(tw.map(r => +r[5])), ratingPrev: avg(pw.map(r => +r[5])), better, worse, att: att == null ? null : Math.round(att), steps: steps == null ? null : +steps.toFixed(1) },
-    weeks, problems, stages, ages, comments, focus
+    weeks, problems, stages, ages, comments, focus, news: news_(true)
   };
+}
+
+function auth_(key) {
+  const cache = CacheService.getScriptCache();
+  const fails = +(cache.get('fails') || 0);
+  if (fails >= 8) return { error: 'locked' };
+  const real = PropertiesService.getScriptProperties().getProperty('ADMIN_KEY') || '';
+  if (!real || String(key || '') !== real) { cache.put('fails', String(fails + 1), 900); Utilities.sleep(800); return { error: 'auth' }; }
+  cache.remove('fails'); return null;
+}
+
+/* الإعلانات: آخر 5 إعلانات، كل واحد ليه رقم؛ الطالب بيشوف اللي ما شافهوش أول ما يفتح التطبيق */
+function news_(all) {
+  let a = []; try { a = JSON.parse(PropertiesService.getScriptProperties().getProperty('NEWS') || '[]'); } catch (e) {}
+  return all ? a : a.map(x => ({ id: x.id, t: x.t, b: x.b, u: x.u, st: x.st, at: x.at }));
+}
+function saveNews_(a) { PropertiesService.getScriptProperties().setProperty('NEWS', JSON.stringify(a.slice(-5))); }
+function announce_(d) {
+  const bad = auth_(d.key); if (bad) return bad;
+  const t = String(d.t || '').trim().slice(0, 60), b = String(d.b || '').trim().slice(0, 400);
+  const u = /^https:\/\/[^\s"<>]{4,300}$/.test(d.u || '') ? d.u : '';
+  const st = /^[a-z]\d$/.test(d.st || '') ? d.st : '';
+  if (!t) return { error: 'empty' };
+  const a = news_(true); a.push({ id: Date.now().toString(36), t, b, u, st, at: Utilities.formatDate(new Date(), 'Africa/Cairo', 'yyyy-MM-dd') });
+  saveNews_(a); return { ok: true, news: news_(true) };
+}
+function unannounce_(d) {
+  const bad = auth_(d.key); if (bad) return bad;
+  saveNews_(news_(true).filter(x => x.id !== d.id)); return { ok: true, news: news_(true) };
 }

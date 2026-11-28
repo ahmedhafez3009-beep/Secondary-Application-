@@ -643,6 +643,7 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
     <input type="password" id="admKey" autocomplete="off" placeholder="الباسوورد" style="margin-bottom:8px"><button class="btn" type="button" id="admGo" style="width:100%" data-nog>دخول</button><div class="muted" id="admMsg" style="margin-top:8px" data-nog></div></div>
   <div id="admBody" hidden data-nog></div>
 </div></div>
+<div class="modal" id="news"><div class="sheet"><h3 style="margin:0 0 10px">📣 جديد في خُطوة</h3><div id="newsBody" data-nog></div><button class="btn" id="newsOk" type="button" style="width:100%;margin-top:10px">تمام</button></div></div>
 <div class="modal" id="dlg"><div class="sheet"><p id="dlgMsg" style="margin:0 0 10px;font-size:16px"></p><input type="text" id="dlgIn" style="margin-bottom:10px"><div class="row"><button class="btn" id="dlgOk" type="button" style="flex:1">تمام</button><button class="btn ghost" id="dlgNo" type="button" style="flex:1">إلغاء</button></div></div></div>
 <div id="timerBar" hidden>
   <div class="tm en" id="tmTime">25:00</div>
@@ -702,7 +703,7 @@ var DONE_MSG = ["خلّصتي الدرس كله! 🎉","درس كامل خلص! 
 
 /* ---------- state ---------- */
 var memStore = null;
-function defState(){ return {cv:(typeof CURR_VERSION==="number"?CURR_VERSION:1),v:5,lang:"ar",school:"ar",quiz:{},who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""},sv:{id:"",age:"",nm:"",first:"",last:"",q:[]}}; }
+function defState(){ return {cv:(typeof CURR_VERSION==="number"?CURR_VERSION:1),v:5,lang:"ar",school:"ar",quiz:{},who:"self",pg:"",view:"",noStats:false,contacts:[],reportDay:5,lastReport:"",stage:"",gender:"",time:{},timer:{on:false},exams:[],examMode:false,goalPct:100,rev:{},mist:[],links:{},badges:{},watch:[],prior:{days:0,from:"",to:""},lastBackup:0,savedAt:0,name:CFG.name,evalDays:CFG.evalDefault.slice(),showMonthly:CFG.monthlyDefault,cunits:{},renamed:{},track:"",setup:false,prog:{},custom:{},removed:{},att:{},monthly:{},start:"2026-09-12",target:"",scope:"all",theme:"",qOff:0,attShow:10,schoolDays:[0,1,2,3,4],range:{preset:"30",from:"",to:""},sv:{id:"",age:"",nm:"",first:"",last:"",q:[]},newsSeen:[]}; }
 function normalize(s){ if(!s || typeof s!=="object" || Array.isArray(s)) return null; var d = defState(); for(var k in d){ if(!(k in s) || s[k]===null || typeof s[k]!==typeof d[k]) s[k]=d[k]; } ["prog","custom","removed","att","monthly","cunits","renamed"].forEach(function(k){ if(Array.isArray(s[k])) s[k]={}; }); return s; }
 var RX_ID = /^[A-Za-z0-9._-]{1,100}$/, RX_DATE = /^\d{4}-\d{2}-\d{2}$/;
 function cleanStr(v, max){ return typeof v==="string" ? v.replace(/[\u0000-\u001f]/g,"").slice(0, max||120) : ""; }
@@ -754,6 +755,7 @@ function sanitize(s){
   o.reportDay = s.reportDay===+s.reportDay && s.reportDay>=0 && s.reportDay<=6 ? s.reportDay : 5; o.lastReport = cleanDate(s.lastReport);
   /* progress saved before this app recorded its curriculum version was made on version 7 or older */
   o.cv = cleanNum(s.cv,0,1e5)|0 || baseVersion(o); migrateIds(o, typeof CURR_MIG==="object" ? CURR_MIG : {}, CURR_VERSION);
+  o.newsSeen = (Array.isArray(s.newsSeen)?s.newsSeen:[]).filter(function(x){ return typeof x==="string" && /^[a-z0-9]{4,16}$/.test(x); }).slice(-30);
   /* weekly survey: anonymous random id, dates, and answers waiting to be sent */
   (function(){ var v = (s.sv && typeof s.sv==="object") ? s.sv : {}; o.sv = {id: /^[a-z0-9]{8,24}$/.test(v.id||"") ? v.id : "", age: /^(u10|10|13|16|18)$/.test(v.age||"") ? v.age : "", nm: cleanStr(v.nm,20), first: cleanDate(v.first)||"", last: cleanDate(v.last)||"", q: (Array.isArray(v.q)?v.q:[]).filter(function(x){ return x && typeof x==="object" && x.r>=1 && x.r<=5; }).slice(-12).map(function(x){ return {w:cleanDate(x.w)||"", r:x.r|0, a:/^(u10|10|13|16|18)$/.test(x.a||"") ? x.a : "", n:/^(13|16|18)$/.test(x.a||"") ? cleanStr(x.n,20) : "", p:(Array.isArray(x.p)?x.p:[]).filter(function(t){ return typeof t==="string" && /^[a-z]{2,12}$/.test(t); }).slice(0,8), o:cleanStr(x.o,200), m:(x.m && typeof x.m==="object") ? x.m : {}}; })}; })();
   return o;
@@ -1986,6 +1988,15 @@ $("svyGo").addEventListener("click", function(){ if(!svPick.r || !svPick.a) retu
   S.sv.q = S.sv.q.slice(-12); S.sv.last = today(); save(); $("svy").classList.remove("on"); toast("💚 شكرًا! رأيك وصل"); svFlush(); });
 window.addEventListener("online", svFlush);
 
+/* ---- announcements: shown once, on the next open, to the stages they target ---- */
+function newsCheck(done){ if(!CFG.sv || !S.setup || !navigator.onLine) return done && done();
+  fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({action:"news"})}).then(function(r){ return r.json(); }).then(function(d){
+    var items = ((d && d.items)||[]).filter(function(n){ return n && n.id && n.t && S.newsSeen.indexOf(n.id)<0 && (!n.st || n.st===S.stage); });
+    if(!items.length) return done && done();
+    $("newsBody").innerHTML = items.slice().reverse().map(function(n){ var u = /^https:\/\//.test(n.u||"") ? n.u : ""; return '<div style="border-top:1px solid var(--line,#e6ecea);padding:8px 0"><div style="font-weight:800">'+admEsc(n.t)+'</div>'+(n.b?'<div style="white-space:pre-wrap;margin-top:4px">'+admEsc(n.b)+'</div>':'')+(u?'<a class="btn ghost sm" style="margin-top:6px;display:inline-block" href="'+admEsc(u)+'" target="_blank" rel="noopener noreferrer">افتح الرابط</a>':'')+'<div class="muted" style="font-size:12px;margin-top:4px">'+admEsc(n.at||"")+'</div></div>'; }).join("");
+    $("newsOk").onclick = function(){ items.forEach(function(n){ S.newsSeen.push(n.id); }); S.newsSeen = S.newsSeen.slice(-30); save(); $("news").classList.remove("on"); done && done(); };
+    $("news").classList.add("on"); }).catch(function(){ done && done(); }); }
+
 /* ---- owner dashboard: data lives in the survey sheet; the password is checked there, never stored here ---- */
 var admKeyMem = "";
 function admEsc(s){ return String(s==null?"":s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
@@ -2004,8 +2015,18 @@ function admRender(d){ var k = d.kpi||{}, h = "", stL = function(c){ return (STA
   h += '<div class="card"><h3 style="margin-top:0">🎓 حسب المرحلة</h3>'+(d.stages||[]).map(function(s){ return admBar(stL(s.label)+" · تقييم "+s.rating.toFixed(1), s.n, mx(d.stages)); }).join("")+'</div>';
   h += '<div class="card"><h3 style="margin-top:0">👥 الأعمار</h3>'+(d.ages||[]).map(function(s){ return admBar(s.label, s.n, mx(d.ages), "#5b7bb5"); }).join("")+'</div>';
   h += '<div class="card"><h3 style="margin-top:0">💬 آخر التعليقات</h3>'+((d.comments||[]).length ? d.comments.map(function(c){ return '<div style="border-top:1px solid var(--line,#e6ecea);padding:6px 0"><div>'+admEsc(c.text)+'</div><div class="muted" style="font-size:12px">'+admEsc([c.name, c.age, stL(c.stage), "تقييم "+c.rating, c.week].filter(String).join(" · "))+'</div></div>'; }).join("") : '<div class="muted">مفيش تعليقات لسه.</div>')+'</div>';
+  h += '<div class="card"><h3 style="margin-top:0">📣 إعلان للطلاب</h3><div class="muted" style="font-size:13px;margin-bottom:8px">بيظهر للطالب أول ما يفتح التطبيق، مرة واحدة.</div>'
+    + '<input type="text" id="anT" maxlength="60" placeholder="العنوان (مثلًا: نزلت أسئلة الكيميا)" style="margin-bottom:6px"><textarea id="anB" maxlength="400" rows="3" placeholder="التفاصيل (اختياري)" style="width:100%;margin-bottom:6px;font:inherit;border-radius:12px;padding:8px;border:1px solid var(--line,#dde)"></textarea>'
+    + '<input type="url" id="anU" placeholder="رابط اختياري يبدأ بـ https://" style="margin-bottom:6px"><select id="anS" style="width:100%;margin-bottom:8px;padding:8px;border-radius:12px"><option value="">لكل المراحل</option>'+Object.keys(STAGES).map(function(c){ return '<option value="'+c+'">'+admEsc(STAGES[c].label)+'</option>'; }).join("")+'</select>'
+    + '<button class="btn" type="button" id="anGo" style="width:100%">انشر الإعلان</button><div class="muted" id="anMsg" style="margin-top:6px"></div>'
+    + '<div id="anList" style="margin-top:8px">'+admNewsList(d.news||[])+'</div></div>';
   h += '<div class="muted center" style="font-size:12px">آخر تحديث: '+admEsc(d.at||"")+' · كل الردود في Google Sheet</div>';
-  $("admBody").innerHTML = h; $("admBody").hidden = false; $("admLogin").hidden = true; }
+  $("admBody").innerHTML = h; $("admBody").hidden = false; $("admLogin").hidden = true;
+  $("anGo").onclick = function(){ var t = $("anT").value.trim(); if(!t){ $("anMsg").textContent = "اكتب عنوان الإعلان."; return; } $("anGo").disabled = true; $("anMsg").textContent = "بينشر…";
+    admPost({action:"announce", key:admKeyMem, t:t, b:$("anB").value, u:$("anU").value.trim(), st:$("anS").value}).then(function(r){ $("anGo").disabled = false; if(!r || r.error){ $("anMsg").textContent = "ما اتنشرش ("+((r&&r.error)||"خطأ")+")."; return; } $("anT").value = $("anB").value = $("anU").value = ""; $("anMsg").textContent = "✅ اتنشر. هيظهر للطلاب أول ما يفتحوا التطبيق."; $("anList").innerHTML = admNewsList(r.news||[]); }).catch(function(){ $("anGo").disabled = false; $("anMsg").textContent = "مش قادر يوصل للسيرفر."; }); };
+  $("anList").onclick = function(e){ var b = e.target.closest("[data-del]"); if(!b) return; admPost({action:"unannounce", key:admKeyMem, id:b.getAttribute("data-del")}).then(function(r){ if(r && !r.error) $("anList").innerHTML = admNewsList(r.news||[]); }); }; }
+function admPost(o){ return fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(o)}).then(function(r){ return r.json(); }); }
+function admNewsList(list){ if(!list.length) return '<div class="muted" style="font-size:13px">مفيش إعلانات شغالة.</div>'; return '<div class="muted" style="font-size:12px;margin-bottom:4px">الإعلانات الشغالة (آخر 5):</div>'+list.slice().reverse().map(function(n){ return '<div class="row" style="justify-content:space-between;border-top:1px solid var(--line,#e6ecea);padding:6px 0;gap:8px"><div style="flex:1;min-width:0"><b>'+admEsc(n.t)+'</b><div class="muted" style="font-size:12px">'+admEsc(n.at)+' · '+admEsc(n.st ? ((STAGES[n.st]||{}).label||n.st) : "كل المراحل")+'</div></div><button type="button" class="btn ghost sm" data-del="'+admEsc(n.id)+'">شيل</button></div>'; }).join(""); }
 function admLoad(){ var key = admKeyMem || $("admKey").value; if(!key) return; $("admMsg").textContent = "بيحمّل…"; $("admGo").disabled = true;
   admCall(key).then(function(d){ $("admGo").disabled = false; if(!d || d.error){ admKeyMem = ""; $("admMsg").textContent = d && d.error==="locked" ? "محاولات كتير غلط. استنى ربع ساعة." : "الباسوورد غلط."; return; } admKeyMem = key; $("admKey").value = ""; admRender(d); })
   .catch(function(){ $("admGo").disabled = false; $("admMsg").textContent = "مش قادر يوصل للسيرفر. اتأكد من النت."; }); }
@@ -2017,7 +2038,7 @@ $("admWrap").hidden = !CFG.sv;
 initialSync();
 (function(){ try{ var seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10); if(seen && seen < currV && S.setup) toast("📚 المناهج اتحدثت: دروس جديدة اتضافت، وتقدمك زي ما هو"); localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){} })();
 checkCurriculum();
-setTimeout(function(){ svFlush(); if(svDue() && !$("setup").classList.contains("on")) svShow(); }, 1200);
+setTimeout(function(){ svFlush(); newsCheck(function(){ if(svDue() && !$("setup").classList.contains("on")) svShow(); }); }, 1200);
 (function(){ var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone===true;
   stat("/app", false, "التطبيق"); stat(standalone ? "open-installed" : "open-browser", true, standalone ? "فتح من الأيقونة" : "فتح من المتصفح");
   if(S.setup && S.stage) stat("active-"+S.stage, true, "طالب نشط · "+(STAGES[S.stage]?STAGES[S.stage].label:""));
