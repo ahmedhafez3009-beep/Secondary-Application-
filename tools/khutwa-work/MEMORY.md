@@ -176,5 +176,5 @@
 
 ### 2026-11-28 — voice progress
 - rec synced: L1 A/A45/B/C/D/D2 كاملة؛ L2A.1–20 (ناقص L2A.21–26 + RA.1–2)؛ L2B كاملة (L2B1–3+RB)؛ L2C1–4 كاملة.
-- mp4 مبعوتة: L1 A, A45, B, C. في الطابور: L1 D, D2 (chain2.sh) ثم L2B, L2C (chain3.sh) — لو اتقفلوا شغّلهم تاني من /home/claude/render.
+- mp4 مبعوتة: L1 A, A45, B, C. أحمد رفض تبطيء الصوت لـ85% (2026-11-28): الفيديوهات بسرعة تسجيله الأصلية، ماتستخدمش mkrec85.py. في الطابور: chain4.sh (D, D2, L2B, L2C).
 - ملاحظة: اسم ملف ممكن ييجي lowercase (L2c1) → انسخه باسم uppercase قبل mkrec.
