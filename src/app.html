@@ -662,7 +662,7 @@ html[dir="ltr"] .legend span, html[dir="ltr"] .lg span{white-space:nowrap}
 </style>
   <div class="adm-top"><div class="row" style="justify-content:space-between;gap:8px"><h3 style="margin:0">🛠️ لوحة إدارة خُطوة</h3><div class="row" style="gap:6px"><button class="btn sm" type="button" id="admNews" data-nog hidden>📣 إعلان جديد</button><button class="btn ghost sm" type="button" id="admRef" data-nog hidden>⟳ تحديث</button><button class="btn ghost sm" type="button" id="admOut" data-nog hidden>خروج</button><button class="btn ghost sm" type="button" id="admClose" data-nog>قفل</button></div></div>
     <div id="admBar" hidden><div class="adm-filters"><select id="admSpan" data-nog><option value="4">آخر 4 أسابيع</option><option value="12">آخر 12 أسبوع</option><option value="52">آخر سنة</option></select><select id="admStage" data-nog><option value="">كل المراحل</option></select><span class="muted" id="admAt" style="font-size:12px"></span></div>
-    <nav class="adm-tabs" id="admTabs"><button type="button" data-t="ov" class="on">📊 نظرة عامة</button><button type="button" data-t="tr">📈 التحسّن</button><button type="button" data-t="pr">⚠️ المشاكل</button><button type="button" data-t="rs">💬 الردود</button><button type="button" data-t="nw">📣 الإعلانات</button><button type="button" data-t="st">⚙️ الإعدادات</button></nav></div>
+    <nav class="adm-tabs" id="admTabs"><button type="button" data-t="ov" class="on">📊 نظرة عامة</button><button type="button" data-t="us">📱 الاستخدام</button><button type="button" data-t="tr">📈 التحسّن</button><button type="button" data-t="pr">⚠️ المشاكل</button><button type="button" data-t="rs">💬 الردود</button><button type="button" data-t="nw">📣 الإعلانات</button><button type="button" data-t="st">⚙️ الإعدادات</button></nav></div>
   </div>
   <div class="adm-main"><div id="admLogin" style="max-width:380px;margin:30px auto"><p class="muted" style="margin:0 0 8px" data-nog>للمسؤول عن التطبيق بس. الباسوورد بيتراجع على سيرفر الردود، ومش بيتحفظ على الموبايل.</p>
     <input type="password" id="admKey" autocomplete="off" placeholder="الباسوورد" style="margin-bottom:8px"><button class="btn" type="button" id="admGo" style="width:100%" data-nog>دخول</button><div class="muted" id="admMsg" style="margin-top:8px" data-nog></div></div>
@@ -2016,6 +2016,15 @@ $("svyGo").addEventListener("click", function(){ if(!svPick.r || !svPick.a) retu
   S.sv.q = S.sv.q.slice(-12); S.sv.last = today(); save(); $("svy").classList.remove("on"); toast("💚 شكرًا! رأيك وصل"); svFlush(); });
 window.addEventListener("online", svFlush);
 
+/* ---- usage: one ping per device per day (first open), carrying the open count of its previous day ---- */
+function usePing(){ if(!CFG.sv || S.noStats || navigator.doNotTrack==="1" || !/^https?:$/.test(location.protocol)) return;
+  var t = today(), o = {}; try{ o = JSON.parse(localStorage.getItem("khutwa-opens")||"{}")||{}; }catch(e){}
+  if(o.d===t){ o.n = (o.n||0)+1; try{ localStorage.setItem("khutwa-opens", JSON.stringify(o)); }catch(e){} return; }
+  if(!S.sv.id){ var a = new Uint8Array(8); try{ crypto.getRandomValues(a); }catch(e){ for(var i=0;i<8;i++) a[i] = Math.random()*256; } S.sv.id = Array.prototype.map.call(a, function(x){ return ("0"+x.toString(16)).slice(-2); }).join(""); save(); }
+  var prev = (o.d && o.n) ? {date:o.d, opens:o.n} : null;
+  fetch(CFG.sv, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({action:"ping", id:S.sv.id, stage:S.stage||"", prev:prev})})
+   .then(function(){ try{ localStorage.setItem("khutwa-opens", JSON.stringify({d:t, n:1})); }catch(e){} }).catch(function(){}); }
+
 /* ---- announcements: shown once, on the next open, to the stages they target ---- */
 function newsCheck(done){ if(!CFG.sv || !S.setup || !navigator.onLine) return done && done();
   fetch(CFG.sv, {method:"POST", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify({action:"boot"})}).then(function(r){ return r.json(); }).then(function(d){
@@ -2055,6 +2064,20 @@ var admTabsR = {
     + admKpi("خطوات المذاكرة", k.steps!=null?k.steps:"—", "متوسط في الأسبوع للطالب")+'</div>';
   h += '<div class="adm-two"><div class="adm-box"><h4>🎯 نقط محتاج تشتغل عليها</h4>'+((d.focus||[]).length ? '<ol style="margin:0;padding-inline-start:20px">'+d.focus.map(function(f){ return '<li style="margin:5px 0">'+admEsc(String(f).replace(/«([a-z]\d)»|المرحلة ([a-z]\d)/g, function(m,c1,c2){ return c1 ? "«"+stL(c1)+"»" : "مرحلة «"+stL(c2)+"»"; }))+'</li>'; }).join("")+'</ol>' : '<div class="muted">مفيش حاجة واضحة لسه. بتظهر هنا لما الردود تكتر.</div>')+'</div>';
   h += '<div class="adm-box"><h4>⭐ توزيع التقييمات</h4>'+[5,4,3,2,1].map(function(v){ var n = (d.dist||[])[v-1]||0; return admBar(["","😣 1","😕 2","😐 3","🙂 4","🤩 5"][v], n, Math.max.apply(null,(d.dist||[0]).concat([1])), v>=4?"#1f7a5a":(v===3?"#c9a227":"#c0392b"), tot?Math.round(100*n/tot)+"%":""); }).join("")+'</div></div>';
+  return h; },
+ us: function(d){ var u = d.usage||{days:[]}, t = u.today||{}, y = u.yesterday||{}, w = u.week||{}, pw = u.prevWeek||{}, h = '';
+  var gr = function(a, b){ if(!b) return a ? "جديد" : "—"; var p = Math.round(100*(a-b)/b); return (p>=0?"▲ ":"▼ ")+Math.abs(p)+"% عن الأسبوع اللي فات"; };
+  var cls = function(a, b){ return !b ? "" : (a>=b ? "adm-up" : "adm-dn"); };
+  h += '<div class="adm-grid">'+admKpi("أجهزة فتحت النهارده", t.devices||0, "بيتحدّث مع كل جهاز جديد يفتح")
+    + admKpi("فتحات امبارح", y.opens||0, (y.devices||0)+" جهاز · متوسط "+((y.devices? (y.opens/y.devices).toFixed(1) : "0"))+" فتحة للجهاز")
+    + admKpi("أجهزة آخر 7 أيام", w.devices||0, gr(w.devices||0, pw.devices||0), cls(w.devices||0, pw.devices||0))
+    + admKpi("فتحات آخر 7 أيام", w.opens||0, gr(w.opens||0, pw.opens||0), cls(w.opens||0, pw.opens||0))
+    + admKpi("أجهزة جديدة (7 أيام)", w.fresh||0, "إجمالي الأجهزة "+(u.totalDevices||0))+'</div>';
+  var days = (u.days||[]).map(function(x){ return {week:x.day, opens:x.opens, devices:x.devices, fresh:x.fresh}; });
+  var mxO = Math.max(4, Math.max.apply(null, days.map(function(x){ return x.opens; }).concat([0]))), mxD = Math.max(4, Math.max.apply(null, days.map(function(x){ return x.devices; }).concat([0])));
+  h += '<div class="adm-box"><h4>📱 الفتحات كل يوم</h4>'+admLine(days.slice(0,-1), [{k:"opens", min:0, max:mxO, c:"#1f7a5a", grid:true, label:true, fmt:function(v){ return Math.round(v); }}])+'<div class="muted" style="font-size:12px">لحد امبارح. فتحات النهارده بتتحسب لما كل جهاز يفتح التطبيق بكرة.</div></div>';
+  h += '<div class="adm-two"><div class="adm-box"><h4>👥 أجهزة فتحت كل يوم</h4>'+admLine(days, [{k:"devices", min:0, max:mxD, c:"#5b7bb5", grid:true, label:true, fmt:function(v){ return Math.round(v); }}])+'</div>';
+  h += '<div class="adm-box"><h4>🌱 أجهزة جديدة كل يوم</h4>'+admLine(days, [{k:"fresh", min:0, max:Math.max(4, Math.max.apply(null, days.map(function(x){ return x.fresh; }).concat([0]))), c:"#c0622e", grid:true, label:true, fmt:function(v){ return Math.round(v); }}])+'</div></div>';
   return h; },
  tr: function(d){ var w = d.weeks||[], h = '';
   h += '<div class="adm-box"><h4>📈 متوسط التقييم أسبوع بأسبوع</h4>'+admLine(w, [{k:"rating", min:1, max:5, c:"#1f7a5a", grid:true, label:true, fmt:function(v){ return (+v).toFixed(1); }}])+'</div>';
@@ -2118,7 +2141,7 @@ $("admWrap").hidden = !CFG.sv;
 initialSync();
 (function(){ try{ var seen = parseInt(localStorage.getItem("khutwa-curr-seen")||"0",10); if(seen && seen < currV && S.setup) toast("📚 المناهج اتحدثت: دروس جديدة اتضافت، وتقدمك زي ما هو"); localStorage.setItem("khutwa-curr-seen", String(currV)); }catch(e){} })();
 checkCurriculum();
-setTimeout(function(){ svFlush(); newsCheck(function(){ if(svDue() && !$("setup").classList.contains("on")) svShow(); }); }, 1200);
+setTimeout(function(){ usePing(); svFlush(); newsCheck(function(){ if(svDue() && !$("setup").classList.contains("on")) svShow(); }); }, 1200);
 (function(){ var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone===true;
   stat("/app", false, "التطبيق"); stat(standalone ? "open-installed" : "open-browser", true, standalone ? "فتح من الأيقونة" : "فتح من المتصفح");
   if(S.setup && S.stage) stat("active-"+S.stage, true, "طالب نشط · "+(STAGES[S.stage]?STAGES[S.stage].label:""));
