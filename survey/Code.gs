@@ -28,6 +28,7 @@ function doPost(e) {
     if (d.action === 'news') return json_({ items: news_() });
     if (d.action === 'boot') return json_({ items: news_(), cfg: cfg_() });
     if (d.action === 'setcfg') return json_(setcfg_(d));
+    if (d.action === 'ping') return json_(ping_(d));
     if (d.action === 'announce') return json_(announce_(d));
     if (d.action === 'unannounce') return json_(unannounce_(d));
     const r = Number(d.rating);
@@ -89,6 +90,7 @@ function stats_(key, q) {
     stageOpts: Object.keys(all.reduce((o, r) => (r[8] && (o[r[8]] = 1), o), {})),
     stageMetrics: Object.keys(stageR).map(s => { const a = recent.filter(r => (r[8] || '؟') === s); return { label: s, n: a.length, rating: avg(a.map(r => +r[5])), steps: avg(a.map(r => +r[11])), att: avg(a.filter(r => r[13] !== '').map(r => +r[13])) }; }),
     responses: rows.slice(-60).reverse().map(r => ({ at: Utilities.formatDate(new Date(r[0]), 'Africa/Cairo', 'yyyy-MM-dd'), id: String(r[2]).slice(0, 6), age: r[3], name: r[4], rating: r[5], problems: r[6], other: r[7], stage: r[8], who: r[10], steps: r[11], quiz: r[12], att: r[13] })),
+    usage: usage_(span),
     cfg: cfg_(), sheetUrl: 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit'
   };
 }
@@ -133,4 +135,44 @@ function setcfg_(d) {
   const c = d.cfg || {};
   const v = { on: c.on !== false, every: [7, 14, 30].indexOf(+c.every) >= 0 ? +c.every : 7, firstAfter: [1, 3, 7].indexOf(+c.firstAfter) >= 0 ? +c.firstAfter : 3, askName: c.askName !== false };
   PropertiesService.getScriptProperties().setProperty('CFG', JSON.stringify(v)); return { ok: true, cfg: v };
+}
+
+/* الاستخدام: كل جهاز بيبعت ping واحد في اليوم (أول فتحة)، ومعاه عدد فتحاته في آخر يوم استخدم فيه التطبيق */
+const DEV = 'الأجهزة', DAY = 'الاستخدام اليومي';
+function tab_(name, head) { const ss = SpreadsheetApp.openById(SHEET_ID); let sh = ss.getSheetByName(name); if (!sh) { sh = ss.insertSheet(name); sh.appendRow(head); sh.setFrozenRows(1); sh.setRightToLeft(true); } return sh; }
+const day_ = d => Utilities.formatDate(d || new Date(), 'Africa/Cairo', 'yyyy-MM-dd');
+function dayRow_(sh, date) {
+  const f = sh.getRange('A:A').createTextFinder(date).matchEntireCell(true).findNext();
+  if (f) return f.getRow();
+  sh.appendRow([date, 0, 0, 0]); return sh.getLastRow();
+}
+function ping_(d) {
+  if (!/^[a-z0-9]{8,24}$/.test(d.id || '')) return { ok: false };
+  const lock = LockService.getScriptLock(); lock.waitLock(8000);
+  try {
+    const today = day_(), dev = tab_(DEV, ['رقم الجهاز', 'أول يوم', 'آخر يوم', 'المرحلة']), days = tab_(DAY, ['اليوم', 'أجهزة فتحت', 'أجهزة جديدة', 'عدد الفتحات']);
+    days.getRange('A:A').setNumberFormat('@'); dev.getRange('B:C').setNumberFormat('@');
+    const st = /^[a-z]\d$/.test(d.stage || '') ? d.stage : '';
+    const f = dev.getRange('A:A').createTextFinder(d.id).matchEntireCell(true).findNext();
+    let first = false, isNew = false;
+    if (!f) { dev.appendRow([d.id, today, today, st]); first = isNew = true; }
+    else if (dev.getRange(f.getRow(), 3).getValue() !== today) { dev.getRange(f.getRow(), 3, 1, 2).setValues([[today, st]]); first = true; }
+    if (first) { const r = dayRow_(days, today); const v = days.getRange(r, 2, 1, 2).getValues()[0]; days.getRange(r, 2, 1, 2).setValues([[+v[0] + 1, +v[1] + (isNew ? 1 : 0)]]); }
+    const p = d.prev || {}; const n = Math.min(500, Math.max(0, Math.round(+p.opens || 0)));
+    if (n && /^\d{4}-\d{2}-\d{2}$/.test(p.date || '') && p.date < today) { const r = dayRow_(days, p.date); days.getRange(r, 4).setValue(+days.getRange(r, 4).getValue() + n); }
+    return { ok: true };
+  } finally { lock.releaseLock(); }
+}
+function usage_(span) {
+  const ss = SpreadsheetApp.openById(SHEET_ID), sh = ss.getSheetByName(DAY), dv = ss.getSheetByName(DEV);
+  const rows = sh ? sh.getDataRange().getValues().slice(1) : [];
+  const map = {}; rows.forEach(r => { const k = typeof r[0] === 'string' ? r[0] : day_(new Date(r[0])); map[k] = { devices: +r[1] || 0, fresh: +r[2] || 0, opens: +r[3] || 0 }; });
+  const out = [], n = Math.min(span * 7, 120);
+  for (let i = n - 1; i >= 0; i--) { const k = day_(new Date(Date.now() - i * 864e5)); out.push(Object.assign({ day: k }, map[k] || { devices: 0, fresh: 0, opens: 0 })); }
+  const sum = (a, f) => a.reduce((s, x) => s + f(x), 0);
+  const last7 = out.slice(-7), prev7 = out.slice(-14, -7);
+  return { days: out, today: out[out.length - 1], yesterday: out[out.length - 2] || null,
+    totalDevices: dv ? Math.max(0, dv.getLastRow() - 1) : 0,
+    week: { devices: sum(last7, x => x.devices), opens: sum(last7, x => x.opens), fresh: sum(last7, x => x.fresh) },
+    prevWeek: { devices: sum(prev7, x => x.devices), opens: sum(prev7, x => x.opens), fresh: sum(prev7, x => x.fresh) } };
 }
