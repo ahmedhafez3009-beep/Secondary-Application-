@@ -1231,6 +1231,7 @@ window.__K={IT,LINES,SL,END,seek,CW,CH,CAM,AU,sLines,play,stop,startSync,tap,get
    الفكرة: كل جملة بتتسجل لوحدها بالمايك، وبعدين البرنامج يقيس صوتك (فين بتتكلم وفين ساكت)
    ويوزّع كلمات الجملة على صوتك، فالرسم والكاريوكي يمشوا على كلامك إنت مش على توقيت ثابت. */
 (()=>{
+try{spd=.85;const sp=document.getElementById('spd');if(sp)sp.value=.85;const sv=document.getElementById('spdv');if(sv)sv.textContent='85%'}catch(e){}
 const TL=LINES.map((l,i)=>Object.assign(l,{ix:i})).filter(l=>l.txt);
 const KEY='kh|'+document.title+'|'+Math.round(END)+'|';
 const lid=l=>KEY+l.id+'#'+l.ix;
@@ -1299,14 +1300,14 @@ async function recStart(){if(recOn)return;lstop();stop();const L=TL[li];
   await setRec(L,blob,an,true);const dur=(LA[lid(L)].end-LA[lid(L)].start).toFixed(1);say(`✓ اتسجلت «${L.id}» (${dur} ث، ${an.segs.length} مقطع صوت) والرسم اتظبط عليها.`);
   if($$('#lrAuto').checked&&li<TL.length-1){pick(li+1);setTimeout(recStart,450)}else{show();lplay(li,true)}};
  seek(L.t);mr.start();recOn=true;$$('#lrRec').classList.add('on');$$('#lrRec').textContent='■ خلّصت (Enter)';say('🔴 بيسجّل… قول الجملة، ولما تخلص دوس Enter.');
- const t0=performance.now();const pv=now=>{if(!recOn)return;T=Math.min(L.t+L.d-.02,L.t+(now-t0)/1000);render();requestAnimationFrame(pv)};requestAnimationFrame(pv)}
+ const t0=performance.now();const pv=now=>{if(!recOn)return;T=Math.min(L.t+L.d-.02,L.t+(now-t0)/1000*spd);render();requestAnimationFrame(pv)};requestAnimationFrame(pv)}
 function recStop(){if(!recOn)return;recOn=false;$$('#lrRec').classList.remove('on');$$('#lrRec').textContent='● سجّل الجملة (Enter)';mr&&mr.state!='inactive'&&mr.stop()}
 /* ---------- التشغيل بصوتك ---------- */
 function lineAt(t){let l=null;for(const x of LINES)if(t>=x.t-1e-6)l=x;return l}
 function lplay(i,only,full){lstop();stop();ac();const L=TL[i];const t0=full?0:only?L.t:slideOf(L).t;seek(t0);lp={L:null,a:null,R:null,last:performance.now(),only:only?L:null,stopAt:only?L.t+L.d-.01:full?END:(SL[SL.indexOf(slideOf(L))+1]||{t:END}).t};requestAnimationFrame(lstep)}
 function lstep(now){if(!lp)return;const dt=Math.max(0,Math.min(.1,(now-lp.last)/1000));lp.last=now;const prev=T;
  if(lp.a){T=mapA(lp.L,lp.R,lp.a.currentTime);if(lp.a.ended||lp.a.currentTime>=lp.R.end){lp.a.pause();lp.a=null;T=lp.L.t+lp.L.d}}
- else{let nT=T+dt;const nx=LINES.find(l=>l.t>T+1e-6&&l.t<=nT);if(nx)nT=nx.t;T=nT}
+ else{let nT=T+dt*spd;const nx=LINES.find(l=>l.t>T+1e-6&&l.t<=nT);if(nx)nT=nx.t;T=nT}
  if(!lp.a){const C=lineAt(T);if(C&&C!==lp.L){lp.L=C;const R=C.txt&&LA[lid(C)];if(R){lp.R=R;lp.a=R.a;lp.a.currentTime=R.start;if(DEST&&!R.src){R.src=AC.createMediaElementSource(R.a);R.src.connect(BUS)}lp.a.play().catch(()=>{});T=C.t}}}
  if(SFXG)SFXG.gain.value=lp.a?.3:1;for(const e of SFX)if(e.t>prev&&e.t<=T)sfx(e.k);
  if(T>=lp.stopAt-1e-6||T>=END){T=Math.min(T,END);render();lend();return}render();requestAnimationFrame(lstep)}
