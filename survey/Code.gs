@@ -24,8 +24,10 @@ const clip = (v, n) => String(v == null ? '' : v).replace(/[=+\-@]/, m => "'" + 
 function doPost(e) {
   try {
     const d = JSON.parse(e.postData.contents);
-    if (d.action === 'stats') return json_(stats_(d.key));
+    if (d.action === 'stats') return json_(stats_(d.key, d));
     if (d.action === 'news') return json_({ items: news_() });
+    if (d.action === 'boot') return json_({ items: news_(), cfg: cfg_() });
+    if (d.action === 'setcfg') return json_(setcfg_(d));
     if (d.action === 'announce') return json_(announce_(d));
     if (d.action === 'unannounce') return json_(unannounce_(d));
     const r = Number(d.rating);
@@ -47,15 +49,18 @@ function out_(s) { return ContentService.createTextOutput(s); }
 function json_(o) { return ContentService.createTextOutput(JSON.stringify(o)).setMimeType(ContentService.MimeType.JSON); }
 
 /* لوحة الإدارة: بترجع ملخص بس لو الباسوورد صح؛ 8 محاولات غلط في 15 دقيقة = قفل 15 دقيقة */
-function stats_(key) {
+function stats_(key, q) {
   const bad = auth_(key); if (bad) return bad;
-
-  const rows = sheet_().getDataRange().getValues().slice(1).filter(r => r[2]);
+  q = q || {};
+  const span = [4, 12, 52].indexOf(+q.weeks) >= 0 ? +q.weeks : 4;
+  const stF = /^[a-z]\d$/.test(q.stage || '') ? q.stage : '';
+  const all = sheet_().getDataRange().getValues().slice(1).filter(r => r[2]);
+  const rows = stF ? all.filter(r => r[8] === stF) : all;
   const wk = d => { const x = new Date(d); x.setHours(0,0,0,0); x.setDate(x.getDate() - ((x.getDay() + 1) % 7)); return Utilities.formatDate(x, 'Africa/Cairo', 'yyyy-MM-dd'); }; // الأسبوع بيبدأ السبت
   const avg = a => a.length ? a.reduce((s, v) => s + v, 0) / a.length : null;
-  const now = new Date(), thisW = wk(now), prevW = wk(new Date(now - 7 * 864e5)), from4 = new Date(now - 28 * 864e5);
+  const now = new Date(), thisW = wk(now), prevW = wk(new Date(now - 7 * 864e5)), from4 = new Date(now - span * 7 * 864e5);
   const byW = {}; rows.forEach(r => { const w = wk(r[0]); (byW[w] = byW[w] || []).push(r); });
-  const weeks = Object.keys(byW).sort().slice(-10).map(w => ({ week: w, n: byW[w].length, rating: avg(byW[w].map(r => +r[5])) }));
+  const weeks = Object.keys(byW).sort().slice(-Math.max(span, 4)).map(w => ({ week: w, n: byW[w].length, rating: avg(byW[w].map(r => +r[5])), steps: avg(byW[w].map(r => +r[11])), att: avg(byW[w].filter(r => r[13] !== '').map(r => +r[13])) }));
   const tw = byW[thisW] || [], pw = byW[prevW] || [];
   const recent = rows.filter(r => new Date(r[0]) >= from4);
   // مين بيتحسن: آخر ردّين لكل مستخدم
@@ -70,7 +75,7 @@ function stats_(key) {
   const comments = rows.filter(r => r[7]).slice(-30).reverse().map(r => ({ text: r[7], name: r[4] || '', age: r[3] || '', stage: r[8] || '', rating: r[5], week: wk(r[0]) }));
   // نقط الشغل: قواعد بسيطة وواضحة
   const focus = [];
-  if (recent.length) problems.slice(0, 3).forEach(p => { const pct = Math.round(100 * p.n / recent.length); if (pct >= 15) focus.push('«' + p.label + '» اتقالت في ' + pct + '% من ردود آخر 4 أسابيع.'); });
+  if (recent.length) problems.slice(0, 3).forEach(p => { const pct = Math.round(100 * p.n / recent.length); if (pct >= 15) focus.push('«' + p.label + '» اتقالت في ' + pct + '% من ردود آخر ' + span + ' أسبوع.'); });
   stages.filter(s => s.n >= 5 && s.rating < 3).forEach(s => focus.push('المرحلة ' + s.label + ' تقييمها ' + s.rating.toFixed(1) + ' من 5 (' + s.n + ' رد).'));
   if (weeks.length >= 3) { const a = weeks.slice(-3).map(w => w.rating); if (a[2] < a[1] && a[1] < a[0]) focus.push('متوسط التقييم نازل 3 أسابيع ورا بعض.'); }
   if (att != null && att < 70) focus.push('متوسط الحضور ' + Math.round(att) + '%، أقل من 70%.');
@@ -79,7 +84,12 @@ function stats_(key) {
   return {
     at: Utilities.formatDate(now, 'Africa/Cairo', 'yyyy-MM-dd HH:mm'),
     kpi: { total: rows.length, users: Object.keys(byU).length, thisWeek: tw.length, ratingThis: avg(tw.map(r => +r[5])), ratingPrev: avg(pw.map(r => +r[5])), better, worse, att: att == null ? null : Math.round(att), steps: steps == null ? null : +steps.toFixed(1) },
-    weeks, problems, stages, ages, comments, focus, news: news_(true)
+    weeks, problems, stages, ages, comments, focus, news: news_(true), span, stage: stF,
+    dist: [1, 2, 3, 4, 5].map(v => recent.filter(r => +r[5] === v).length),
+    stageOpts: Object.keys(all.reduce((o, r) => (r[8] && (o[r[8]] = 1), o), {})),
+    stageMetrics: Object.keys(stageR).map(s => { const a = recent.filter(r => (r[8] || '؟') === s); return { label: s, n: a.length, rating: avg(a.map(r => +r[5])), steps: avg(a.map(r => +r[11])), att: avg(a.filter(r => r[13] !== '').map(r => +r[13])) }; }),
+    responses: rows.slice(-60).reverse().map(r => ({ at: Utilities.formatDate(new Date(r[0]), 'Africa/Cairo', 'yyyy-MM-dd'), id: String(r[2]).slice(0, 6), age: r[3], name: r[4], rating: r[5], problems: r[6], other: r[7], stage: r[8], who: r[10], steps: r[11], quiz: r[12], att: r[13] })),
+    cfg: cfg_(), sheetUrl: 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit'
   };
 }
 
@@ -114,3 +124,13 @@ function unannounce_(d) {
 
 /* شغّلها مرة واحدة من المحرر: بتسمّي الجدول وبتعمل صفحة الردود وبتطلب الصلاحيات */
 function setup() { const ss = SpreadsheetApp.openById(SHEET_ID); ss.rename('خُطوة · ردود الاستبيان'); sheet_(); }
+
+/* إعدادات الاستبيان من لوحة الإدارة */
+const CFG_DEF = { on: true, every: 7, firstAfter: 3, askName: true };
+function cfg_() { let c = {}; try { c = JSON.parse(PropertiesService.getScriptProperties().getProperty('CFG') || '{}'); } catch (e) {} return Object.assign({}, CFG_DEF, c); }
+function setcfg_(d) {
+  const bad = auth_(d.key); if (bad) return bad;
+  const c = d.cfg || {};
+  const v = { on: c.on !== false, every: [7, 14, 30].indexOf(+c.every) >= 0 ? +c.every : 7, firstAfter: [1, 3, 7].indexOf(+c.firstAfter) >= 0 ? +c.firstAfter : 3, askName: c.askName !== false };
+  PropertiesService.getScriptProperties().setProperty('CFG', JSON.stringify(v)); return { ok: true, cfg: v };
+}
